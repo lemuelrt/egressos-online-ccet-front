@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { adminLteConfig } from './config/admin-lte.config';
-import { LayoutModule } from 'angular-admin-lte';
+import { LayoutModule, BoxModule } from 'angular-admin-lte';
 
 import { AdminRoutingModule } from './admin-routing/admin-routing.module';
 import { AdminComponent } from './admin.component';
+import { AdminCoordenadoresComponent } from './admin-coordenadores/admin-coordenadores.component';
+import { AdminIndexComponent } from './admin-index/admin-index.component';
 
 
 @NgModule({
@@ -13,9 +15,12 @@ import { AdminComponent } from './admin.component';
     CommonModule,
     AdminRoutingModule,
     LayoutModule.forRoot(adminLteConfig),
+    BoxModule
   ],
   declarations: [
-    AdminComponent
+    AdminComponent,
+    AdminCoordenadoresComponent,
+    AdminIndexComponent
   ],
   providers: [
 

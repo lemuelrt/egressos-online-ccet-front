@@ -1,7 +1,7 @@
 export let adminLteConfig = {
   skin: 'blue',
   sidebarLeftMenu: [
-    { label: 'Start', route: '/', iconClasses: 'fa fa-th' },
+    { label: 'Coordenadores', route: '/admin/coordenadores', iconClasses: 'fa fa-user' },
 
   ]
-}
+};
