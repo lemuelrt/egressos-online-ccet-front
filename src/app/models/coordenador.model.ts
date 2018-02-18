@@ -1,8 +1,10 @@
+import { Oferta } from './oferta.model';
 export interface Coordenador {
 
-  cpf: number;
-  nome: string;
-  email: string;
-  status: number;
+  coordenadorCpf: number;
+  coordenadorNome: string;
+  coordenadorEmail: string;
+  coordenadorStatus: number;
+  coordenadorOferta: Oferta;
 
 }
