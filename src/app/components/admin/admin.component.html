@@ -10,7 +10,22 @@
     <!-- Header HTML -->
   </mk-layout-header>
   <mk-layout-sidebar-left>
-    <!-- Sidebar left HTML (just above menu) -->
+    <ul  class="sidebar-menu">
+      <li  class="header">
+        <span _ngcontent-c2="">MAIN NAVIGATION</span>
+      </li>
+      <li  class="">
+        <a  [routerLink]="['/admin/coordenadores']" routerLinkActive="active">
+          <i  class="fa fa-user"></i>
+          <span>Coordenadores</span>
+          <!---->
+        </a>
+        <!---->
+        <!---->
+      </li>
+
+    </ul>
+
   </mk-layout-sidebar-left>
   <mk-layout-content>
     <router-outlet></router-outlet>

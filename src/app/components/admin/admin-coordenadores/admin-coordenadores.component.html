@@ -1,4 +1,4 @@
-<mk-box header='Coordenadores'
+<mk-box header=''
         [isRemovable]='false'
         [isCollapsable]='false'>
   <!--
@@ -8,6 +8,9 @@
   </mk-box-tools>
 -->
   <mk-box-content>
+
+
+    <a class="btn btn-success" [routerLink]="['/coordenadores/add']"  title="Incluir novo coordenador"><i class="glyphicon glyphicon-plus"></i></a>
 
     <div class="table-responsive">
       <table class="table">
@@ -22,7 +25,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr *ngFor="let coordenador of coordenadores" >
+            <td>{{coordenador.coordenadorCpf}}</td>
+            <td>{{coordenador.coordenadorNome}}</td>
+            <td>{{coordenador.coordenadorEmail}}</td>
+            <td>{{coordenador.coordenadorOferta.ofertaCurso.cursoNome}}</td>
+            <td></td>
             <td></td>
           </tr>
         </tbody>
