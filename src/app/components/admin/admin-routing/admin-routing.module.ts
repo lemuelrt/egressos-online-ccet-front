@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: 'admin', component: AdminComponent, /*data: {title: 'Home'},*/ children: [
       { path: '', component: AdminIndexComponent },
-      { path: 'coordenadores/add', component: AdminCoordenadorFormComponent/*, data: { title: 'Coordenadores' } */ },
+      { path: 'coordenadores/add', component: AdminCoordenadorFormComponent },
       { path: 'coordenadores', component: AdminCoordenadoresComponent/*, data: { title: 'Coordenadores' } */},
 
     ]
