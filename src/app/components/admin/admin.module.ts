@@ -10,13 +10,15 @@ import { AdminCoordenadoresComponent } from './admin-coordenadores/admin-coorden
 import { AdminIndexComponent } from './admin-index/admin-index.component';
 import { AdminCoordenadorFormComponent } from './admin-coordenador-form/admin-coordenador-form.component';
 
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     AdminRoutingModule,
     LayoutModule.forRoot(adminLteConfig),
-    BoxModule
+    BoxModule,
+    FormsModule
   ],
   declarations: [
     AdminComponent,

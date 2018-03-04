@@ -1,21 +1,24 @@
 <mk-box header='' [isRemovable]='false' [isCollapsable]='false'>
-  <!--
-  <mk-box-header>HTML Box header</mk-box-header>
-  <mk-box-tools isCollapsable='false'>
 
-  </mk-box-tools>
--->
+
+
+<mk-box-header>Cadastro De Coordenadores</mk-box-header>
+
+
+
 <mk-box-content>
 
   <div>
-    <form class="form-horizontal" role="form">
+
+    <form class="form-horizontal" role="form" #form="ngForm" novalidate>
+
 
       <!-- Campo Nome -->
 
       <div class="form-group">
         <label class="col-sm-2 control-label">Nome</label>
         <div class="col-sm-10">
-          <input type="name" class="form-control" id="nome" >
+          <input type="name" name="nome" ngModel class="form-control"  >
         </div>
       </div>
 
@@ -67,32 +70,23 @@
         </div>
       </div>
 
-      <!-- Botão Cancelar-->
+      <!-- Botão Cancelar--><!-- Botão Cadastrar-->
 
       <div class="form-group">
         <div class="row">
-
           <div class=".col-xs-6 .col-md-4">
                 <button type="submit" class="btn default">Cancelar</button>
                 <button type="submit" class="btn btn-success">Cadastrar</button>
-
-
           </div>
-
-
         </div>
       </div>
 
-      <!-- Botão Cadastrar-->
 
-      <div class="form-group">
-        <div class="row">
-
-        </div>
-      </div>
     </form>
 
   </div>
+
+
 
 
 </mk-box-content>

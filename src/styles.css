@@ -1,12 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
 
-
-
-
-
-/*====== Box Layout ==============*/
+/*====== Box Layout ==============
 .box-header{
   /*background-color: #1E88E5;
-  color:#fff;*/
+  color:#fff;
+}*/
+
+.form-control{
+  border-radius: 4px !important;
 }
