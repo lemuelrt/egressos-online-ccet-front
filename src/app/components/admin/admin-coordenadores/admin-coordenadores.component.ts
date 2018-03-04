@@ -1,3 +1,11 @@
+
+/**  Adicionei os imports necessários para consumir o service de http
+ *
+import { AdminCoordenadoresComponentService } from './admin-coordenadores.component.service';
+import { EOCCET_API } from './../../../app.api';
+
+*/
+
 import { Component, OnInit } from '@angular/core';
 
 import { Coordenador } from './../../../models/coordenador.model';
@@ -8,6 +16,11 @@ import { Coordenador } from './../../../models/coordenador.model';
   styleUrls: ['./admin-coordenadores.component.css']
 })
 export class AdminCoordenadoresComponent implements OnInit {
+
+  /*  para quando retirar os dados estáticos
+
+  coordenadores: Coordenador[];
+  */
 
   coordenadores: Coordenador[] = [
     {
@@ -51,5 +64,15 @@ export class AdminCoordenadoresComponent implements OnInit {
   ngOnInit() {
 
   }
+/*
+uma das formas de chamar o service para consumir a  api (também criei uma classe de service para separar as
+resposabilidades)
 
+  constructor(private coordenadorService: AdminCoordenadoresComponentService) { }
+
+  ngOnInit() {
+    this.coordenadorService.coordenadores()
+    .subscribe(coordenadores => this.coordenadores = coordenadores);
+  }
+*/
 }
