@@ -1,6 +1,7 @@
 <mk-box header=''
         [isRemovable]='false'
-        [isCollapsable]='false'>
+        [isCollapsable]='false'
+        [isSolid]='true'>
   <!--
   <mk-box-header>HTML Box header</mk-box-header>
   <mk-box-tools isCollapsable='false'>
@@ -9,8 +10,11 @@
 -->
   <mk-box-content>
 
+    <br />
 
-    <a class="btn btn-success" [routerLink]="['/admin/coordenadores/add']"  title="Incluir novo coordenador"><i class="glyphicon glyphicon-plus"></i></a>
+    <a class="btn btn-success" [routerLink]="['/admin/coordenadores-add']"  title="Incluir novo coordenador"><i class="glyphicon glyphicon-plus"></i></a>
+
+    <br /><br /><br />
 
     <div class="table-responsive">
       <table class="table">
