@@ -11,8 +11,6 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 })
 export class AdminCoordenadorFormComponent implements OnInit {
 
-  emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-  numberPattern = /^[0-9]*$/;
 
   adminForm: FormGroup;
 
