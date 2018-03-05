@@ -1,3 +1,4 @@
+import { ValidationService } from './../../../services/validation.service';
 import { AdminComponent } from './../admin.component';
 import { Component, OnInit } from '@angular/core';
 
@@ -20,8 +21,8 @@ export class AdminCoordenadorFormComponent implements OnInit {
   ngOnInit() {
     // o Curso como vai ser feito fiquei em dúvida
     this.adminForm = this.formBuilder.group({
-      cpf: this.formBuilder.control('', [Validators.required, Validators.pattern(this.numberPattern)]),
-      email: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPattern)]),
+      cpf: this.formBuilder.control('', [Validators.required, ValidationService.CPFValidator]),
+      email: this.formBuilder.control('', [Validators.required, ValidationService.emailValidator]),
       nome: this.formBuilder.control('', [Validators.required]),
       senha: this.formBuilder.control('', [Validators.required]),
       confirmarSenha: this.formBuilder.control('', [Validators.required]),
