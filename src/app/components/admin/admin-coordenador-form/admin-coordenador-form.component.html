@@ -1,16 +1,13 @@
 <mk-box header='' [isRemovable]='false' [isCollapsable]='false'>
 
-
-
 <mk-box-header>Cadastro De Coordenadores</mk-box-header>
-
 
 
 <mk-box-content>
 
   <div>
 
-    <form class="form-horizontal" role="form" #form="ngForm" novalidate>
+    <form [formGroup]="adminForm" class="form-horizontal" role="form" novalidate>
 
 
       <!-- Campo Nome -->
@@ -18,43 +15,43 @@
       <div class="form-group">
         <label class="col-sm-2 control-label">Nome</label>
         <div class="col-sm-10">
-          <input type="name" name="nome" ngModel class="form-control"  >
+          <input type="name" formControlName="nome" class="form-control"  >
         </div>
       </div>
 
       <!-- Campo Email -->
 
       <div class="form-group">
-        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+        <label class="col-sm-2 control-label">Email</label>
         <div class="col-sm-10">
-          <input type="email" class="form-control" id="email" >
+          <input type="email" formControlName="email" class="form-control"  >
         </div>
       </div>
 
       <!-- Campo CPF-->
 
       <div class="form-group">
-        <label for="inputEmail3" class="col-sm-2 control-label">CPF</label>
+        <label class="col-sm-2 control-label">CPF</label>
         <div class="col-sm-10">
-          <input type="CPF" class="form-control" id="email">
+          <input type="CPF" formControlName="cpf" class="form-control" >
         </div>
       </div>
 
       <!-- Campo Senha-->
 
       <div class="form-group">
-        <label for="inputEmail3" class="col-sm-2 control-label">Senha</label>
+        <label class="col-sm-2 control-label">Senha</label>
         <div class="col-sm-10">
-          <input type="password" class="form-control" id="senha">
+          <input type="password" formControlName="senha" class="form-control" >
         </div>
       </div>
 
       <!-- Campo Confirmar Senha-->
 
       <div class="form-group">
-        <label for="inputEmail3" class="col-sm-2 control-label">Confirmar Senha</label>
+        <label  class="col-sm-2 control-label">Confirmar Senha</label>
         <div class="col-sm-10">
-          <input type="password" class="form-control" id="confirmarSenha">
+          <input type="password" formControlName="confirmarSenha" class="form-control" >
         </div>
       </div>
 
