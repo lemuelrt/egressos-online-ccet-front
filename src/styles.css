@@ -10,3 +10,9 @@
 .form-control{
   border-radius: 4px !important;
 }
+
+.help-block {
+    margin-top: 0;
+    margin-bottom: 0;
+
+}
