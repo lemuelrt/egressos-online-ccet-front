@@ -33,7 +33,7 @@
             <td>{{coordenador.coordenadorCpf}}</td>
             <td>{{coordenador.coordenadorNome}}</td>
             <td>{{coordenador.coordenadorEmail}}</td>
-            <td *ngIf="coordenador.coordenadorOferta">{{coordenador.coordenadorOferta.campus.campusNome}}</td>
+            <td *ngIf="coordenador.coordenadorOferta">{{coordenador.coordenadorOferta.ofertaCurso.cursoNome}} - {{coordenador.coordenadorOferta.ofertaCampus.campusNome}}</td>
             <td *ngIf="!coordenador.coordenadorOferta">-</td>
             <td></td>
             <td></td>
