@@ -17,19 +17,17 @@ export class ValidationService {
     return config[validatorName];
   }
 
-  static selectValidator(control) {
+  static selectedValidator(control) {
 
-    if (control.value === '' || control.value === null) {
+    if (control.value === '' || control.value === null || control.value === undefined) {
+
       return { 'requiredSelected': true };
 
-    } else {
-      return null;
     }
-
+    return null;
   }
 
   static emailValidator(control) {
-
     // RFC 2822 compliant regex
     // tslint:disable-next-line:max-line-length
     if (control.value === '' || control.value.match(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9][a-z0-9-](?:[a-z0-9-]*[a-z0-9])?/)) {
