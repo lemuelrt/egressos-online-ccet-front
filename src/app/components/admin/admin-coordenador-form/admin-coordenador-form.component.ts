@@ -1,6 +1,8 @@
+import { OfertaService } from './../../../services/oferta.service';
+import { Oferta } from './../../../models/oferta.model';
 import { ValidationService } from './../../../services/validation.service';
 import { AdminComponent } from './../admin.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
@@ -9,14 +11,29 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
   templateUrl: './admin-coordenador-form.component.html',
   styleUrls: ['./admin-coordenador-form.component.css']
 })
-export class AdminCoordenadorFormComponent implements OnInit {
-
+export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
 
   adminForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  ofertas: Oferta[] = [];
+
+  ofertaSelecionada: Oferta;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private _ofertaService: OfertaService
+  ) { }
 
   ngOnInit() {
+
+    this._ofertaService.getAll().subscribe(
+      (ofertas) => {
+        this.ofertas = ofertas;
+        console.log(ofertas);
+      }
+
+    );
+
     // o Curso como vai ser feito fiquei em dúvida
     this.adminForm = this.formBuilder.group({
       cpf: this.formBuilder.control('', [Validators.required, ValidationService.CPFValidator]),
@@ -26,31 +43,32 @@ export class AdminCoordenadorFormComponent implements OnInit {
       confirmarSenha: this.formBuilder.control('', [Validators.required]),
       status: this.formBuilder.control('', [Validators.required]),
       oferta: this.formBuilder.control('', [Validators.required]),
-    }, { validator: AdminCoordenadorFormComponent.equalsTo });
+    });
+
+
   }
 
-  // Verificando se as senhas são iguais // Validator personalizado
+  ngAfterViewInit() {
+    this.equalsTo(this.adminForm.controls.confirmarSenha, this.adminForm.controls.senha);
+    this.equalsTo(this.adminForm.controls.senha, this.adminForm.controls.confirmarSenha, true);
+  }
 
-  // tslint:disable-next-line:member-ordering
-  static equalsTo(group: AbstractControl): { [key: string]: boolean } {
-
-    const senha = group.get('senha');
-    const confirmarSenha = group.get('confirmarSenha');
-
-    if (!senha || !confirmarSenha) {
-      return undefined;
-    }
-
-    if (senha.value !== confirmarSenha.value) {
-      return { senhasNaoConferem: true };
-
-      // senhaNaoConferem é o nome da chave para retornar a msg de erro Caso as senhas não conferem
-    }
-
-    return undefined;
+  equalsTo(senha1: AbstractControl, senha2: AbstractControl, touched = false) {
+    senha1.valueChanges.subscribe(
+      (selectedValue) => {
+        const testar = (touched === false || (touched && senha2.touched)) ? true : false;
+        if (testar && senha2.value !== selectedValue) {
+          senha1.setErrors({ 'senhasNaoConferem': true });
+          senha2.setErrors({ 'senhasNaoConferem': true });
+        } else {
+          senha1.setErrors(null);
+          senha2.setErrors(null);
+        }
+      }
+    );
   }
 
   salvar() {
-    console.log('teste');
+    console.log(this.ofertaSelecionada);
   }
 }

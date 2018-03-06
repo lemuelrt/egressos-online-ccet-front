@@ -8,7 +8,8 @@ export class ValidationService {
       'invalidEmailAddress': 'Endereço de email inválido.',
       'invalidPassword': 'Senha inválida. A senha deve ter pelo menos 6 caracteres e conter um número.',
       'minlength': `Comprimento mínimo de ${validatorValue.requiredLength}.`,
-      'invalidCPF': 'CPF é inválido.'
+      'invalidCPF': 'CPF é inválido.',
+      'senhasNaoConferem': 'As senhas não conferem.'
     };
 
     return config[validatorName];
@@ -19,7 +20,7 @@ export class ValidationService {
 
     // RFC 2822 compliant regex
     // tslint:disable-next-line:max-line-length
-    if (control.value === '' || control.value.match(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)) {
+    if (control.value === '' || control.value.match(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9][a-z0-9-](?:[a-z0-9-]*[a-z0-9])?/)) {
       return null;
     } else {
       return { 'invalidEmailAddress': true };

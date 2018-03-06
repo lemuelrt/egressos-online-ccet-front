@@ -1,9 +1,12 @@
+import { OfertaService } from './../../services/oferta.service';
 import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { adminLteConfig } from './config/admin-lte.config';
 import { LayoutModule, BoxModule } from 'angular-admin-lte';
+
+import { NgxMaskModule } from 'ngx-mask';
 
 import { AdminRoutingModule } from './admin-routing/admin-routing.module';
 import { AdminComponent } from './admin.component';
@@ -20,8 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LayoutModule.forRoot(adminLteConfig),
     BoxModule,
     FormsModule,
-    ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    NgxMaskModule.forRoot()
   ],
   declarations: [
     AdminComponent,

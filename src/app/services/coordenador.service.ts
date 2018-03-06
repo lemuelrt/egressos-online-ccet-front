@@ -1,6 +1,6 @@
+import { EOCCET_API } from './../app.api';
+import { Coordenador } from './../models/coordenador.model';
 import { HttpClient } from '@angular/common/http';
-import { EOCCET_API } from './../../../app.api';
-import { Coordenador } from './../../../models/coordenador.model';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
