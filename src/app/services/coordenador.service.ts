@@ -8,12 +8,17 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 @Injectable()
-export class AdminCoordenadoresComponentService {
+export class CoordenadorService {
 
   constructor(private http: HttpClient) {}
 
   coordenadores(): Observable<Coordenador[]> {
 
     return this.http.get<Coordenador[]>(`${EOCCET_API}/coordenadores`);
+  }
+
+  save(coordenador: Coordenador): Observable<Coordenador> {
+
+    return this.http.post<Coordenador>(`${EOCCET_API}/coordenadores`, coordenador);
   }
 }

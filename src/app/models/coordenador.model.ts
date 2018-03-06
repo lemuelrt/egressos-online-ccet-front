@@ -3,9 +3,9 @@ export interface Coordenador {
 
   coordenadirId?: number;
   coordenadorCpf: number;
+  coordenadorSenha?: string;
   coordenadorNome: string;
   coordenadorEmail: string;
   coordenadorStatus: number;
-  coordenadorOferta: Oferta;
 
 }

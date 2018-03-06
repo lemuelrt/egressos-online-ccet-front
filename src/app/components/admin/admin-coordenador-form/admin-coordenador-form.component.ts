@@ -1,3 +1,5 @@
+import { CoordenadorService } from './../../../services/coordenador.service';
+import { Coordenador } from './../../../models/coordenador.model';
 import { OfertaService } from './../../../services/oferta.service';
 import { Oferta } from './../../../models/oferta.model';
 import { ValidationService } from './../../../services/validation.service';
@@ -5,6 +7,7 @@ import { AdminComponent } from './../admin.component';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-coordenador-form',
@@ -21,7 +24,9 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private _ofertaService: OfertaService
+    private _ofertaService: OfertaService,
+    private _toastr: ToastrService,
+    private _coordenadorService: CoordenadorService
   ) { }
 
   ngOnInit() {
@@ -49,7 +54,7 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.equalsTo(this.adminForm.controls.confirmarSenha, this.adminForm.controls.senha);
+    this.equalsTo(this.adminForm.controls.confirmarSenha, this.adminForm.controls.senha, true);
     this.equalsTo(this.adminForm.controls.senha, this.adminForm.controls.confirmarSenha, true);
   }
 
@@ -69,6 +74,23 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
   }
 
   salvar() {
-    console.log(this.ofertaSelecionada);
+    if (this.adminForm.invalid) {
+      this._toastr.error('Operação não realizad! Verifique o(s) campo(s) marcado(s) de vermelho.');
+    } else {
+      const coordenador: Coordenador = {
+        coordenadorCpf: this.adminForm.controls.cpf.value,
+        coordenadorSenha: this.adminForm.controls.senha.value,
+        coordenadorNome: this.adminForm.controls.nome.value,
+        coordenadorStatus: 1,
+        coordenadorEmail: this.adminForm.controls.email.value,
+      };
+
+      this._coordenadorService.save(coordenador).subscribe(
+        (coordenadorResponse) => {
+          console.log(coordenadorResponse);
+        }
+      );
+    }
+
   }
 }

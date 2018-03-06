@@ -28,34 +28,14 @@ export class AdminCoordenadoresComponent implements OnInit {
       coordenadorCpf: 83073673145,
       coordenadorNome: 'Marco Aurelio',
       coordenadorEmail: 'marco.aurelio@email.com',
-      coordenadorStatus: 1,
-      coordenadorOferta: {
-        ofertaCampus: {
-          campusId: 1,
-          campusNome: 'UEG CCET'
-        },
-        ofertaCurso: {
-          cursoId: 1,
-          cursoNome: 'Sistemas de Informação'
-        }
-      }
+      coordenadorStatus: 1
     },
     {
       coordenadirId: 1,
       coordenadorCpf: 75145115222,
       coordenadorNome: 'Pedro Paulo',
       coordenadorEmail: 'pedro.pp@email.com',
-      coordenadorStatus: 1,
-      coordenadorOferta: {
-        ofertaCampus: {
-          campusId: 1,
-          campusNome: 'UEG CCET'
-        },
-        ofertaCurso: {
-          cursoId: 1,
-          cursoNome: 'Tecnologia em Processamento de Dados'
-        }
-      }
+      coordenadorStatus: 1
     }
   ];
 
