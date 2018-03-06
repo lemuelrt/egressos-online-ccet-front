@@ -4,9 +4,11 @@ export class ValidationService {
   static getValidatorErrorMessage(validatorName: string, validatorValue?: any) {
 
     const config = {
-      'required': 'Campo de preenchimento obrigatório.',
-      'invalidEmailAddress': 'Endereço de email inválido.',
-      'invalidPassword': 'Senha inválida. A senha deve ter pelo menos 6 caracteres e conter um número.',
+      'required': 'Campo obrigatório não preenchido.',
+      'requiredSelected': 'Campo obrigatório não selecionado.',
+      'invalidEmailAddress': 'E-mail inválido.',
+      // tslint:disable-next-line:max-line-length
+      'invalidPassword': 'Senha inválida. Este campo deve conter no mínimo 8 caracteres e no máximo 20. Os caracteres aceitos são:letras, números e caracteres especiais.',
       'minlength': `Comprimento mínimo de ${validatorValue.requiredLength}.`,
       'invalidCPF': 'CPF é inválido.',
       'senhasNaoConferem': 'As senhas não conferem.'
@@ -15,6 +17,16 @@ export class ValidationService {
     return config[validatorName];
   }
 
+  static selectValidator(control) {
+
+    if (control.value === '' || control.value === null) {
+      return { 'requiredSelected': true };
+
+    } else {
+      return null;
+    }
+
+  }
 
   static emailValidator(control) {
 

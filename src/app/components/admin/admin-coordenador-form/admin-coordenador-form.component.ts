@@ -53,7 +53,7 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
       nome: this.formBuilder.control('', [Validators.required]),
       senha: this.formBuilder.control('', [Validators.required]),
       confirmarSenha: this.formBuilder.control('', [Validators.required]),
-      oferta: this.formBuilder.control('', [Validators.required]),
+      oferta: this.formBuilder.control('', [ValidationService.selectValidator]),
     });
 
     if (cpf !== undefined) {
