@@ -1,3 +1,4 @@
+import { CoordenadorService } from './../../../services/coordenador.service';
 
 /**  Adicionei os imports necessários para consumir o service de http
  *
@@ -22,37 +23,21 @@ export class AdminCoordenadoresComponent implements OnInit {
   coordenadores: Coordenador[];
   */
 
-  coordenadores: Coordenador[] = [
-    {
-      coordenadirId: 1,
-      coordenadorCpf: 83073673145,
-      coordenadorNome: 'Marco Aurelio',
-      coordenadorEmail: 'marco.aurelio@email.com',
-      coordenadorStatus: 1
-    },
-    {
-      coordenadirId: 1,
-      coordenadorCpf: 75145115222,
-      coordenadorNome: 'Pedro Paulo',
-      coordenadorEmail: 'pedro.pp@email.com',
-      coordenadorStatus: 1
-    }
-  ];
+  coordenadores: Coordenador[] = [];
 
-  constructor() { }
+  constructor(
+    private _coordenadorService: CoordenadorService
+  ) { }
 
   ngOnInit() {
 
-  }
-/*
-uma das formas de chamar o service para consumir a  api (também criei uma classe de service para separar as
-resposabilidades)
+    this._coordenadorService.coordenadores().subscribe(
+      (coordenadores) => {
+        console.log(coordenadores);
+        this.coordenadores = coordenadores;
+      }
+    );
 
-  constructor(private coordenadorService: AdminCoordenadoresComponentService) { }
-
-  ngOnInit() {
-    this.coordenadorService.coordenadores()
-    .subscribe(coordenadores => this.coordenadores = coordenadores);
   }
-*/
+
 }

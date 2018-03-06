@@ -10,15 +10,23 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class CoordenadorService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   coordenadores(): Observable<Coordenador[]> {
 
     return this.http.get<Coordenador[]>(`${EOCCET_API}/coordenadores`);
   }
 
+  getByCpf(cpf: string): Observable<Coordenador> {
+    return this.http.get<Coordenador>(`${EOCCET_API}/coordenadores/${cpf}`);
+  }
+
   save(coordenador: Coordenador): Observable<Coordenador> {
 
     return this.http.post<Coordenador>(`${EOCCET_API}/coordenadores`, coordenador);
+  }
+
+  update(cpf: string, coordenador: Coordenador): Observable<Coordenador> {
+    return this.http.put<Coordenador>(`${EOCCET_API}/coordenadores/${cpf}`, coordenador);
   }
 }

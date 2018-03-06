@@ -8,6 +8,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-admin-coordenador-form',
@@ -22,11 +23,16 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
 
   ofertaSelecionada: Oferta;
 
+  coordenador: Coordenador = null;
+  alterar = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private _ofertaService: OfertaService,
     private _toastr: ToastrService,
-    private _coordenadorService: CoordenadorService
+    private _coordenadorService: CoordenadorService,
+    private _router: Router,
+    private _route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
@@ -36,8 +42,9 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
         this.ofertas = ofertas;
         console.log(ofertas);
       }
-
     );
+
+    const cpf = this._route.snapshot.params['cpf'];
 
     // o Curso como vai ser feito fiquei em dúvida
     this.adminForm = this.formBuilder.group({
@@ -46,10 +53,34 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
       nome: this.formBuilder.control('', [Validators.required]),
       senha: this.formBuilder.control('', [Validators.required]),
       confirmarSenha: this.formBuilder.control('', [Validators.required]),
-      status: this.formBuilder.control('', [Validators.required]),
       oferta: this.formBuilder.control('', [Validators.required]),
     });
 
+    if (cpf !== undefined) {
+      // this.title = 'Editar usuário';
+      this._coordenadorService.getByCpf(cpf).subscribe(
+        coordenador => {
+          this.coordenador = coordenador;
+
+          this.adminForm.get('cpf').setValue('' + this.coordenador.coordenadorCpf);
+          this.adminForm.get('cpf').disable();
+
+          this.adminForm.get('nome').setValue(this.coordenador.coordenadorNome);
+          this.adminForm.get('email').setValue(this.coordenador.coordenadorEmail);
+          this.ofertaSelecionada = this.coordenador.coordenadorOferta;
+
+          // console.log(this.coordenador.coordenadorOferta);
+
+          this.adminForm.controls.senha.clearValidators();
+          this.adminForm.controls.senha.updateValueAndValidity();
+          this.adminForm.controls.confirmarSenha.clearValidators();
+          this.adminForm.controls.confirmarSenha.updateValueAndValidity();
+        },
+        (error) => {
+          this._toastr.error(`O coordenador não foi encontrado.`);
+          this._router.navigate(['/admin/coordenadores']);
+        });
+    }
 
   }
 
@@ -75,7 +106,8 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
 
   salvar() {
     if (this.adminForm.invalid) {
-      this._toastr.error('Operação não realizad! Verifique o(s) campo(s) marcado(s) de vermelho.');
+      console.log(this.adminForm);
+      this._toastr.error('Operação não realizada! Verifique o(s) campo(s) marcado(s) de vermelho.');
     } else {
       const coordenador: Coordenador = {
         coordenadorCpf: this.adminForm.controls.cpf.value,
@@ -83,13 +115,26 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
         coordenadorNome: this.adminForm.controls.nome.value,
         coordenadorStatus: 1,
         coordenadorEmail: this.adminForm.controls.email.value,
+        coordenadorOferta: this.ofertaSelecionada
       };
 
-      this._coordenadorService.save(coordenador).subscribe(
-        (coordenadorResponse) => {
-          console.log(coordenadorResponse);
-        }
-      );
+      if (this.coordenador === null) {
+        this._coordenadorService.save(coordenador).subscribe(
+          (coordenadorResponse) => {
+            this._toastr.success('Coordenador foi cadastrado com sucesso');
+            this._router.navigate(['/admin/coordenadores']);
+          }
+        );
+      } else {
+        this._coordenadorService.save(coordenador).subscribe(
+          (coordenadorResponse) => {
+            this._toastr.success('Coordenador foi alterado com sucesso');
+            this._router.navigate(['/admin/coordenadores']);
+          }
+        );
+
+      }
+
     }
 
   }

@@ -2,12 +2,9 @@
 
 <mk-box-header>Cadastro De Coordenadores</mk-box-header>
 
-
 <mk-box-content>
 
   <div>
-
-
 
     <form [formGroup]="adminForm" class="form-horizontal" role="form" novalidate >
 
@@ -54,7 +51,7 @@
 
       <div class="form-group"
         [class.has-error]="adminForm.controls.senha.errors && adminForm.controls.senha.touched">
-        <label class="col-sm-2 control-label">Senha *</label>
+        <label class="col-sm-2 control-label">Senha <span *ngIf="!coordenador">*</span></label>
         <div class="col-sm-10">
           <input type="password" formControlName="senha" class="form-control" >
           <app-control-messages [control]="adminForm.controls.senha"></app-control-messages>
@@ -65,7 +62,7 @@
 
       <div class="form-group"
         [class.has-error]="adminForm.controls.confirmarSenha.errors && adminForm.controls.confirmarSenha.touched">
-        <label  class="col-sm-2 control-label">Confirmar Senha *</label>
+        <label  class="col-sm-2 control-label">Confirmar Senha <span *ngIf="!coordenador">*</span></label>
         <div class="col-sm-10">
           <input type="password" formControlName="confirmarSenha" class="form-control" >
           <app-control-messages [control]="adminForm.controls.confirmarSenha"></app-control-messages>
@@ -78,7 +75,7 @@
         <label for="inputEmail3" class="col-sm-2 control-label" >Curso *</label>
         <div class="col-sm-10">
           <select class="form-control" formControlName="oferta" [(ngModel)]="ofertaSelecionada">
-            <option [ngValue]="oferta" *ngFor="let oferta of ofertas">{{oferta.curso.cursoNome}} - {{oferta.campus.campusNome}}</option>
+            <option [ngValue]="oferta" [selected]='oferta === ofertaSelecionada' *ngFor="let oferta of ofertas">{{oferta.curso.cursoNome}} - {{oferta.campus.campusNome}}</option>
           </select>
           <app-control-messages [control]="adminForm.controls.oferta"></app-control-messages>
         </div>
@@ -94,13 +91,9 @@
 
       </div>
 
-
     </form>
 
   </div>
-
-
-
 
 </mk-box-content>
 

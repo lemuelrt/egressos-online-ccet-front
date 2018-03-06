@@ -7,5 +7,5 @@ export interface Coordenador {
   coordenadorNome: string;
   coordenadorEmail: string;
   coordenadorStatus: number;
-
+  coordenadorOferta?: Oferta;
 }

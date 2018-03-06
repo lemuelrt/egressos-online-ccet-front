@@ -13,6 +13,7 @@ const routes: Routes = [
       { path: '', component: AdminIndexComponent },
       { path: 'coordenadores', component: AdminCoordenadoresComponent/*, data: { title: 'Coordenadores' } */},
       { path: 'coordenadores-add', component: AdminCoordenadorFormComponent },
+      { path: 'coordenadores-edit/:cpf', component: AdminCoordenadorFormComponent },
     ]
   },
 ];

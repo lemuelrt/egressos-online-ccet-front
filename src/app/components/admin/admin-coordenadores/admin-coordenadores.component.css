@@ -2,6 +2,6 @@ tbody tr:nth-child(odd){
   background-color: #ccc;
 }
 
-tr{
+tr th{
   text-align: center;
 }
