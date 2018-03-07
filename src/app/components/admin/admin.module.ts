@@ -1,6 +1,7 @@
+import { AppErrorHandle } from './../../app-error-handle';
 import { OfertaService } from './../../services/oferta.service';
 import { SharedModule } from './../shared/shared.module';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { adminLteConfig } from './config/admin-lte.config';
@@ -33,7 +34,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AdminCoordenadorFormComponent
   ],
   providers: [
-
+    { provide: ErrorHandler, useClass: AppErrorHandle },
   ]
 })
 export class AdminModule { }

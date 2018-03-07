@@ -18,7 +18,7 @@ export class ValidationService {
   }
 
   static selectedValidator(control) {
-
+    console.log(control.value);
     if (control.value === '' || control.value === null || control.value === undefined) {
 
       return { 'requiredSelected': true };
