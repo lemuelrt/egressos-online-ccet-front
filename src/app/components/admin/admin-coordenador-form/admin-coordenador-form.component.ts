@@ -105,7 +105,7 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
   }
 
   salvar() {
-    if (this.adminForm.invalid) {
+if (this.adminForm.invalid) {
       console.log(this.adminForm);
       this._toastr.error('Operação não realizada! Verifique o(s) campo(s) marcado(s) de vermelho.');
     } else {
@@ -115,7 +115,7 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
         coordenadorNome: this.adminForm.controls.nome.value,
         coordenadorStatus: 1,
         coordenadorEmail: this.adminForm.controls.email.value,
-        coordenadorOferta: this.ofertaSelecionada
+        coordenadorOferta: this.adminForm.controls.oferta.value
       };
 
       if (this.coordenador === null) {
