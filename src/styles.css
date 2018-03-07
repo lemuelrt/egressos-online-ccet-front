@@ -16,3 +16,7 @@
     margin-bottom: 0;
     font-size: 0.95em;
 }
+
+.btn-default, .btn-default:hover, .btn-default:active, .btn-default:visited {
+    background-color: #8064A2;
+}
