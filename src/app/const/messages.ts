@@ -1,4 +1,4 @@
-export const ERRORS = {
+export const MESSAGES = {
   'M001': 'E-mail inválido.',
   'M002': 'Nome inválido. Este campo deve conter no mínimo duas palavras e no mínimo cinco caracteres.',
   'M003': 'CPF inválido.',

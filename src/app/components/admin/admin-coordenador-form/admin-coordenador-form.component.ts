@@ -1,3 +1,4 @@
+import { MESSAGES } from './../../../const/messages';
 import { CoordenadorService } from './../../../services/coordenador.service';
 import { Coordenador } from './../../../models/coordenador.model';
 import { OfertaService } from './../../../services/oferta.service';
@@ -20,8 +21,6 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
   adminForm: FormGroup;
 
   ofertas: Oferta[] = [];
-
-  ofertaSelecionada: Oferta;
 
   coordenador: Coordenador = null;
   alterar = false;
@@ -48,10 +47,10 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
 
     // o Curso como vai ser feito fiquei em dúvida
     this.adminForm = this.formBuilder.group({
-      cpf: this.formBuilder.control('', [Validators.required, ValidationService.CPFValidator]),
       email: this.formBuilder.control('', [Validators.required, ValidationService.emailValidator]),
-      nome: this.formBuilder.control('', [Validators.required]),
-      senha: this.formBuilder.control('', [Validators.required]),
+      cpf: this.formBuilder.control('', [Validators.required, ValidationService.CPFValidator]),
+      nome: this.formBuilder.control('', [Validators.required, ValidationService.nomeCompleto]),
+      senha: this.formBuilder.control('', [Validators.required, ValidationService.senha]),
       confirmarSenha: this.formBuilder.control('', [Validators.required]),
       oferta: this.formBuilder.control('', [ValidationService.selectedValidator]),
     });
@@ -67,8 +66,6 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
 
           this.adminForm.get('nome').setValue(this.coordenador.coordenadorNome);
           this.adminForm.get('email').setValue(this.coordenador.coordenadorEmail);
-          this.ofertaSelecionada = this.coordenador.coordenadorOferta;
-
           // console.log(this.coordenador.coordenadorOferta);
 
           this.adminForm.controls.senha.clearValidators();
@@ -97,45 +94,48 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
           senha1.setErrors({ 'senhasNaoConferem': true });
           senha2.setErrors({ 'senhasNaoConferem': true });
         } else {
-          senha1.setErrors(null);
-          senha2.setErrors(null);
+          if (senha1.hasError('senhasNaoConferem')) {
+            senha1.setErrors(null);
+          }
+          if (senha2.hasError('senhasNaoConferem')) {
+            senha2.setErrors(null);
+          }
         }
       }
     );
   }
 
   salvar() {
-if (this.adminForm.invalid) {
-      console.log(this.adminForm);
+    if (this.adminForm.invalid) {
       this._toastr.error('Operação não realizada! Verifique o(s) campo(s) marcado(s) de vermelho.');
     } else {
+      const ofertaSeleciona: Oferta = this.ofertas.find((o) => o.ofertaId.toString() === this.adminForm.get('oferta').value);
+
       const coordenador: Coordenador = {
         coordenadorCpf: this.adminForm.controls.cpf.value,
         coordenadorSenha: this.adminForm.controls.senha.value,
         coordenadorNome: this.adminForm.controls.nome.value,
         coordenadorStatus: 1,
         coordenadorEmail: this.adminForm.controls.email.value,
-        coordenadorOferta: this.adminForm.controls.oferta.value
+        coordenadorOferta: ofertaSeleciona
       };
 
       if (this.coordenador === null) {
         this._coordenadorService.save(coordenador).subscribe(
           (coordenadorResponse) => {
-            this._toastr.success('Coordenador foi cadastrado com sucesso');
+            // console.log(coordenadorResponse);
+            this._toastr.success(MESSAGES['M013']);
             this._router.navigate(['/admin/coordenadores']);
           }
         );
       } else {
         this._coordenadorService.save(coordenador).subscribe(
           (coordenadorResponse) => {
-            this._toastr.success('Coordenador foi alterado com sucesso');
+            this._toastr.success(MESSAGES['M014']);
             this._router.navigate(['/admin/coordenadores']);
           }
         );
-
       }
-
     }
-
   }
 }

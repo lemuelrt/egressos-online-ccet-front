@@ -6,6 +6,6 @@ export interface Coordenador {
   coordenadorSenha?: string;
   coordenadorNome: string;
   coordenadorEmail: string;
-  coordenadorStatus: number;
+  coordenadorStatus?: number;
   coordenadorOferta?: Oferta;
 }

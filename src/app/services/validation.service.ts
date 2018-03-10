@@ -1,28 +1,28 @@
+import { MESSAGES } from './../const/messages';
+
 
 export class ValidationService {
 
   static getValidatorErrorMessage(validatorName: string, validatorValue?: any) {
 
     const config = {
-      'required': 'Campo obrigatório não preenchido.',
-      'requiredSelected': 'Campo obrigatório não selecionado.',
-      'invalidEmailAddress': 'E-mail inválido.',
-      // tslint:disable-next-line:max-line-length
-      'invalidPassword': 'Senha inválida. Este campo deve conter no mínimo 8 caracteres e no máximo 20. Os caracteres aceitos são:letras, números e caracteres especiais.',
-      'minlength': `Comprimento mínimo de ${validatorValue.requiredLength}.`,
-      'invalidCPF': 'CPF é inválido.',
-      'senhasNaoConferem': 'As senhas não conferem.'
+      'required': MESSAGES['M006'],
+      'requiredSelected': MESSAGES['M007'],
+      'invalidEmailAddress': MESSAGES['M001'],
+      'invalidPassword': MESSAGES['M005'],
+      'invalidCPF': MESSAGES['M003'],
+      'senhasNaoConferem': MESSAGES['M012'],
+      'invalidNomeCompleto': MESSAGES['M002'],
+      'invalidSenha': MESSAGES['M005']
     };
 
     return config[validatorName];
   }
 
   static selectedValidator(control) {
-    console.log(control.value);
+
     if (control.value === '' || control.value === null || control.value === undefined) {
-
       return { 'requiredSelected': true };
-
     }
     return null;
   }
@@ -34,6 +34,33 @@ export class ValidationService {
       return null;
     } else {
       return { 'invalidEmailAddress': true };
+    }
+  }
+
+  static nomeCompleto(control) {
+    // RFC 2822 compliant regex
+    // tslint:disable-next-line:max-line-length
+    const value: string = control.value;
+
+    if (value.trim().length < 5 || (value.trim().length >= 5 && value.trim().indexOf(' ') === -1)) {
+      return { 'invalidNomeCompleto': true };
+    } else {
+      return null;
+    }
+  }
+
+  static senha(control) {
+    // RFC 2822 compliant regex
+    // tslint:disable-next-line:max-line-length
+    const value: string = control.value;
+
+    const regex = new RegExp('(?=^.{8,20}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$');
+    // console.log(value.trim().length < 8);
+    if (value.trim().length < 8 || value.trim().length > 20 || !regex.test(value)) {
+
+      return { 'invalidSenha': true };
+    } else {
+      return null;
     }
   }
 

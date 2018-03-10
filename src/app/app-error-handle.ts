@@ -1,4 +1,5 @@
-import { ERRORS } from './const/errors';
+import { MESSAGES } from './const/messages';
+
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable, ErrorHandler, Injector, NgZone } from '@angular/core';
@@ -21,9 +22,9 @@ export class AppErrorHandle extends ErrorHandler {
 
       const toastr = this._injector.get(ToastrService);
 
-      if (error.error_codigo !== undefined && ERRORS[error.error_codigo]) {
+      if (error.error_codigo !== undefined && MESSAGES[error.error_codigo]) {
         this._zone.run(() => {
-          toastr.error(ERRORS[error.error_codigo]);
+          toastr.error(MESSAGES[error.error_codigo]);
         });
       }
 
