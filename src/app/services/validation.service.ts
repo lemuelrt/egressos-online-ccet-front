@@ -54,10 +54,9 @@ export class ValidationService {
     // tslint:disable-next-line:max-line-length
     const value: string = control.value;
 
-    const regex = new RegExp('(?=^.{8,20}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$');
-    // console.log(value.trim().length < 8);
-    if (value.trim().length < 8 || value.trim().length > 20 || !regex.test(value)) {
+    const regex = /^[1-9a-zA-Z!@#$%&*]{8,20}$/g
 
+    if (!regex.test(value)) {
       return { 'invalidSenha': true };
     } else {
       return null;
