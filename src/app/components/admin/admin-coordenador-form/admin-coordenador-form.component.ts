@@ -113,7 +113,7 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
     );
   }
 
-  salvar() {
+  saveOrUpdate() {
 
     if (this.adminForm.invalid) {
       this._toastr.error('Operação não realizada! Verifique o(s) campo(s) marcado(s) de vermelho.');
