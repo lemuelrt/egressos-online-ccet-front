@@ -25,6 +25,9 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
   coordenador: Coordenador = null;
   alterar = false;
 
+  title = 'Cadastro de coordenador';
+  btndescricao = 'Alterar';
+
   constructor(
     private formBuilder: FormBuilder,
     private _ofertaService: OfertaService,
@@ -56,7 +59,8 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
     });
 
     if (cpf !== undefined) {
-      // this.title = 'Editar usuário';
+      this.title = 'Alteração de coordenador';
+      this.btndescricao = 'Alterar';
       this._coordenadorService.getByCpf(cpf).subscribe(
         coordenador => {
           this.coordenador = coordenador;
@@ -66,7 +70,10 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
 
           this.adminForm.get('nome').setValue(this.coordenador.coordenadorNome);
           this.adminForm.get('email').setValue(this.coordenador.coordenadorEmail);
-          // console.log(this.coordenador.coordenadorOferta);
+          if (this.coordenador.coordenadorOferta) {
+            this.adminForm.get('oferta').setValue(this.coordenador.coordenadorOferta.ofertaId);
+          }
+
 
           this.adminForm.controls.senha.clearValidators();
           this.adminForm.controls.senha.updateValueAndValidity();
@@ -129,7 +136,7 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
           }
         );
       } else {
-        this._coordenadorService.save(coordenador).subscribe(
+        this._coordenadorService.update(this.coordenador.coordenadorCpf.toString(), coordenador).subscribe(
           (coordenadorResponse) => {
             this._toastr.success(MESSAGES['M014']);
             this._router.navigate(['/admin/coordenadores']);

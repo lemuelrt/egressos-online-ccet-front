@@ -1,6 +1,6 @@
 <mk-box header='' [isRemovable]='false' [isCollapsable]='false'>
 
-<mk-box-header>Cadastro De Coordenadores</mk-box-header>
+<mk-box-header>{{title}}</mk-box-header>
 
 <mk-box-content>
 
@@ -87,7 +87,7 @@
       <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
                 <a class="btn default" [routerLink]="['/admin/coordenadores']" >Cancelar</a>
-                <button type="button" class="btn btn-success" (click)="salvar()">Cadastrar</button>
+                <button type="button" class="btn btn-success" (click)="salvar()">{{btndescricao}}</button>
           </div>
 
       </div>

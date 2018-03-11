@@ -1,3 +1,4 @@
+import { MaterialModule } from './angular-material/angular-material.module';
 import { CoordenadorService } from './../../services/coordenador.service';
 import { ToastrModule } from 'ngx-toastr';
 import { OfertaService } from './../../services/oferta.service';
@@ -8,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { ControlMessagesComponent } from './control-messages/control-messages.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confirmation.component';
 
 @NgModule({
   imports: [
@@ -15,20 +17,26 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ToastrModule.forRoot({
       positionClass: 'toast-top-right',
       closeButton: true
-    })
+    }),
+    MaterialModule
   ],
-  declarations: [ControlMessagesComponent],
+  declarations: [ControlMessagesComponent, DialogConfirmationComponent],
   providers: [
     ValidationService,
     OfertaService,
     CoordenadorService
   ],
+  entryComponents: [
+    DialogConfirmationComponent,
+  ],
   exports: [
+    DialogConfirmationComponent,
     ControlMessagesComponent,
     ReactiveFormsModule,
     HttpClientModule,
     ToastrModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule
   ]
 })
 export class SharedModule { }

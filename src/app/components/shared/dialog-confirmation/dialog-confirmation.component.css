@@ -1,0 +1,12 @@
+.mat-dialog-title{
+  font-size: 1.8em;
+  text-align: center;
+}
+
+.mat-dialog-actions{
+  justify-content: flex-end;
+}
+
+.mat-dialog-actions button{
+  text-transform: uppercase;
+}
