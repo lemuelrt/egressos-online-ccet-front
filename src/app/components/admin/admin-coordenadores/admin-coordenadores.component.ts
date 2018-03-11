@@ -39,14 +39,14 @@ export class AdminCoordenadoresComponent implements OnInit {
 
     this._coordenadorService.coordenadores().subscribe(
       (coordenadores) => {
-        console.log(coordenadores);
+        // console.log(coordenadores);
         this.coordenadores = coordenadores;
       }
     );
 
   }
 
-  confirmInactivation(cpf) {
+  confirmInactivation(id) {
 
     const dialogRef = this._dialog.open(DialogConfirmationComponent, {
       width: 'auto',
@@ -56,14 +56,14 @@ export class AdminCoordenadoresComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        const coordenador = this.coordenadores.find((c) => c.coordenadorCpf = cpf);
+        const coordenador = this.coordenadores.find((c) => c.coordenadorId === id);
         coordenador.coordenadorStatus = 2;
         coordenador.coordenadorSenha = '';
 
-        this._coordenadorService.update(cpf, coordenador).subscribe(
+        this._coordenadorService.update(id, coordenador).subscribe(
           (respnse) => {
             this._toastr.success(MESSAGES['M010']);
-            this.coordenadores = this.coordenadores.filter((c2) => c2.coordenadorCpf !== cpf);
+            this.coordenadores = this.coordenadores.filter((c2) => c2.coordenadorId !== id);
           }
         );
       }

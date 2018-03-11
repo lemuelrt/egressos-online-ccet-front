@@ -18,7 +18,7 @@ export const routes_admin: Routes = [
       { path: '', component: AdminIndexComponent },
       { path: 'coordenadores', component: AdminCoordenadoresComponent/*, data: { title: 'Coordenadores' } */ },
       { path: 'coordenadores-add', component: AdminCoordenadorFormComponent },
-      { path: 'coordenadores-edit/:cpf', component: AdminCoordenadorFormComponent },
+      { path: 'coordenadores-edit/:id', component: AdminCoordenadorFormComponent },
     ]
   },
 ];

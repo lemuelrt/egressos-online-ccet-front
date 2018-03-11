@@ -1,7 +1,7 @@
 import { Oferta } from './oferta.model';
 export interface Coordenador {
 
-  coordenadirId?: number;
+  coordenadorId?: number;
   coordenadorCpf: number;
   coordenadorSenha?: string;
   coordenadorNome: string;

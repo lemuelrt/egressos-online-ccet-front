@@ -35,8 +35,8 @@
             <td>{{coordenador.coordenadorEmail}}</td>
             <td *ngIf="coordenador.coordenadorOferta">{{coordenador.coordenadorOferta.ofertaCurso.cursoNome}} - {{coordenador.coordenadorOferta.ofertaCampus.campusNome}}</td>
             <td *ngIf="!coordenador.coordenadorOferta">-</td>
-            <td><a class="glyphicon glyphicon-edit" [routerLink]="['/admin/coordenadores-edit', coordenador.coordenadorCpf]"></a></td>
-            <td><a class="glyphicon glyphicon-eye-open" (click)="confirmInactivation(coordenador.coordenadorCpf)"></a></td>
+            <td><a class="glyphicon glyphicon-edit" [routerLink]="['/admin/coordenadores-edit', coordenador.coordenadorId]"></a></td>
+            <td><a class="glyphicon glyphicon-eye-open" (click)="confirmInactivation(coordenador.coordenadorId)"></a></td>
           </tr>
         </tbody>
       </table>

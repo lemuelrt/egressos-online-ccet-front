@@ -17,8 +17,8 @@ export class CoordenadorService {
     return this.http.get<Coordenador[]>(`${EOCCET_API}/coordenadores`);
   }
 
-  getByCpf(cpf: string): Observable<Coordenador> {
-    return this.http.get<Coordenador>(`${EOCCET_API}/coordenadores/${cpf}`);
+  getByid(id: number): Observable<Coordenador> {
+    return this.http.get<Coordenador>(`${EOCCET_API}/coordenadores/${id}`);
   }
 
   save(coordenador: Coordenador): Observable<Coordenador> {
@@ -26,7 +26,7 @@ export class CoordenadorService {
     return this.http.post<Coordenador>(`${EOCCET_API}/coordenadores`, coordenador);
   }
 
-  update(cpf: string, coordenador: Coordenador): Observable<Coordenador> {
-    return this.http.put<Coordenador>(`${EOCCET_API}/coordenadores/${cpf}`, coordenador);
+  update(id: number, coordenador: Coordenador): Observable<Coordenador> {
+    return this.http.put<Coordenador>(`${EOCCET_API}/coordenadores/${id}`, coordenador);
   }
 }

@@ -46,7 +46,7 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
       }
     );
 
-    const cpf = this._route.snapshot.params['cpf'];
+    const id = this._route.snapshot.params['id'];
 
     // o Curso como vai ser feito fiquei em dúvida
     this.adminForm = this.formBuilder.group({
@@ -58,10 +58,11 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
       oferta: this.formBuilder.control('', [ValidationService.selectedValidator]),
     });
 
-    if (cpf !== undefined) {
+    if (id !== undefined) {
       this.title = 'Alteração de coordenador';
       this.btndescricao = 'Alterar';
-      this._coordenadorService.getByCpf(cpf).subscribe(
+
+      this._coordenadorService.getByid(id).subscribe(
         coordenador => {
           this.coordenador = coordenador;
 
@@ -113,6 +114,7 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
   }
 
   salvar() {
+
     if (this.adminForm.invalid) {
       this._toastr.error('Operação não realizada! Verifique o(s) campo(s) marcado(s) de vermelho.');
     } else {
@@ -127,6 +129,8 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
         coordenadorOferta: ofertaSeleciona
       };
 
+      console.log(coordenador);
+
       if (this.coordenador === null) {
         this._coordenadorService.save(coordenador).subscribe(
           (coordenadorResponse) => {
@@ -136,7 +140,7 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
           }
         );
       } else {
-        this._coordenadorService.update(this.coordenador.coordenadorCpf.toString(), coordenador).subscribe(
+        this._coordenadorService.update(this.coordenador.coordenadorId, coordenador).subscribe(
           (coordenadorResponse) => {
             this._toastr.success(MESSAGES['M014']);
             this._router.navigate(['/admin/coordenadores']);
