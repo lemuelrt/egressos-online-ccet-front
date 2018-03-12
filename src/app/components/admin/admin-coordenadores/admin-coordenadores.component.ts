@@ -51,7 +51,7 @@ export class AdminCoordenadoresComponent implements OnInit {
     const dialogRef = this._dialog.open(DialogConfirmationComponent, {
       width: 'auto',
       autoFocus: false,
-      data: { msg: `Deseja realmente inativar este coordenador?` }
+      data: { msg: MESSAGES['M016'] }
     });
 
     dialogRef.afterClosed().subscribe(result => {
