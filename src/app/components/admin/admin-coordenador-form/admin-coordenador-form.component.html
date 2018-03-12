@@ -6,7 +6,7 @@
 
   <div>
 
-    <form [formGroup]="adminForm" class="form-horizontal" role="form" novalidate >
+    <form [formGroup]="adminForm" class="form-horizontal" role="form" novalidate (submit)="saveOrUpdate()">
 
       <div class="form-group">
         <label class="col-sm-2 control-label"></label>
@@ -87,7 +87,7 @@
       <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
                 <a class="btn default" [routerLink]="['/admin/coordenadores']" >Cancelar</a>
-                <button type="button" class="btn btn-success" (click)="saveOrUpdate()">{{btndescricao}}</button>
+                <button type="submit" class="btn btn-success" >{{btndescricao}}</button>
           </div>
 
       </div>

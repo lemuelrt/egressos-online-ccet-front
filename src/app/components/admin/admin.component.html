@@ -1,8 +1,5 @@
 <mk-layout-wrapper>
-  <mk-layout-sidebar-right>
-    <!-- Sidebar right HTML -->
-  </mk-layout-sidebar-right>
-  <mk-layout-header>
+  <mk-layout-header [isSidebarRightToggle]="false">
     <mk-layout-header-logo>
       EgressosOnlineCCET
     </mk-layout-header-logo>
@@ -10,13 +7,13 @@
     <!-- Header HTML -->
   </mk-layout-header>
   <mk-layout-sidebar-left>
-    <ul  class="sidebar-menu">
-      <li  class="header">
+    <ul class="sidebar-menu">
+      <li class="header">
         <span _ngcontent-c2="">MAIN NAVIGATION</span>
       </li>
-      <li  class="">
-        <a  [routerLink]="['/admin/coordenadores']" routerLinkActive="active">
-          <i  class="fa fa-user"></i>
+      <li class="">
+        <a [routerLink]="['/admin/coordenadores']" routerLinkActive="active">
+          <i class="fa fa-user"></i>
           <span>Coordenadores</span>
           <!---->
         </a>
