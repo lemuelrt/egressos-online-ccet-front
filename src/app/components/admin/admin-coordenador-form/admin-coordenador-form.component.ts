@@ -99,8 +99,12 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
       (selectedValue) => {
         const testar = (touched === false || (touched && senha2.touched)) ? true : false;
         if (testar && senha2.value !== selectedValue) {
-          senha1.setErrors({ 'senhasNaoConferem': true });
-          senha2.setErrors({ 'senhasNaoConferem': true });
+          if (senha1.valid) {
+            senha1.setErrors({ 'senhasNaoConferem': true });
+          }
+          if (senha2.valid) {
+            senha2.setErrors({ 'senhasNaoConferem': true });
+          }
         } else {
           if (senha1.hasError('senhasNaoConferem')) {
             senha1.setErrors(null);
@@ -129,7 +133,7 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
         coordenadorOferta: ofertaSeleciona
       };
 
-      console.log(coordenador);
+      // console.log(coordenador);
 
       if (this.coordenador === null) {
         this._coordenadorService.save(coordenador).subscribe(
@@ -142,6 +146,7 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
       } else {
         this._coordenadorService.update(this.coordenador.coordenadorId, coordenador).subscribe(
           (coordenadorResponse) => {
+            // console.log(coordenadorResponse);
             this._toastr.success(MESSAGES['M014']);
             this._router.navigate(['/admin/coordenadores']);
           }
