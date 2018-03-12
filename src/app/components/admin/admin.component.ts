@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-declare var $: any;
+
 
 @Component({
   selector: 'app-admin',
@@ -14,12 +14,7 @@ export class AdminComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    $(document).ready(() => {
 
-      const b: any = $('body');
-      b.layout('fix');
-
-    });
   }
 
 }
