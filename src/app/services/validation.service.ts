@@ -54,7 +54,7 @@ export class ValidationService {
     // tslint:disable-next-line:max-line-length
     const value: string = control.value;
 
-    const regex = /^[1-9a-zA-Z!@#$%&*]{8,20}$/g
+    const regex = /^[1-9a-zA-Z!@#$%&*]{8,20}$/g;
 
     if (!regex.test(value)) {
       return { 'invalidSenha': true };

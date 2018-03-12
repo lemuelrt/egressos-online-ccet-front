@@ -26,7 +26,7 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
   alterar = false;
 
   title = 'Cadastro de coordenador';
-  btndescricao = 'Alterar';
+  btndescricao = 'Cadastrar';
 
   constructor(
     private formBuilder: FormBuilder,
