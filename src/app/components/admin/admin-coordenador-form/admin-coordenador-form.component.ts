@@ -1,4 +1,4 @@
-  import { MESSAGES } from './../../../const/messages';
+import { MESSAGES } from './../../../const/messages';
 import { CoordenadorService } from './../../../services/coordenador.service';
 import { Coordenador } from './../../../models/coordenador.model';
 import { OfertaService } from './../../../services/oferta.service';
@@ -120,6 +120,11 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
   saveOrUpdate() {
 
     if (this.adminForm.invalid) {
+      Object.keys(this.adminForm.controls).forEach(field => {
+        const control = this.adminForm.get(field);
+        control.markAsTouched({ onlySelf: true });
+      });
+
       this._toastr.error(MESSAGES['M011']);
     } else {
       const ofertaSeleciona: Oferta = this.ofertas.find((o) => o.ofertaId.toString() === this.adminForm.get('oferta').value);
