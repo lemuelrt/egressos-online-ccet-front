@@ -30,14 +30,14 @@ export class AdminCoordenadoresComponent implements OnInit {
   coordenadores: Coordenador[] = [];
 
   constructor(
-    private _toastr: ToastrService,
-    private _coordenadorService: CoordenadorService,
-    private _dialog: MatDialog
+    private toastr: ToastrService,
+    private coordenadorService: CoordenadorService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
 
-    this._coordenadorService.coordenadores().subscribe(
+    this.coordenadorService.list().subscribe(
       (coordenadores) => {
         // console.log(coordenadores);
         this.coordenadores = coordenadores;
@@ -48,7 +48,7 @@ export class AdminCoordenadoresComponent implements OnInit {
 
   confirmInactivation(id) {
 
-    const dialogRef = this._dialog.open(DialogConfirmationComponent, {
+    const dialogRef = this.dialog.open(DialogConfirmationComponent, {
       width: 'auto',
       autoFocus: false,
       data: { msg: MESSAGES['M016'] }
@@ -60,9 +60,9 @@ export class AdminCoordenadoresComponent implements OnInit {
         coordenador.coordenadorStatus = 2;
         coordenador.coordenadorSenha = '';
 
-        this._coordenadorService.update(id, coordenador).subscribe(
+        this.coordenadorService.update(id, coordenador).subscribe(
           (respnse) => {
-            this._toastr.success(MESSAGES['M010']);
+            this.toastr.success(MESSAGES['M010']);
             this.coordenadores = this.coordenadores.filter((c2) => c2.coordenadorId !== id);
           }
         );

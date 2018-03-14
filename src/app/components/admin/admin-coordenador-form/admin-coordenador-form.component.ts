@@ -23,30 +23,29 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
   ofertas: Oferta[] = [];
 
   coordenador: Coordenador = null;
-  alterar = false;
 
   title = 'Cadastro de coordenador';
   btndescricao = 'Cadastrar';
 
   constructor(
     private formBuilder: FormBuilder,
-    private _ofertaService: OfertaService,
-    private _toastr: ToastrService,
-    private _coordenadorService: CoordenadorService,
-    private _router: Router,
-    private _route: ActivatedRoute,
+    private ofertaService: OfertaService,
+    private toastr: ToastrService,
+    private coordenadorService: CoordenadorService,
+    private router: Router,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
 
-    this._ofertaService.getAll().subscribe(
+    this.ofertaService.getAll().subscribe(
       (ofertas) => {
         this.ofertas = ofertas;
         console.log(ofertas);
       }
     );
 
-    const id = this._route.snapshot.params['id'];
+    const id = this.route.snapshot.params['id'];
 
     // o Curso como vai ser feito fiquei em dúvida
     this.adminForm = this.formBuilder.group({
@@ -60,9 +59,8 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
 
     if (id !== undefined) {
       this.title = 'Alteração de coordenador';
-      this.btndescricao = 'Alterar';
 
-      this._coordenadorService.getByid(id).subscribe(
+      this.coordenadorService.getByid(id).subscribe(
         coordenador => {
           this.coordenador = coordenador;
 
@@ -82,8 +80,8 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
           this.adminForm.controls.confirmarSenha.updateValueAndValidity();
         },
         (error) => {
-          this._toastr.error(`O coordenador não foi encontrado.`);
-          this._router.navigate(['/admin/coordenadores']);
+          this.toastr.error(`O coordenador não foi encontrado.`);
+          this.router.navigate(['/admin/coordenadores']);
         });
     }
 
@@ -125,7 +123,7 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
         control.markAsTouched({ onlySelf: true });
       });
 
-      this._toastr.error(MESSAGES['M011']);
+      this.toastr.error(MESSAGES['M011']);
     } else {
       const ofertaSeleciona: Oferta = this.ofertas.find((o) => o.ofertaId.toString() === this.adminForm.get('oferta').value);
 
@@ -141,19 +139,19 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
       // console.log(coordenador);
 
       if (this.coordenador === null) {
-        this._coordenadorService.save(coordenador).subscribe(
+        this.coordenadorService.save(coordenador).subscribe(
           (coordenadorResponse) => {
             // console.log(coordenadorResponse);
-            this._toastr.success(MESSAGES['M013']);
-            this._router.navigate(['/admin/coordenadores']);
+            this.toastr.success(MESSAGES['M013']);
+            this.router.navigate(['/admin/coordenadores']);
           }
         );
       } else {
-        this._coordenadorService.update(this.coordenador.coordenadorId, coordenador).subscribe(
+        this.coordenadorService.update(this.coordenador.coordenadorId, coordenador).subscribe(
           (coordenadorResponse) => {
             // console.log(coordenadorResponse);
-            this._toastr.success(MESSAGES['M014']);
-            this._router.navigate(['/admin/coordenadores']);
+            this.toastr.success(MESSAGES['M014']);
+            this.router.navigate(['/admin/coordenadores']);
           }
         );
       }

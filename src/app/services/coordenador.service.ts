@@ -12,7 +12,7 @@ export class CoordenadorService {
 
   constructor(private http: HttpClient) { }
 
-  coordenadores(): Observable<Coordenador[]> {
+  list(): Observable<Coordenador[]> {
 
     return this.http.get<Coordenador[]>(`${EOCCET_API}/coordenadores`);
   }

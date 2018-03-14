@@ -30,3 +30,8 @@
   color: #ffffff;
   border: none;
 }
+.logo-lg{
+  font-size: 16px !important;
+  font-weight: 500;
+  padding-left: 0px !important;
+}
