@@ -76,8 +76,10 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
 
 
           this.adminForm.controls.senha.clearValidators();
+          this.adminForm.controls.senha.setValidators([ValidationService.senha]);
           this.adminForm.controls.senha.updateValueAndValidity();
           this.adminForm.controls.confirmarSenha.clearValidators();
+          this.adminForm.controls.confirmarSenha.setValidators([ValidationService.senha]);
           this.adminForm.controls.confirmarSenha.updateValueAndValidity();
         },
         (error) => {
