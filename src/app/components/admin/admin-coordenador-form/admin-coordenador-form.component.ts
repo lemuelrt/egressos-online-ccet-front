@@ -59,6 +59,7 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
 
     if (id !== undefined) {
       this.title = 'Alteração de coordenador';
+      this.btndescricao = 'Alterar';
 
       this.coordenadorService.getByid(id).subscribe(
         coordenador => {
