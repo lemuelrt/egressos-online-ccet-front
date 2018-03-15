@@ -17,7 +17,7 @@
       <!-- Campo Nome -->
 
       <div class="form-group"
-        [class.has-error]="adminForm.controls.nome.errors && (adminForm.controls.nome.touched || adminForm.controls.nome.dirty)">
+        [class.has-error]="adminForm.controls.nome.errors && (adminForm.controls.nome.touched)">
         <label class="col-sm-2 control-label">Nome *</label>
         <div class="col-sm-10">
           <input type="name" formControlName="nome" class="form-control"  >
