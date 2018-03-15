@@ -46,7 +46,7 @@ export class ValidationService {
     const regex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
 
     if (value.trim().length < 5 ||
-          value.trim().length > 80 || (value.trim().length >= 5 && value.trim().indexOf(' ') === -1 || !regex.test(value))) {
+      value.trim().length > 80 || (value.trim().length >= 5 && value.trim().indexOf(' ') === -1 || !regex.test(value))) {
       return { 'invalidNomeCompleto': true };
     } else {
       return null;
@@ -56,15 +56,19 @@ export class ValidationService {
   static senha(control) {
     // RFC 2822 compliant regex
     // tslint:disable-next-line:max-line-length
+
+
     const value: string = control.value;
 
-    const regex = /^[1-9a-zA-Z!@#$%&*]{8,20}$/g;
+    if (value.length > 0) {
+      const regex = /^[1-9a-zA-Z!@#$%&*]{8,20}$/g;
 
-    if (!regex.test(value)) {
-      return { 'invalidSenha': true };
-    } else {
-      return null;
+      if (!regex.test(value)) {
+        return { 'invalidSenha': true };
+      }
     }
+    return null;
+
   }
 
   static CPFValidator(control) {
