@@ -7,6 +7,7 @@ import { AdminCoordenadoresComponentService } from './admin-coordenadores.compon
 import { EOCCET_API } from './../../../app.api';
 
 */
+import { LeftPadPipe } from 'ngx-pipes';
 
 import { Component, OnInit } from '@angular/core';
 
@@ -18,7 +19,8 @@ import { MESSAGES } from '../../../const/messages';
 @Component({
   selector: 'app-admin-coordenadores',
   templateUrl: './admin-coordenadores.component.html',
-  styleUrls: ['./admin-coordenadores.component.css']
+  styleUrls: ['./admin-coordenadores.component.css'],
+  providers: [LeftPadPipe]
 })
 export class AdminCoordenadoresComponent implements OnInit {
 
@@ -30,6 +32,7 @@ export class AdminCoordenadoresComponent implements OnInit {
   coordenadores: Coordenador[] = [];
 
   constructor(
+    private _lpad: LeftPadPipe,
     private toastr: ToastrService,
     private coordenadorService: CoordenadorService,
     private dialog: MatDialog
@@ -44,6 +47,10 @@ export class AdminCoordenadoresComponent implements OnInit {
       }
     );
 
+  }
+
+  formatCpf(cpf): string {
+    return this._lpad.transform(cpf.toString(), 11, '0');
   }
 
   confirmInactivation(id) {

@@ -10,6 +10,7 @@ import { ControlMessagesComponent } from './control-messages/control-messages.co
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confirmation.component';
+import { NgPipesModule } from 'ngx-pipes';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confir
     HttpClientModule,
     ToastrModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    NgPipesModule
   ]
 })
 export class SharedModule { }
