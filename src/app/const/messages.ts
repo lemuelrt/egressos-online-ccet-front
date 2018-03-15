@@ -1,6 +1,6 @@
 export const MESSAGES = {
   'M001': 'E-mail inválido.',
-  'M002': 'Nome inválido. Este campo deve conter no mínimo duas palavras e no mínimo cinco caracteres.',
+  'M002': 'Nome inválido. Este campo deve conter no mínimo 5 caracteres e no máximo 20. Os caracteres aceitos são: letras. O nome deve ser composto de duas palavras',
   'M003': 'CPF inválido.',
   'M004': 'CPF já cadastrado.',
   // tslint:disable-next-line:max-line-length
