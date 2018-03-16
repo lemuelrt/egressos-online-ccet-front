@@ -50,7 +50,9 @@ export class AdminCoordenadoresComponent implements OnInit {
   }
 
   formatCpf(cpf): string {
-    return this._lpad.transform(cpf.toString(), 11, '0');
+    const cpf_ = this._lpad.transform(cpf.toString(), 11, '0');
+
+    return cpf_.substring(0, 3) + '.' + cpf_.substring(3, 6) + '.' + cpf_.substring(6, 9) + '-' + cpf_.substring(9, 11);
   }
 
   confirmInactivation(id) {
