@@ -1,4 +1,3 @@
-
 import { CoordAtuacaoProfissionalFormComponent } from './../coord-atuacao-profissional-form/coord-atuacao-profissional-form.component';
 import { CoordAtuacaoProfissionalIndexComponent } from './../coord-atuacao-profissional-index/coord-atuacao-profissional-index.component';
 // tslint:disable-next-line:max-line-length
@@ -9,14 +8,6 @@ import { CoordEgressosImportComponent } from './../coord-egressos-import/coord-e
 import { CoordComponent } from './../coord.component';
 import { Routes } from '@angular/router';
 import { CoordIndexComponent } from '../coord-index/coord-index.component';
-
-export const coordLteConfig = {
-  skin: 'blue',
-  sidebarLeftMenu: [
-    // { label: 'Atuacões profissionais', route: '/coord/atuacoes-profissionais', iconClasses: 'fa fa-user' },
-
-  ]
-};
 
 /*COMO CRIAMOS UM coordLteConfig para os egressos?*/
 

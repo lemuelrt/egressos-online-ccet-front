@@ -1,8 +1,10 @@
+import { NgxMaskModule } from 'ngx-mask';
+import { LayoutModule, BoxModule } from 'angular-admin-lte';
+import { appLteConfig } from './../../const/app-lte.config';
 import { MaterialModule } from './angular-material/angular-material.module';
 import { CoordenadorService } from './../../services/coordenador.service';
 import { ToastrModule } from 'ngx-toastr';
 import { OfertaService } from './../../services/oferta.service';
-import { ReactiveFormsModule } from '@angular/forms';
 import { ValidationService } from './../../services/validation.service';
 import { NgModule,  } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,6 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confirmation.component';
 import { NgPipesModule } from 'ngx-pipes';
+import { LayoutHeaderComponent } from './layout-header/layout-header.component';
+import { LayoutFooterComponent } from './layout-footer/layout-footer.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -19,9 +24,12 @@ import { NgPipesModule } from 'ngx-pipes';
       positionClass: 'toast-top-right',
       closeButton: true
     }),
-    MaterialModule
+    MaterialModule,
+    LayoutModule.forRoot(appLteConfig),
+    BoxModule,
+    NgxMaskModule.forRoot()
   ],
-  declarations: [ControlMessagesComponent, DialogConfirmationComponent],
+  declarations: [ControlMessagesComponent, DialogConfirmationComponent, LayoutHeaderComponent, LayoutFooterComponent],
   providers: [
     ValidationService,
     OfertaService,
@@ -33,12 +41,18 @@ import { NgPipesModule } from 'ngx-pipes';
   exports: [
     DialogConfirmationComponent,
     ControlMessagesComponent,
+    LayoutHeaderComponent,
+    LayoutFooterComponent,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
     ToastrModule,
     BrowserAnimationsModule,
     MaterialModule,
-    NgPipesModule
+    NgPipesModule,
+    LayoutModule,
+    BoxModule,
+    NgxMaskModule
   ]
 })
 export class SharedModule { }

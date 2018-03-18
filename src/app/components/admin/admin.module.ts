@@ -1,14 +1,9 @@
-import { routes_admin, adminLteConfig } from './const/admin.config';
+import { routes_admin } from './const/admin.config';
 import { Routes, RouterModule } from '@angular/router';
-import { AppErrorHandle } from './../../app-error-handle';
 import { OfertaService } from './../../services/oferta.service';
 import { SharedModule } from './../shared/shared.module';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { LayoutModule, BoxModule } from 'angular-admin-lte';
-
-import { NgxMaskModule } from 'ngx-mask';
 
 import { AdminComponent } from './admin.component';
 import { AdminCoordenadoresComponent } from './admin-coordenadores/admin-coordenadores.component';
@@ -21,11 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     RouterModule.forChild(routes_admin),
-    LayoutModule.forRoot(adminLteConfig),
-    BoxModule,
-    FormsModule,
-    SharedModule,
-    NgxMaskModule.forRoot()
+    SharedModule
   ],
   declarations: [
     AdminComponent,
@@ -34,7 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AdminCoordenadorFormComponent
   ],
   providers: [
-    { provide: ErrorHandler, useClass: AppErrorHandle },
+
   ]
 })
 export class AdminModule { }

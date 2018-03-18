@@ -1,3 +1,25 @@
-<p>
-  coord works!
-</p>
+<mk-layout-wrapper>
+
+  <app-layout-header></app-layout-header>
+
+  <mk-layout-sidebar-left>
+    <ul class="sidebar-menu">
+      <li class="header">
+        <span>MAIN NAVIGATION</span>
+      </li>
+      <li class="">
+        <a [routerLink]="['/coord/atuacoes-profissionais']" routerLinkActive="active">
+          <i class="fa fa-users"></i>
+          <span>Atuações Profissionais</span>
+        </a>
+      </li>
+    </ul>
+  </mk-layout-sidebar-left>
+
+  <mk-layout-content>
+    <router-outlet></router-outlet>
+  </mk-layout-content>
+
+  <app-layout-footer></app-layout-footer>
+
+</mk-layout-wrapper>

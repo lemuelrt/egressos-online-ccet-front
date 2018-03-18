@@ -1,42 +1,25 @@
 <mk-layout-wrapper>
-  <mk-layout-header [isSidebarRightToggle]="false">
-    <mk-layout-header-logo>
-      <img src="assets/favicon-32x32.png">Egressos Online CCET
-    </mk-layout-header-logo>
-    <mk-layout-header-logo-mini>
-      <img src="assets/favicon-32x32.png">
-    </mk-layout-header-logo-mini>
-    <!-- Header HTML -->
-  </mk-layout-header>
+
+  <app-layout-header></app-layout-header>
+
   <mk-layout-sidebar-left>
     <ul class="sidebar-menu">
       <li class="header">
-        <span _ngcontent-c2="">MAIN NAVIGATION</span>
+        <span>MAIN NAVIGATION</span>
       </li>
       <li class="">
         <a [routerLink]="['/admin/coordenadores']" routerLinkActive="active">
           <i class="fa fa-users"></i>
           <span>Coordenadores</span>
-          <!---->
         </a>
-        <!---->
-        <!---->
       </li>
-
     </ul>
-
   </mk-layout-sidebar-left>
+
   <mk-layout-content>
     <router-outlet></router-outlet>
   </mk-layout-content>
 
-  <mk-layout-footer>
+  <app-layout-footer></app-layout-footer>
 
-    <!-- <mk-layout-footer-left>
-
-    </mk-layout-footer-left>
-    <mk-layout-footer-right>
-
-    </mk-layout-footer-right> -->
-  </mk-layout-footer>
 </mk-layout-wrapper>

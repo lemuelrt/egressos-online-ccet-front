@@ -1,6 +1,7 @@
+import { AppErrorHandle } from './app-error-handle';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 
 import { AdminModule } from './components/admin/admin.module';
 import { CoordModule } from './components/coord/coord.module';
@@ -30,7 +31,9 @@ import { AdminComponent } from './components/admin/admin.component';
     AdminModule,
     CoordModule
   ],
-  providers: [],
+  providers: [
+    { provide: ErrorHandler, useClass: AppErrorHandle },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

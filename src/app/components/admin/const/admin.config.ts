@@ -4,13 +4,6 @@ import { AdminIndexComponent } from './../admin-index/admin-index.component';
 import { AdminComponent } from './../admin.component';
 import { Routes } from '@angular/router';
 
-export const adminLteConfig = {
-  skin: 'blue',
-  sidebarLeftMenu: [
-    // { label: 'Coordenadores', route: '/admin/coordenadores', iconClasses: 'fa fa-user' },
-
-  ]
-};
 
 export const routes_admin: Routes = [
   {

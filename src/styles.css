@@ -35,3 +35,7 @@
   font-weight: 500;
   padding-left: 0px !important;
 }
+
+.sidebar-menu li a.active{
+  color: rgb(48, 177, 216) !important;
+}
