@@ -22,16 +22,7 @@ import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AdminComponent,
-    CoordComponent,
-    CoordAtuacaoProfissionalFormComponent,
-    CoordAtuacoesProfissionaisImportComponent,
-    CoordAtuacaoProfissionalIndexComponent,
-    CoordEgressoFormComponent,
-    CoordEgressosImportComponent,
-    CoordEgressoIndexComponent,
-    CoordComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
