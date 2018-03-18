@@ -4,7 +4,7 @@ import { AppErrorHandle } from './../../app-error-handle';
 import { SharedModule } from './../shared/shared.module';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LayoutModule, BoxModule } from 'angular-coord-lte';
+// import { LayoutModule, BoxModule } from 'angular-coord-lte'; ESSE COORD LTE CRIAMOS OU É GERADO?
 import { NgxMaskModule } from 'ngx-mask';
 
 import { CoordComponent } from './coord.component';
@@ -24,8 +24,8 @@ import { CoordEgressosImportComponent } from './coord-egressos-import/coord-egre
   imports: [
     CommonModule,
     RouterModule.forChild(coord_routes),
-    LayoutModule.forRoot(coordLteConfig),
-    BoxModule,
+    // LayoutModule.forRoot(coordLteConfig),
+    // BoxModule,
     FormsModule,
     SharedModule,
     NgxMaskModule.forRoot()
