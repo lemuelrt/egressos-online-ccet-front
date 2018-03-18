@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AdminModule } from './components/admin/admin.module';
+import { CoordModule } from './components/coord/coord.module';
 import { AppComponent } from './app.component';
 import { CoordComponent } from './components/coord/coord.component';
 // tslint:disable-next-line:max-line-length
@@ -14,12 +15,15 @@ import { CoordAtuacaoProfissionalIndexComponent } from './components/coord/coord
 import { CoordEgressoFormComponent } from './components/coord/coord-egresso-form/coord-egresso-form.component';
 import { CoordEgressosImportComponent } from './components/coord/coord-egressos-import/coord-egressos-import.component';
 import { CoordEgressoIndexComponent } from './components/coord/coord-egresso-index/coord-egresso-index.component';
+import { AdminComponent } from './components/admin/admin.component';
+
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    AdminComponent,
     CoordComponent,
     CoordAtuacaoProfissionalFormComponent,
     CoordAtuacoesProfissionaisImportComponent,
@@ -32,7 +36,8 @@ import { CoordEgressoIndexComponent } from './components/coord/coord-egresso-ind
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AdminModule
+    AdminModule,
+    CoordModule
   ],
   providers: [],
   bootstrap: [AppComponent]
