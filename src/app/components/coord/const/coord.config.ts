@@ -19,6 +19,9 @@ export const coord_routes: Routes = [
       { path: 'atuacoes-profissionais', component: CoordAtuacaoProfissionalIndexComponent/*, data: { title: 'Atuações profissionais' } */ },
       { path: 'atuacoes-profissionais-add', component: CoordAtuacaoProfissionalFormComponent },
       { path: 'atuacoes-profissionais-edit/:id', component: CoordAtuacaoProfissionalFormComponent },
+      { path: 'egressos', component: CoordEgressoIndexComponent },
+      { path: 'egressos-add', component: CoordEgressoFormComponent },
+      { path: 'egressos-eidt/:id', component: CoordEgressoFormComponent },
     ]
   },
 ];
