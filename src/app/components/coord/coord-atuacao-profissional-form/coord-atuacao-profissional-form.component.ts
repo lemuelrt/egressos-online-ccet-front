@@ -3,7 +3,6 @@ import { AtuacaoProfissionalService } from './../../../services/atuacao-profissi
 import { ValidationService } from './../../../services/validation.service';
 import { CoordComponent } from './../coord.component';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -77,12 +76,12 @@ export class CoordAtuacaoProfissionalFormComponent implements OnInit, AfterViewI
         atuacaoProfissionalStatus: 1
       };
 
-      // console.log(coordenador);
+      // console.log(atuacaoProfissional);
 
       if (this.atuacaoProfissional === null) {
         this.atuacaoProfissionalService.save(atuacaoProfissional).subscribe(
           (coordenadorResponse) => {
-            // console.log(coordenadorResponse);
+            // console.log(atuacaoProfissionalResponse);
             this.toastr.success(MESSAGES['M013']);
             this.router.navigate(['/coord/atuacoes-profissionais']);
           }

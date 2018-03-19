@@ -16,5 +16,7 @@ export const MESSAGES = {
   'M014': 'Alteração realizada com sucesso!',
   'M015': 'Inativação realizada com sucesso!',
   'M016': 'Deseja realmente inativar este coordenador?',
-  'M017': 'Não há coordenador cadastrado e/ou ativo no sistema.'
+  'M017': 'Não há coordenador cadastrado e/ou ativo no sistema.',
+  'M018': 'Deseja realmente inativar esta atuação profissional?.',
+  'M019': 'Não há atuação profissional cadastrada e/ou ativa no sistema.'
 };

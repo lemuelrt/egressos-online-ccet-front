@@ -49,29 +49,26 @@ export class CoordAtuacaoProfissionalIndexComponent implements OnInit {
 
   }
 
-  /*
   confirmInactivation(id) {
 
     const dialogRef = this.dialog.open(DialogConfirmationComponent, {
       width: 'auto',
       autoFocus: false,
-      data: { msg: MESSAGES['M016'] } // ARRUMAR A MENSAGEM
+      data: { msg: MESSAGES['M018'] } // ARRUMAR A MENSAGEM
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         const atuacaoProfissional = this.atuacoesProfissionais.find((ap) => ap.atuacaoProfissionalId === id);
         atuacaoProfissional.atuacaoProfissionalStatus = 2;
-        coordenador.coordenadorSenha = '';
 
-        this.coordenadorService.update(id, coordenador).subscribe(
+        this.atuacaoProfissionalService.update(id, atuacaoProfissional).subscribe(
           (respnse) => {
             this.toastr.success(MESSAGES['M010']);
-            this.coordenadores = this.coordenadores.filter((c2) => c2.coordenadorId !== id);
+            this.atuacoesProfissionais = this.atuacoesProfissionais.filter((ap2) => ap2.atuacaoProfissionalId !== id);
           }
         );
       }
     });
   }
-*/
 }
