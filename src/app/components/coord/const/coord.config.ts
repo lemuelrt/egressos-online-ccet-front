@@ -9,9 +9,7 @@ import { CoordComponent } from './../coord.component';
 import { Routes } from '@angular/router';
 import { CoordIndexComponent } from '../coord-index/coord-index.component';
 
-/*COMO CRIAMOS UM coordLteConfig para os egressos?*/
 
-/*DEPOIS VAMOS CONFERIR SE O MAPEAMENTO DAS ROTAS ESTÁ OK*/
 export const coord_routes: Routes = [
   {
     path: 'coord', component: CoordComponent, /*data: {title: 'Home'},*/ children: [

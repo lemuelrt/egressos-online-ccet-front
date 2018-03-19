@@ -1,3 +1,40 @@
-<p>
-  coord-atuacao-profissional-index works
-</p>
+<mk-box header=''
+        [isRemovable]='false'
+        [isCollapsable]='false'
+        [isSolid]='true'>
+  <!--
+  <mk-box-header>HTML Box header</mk-box-header>
+  <mk-box-tools isCollapsable='false'>
+
+  </mk-box-tools>
+-->
+  <mk-box-content>
+
+    <br />
+
+    <a class="btn btn-success" [routerLink]="['/coord/atuacoes-profissionais-add']"  title="Incluir nova atuação profissional"><i class="glyphicon glyphicon-plus"></i></a>
+
+    <br /><br /><br />
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Alterar</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let atuacaoProfissional" >
+            <td>{{atuacaoProfissional.atuacaoProfissionalNome}}</td>
+            <td><a class="glyphicon glyphicon-edit" [routerLink]="['/coord/atuacoes-profissionais-edit', atuacaoProfissional.atuacaoProfissionalId]"></a></td>
+            <td><a class="glyphicon glyphicon-eye-open"></a></td>
+            <!--<td><a class="glyphicon glyphicon-eye-open" (click)="confirmInactivation(atuacaoProfissional.atuacaoProfissionalId)"></a></td>-->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </mk-box-content>
+
+</mk-box>
