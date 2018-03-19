@@ -70,35 +70,29 @@ export class CoordAtuacaoProfissionalFormComponent implements OnInit, AfterViewI
         control.markAsTouched({ onlySelf: true });
       });
 
-      this.toastr.error(MESSAGES['M011']);
+      this.toastr.error(MESSAGES['M011']); // olhar qual mensagem colocar
     } else {
-      const ofertaSeleciona: Oferta = this.ofertas.find((o) => o.ofertaId.toString() === this.adminForm.get('oferta').value);
-
-      const coordenador: Coordenador = {
-        coordenadorCpf: this.adminForm.controls.cpf.value,
-        coordenadorSenha: this.adminForm.controls.senha.value,
-        coordenadorNome: this.adminForm.controls.nome.value,
-        coordenadorStatus: 1,
-        coordenadorEmail: this.adminForm.controls.email.value,
-        coordenadorOferta: ofertaSeleciona
+      const atuacaoProfissional: AtuacaoProfissional = {
+        atuacaoProfissionalNome: this.coordForm.controls.nome.value,
+        atuacaoProfissionalStatus: 1
       };
 
       // console.log(coordenador);
 
-      if (this.coordenador === null) {
-        this.coordenadorService.save(coordenador).subscribe(
+      if (this.atuacaoProfissional === null) {
+        this.atuacaoProfissionalService.save(atuacaoProfissional).subscribe(
           (coordenadorResponse) => {
             // console.log(coordenadorResponse);
             this.toastr.success(MESSAGES['M013']);
-            this.router.navigate(['/admin/coordenadores']);
+            this.router.navigate(['/coord/atuacoes-profissionais']);
           }
         );
       } else {
-        this.coordenadorService.update(this.coordenador.coordenadorId, coordenador).subscribe(
-          (coordenadorResponse) => {
-            // console.log(coordenadorResponse);
+        this.atuacaoProfissionalService.update(this.atuacaoProfissional.atuacaoProfissionalId, atuacaoProfissional).subscribe(
+          (atuacaoProfissionalResponse) => {
+            // console.log(atuacaoProfissionalResponse);
             this.toastr.success(MESSAGES['M014']);
-            this.router.navigate(['/admin/coordenadores']);
+            this.router.navigate(['/coord/atuacoes-profissionais']);
           }
         );
       }
