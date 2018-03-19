@@ -9,9 +9,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AtuacaoProfissional } from '../../../models/atuacao-profissional.model';
 
 @Component({
-  selector: 'app-admin-coordenador-form',
-  templateUrl: './admin-coordenador-form.component.html',
-  styleUrls: ['./admin-coordenador-form.component.css']
+  selector: 'app-coord-atuacao-profissional-form',
+  templateUrl: './coord-atuacao-profissional-form.component.html',
+  styleUrls: ['./coord-atuacao-profissional-form.component.css']
 })
 export class CoordAtuacaoProfissionalFormComponent implements OnInit, AfterViewInit {
 
