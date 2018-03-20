@@ -27,10 +27,19 @@
         </thead>
         <tbody>
 
+<<<<<<< HEAD
         <tr *ngFor="let atuacaoProfissional of atuacoesProfissionais">
             <td>{{atuacaoProfissional.atuacaoProfissionalNome}}</td>
             <td><a class="glyphicon glyphicon-edit" [routerLink]="['/coord/atuacoes-profissionais-edit', atuacaoProfissional.atuacaoProfissionalId]"></a></td>
             <td><a class="glyphicon glyphicon-eye-open" (click)="confirmInactivation(atuacaoProfissional.atuacaoProfissionalId)"></a></td>
+=======
+
+        <tr *ngFor="let atuacaoprofissional of atuacoesProfissionais">
+            <td>{{atuacaoprofissional.atuacaoProfissionalNome}}</td>
+            <td><a class="glyphicon glyphicon-edit" [routerLink]=""></a></td>
+            <td><a class="glyphicon glyphicon-eye-open"></a></td>
+            <!--<td><a class="glyphicon glyphicon-eye-open" (click)="confirmInactivation(atuacaoProfissional.atuacaoProfissionalId)"></a></td>-->
+>>>>>>> 6d8aa3307505344ad2bf771d931845705d3d33ab
         </tr>
 
         </tbody>
