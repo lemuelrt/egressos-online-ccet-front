@@ -1,0 +1,7 @@
+tbody tr:nth-child(odd){
+  background-color: #e9e8e8;
+}
+
+tr, th{
+  text-align: center;
+}
