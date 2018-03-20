@@ -14,7 +14,7 @@ export class ValidationService {
       'senhasNaoConferem': MESSAGES['M012'],
       'invalidNomeCompleto': MESSAGES['M002'],
       'invalidSenha': MESSAGES['M005'],
-      'invalidNomeSimples': MESSAGES['M019'],// Colocar mensagem referente ao nome da atuação profissional
+      'invalidNomeSimples': MESSAGES['M019'], // Colocar mensagem referente ao nome da atuação profissional
     };
 
     return config[validatorName];
