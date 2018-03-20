@@ -53,6 +53,22 @@ export class ValidationService {
     }
   }
 
+  static nomeAtuacaoProfissionalCompleto(control) {
+    // RFC 2822 compliant regex
+    // tslint:disable-next-line:max-line-length
+    const value: string = control.value;
+
+    // Support international names with super sweet unicode
+    const regex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
+
+    if (value.trim().length < 5 ||
+      value.trim().length > 80 || (value.trim().length >= 5 && value.trim().indexOf(' ') === -1 || !regex.test(value))) {
+      return { 'invalidNomeCompleto': true };
+    } else {
+      return null;
+    }
+  }
+
   static senha(control) {
     // RFC 2822 compliant regex
     // tslint:disable-next-line:max-line-length

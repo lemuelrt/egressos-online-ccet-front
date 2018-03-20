@@ -34,9 +34,8 @@ export class CoordAtuacaoProfissionalFormComponent implements OnInit, AfterViewI
 
     const id = this.route.snapshot.params['id'];
 
-    // o Curso como vai ser feito fiquei em dúvida
     this.coordForm = this.formBuilder.group({
-      nome: this.formBuilder.control('', [Validators.required, ValidationService.nomeCompleto]),
+      nome: this.formBuilder.control('', [Validators.required, ValidationService.nomeCompleto])
     });
 
     if (id !== undefined) {
