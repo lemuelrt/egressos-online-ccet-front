@@ -42,7 +42,7 @@ export class CoordAtuacaoProfissionalIndexComponent implements OnInit {
 
     this.atuacaoProfissionalService.list().subscribe(
       (atuacoesProfissionais) => {
-        // console.log(atuacoesProfissionais);
+        console.log(atuacoesProfissionais);
         this.atuacoesProfissionais = atuacoesProfissionais;
       }
     );
