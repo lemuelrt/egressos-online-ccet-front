@@ -13,7 +13,8 @@ export class ValidationService {
       'invalidCPF': MESSAGES['M003'],
       'senhasNaoConferem': MESSAGES['M012'],
       'invalidNomeCompleto': MESSAGES['M002'],
-      'invalidSenha': MESSAGES['M005']
+      'invalidSenha': MESSAGES['M005'],
+      'invalidNomeSimples': MESSAGES['M019'],// Colocar mensagem referente ao nome da atuação profissional
     };
 
     return config[validatorName];
@@ -52,6 +53,22 @@ export class ValidationService {
       return null;
     }
   }
+
+  static nomeSimples(control) {
+    // RFC 2822 compliant regex
+    // tslint:disable-next-line:max-line-length
+    const value: string = control.value;
+
+    // Support international names with super sweet unicode
+    const regex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
+
+    if (value.trim().length < 5 || value.trim().length > 80 || !regex.test(value)) {
+      return { 'invalidNomeSimples': true };
+    } else {
+      return null;
+    }
+  }
+
 
   static senha(control) {
     // RFC 2822 compliant regex
