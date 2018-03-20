@@ -27,9 +27,9 @@
         </thead>
         <tbody>
 
-        <tr *ngFor="let atuacaoprofissional of atuacoesProfissionais">
-            <td>{{atuacaoProfissional.}}</td>
-            <td><a class="glyphicon glyphicon-edit" [routerLink]=""></a></td>
+        <tr *ngFor="let atuacaoProfissional of atuacoesProfissionais">
+            <td>{{atuacaoProfissional.atuacaoProfissionalNome}}</td>
+            <td><a class="glyphicon glyphicon-edit" [routerLink]="['/coord/atuacoes-profissionais-edit', atuacaoProfissional.atuacaoProfissionalId]"></a></td>
             <td><a class="glyphicon glyphicon-eye-open"></a></td>
             <!--<td><a class="glyphicon glyphicon-eye-open" (click)="confirmInactivation(atuacaoProfissional.atuacaoProfissionalId)"></a></td>-->
         </tr>
