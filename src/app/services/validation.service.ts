@@ -54,7 +54,7 @@ export class ValidationService {
     }
   }
 
-  static nomeSimples(control) {
+  static nomeAtuacaoProfissionalCompleto(control) {
     // RFC 2822 compliant regex
     // tslint:disable-next-line:max-line-length
     const value: string = control.value;
@@ -62,13 +62,12 @@ export class ValidationService {
     // Support international names with super sweet unicode
     const regex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
 
-    if (value.trim().length < 5 || value.trim().length > 80 || !regex.test(value)) {
-      return { 'invalidNomeSimples': true };
+    if (value.trim().length < 5 || value.trim().length > 80 ||  !regex.test(value)) {
+      return { 'invalidNomeCompleto': true };
     } else {
       return null;
     }
   }
-
 
   static senha(control) {
     // RFC 2822 compliant regex

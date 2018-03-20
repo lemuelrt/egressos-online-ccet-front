@@ -27,6 +27,7 @@ export class AtuacaoProfissionalService {
   }
 
   update(id: number, atuacaoProfissional: AtuacaoProfissional): Observable<AtuacaoProfissional> {
+
     return this.http.put<AtuacaoProfissional>(`${EOCCET_API}/atuacoes-profissionais/${id}`, atuacaoProfissional);
   }
 }
