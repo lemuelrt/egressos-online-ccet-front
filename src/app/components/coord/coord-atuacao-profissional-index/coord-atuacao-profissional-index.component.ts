@@ -64,7 +64,7 @@ export class CoordAtuacaoProfissionalIndexComponent implements OnInit {
 
         this.atuacaoProfissionalService.update(id, atuacaoProfissional).subscribe(
           (respnse) => {
-            this.toastr.success(MESSAGES['M010']);
+            this.toastr.success(MESSAGES['M015']);
             this.atuacoesProfissionais = this.atuacoesProfissionais.filter((ap2) => ap2.atuacaoProfissionalId !== id);
           }
         );
