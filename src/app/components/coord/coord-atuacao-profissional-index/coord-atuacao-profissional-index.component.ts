@@ -6,7 +6,7 @@ import { AdminCoordenadoresComponentService } from './admin-coordenadores.compon
 import { EOCCET_API } from './../../../app.api';
 
 */
-import { LeftPadPipe } from 'ngx-pipes';
+// import { LeftPadPipe } from 'ngx-pipes';
 
 import { Component, OnInit } from '@angular/core';
 
@@ -20,7 +20,7 @@ import { AtuacaoProfissionalService } from '../../../services/atuacao-profission
   selector: 'app-coord-atuacao-profissional-index',
   templateUrl: './coord-atuacao-profissional-index.component.html',
   styleUrls: ['./coord-atuacao-profissional-index.component.css'],
-  providers: [LeftPadPipe]
+  // providers: [LeftPadPipe]
 })
 export class CoordAtuacaoProfissionalIndexComponent implements OnInit {
 
@@ -32,7 +32,7 @@ export class CoordAtuacaoProfissionalIndexComponent implements OnInit {
   atuacoesProfissionais: AtuacaoProfissional[] = [];
 
   constructor(
-    private _lpad: LeftPadPipe,
+    // private _lpad: LeftPadPipe,
     private toastr: ToastrService,
     private atuacaoProfissionalService: AtuacaoProfissionalService,
     private dialog: MatDialog
