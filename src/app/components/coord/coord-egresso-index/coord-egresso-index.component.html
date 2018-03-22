@@ -9,14 +9,14 @@
 
     <br/>
 
+      <!-- Btn adicionar novo egresso -->
       <a class="btn btn-success" [routerLink]="['/coord/egresso-add']" title="Incluir novo Egresso">
         <i class="glyphicon glyphicon-plus"></i>
       </a>
 
-
-        <input type="file" id="fileElem" accept=".csv" style="display:none" onchange="handleFiles(this.files)">
-        <button class="btn btn-primary" id="fileSelect">Importar Arquivo</button>
-
+      <!-- Btn importar arquivo -->
+      <input type="file" id="fileElem" accept=".csv" style="display:none" onchange="handleFiles(this.files)">
+      <button class="btn btn-primary" id="fileSelect">Importar Arquivo</button>
 
 
     <br/><br/><br/>

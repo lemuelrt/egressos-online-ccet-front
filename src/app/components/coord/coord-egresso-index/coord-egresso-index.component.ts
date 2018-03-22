@@ -14,11 +14,12 @@ export class CoordEgressoIndexComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
-
-
     }
 
   ngAfterViewInit(): void {
+
+
+    // -------------inicio -Add Event para o btn Importar arquivo ------------------------
 
     // tslint:disable-next-line:prefer-const
     let fileSelect = document.getElementById('fileSelect'),
@@ -30,6 +31,9 @@ export class CoordEgressoIndexComponent implements OnInit, AfterViewInit {
         fileElem.click();
       }
     }, false);
+
+    // -------------ifim -Add Event para o btn Importar arquivo --------------------------
+
 
 
     // $('input[type=file]').parse({
