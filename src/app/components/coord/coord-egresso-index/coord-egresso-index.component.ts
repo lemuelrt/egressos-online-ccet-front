@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { error } from 'util';
 import { $ } from 'protractor';
+import { PapaParseService, PapaParseModule } from 'ngx-papaparse';
 
 @Component({
   selector: 'app-coord-egresso-index',
@@ -10,11 +11,11 @@ import { $ } from 'protractor';
 export class CoordEgressoIndexComponent implements OnInit, AfterViewInit {
 
 
-  constructor() { }
+  constructor(private papa: PapaParseService) { }
 
   ngOnInit() {
 
-    }
+  }
 
   ngAfterViewInit(): void {
 
@@ -26,25 +27,26 @@ export class CoordEgressoIndexComponent implements OnInit, AfterViewInit {
       // tslint:disable-next-line:prefer-const
       fileElem = document.getElementById('fileElem');
 
-    fileSelect.addEventListener('click', function () {
+    fileSelect.addEventListener('click', function (e) {
       if (fileElem) {
         fileElem.click();
       }
     }, false);
 
-    // -------------ifim -Add Event para o btn Importar arquivo --------------------------
 
+  }
 
+  // -------------Ler o arquivo csv e retorna um objeto --------------------------
 
-    // $('input[type=file]').parse({
-    //   config: {
-    //     complete: function (results, file) {
-    //       console.log('This file done:', file, results);
-    //     }
-    //   },
-    //   complete: function () {
-    //     console.log('All files done!');
-    //   }
-    // });
+  importCsv(event: any) {
+
+    const file: File = event.target.files[0];
+
+    this.papa.parse(file, {
+      complete: (results, file2) => {
+        console.log('Parsed: ', results, file2);
+      }
+    });
+
   }
 }
