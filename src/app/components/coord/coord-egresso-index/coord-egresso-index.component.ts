@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { error } from 'util';
 import { $ } from 'protractor';
 
@@ -7,22 +7,29 @@ import { $ } from 'protractor';
   templateUrl: './coord-egresso-index.component.html',
   styleUrls: ['./coord-egresso-index.component.css']
 })
-export class CoordEgressoIndexComponent implements OnInit {
+export class CoordEgressoIndexComponent implements OnInit, AfterViewInit {
+
 
   constructor() { }
 
   ngOnInit() {
 
-      // tslint:disable-next-line:prefer-const
-      let fileSelect = document.getElementById('fileSelect'),
-        // tslint:disable-next-line:prefer-const
-        fileElem = document.getElementById('fileElem');
 
-      fileSelect.addEventListener('click', function () {
-        if (fileElem) {
-          fileElem.click();
-        }
-      }, false);
+
+    }
+
+  ngAfterViewInit(): void {
+
+    // tslint:disable-next-line:prefer-const
+    let fileSelect = document.getElementById('fileSelect'),
+      // tslint:disable-next-line:prefer-const
+      fileElem = document.getElementById('fileElem');
+
+    fileSelect.addEventListener('click', function () {
+      if (fileElem) {
+        fileElem.click();
+      }
+    }, false);
 
 
     // $('input[type=file]').parse({
@@ -35,8 +42,5 @@ export class CoordEgressoIndexComponent implements OnInit {
     //     console.log('All files done!');
     //   }
     // });
-
-    }
-
-
+  }
 }
