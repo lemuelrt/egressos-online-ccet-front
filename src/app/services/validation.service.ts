@@ -12,7 +12,7 @@ export class ValidationService {
       'invalidPassword': MESSAGES['M005'],
       'invalidCPF': MESSAGES['M003'],
       'senhasNaoConferem': MESSAGES['M012'],
-      'invalidNomeCompleto': MESSAGES['M002'],
+      'invalidNomeCompleto': MESSAGES['M020'],
       'invalidSenha': MESSAGES['M005'],
       'invalidNomeSimples': MESSAGES['M019'], // Colocar mensagem referente ao nome da atuação profissional
     };
