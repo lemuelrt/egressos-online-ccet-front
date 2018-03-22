@@ -1,3 +1,25 @@
-<p>
-  coord-egresso-index works!
-</p>
+<mk-box header='' [isRemovable]='false' [isCollapsable]='false' [isSolid]='true'>
+  <!--
+  <mk-box-header>HTML Box header</mk-box-header>
+  <mk-box-tools isCollapsable='false'>
+
+  </mk-box-tools>
+-->
+  <mk-box-content>
+
+    <br/>
+
+      <a class="btn btn-success" [routerLink]="['/coord/egresso-add']" title="Incluir novo Egresso">
+        <i class="glyphicon glyphicon-plus"></i>
+      </a>
+
+    <br/><br/><br/>
+
+</mk-box-content>
+
+</mk-box>
+
+<div>
+  <input type="file" id="fileElem" accept=".csv" style="display:none" onchange="handleFiles(this.files)">
+  <button class="btn btn-primary" id="fileSelect">Importar Arquivo</button>
+</div>
