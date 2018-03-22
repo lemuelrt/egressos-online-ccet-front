@@ -13,13 +13,14 @@
         <i class="glyphicon glyphicon-plus"></i>
       </a>
 
+
+        <input type="file" id="fileElem" accept=".csv" style="display:none" onchange="handleFiles(this.files)">
+        <button class="btn btn-primary" id="fileSelect">Importar Arquivo</button>
+
+
+
     <br/><br/><br/>
 
 </mk-box-content>
 
 </mk-box>
-
-<div>
-  <input type="file" id="fileElem" accept=".csv" style="display:none" onchange="handleFiles(this.files)">
-  <button class="btn btn-primary" id="fileSelect">Importar Arquivo</button>
-</div>
