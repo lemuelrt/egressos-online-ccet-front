@@ -39,3 +39,7 @@
 .sidebar-menu li a.active{
   color: rgb(48, 177, 216) !important;
 }
+
+.btn{
+  border-color:  gray;
+}
