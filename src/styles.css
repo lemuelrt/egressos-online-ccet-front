@@ -40,6 +40,6 @@
   color: rgb(48, 177, 216) !important;
 }
 
-.btn{
+.btn, .form-control{
   border-color:  gray;
 }

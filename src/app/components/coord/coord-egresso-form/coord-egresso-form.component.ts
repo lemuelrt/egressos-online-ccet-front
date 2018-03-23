@@ -32,10 +32,8 @@ export class CoordEgressoFormComponent implements OnInit, AfterViewInit  {
       nome: this.formBuilder.control('', [Validators.required, ValidationService.nomeCompleto]),
       cpf: this.formBuilder.control('', [Validators.required, ValidationService.CPFValidator]),
       anoInicio: this.formBuilder.control('', [Validators.required]),
-      anoConclusao: this.formBuilder.control('', [Validators.required]),
-      oferta: this.formBuilder.control('', [Validators.required]),
-
-
+      anoConclusao: this.formBuilder.control('', [Validators.required] ),
+      oferta: this.formBuilder.control('', [ValidationService.selectedValidator])
     });
 
   }
