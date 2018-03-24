@@ -16,6 +16,7 @@ import { NgPipesModule } from 'ngx-pipes';
 import { LayoutHeaderComponent } from './layout-header/layout-header.component';
 import { LayoutFooterComponent } from './layout-footer/layout-footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PapaParseModule } from 'ngx-papaparse';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     LayoutModule.forRoot(appLteConfig),
     BoxModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    PapaParseModule
   ],
   declarations: [ControlMessagesComponent, DialogConfirmationComponent, LayoutHeaderComponent, LayoutFooterComponent],
   providers: [
