@@ -20,7 +20,7 @@ export class CoordEgressoIndexComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
 
 
-    // -------------inicio -Add Event para o btn Importar arquivo ------------------------
+    // -------------add de Event para o btn Importar arquivo ------------------------
 
     // tslint:disable-next-line:prefer-const
     let fileSelect = document.getElementById('fileSelect'),
@@ -36,7 +36,7 @@ export class CoordEgressoIndexComponent implements OnInit, AfterViewInit {
 
   }
 
-  // -------------Ler o arquivo csv e retorna um objeto --------------------------
+  // -------------método responsável por ler o arquivo csv e retornar um objeto --------------------------
 
   importCsv(event: any) {
 
@@ -44,6 +44,9 @@ export class CoordEgressoIndexComponent implements OnInit, AfterViewInit {
 
     this.papa.parse(file, {
       complete: (results, file2) => {
+
+        // Após importar e retornar o objeto, será passado para uma constante (service)
+        // e redirecionado para o component coord-egresso-import para a criação dos itens
         console.log('Parsed: ', results, file2);
       }
     });
