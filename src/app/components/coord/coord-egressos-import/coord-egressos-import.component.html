@@ -1,3 +1,22 @@
-<p>
-  coord-egressos-import works!
-</p>
+<mk-box header='' [isRemovable]='false' [isCollapsable]='false'>
+
+  <mk-box-header>{{title}}</mk-box-header>
+
+  <mk-box-content>
+
+    <div>
+
+        <!-- Btn cancelar e Cadastrar-->
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <a class="btn default" [routerLink]="['/coord/egressos']">Cancelar</a>
+            <button type="submit" class="btn btn-success">{{btndescricao}}</button>
+          </div>
+
+        </div>
+
+    </div>
+
+  </mk-box-content>
+
+</mk-box>

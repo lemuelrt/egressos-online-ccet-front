@@ -28,13 +28,13 @@ export class CoordEgressoFormComponent implements OnInit, AfterViewInit  {
 
     const id = this.route.snapshot.params['id'];
 
-    // Validações do formulario de Inclusão de um único Egresso
+    // Validações do form de Inclusão de um único Egresso
 
     this.coordEgressoform = this.formBuilder.group({
       nome: this.formBuilder.control('', [Validators.required, ValidationService.nomeCompleto]),
       cpf: this.formBuilder.control('', [Validators.required, ValidationService.CPFValidator]),
-      anoInicio: this.formBuilder.control('', [Validators.required]),
-      anoConclusao: this.formBuilder.control('', [Validators.required] ),
+      anoDeIngresso: this.formBuilder.control('', [Validators.required]),
+      anoDeConclusao: this.formBuilder.control('', [Validators.required] ),
       oferta: this.formBuilder.control('', [ValidationService.selectedValidator])
     });
 
