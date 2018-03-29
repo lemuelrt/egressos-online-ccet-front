@@ -8,12 +8,15 @@ import { Component, OnInit } from '@angular/core';
 export class CoordEgressosImportComponent implements OnInit {
 
 
-  title = 'Importar Egressos';
+  title = 'Cadastrar egressos por importação';
   btndescricao = 'Cadastrar';
 
   constructor() { }
 
   ngOnInit() {
+
   }
+
+
 
 }
