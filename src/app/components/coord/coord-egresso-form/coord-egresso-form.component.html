@@ -37,42 +37,29 @@
 
         <!-- Campo Nome -->
 
-        <div class="form-group" [class.has-error]="coordEgressoform.controls.anoInicio.errors && (coordEgressoform.controls.anoInicio.touched)">
-          <label class="col-sm-2 control-label">Ano Ingresso *</label>
+        <div class="form-group" [class.has-error]="coordEgressoform.controls.anoDeIngresso.errors && (coordEgressoform.controls.anoDeIngresso.touched)">
+          <label class="col-sm-2 control-label">Ano de ingresso *</label>
           <div class="col-sm-10">
-            <input type="number" formControlName="anoInicio" class="form-control">
-            <app-control-messages [control]="coordEgressoform.controls.anoInicio"></app-control-messages>
+            <input type="number" formControlName="anoDeIngresso" class="form-control">
+            <app-control-messages [control]="coordEgressoform.controls.anoDeIngresso"></app-control-messages>
           </div>
         </div>
 
         <!-- Campo Nome -->
 
-        <div class="form-group" [class.has-error]="coordEgressoform.controls.anoConclusao.errors && (coordEgressoform.controls.anoConclusao.touched)">
-          <label class="col-sm-2 control-label">Ano Conclusão *</label>
+        <div class="form-group" [class.has-error]="coordEgressoform.controls.anoDeConclusao.errors && (coordEgressoform.controls.anoDeConclusao.touched)">
+          <label class="col-sm-2 control-label">Ano de conclusão *</label>
           <div class="col-sm-10">
-            <input type="number" formControlName="anoConclusao" class="form-control">
-            <app-control-messages [control]="coordEgressoform.controls.anoConclusao"></app-control-messages>
+            <input type="number" formControlName="anoDeConclusao" class="form-control">
+            <app-control-messages [control]="coordEgressoform.controls.anoDeConclusao"></app-control-messages>
           </div>
         </div>
-
-        <!-- Select Curso-->
-        <div class="form-group" [class.has-error]="coordEgressoform.controls.oferta.errors && coordEgressoform.controls.oferta.touched">
-          <label for="inputEmail3" class="col-sm-2 control-label">Curso *</label>
-          <div class="col-sm-10">
-            <select class="form-control" formControlName="oferta">
-              <option value="">Selecione um curso</option>
-              <option value="{{oferta.ofertaId}}" *ngFor="let oferta of ofertas">{{oferta.ofertaCurso.cursoNome}} - {{oferta.ofertaCampus.campusNome}}</option>
-            </select>
-            <app-control-messages [control]="coordEgressoform.controls.oferta"></app-control-messages>
-          </div>
-        </div>
-
 
 
       <!-- Btn cancelar e Cadastrar-->
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
-            <a class="btn default" [routerLink]="['/coord']">Cancelar</a>
+            <a class="btn default" [routerLink]="['/coord/egressos']">Cancelar</a>
             <button type="submit" class="btn btn-success">{{btndescricao}}</button>
           </div>
 

@@ -5,6 +5,8 @@ export class ValidationService {
 
   static getValidatorErrorMessage(validatorName: string, validatorValue?: any) {
 
+    // Para consultar as mensagens seguir o seguinte caminho : const/messages.ts
+
     const config = {
       'required': MESSAGES['M006'],
       'requiredSelected': MESSAGES['M007'],
@@ -12,13 +14,15 @@ export class ValidationService {
       'invalidPassword': MESSAGES['M005'],
       'invalidCPF': MESSAGES['M003'],
       'senhasNaoConferem': MESSAGES['M012'],
-      'invalidNomeCompleto': MESSAGES['M020'],
+      'invalidNomeCompleto': MESSAGES['M002'],
       'invalidSenha': MESSAGES['M005'],
-      'invalidNomeSimples': MESSAGES['M019'], // Colocar mensagem referente ao nome da atuação profissional
+      'invalidNomeSimples': MESSAGES['M020'], // Colocar mensagem referente ao nome da atuação profissional
     };
 
     return config[validatorName];
   }
+
+  // Validação de Select - necessário selecionar um item do select para ser válido
 
   static selectedValidator(control) {
 
@@ -27,6 +31,8 @@ export class ValidationService {
     }
     return null;
   }
+
+  // Validação de email - definido na documentação o padrão de email deve ser : a@a.aa
 
   static emailValidator(control) {
     // RFC 2822 compliant regex
@@ -37,6 +43,9 @@ export class ValidationService {
       return { 'invalidEmailAddress': true };
     }
   }
+
+  // Validação de Nome de Pessoas - Precisa ter no mínimo cinco caracteres e no minímo duas palavras
+  // Caracteres númericos ou especiais não são aceitos
 
   static nomeCompleto(control) {
     // RFC 2822 compliant regex
@@ -54,25 +63,29 @@ export class ValidationService {
     }
   }
 
+  // Validação de nome de atuação profissional - necessita ter no mínimo 5 caracteres
+
   static nomeAtuacaoProfissionalCompleto(control) {
     // RFC 2822 compliant regex
     // tslint:disable-next-line:max-line-length
     const value: string = control.value;
 
-    // Support international names with super sweet unicode
+    // Suporte internacional de nomes
     const regex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
 
     if (value.trim().length < 5 || value.trim().length > 80 ||  !regex.test(value)) {
-      return { 'invalidNomeCompleto': true };
+      return { 'invalidNomeSimples': true };
     } else {
       return null;
     }
   }
 
+   // Validação de senha - aceita todos os tipos de caracteres,
+   // obrigatório ter no mínimo 8 e no máximo 20 caracteres
+
   static senha(control) {
     // RFC 2822 compliant regex
     // tslint:disable-next-line:max-line-length
-
 
     const value: string = control.value;
 
@@ -86,6 +99,8 @@ export class ValidationService {
     return null;
 
   }
+
+  // Validação de CPF
 
   static CPFValidator(control) {
 

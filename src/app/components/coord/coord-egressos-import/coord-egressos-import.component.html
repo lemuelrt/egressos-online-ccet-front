@@ -1,3 +1,46 @@
-<p>
-  coord-egressos-import works!
-</p>
+<mk-box header='' [isRemovable]='false' [isCollapsable]='false'>
+
+  <mk-box-header>{{title}}</mk-box-header>
+
+  <mk-box-content>
+
+    <div>
+      <!-- Inicio do collapse -->
+
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+
+              </mat-panel-title>
+
+            </mat-expansion-panel-header>
+
+            <!-- inicio do form -->
+
+
+
+
+            <!-- fim do form -->
+
+          </mat-expansion-panel>
+
+
+        </mat-accordion>
+      </div>
+
+    <div>
+        <!-- Btn cancelar e Cadastrar-->
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <a class="btn default" [routerLink]="['/coord/egressos']">Cancelar</a>
+            <button type="submit" class="btn btn-success">{{btndescricao}}</button>
+          </div>
+
+        </div>
+    <!-- fim do collapse -->
+    </div>
+
+  </mk-box-content>
+
+</mk-box>
