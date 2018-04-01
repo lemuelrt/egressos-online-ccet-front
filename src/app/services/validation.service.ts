@@ -16,7 +16,8 @@ export class ValidationService {
       'senhasNaoConferem': MESSAGES['M012'],
       'invalidNomeCompleto': MESSAGES['M002'],
       'invalidSenha': MESSAGES['M005'],
-      'invalidNomeSimples': MESSAGES['M020'], // Colocar mensagem referente ao nome da atuação profissional
+      'invalidNomeSimples': MESSAGES['M017'],
+      'invalidAno': MESSAGES['M023']
     };
 
     return config[validatorName];
@@ -79,6 +80,25 @@ export class ValidationService {
       return null;
     }
   }
+
+  static ano(control) {
+    const value: string = control.value;
+
+    if (value.length > 0) {
+
+      const regex = /^[1-9]{4,4}$/g;
+
+      if (!regex.test(value) /*validar ano inicio e consclusao*/ ) {
+        return { 'invalidAno': true };
+      }
+
+    return null;
+    }
+
+
+  }
+
+
 
    // Validação de senha - aceita todos os tipos de caracteres,
    // obrigatório ter no mínimo 8 e no máximo 20 caracteres
