@@ -1,4 +1,9 @@
-// tslint:disable-next-line:no-empty-interface
-export interface Egresso {
+import { Aluno } from './aluno.model';
 
+
+export interface Egresso {
+  egressoNome: Aluno;
+  egressoCpf: Aluno;
+  anoIngresso: number;
+  anoConclusao: number;
 }
