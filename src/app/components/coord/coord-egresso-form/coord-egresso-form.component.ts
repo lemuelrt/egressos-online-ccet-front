@@ -1,3 +1,5 @@
+import { Aluno } from './../../../models/aluno.model';
+import { Egresso } from './../../../models/egresso.model';
 import { EgressoService } from './../../../services/egresso.service';
 import { MESSAGES } from './../../../const/messages';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
@@ -16,6 +18,8 @@ import { variable } from '@angular/compiler/src/output/output_ast';
 export class CoordEgressoFormComponent implements OnInit, AfterViewInit  {
 
   coordEgressoform: FormGroup;
+
+  egresso: Egresso = null;
 
   title = 'Cadastro de Egresso';
   btndescricao = 'Cadastrar';
@@ -61,8 +65,34 @@ export class CoordEgressoFormComponent implements OnInit, AfterViewInit  {
     } else {
 
 
+      // No TypeScript é permitido atribuir objetos literais para variáveis declaradas
+      // como classes ou interface - desde que sejam compativeis
+
+      let aluno: Aluno = null;
+      aluno = {
+        alunoNome: this.coordEgressoform.controls.nome.value,
+        alunoCpf: this.coordEgressoform.controls.cpf.value
+      };
+
+      const egresso: Egresso = {
+        aluno,
+        egressoAnoIngresso: this.coordEgressoform.controls.anoDeIngresso.value,
+        egressoAnoConclusao: this.coordEgressoform.controls.anoDeConclusao.value
+
+      };
+
+      // console.log(egresso);
+
+      if (this.egresso === null) {
+        this.egressoService.save(egresso).subscribe(
+          (egressoResponse) => {
+            // console.log(coordenadorResponse);
+            this.toastr.success(MESSAGES['M022']);
+            this.router.navigate(['/coord/egressos']);
+          }
+        );
+      }
 
     }
   }
-
 }
