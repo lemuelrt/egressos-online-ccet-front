@@ -1,3 +1,4 @@
+import { ValidationService } from './../../../services/validation.service';
 import { Aluno } from './../../../models/aluno.model';
 import { Egresso } from './../../../models/egresso.model';
 import { EgressoService } from './../../../services/egresso.service';
@@ -7,7 +8,6 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CoordComponent } from './../coord.component';
-import { ValidationService } from '../../../services/validation.service';
 import { variable } from '@angular/compiler/src/output/output_ast';
 
 @Component({
@@ -41,8 +41,8 @@ export class CoordEgressoFormComponent implements OnInit, AfterViewInit  {
     this.coordEgressoform = this.formBuilder.group({
       nome: this.formBuilder.control('', [Validators.required, ValidationService.nomeCompleto]),
       cpf: this.formBuilder.control('', [Validators.required, ValidationService.CPFValidator]),
-      anoDeIngresso: this.formBuilder.control('', [Validators.required, ValidationService.ano]),
-      anoDeConclusao: this.formBuilder.control('', [Validators.required, ValidationService.ano])
+      anoDeIngresso: this.formBuilder.control('', [Validators.required, ValidationService.anoValildo]),
+      anoDeConclusao: this.formBuilder.control('', [Validators.required, ValidationService.anoValildo, ValidationService.tempoMinCurso])
     });
 
   }
