@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { EgressoService } from './../../../services/egresso.service';
 import { ValidationService } from './../../../services/validation.service';
 import { Egresso } from './../../../models/egresso.model';
@@ -22,12 +23,19 @@ export class CoordEgressosImportComponent implements OnInit {
   controls: FormArray;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private egressoService: EgressoService,
+    private router: Router
   ) { }
 
   egresosImportado: Egresso[];  // buscar na service de egresso o objeto retornado do arquivo csv
 
   ngOnInit() {
+    if (this.egressoService.egressosImportados.length === 0) {
+      this.router.navigate(['/coord/egressos']);
+    }
+
+    this.egresosImportado = this.egressoService.egressosImportados;
 
     this.egressoImportGroup = this.formBuilder.group({
       egressos: this.formBuilder.array([])
@@ -43,7 +51,7 @@ export class CoordEgressosImportComponent implements OnInit {
     this.egresosImportado.forEach((egresso) => {
       const group = this.formBuilder.group({
         'nome': this.formBuilder.control(egresso.aluno.alunoNome, [Validators.required]),
-        'cpf': this.formBuilder.control(egresso.aluno.alunoCpf, [Validators.required, ValidationService.CPFValidator]),
+        'cpf': this.formBuilder.control(egresso.aluno.alunoCpf.toString(), [Validators.required, ValidationService.CPFValidator]),
         'anoIngresso': this.formBuilder.control(egresso.egressoAnoIngresso, [Validators.required]),
         'anoConclusao': this.formBuilder.control(egresso.egressoAnoConclusao, [Validators.required]),
       });
