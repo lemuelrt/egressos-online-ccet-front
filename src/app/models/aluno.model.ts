@@ -1,5 +1,5 @@
 export interface Aluno {
+  alunoId?: number;
   alunoNome: string;
-  alunoCpf: number;
-
+  alunoCpf: string;
 }

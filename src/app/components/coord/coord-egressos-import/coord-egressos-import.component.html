@@ -2,45 +2,90 @@
 
   <mk-box-header>{{title}}</mk-box-header>
 
-  <mk-box-content>
+    <mk-box-content>
 
-    <div>
-      <!-- Inicio do collapse -->
+      <div>
+              <!-- inicio do form -->
 
-        <mat-accordion>
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
+        <form [formGroup]="egressoImportGroup" novalidate>
+          <mat-accordion>
+            <div formArrayName="egressos">
+              <div *ngFor="let item of egressoImportGroup.controls.egressos.controls; let i = index">
+                <div [formGroupName]="i">
+                  <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        {{getNameEgressoDoGroup(i)}}
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
 
-              </mat-panel-title>
+                    <!-- Campo nome-->
 
-            </mat-expansion-panel-header>
+                    <div class="form-group" [class.has-error]="hasError(i, 'nome')">
+                      <label class="col-sm-2 control-label">Nome *</label>
+                      <div class="col-sm-10">
+                        <input type="name" formControlName="nome" class="form-control">
+                        <app-control-messages [control]="getControl(i, 'nome')"></app-control-messages>
+                      </div>
+                    </div>
 
-            <!-- inicio do form -->
+                    <!-- Campo CPF-->
+
+                    <div class="form-group" [class.has-error]="hasError(i, 'cpf')">
+                      <label class="col-sm-2 control-label">CPF *</label>
+                      <div class="col-sm-10">
+                        <input type="CPF" formControlName="cpf" class="form-control" mask="000.000.000-00">
+                        <app-control-messages [control]="getControl(i, 'cpf')"></app-control-messages>
+                      </div>
+                    </div>
+
+                    <!-- Campo Ano de Ingresso -->
+
+                    <div class="form-group" [class.has-error]="hasError(i, 'anoIngresso')">
+                      <label class="col-sm-2 control-label">Ano de ingresso *</label>
+                      <div class="col-sm-10">
+                        <input type="number" formControlName="anoIngresso" class="form-control">
+                        <app-control-messages [control]="getControl(i, 'anoIngresso')"></app-control-messages>
+                      </div>
+                    </div>
+
+                    <!-- Campo Ano de Conclusão -->
+
+                    <div class="form-group" [class.has-error]="hasError(i, 'anoConclusao')">
+
+                      <label class="col-sm-2 control-label">Ano de conclusão *</label>
+                      <div class="col-sm-10">
+                        <input type="number" formControlName="anoConclusao" class="form-control">
+                        <app-control-messages [control]="getControl(i, 'anoConclusao')"></app-control-messages>
+                      </div>
+
+                    </div>
+
+                    <div class="clearfix"></div>
+                  </mat-expansion-panel>
+                </div>
+              </div>
+
+              <!-- Btn cancelar e Cadastrar-->
+
+              <div>
+
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <a class="btn default" [routerLink]="['/coord/egressos']">Cancelar</a>
+                    <button type="submit" class="btn btn-success">Cadastrar</button>
+                  </div>
+                </div>
+
+              </div>
 
 
-
-
-            <!-- fim do form -->
-
-          </mat-expansion-panel>
-
-
-        </mat-accordion>
+            </div>
+          </mat-accordion>
+        </form>
+              <!-- fim do form -->
       </div>
 
-    <div>
-        <!-- Btn cancelar e Cadastrar-->
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <a class="btn default" [routerLink]="['/coord/egressos']">Cancelar</a>
-            <button type="submit" class="btn btn-success">{{btndescricao}}</button>
-          </div>
-
-        </div>
-    <!-- fim do collapse -->
-    </div>
-
-  </mk-box-content>
+    </mk-box-content>
 
 </mk-box>
