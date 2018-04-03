@@ -139,12 +139,41 @@ export class CoordEgressosImportComponent implements OnInit {
         'cpf': this.formBuilder.control(egresso.aluno.alunoCpf.toString(), [Validators.required, ValidationService.CPFValidator]),
         'anoIngresso': this.formBuilder.control(egresso.egressoAnoIngresso, [Validators.required, ValidationService.anoValildo]),
         // tslint:disable-next-line:max-line-length
-        'anoConclusao': this.formBuilder.control(egresso.egressoAnoConclusao, [Validators.required, ValidationService.anoValildo, ValidationService.tempoMinCurso])
+        'anoConclusao': this.formBuilder.control(egresso.egressoAnoConclusao, [Validators.required, ValidationService.anoValildo])
       });
+
+      this.tempoMinCurso(group.controls.anoIngresso, group.controls.anoConclusao, true);
+
       this.controls.push(group);
     });
 
 
+  }
+
+  tempoMinCurso(anoIngresso: AbstractControl, anoConclusao: AbstractControl, touched = true) {
+    anoConclusao.valueChanges.subscribe(
+      (selectedValue) => {
+
+        const tempMin = 4;
+        const testar = (touched === false || (touched && anoConclusao.touched)) ? true : false;
+
+        // tslint:disable-next-line:radix
+        if (testar && (parseInt(anoConclusao.value) < (parseInt(anoIngresso.value) + (tempMin - 1)))) {
+
+          if (anoConclusao.valid) {
+            anoConclusao.setErrors({ 'invalidTempoMinForm': true });
+          }
+
+        } else {
+
+          if (anoConclusao.hasError('invalidTempoMinForm')) {
+            anoConclusao.setErrors(null);
+          }
+
+
+        }
+      }
+    );
   }
 
   getNameEgressoDoGroup(i) {
