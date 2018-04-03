@@ -17,7 +17,7 @@ import { LayoutHeaderComponent } from './layout-header/layout-header.component';
 import { LayoutFooterComponent } from './layout-footer/layout-footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PapaParseModule } from 'ngx-papaparse';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   imports: [
@@ -31,7 +31,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BoxModule,
     NgxMaskModule.forRoot(),
     PapaParseModule,
-    NgbModule.forRoot()
+    NgxSpinnerModule
   ],
   declarations: [ControlMessagesComponent, DialogConfirmationComponent, LayoutHeaderComponent, LayoutFooterComponent],
   providers: [
@@ -57,7 +57,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LayoutModule,
     BoxModule,
     NgxMaskModule,
-    NgbModule
+    NgxSpinnerModule
   ]
 })
 export class SharedModule { }
