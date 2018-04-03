@@ -68,7 +68,7 @@ export class CoordAtuacaoProfissionalFormComponent implements OnInit, AfterViewI
         control.markAsTouched({ onlySelf: true });
       });
 
-      this.toastr.error(MESSAGES['M011']);
+      this.toastr.error(MESSAGES['M008']);
     } else {
       const atuacaoProfissional: AtuacaoProfissional = {
         atuacaoProfissionalNome: this.coordForm.controls.nome.value,

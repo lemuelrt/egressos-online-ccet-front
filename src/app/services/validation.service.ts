@@ -1,3 +1,4 @@
+import { CoordEgressoFormComponent } from './../components/coord/coord-egresso-form/coord-egresso-form.component';
 import { MESSAGES } from './../const/messages';
 
 
@@ -16,7 +17,9 @@ export class ValidationService {
       'senhasNaoConferem': MESSAGES['M012'],
       'invalidNomeCompleto': MESSAGES['M002'],
       'invalidSenha': MESSAGES['M005'],
-      'invalidNomeSimples': MESSAGES['M020'], // Colocar mensagem referente ao nome da atuação profissional
+      'invalidNomeSimples': MESSAGES['M017'],
+      'invalidAno': MESSAGES['M023'],
+      'invalidTempoMinForm': MESSAGES['M024']
     };
 
     return config[validatorName];
@@ -79,6 +82,39 @@ export class ValidationService {
       return null;
     }
   }
+
+  // Validação de ano que comece com 1 ou 2
+  static anoValildo(control) {
+
+    const value: string = control.value;
+
+    const regex = /^[12][0-9]{3}$/g;
+
+      if (!regex.test(value) /*validar ano inicio e conclusao*/ ) {
+        return { 'invalidAno': true };
+      }
+
+    return null;
+
+  }
+
+  // Validação para tempo mínimo de curso
+  // A lógica é : o ano de conclusão deve ser maior
+  // do que o (ano de ingresso + (tempo mínimo - 1))
+  static tempoMinCurso(control) {
+
+    const value: number = control.value;
+    const tempMin = 4;
+    const anoingresso = 1995;
+
+    if (value < (anoingresso + (tempMin - 1))) {
+      return { 'invalidTempoMinForm': true };
+      // console.log(value);
+    }
+    return null;
+  }
+
+
 
    // Validação de senha - aceita todos os tipos de caracteres,
    // obrigatório ter no mínimo 8 e no máximo 20 caracteres

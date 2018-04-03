@@ -1,7 +1,9 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { error } from 'util';
 import { $ } from 'protractor';
 import { PapaParseService, PapaParseModule } from 'ngx-papaparse';
+import { EgressoService } from '../../../services/egresso.service';
 
 @Component({
   selector: 'app-coord-egresso-index',
@@ -11,7 +13,11 @@ import { PapaParseService, PapaParseModule } from 'ngx-papaparse';
 export class CoordEgressoIndexComponent implements OnInit, AfterViewInit {
 
 
-  constructor(private papa: PapaParseService) { }
+  constructor(
+    private papa: PapaParseService,
+    private egressoService: EgressoService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
 
@@ -45,9 +51,16 @@ export class CoordEgressoIndexComponent implements OnInit, AfterViewInit {
     this.papa.parse(file, {
       complete: (results, file2) => {
 
+        this.egressoService.setEgressosImportados(results.data);
+
+        if (this.egressoService.egressosImportados.length > 0) {
+          this.router.navigate(['/coord/egressos-import']);
+        }
+        // if(results.data !)
+        //
         // Após importar e retornar o objeto, será passado para uma constante (service)
         // e redirecionado para o component coord-egresso-import para a criação dos itens
-        console.log('Parsed: ', results, file2);
+        // console.log('Parsed: ', results, file2);
       }
     });
 

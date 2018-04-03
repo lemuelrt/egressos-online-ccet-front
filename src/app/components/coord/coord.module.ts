@@ -15,6 +15,7 @@ import { CoordAtuacoesProfissionaisImportComponent } from './coord-atuacoes-prof
 import { CoordEgressoIndexComponent } from './coord-egresso-index/coord-egresso-index.component';
 import { CoordEgressosImportComponent } from './coord-egressos-import/coord-egressos-import.component';
 import { AtuacaoProfissionalService } from '../../services/atuacao-profissional.service';
+import { EgressoService } from '../../services/egresso.service';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { AtuacaoProfissionalService } from '../../services/atuacao-profissional.
     CoordIndexComponent
   ],
   providers: [
-    AtuacaoProfissionalService
+    AtuacaoProfissionalService,
+    EgressoService
   ]
 })
 export class CoordModule { }
