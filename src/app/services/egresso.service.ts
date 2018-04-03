@@ -21,7 +21,7 @@ export class EgressoService {
 
   // tslint:disable-next-line:member-ordering
   saveAll(egressos: Egresso[]): Observable< Egresso[] > {
-    return this.http.post<Egresso[]>(`${EOCCET_API}/egressos`, egressos);
+    return this.http.post<Egresso[]>(`${EOCCET_API}/egresso/egressos`, egressos);
   }
 
   setEgressosImportados(data: any) {

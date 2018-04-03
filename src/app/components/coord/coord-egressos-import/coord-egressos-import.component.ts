@@ -50,10 +50,14 @@ export class CoordEgressosImportComponent implements OnInit {
 
     this.prepareEgressosFormGroup();
 
-    this.egressoImportGroup.markAsTouched();
+    this.controls.controls.forEach((controls: FormGroup) => {
+      Object.keys(controls.controls).forEach(field => {
+        controls.controls[field].markAsTouched({ onlySelf: false });
+      });
+    });
 
   }
-
+  /*
   saveAll(egressos: Egresso[]) {
 
     if (this.egressoImportGroup.invalid) {
@@ -91,7 +95,41 @@ export class CoordEgressosImportComponent implements OnInit {
       }
 
   }
+  */
+  saveAll() {
 
+    if (this.egressoImportGroup.invalid) {
+      // Não precisa porque os campos já estão marcados que já foram tocados
+      /*Object.keys(this.egressoImportGroup.controls).forEach(field => {
+        const control = this.egressoImportGroup.get(field);
+        control.markAsTouched({ onlySelf: false });
+      });*/
+
+      this.toastr.error(MESSAGES['M008']);
+
+    } else {
+      const egressos: Egresso[] = [];
+      for (let i = 0; i < this.controls.controls.length; i++) {
+        egressos.push({
+          egressoAnoIngresso: this.controls.controls[i].get('anoIngresso').value,
+          egressoAnoConclusao: this.controls.controls[i].get('anoConclusao').value,
+          aluno: {
+            alunoNome: this.controls.controls[i].get('nome').value,
+            alunoCpf: this.controls.controls[i].get('cpf').value
+          }
+        });
+      }
+
+      this.egressoService.saveAll(egressos).subscribe(
+        (egressosResponse) => {
+          this.egressoService.setEgressosImportados([]);
+          this.toastr.success(MESSAGES['M022']);
+          this.router.navigate(['/coord/egressos']);
+        }
+      );
+
+    }
+  }
 
   prepareEgressosFormGroup() {
 
