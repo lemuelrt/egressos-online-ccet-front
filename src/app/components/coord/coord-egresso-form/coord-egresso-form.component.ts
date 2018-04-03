@@ -48,7 +48,35 @@ export class CoordEgressoFormComponent implements OnInit, AfterViewInit  {
   }
 
   ngAfterViewInit() {
+    // this.tempoMinCurso(this.coordEgressoform.controls.anoConclusao, this.coordEgressoform.controls.anoIngresso, true);
+    this.tempoMinCurso(this.coordEgressoform.controls.anoIngresso, this.coordEgressoform.controls.anoConclusao, true);
   }
+  // Validação para tempo mínimo de integralização do curso
+  tempoMinCurso(anoIngresso: AbstractControl, anoConclusao: AbstractControl, touched = true) {
+    anoConclusao.valueChanges.subscribe(
+      (selectedValue) => {
+
+        const tempMin = 4;
+        const testar = (touched === false || (touched && anoConclusao.touched)) ? true : false;
+
+        // tslint:disable-next-line:radix
+        if (testar && (parseInt(anoConclusao.value)  < ( parseInt(anoIngresso.value) + (tempMin - 1))) ) {
+
+          if (anoConclusao.valid) {
+            anoConclusao.setErrors({ 'invalidTempoMinForm': true });
+          }
+
+        } else {
+
+          if (anoConclusao.hasError('invalidTempoMinForm')) {
+            anoConclusao.setErrors(null);
+          }
+
+
+      }
+    );
+  }
+
 
   // metódo para apenas salvar o egresso em questão que for cadastrado
 

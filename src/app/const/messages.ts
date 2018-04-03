@@ -22,8 +22,9 @@ export const MESSAGES = {
   'M019': 'Importação finalizada!',
   'M020': 'Não foi possível importar o arquivo.',
   'M021': 'Salvando Egresso(s).',
-  'M022': 'Egresso(s) salvo(s) com sucesso!',
+  'M022': 'Cadastros realizados com sucesso!',
   'M023': 'Ano inválido.',
-  'M024': 'Ano de formação deve ser superior ao ano de ingresso.',
+  // tslint:disable-next-line:max-line-length
+  'M024': 'O ano de conclusão deve ser superior ao ano de início da graduação. Deve ser respeitado o tempo mínimo de integralização do curso.',
   'M025': 'Não foi possível finalizar a operação! '
 };
