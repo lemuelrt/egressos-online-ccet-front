@@ -2,10 +2,13 @@ import { Router } from '@angular/router';
 import { EgressoService } from './../../../services/egresso.service';
 import { ValidationService } from './../../../services/validation.service';
 import { Egresso } from './../../../models/egresso.model';
+import { Aluno } from './../../../models/aluno.model';
+import { MESSAGES } from './../../../const/messages';
 
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormArray } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-coord-egressos-import',
@@ -16,7 +19,7 @@ export class CoordEgressosImportComponent implements OnInit {
 
 
   title = 'Cadastrar egressos por importação';
-  btndescricao = 'Cadastrar';
+  btnDescricao = 'Cadastrar';
 
   egressoImportGroup: FormGroup;
 
@@ -25,17 +28,20 @@ export class CoordEgressosImportComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private egressoService: EgressoService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
-  egresosImportado: Egresso[];  // buscar na service de egresso o objeto retornado do arquivo csv
+  egressosImportado: Egresso[];  // buscar na service de egresso o objeto retornado do arquivo csv
+
+  egressosForm: Egresso[];
 
   ngOnInit() {
     if (this.egressoService.egressosImportados.length === 0) {
       this.router.navigate(['/coord/egressos']);
     }
 
-    this.egresosImportado = this.egressoService.egressosImportados;
+    this.egressosImportado = this.egressoService.egressosImportados;
 
     this.egressoImportGroup = this.formBuilder.group({
       egressos: this.formBuilder.array([])
@@ -43,20 +49,63 @@ export class CoordEgressosImportComponent implements OnInit {
     this.controls = <FormArray>this.egressoImportGroup.controls['egressos'];
 
     this.prepareEgressosFormGroup();
+
+    this.egressoImportGroup.markAsTouched();
+
+  }
+
+  saveAll(egressos: Egresso[]) {
+
+    if (this.egressoImportGroup.invalid) {
+      Object.keys(this.egressoImportGroup.controls).forEach(field => {
+        const control = this.egressoImportGroup.get(field);
+        control.markAsTouched({ onlySelf: false });
+      });
+
+      this.toastr.error(MESSAGES['M008']);
+
+    } else {
+
+      for (let i = 1; i < egressos.length; i++) {
+          this.egressosForm.push({
+            egressoAnoIngresso: egressos[i][2],
+            egressoAnoConclusao: egressos[i][3],
+            aluno: {
+              alunoNome: egressos[i][0],
+              alunoCpf: egressos[i][1]
+            }
+          });
+        }
+      }
+
+
+
+      if (this.egressosForm === null) {
+        this.egressoService.saveAll(egressos).subscribe(
+          (egressosResponse) => {
+
+            this.toastr.success(MESSAGES['M022']);
+            this.router.navigate(['/coord/egressos']);
+          }
+        );
+      }
+
   }
 
 
   prepareEgressosFormGroup() {
 
-    this.egresosImportado.forEach((egresso) => {
+    this.egressosImportado.forEach((egresso) => {
       const group = this.formBuilder.group({
-        'nome': this.formBuilder.control(egresso.aluno.alunoNome, [Validators.required]),
+        'nome': this.formBuilder.control(egresso.aluno.alunoNome, [Validators.required, ValidationService.nomeCompleto]),
         'cpf': this.formBuilder.control(egresso.aluno.alunoCpf.toString(), [Validators.required, ValidationService.CPFValidator]),
-        'anoIngresso': this.formBuilder.control(egresso.egressoAnoIngresso, [Validators.required]),
-        'anoConclusao': this.formBuilder.control(egresso.egressoAnoConclusao, [Validators.required]),
+        'anoIngresso': this.formBuilder.control(egresso.egressoAnoIngresso, [Validators.required, ValidationService.anoValildo]),
+        // tslint:disable-next-line:max-line-length
+        'anoConclusao': this.formBuilder.control(egresso.egressoAnoConclusao, [Validators.required, ValidationService.anoValildo, ValidationService.tempoMinCurso])
       });
       this.controls.push(group);
     });
+
 
   }
 

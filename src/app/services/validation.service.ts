@@ -86,11 +86,17 @@ export class ValidationService {
   // Validação de ano que comece com 1 ou 2
   static anoValildo(control) {
 
-    const value: string = control.value;
+    const value = control.value;
+
+    const d = new Date();
+    const anoAtual = d.getFullYear();
 
     const regex = /^[12][0-9]{3}$/g;
 
-      if (!regex.test(value) /*validar ano inicio e consclusao*/ ) {
+    // regex.test(value) verifica se o ano informado está no padrao [1 ou 2] +(3 num [0-9])
+    // (value > anoAtual) verifica se o ano informado é superior ao ano atual
+
+      if (!regex.test(value) || (value > anoAtual)) {
         return { 'invalidAno': true };
       }
 
@@ -104,8 +110,8 @@ export class ValidationService {
   static tempoMinCurso(control) {
 
     const value: number = control.value;
-    const tempMin = 4;
-    const anoingresso = 1995;
+    const tempMin = 4;        // valor será obtido da api, cada curso retornará o seu tempo minimo de conclusão/integralização
+    const anoingresso = 1995; // valor será obtido do campo anoIngresso
 
     if (value < (anoingresso + (tempMin - 1))) {
       return { 'invalidTempoMinForm': true };
@@ -113,7 +119,6 @@ export class ValidationService {
     }
     return null;
   }
-
 
 
    // Validação de senha - aceita todos os tipos de caracteres,

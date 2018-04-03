@@ -56,11 +56,6 @@ export class CoordEgressoIndexComponent implements OnInit, AfterViewInit {
         if (this.egressoService.egressosImportados.length > 0) {
           this.router.navigate(['/coord/egressos-import']);
         }
-        // if(results.data !)
-        //
-        // Após importar e retornar o objeto, será passado para uma constante (service)
-        // e redirecionado para o component coord-egresso-import para a criação dos itens
-        // console.log('Parsed: ', results, file2);
       }
     });
 

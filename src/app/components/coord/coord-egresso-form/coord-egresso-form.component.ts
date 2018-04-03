@@ -22,7 +22,7 @@ export class CoordEgressoFormComponent implements OnInit, AfterViewInit  {
   egresso: Egresso = null;
 
   title = 'Cadastro de Egresso';
-  btndescricao = 'Cadastrar';
+  btnDescricao = 'Cadastrar';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -81,12 +81,12 @@ export class CoordEgressoFormComponent implements OnInit, AfterViewInit  {
 
       };
 
-      // console.log(egresso);
+
 
       if (this.egresso === null) {
         this.egressoService.save(egresso).subscribe(
           (egressoResponse) => {
-            // console.log(coordenadorResponse);
+
             this.toastr.success(MESSAGES['M022']);
             this.router.navigate(['/coord/egressos']);
           }
