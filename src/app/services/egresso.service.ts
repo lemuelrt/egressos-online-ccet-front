@@ -19,6 +19,11 @@ export class EgressoService {
     return this.http.post<Egresso>(`${EOCCET_API}/egresso`, egresso);
   }
 
+  // tslint:disable-next-line:member-ordering
+  saveAll(egressos: Egresso[]): Observable< Egresso[] > {
+    return this.http.post<Egresso[]>(`${EOCCET_API}/egressos`, egressos);
+  }
+
   setEgressosImportados(data: any) {
     this.egressosImportados = [];
     if (data instanceof Array) {
