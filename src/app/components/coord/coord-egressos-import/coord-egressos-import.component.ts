@@ -57,45 +57,7 @@ export class CoordEgressosImportComponent implements OnInit {
     });
 
   }
-  /*
-  saveAll(egressos: Egresso[]) {
 
-    if (this.egressoImportGroup.invalid) {
-      Object.keys(this.egressoImportGroup.controls).forEach(field => {
-        const control = this.egressoImportGroup.get(field);
-        control.markAsTouched({ onlySelf: false });
-      });
-
-      this.toastr.error(MESSAGES['M008']);
-
-    } else {
-
-      for (let i = 1; i < egressos.length; i++) {
-          this.egressosForm.push({
-            egressoAnoIngresso: egressos[i][2],
-            egressoAnoConclusao: egressos[i][3],
-            aluno: {
-              alunoNome: egressos[i][0],
-              alunoCpf: egressos[i][1]
-            }
-          });
-        }
-      }
-
-
-
-      if (this.egressosForm === null) {
-        this.egressoService.saveAll(egressos).subscribe(
-          (egressosResponse) => {
-
-            this.toastr.success(MESSAGES['M022']);
-            this.router.navigate(['/coord/egressos']);
-          }
-        );
-      }
-
-  }
-  */
   saveAll() {
 
     if (this.egressoImportGroup.invalid) {
@@ -139,7 +101,7 @@ export class CoordEgressosImportComponent implements OnInit {
         'cpf': this.formBuilder.control(egresso.aluno.alunoCpf.toString(), [Validators.required, ValidationService.CPFValidator]),
         'anoIngresso': this.formBuilder.control(egresso.egressoAnoIngresso, [Validators.required, ValidationService.anoValildo]),
         // tslint:disable-next-line:max-line-length
-        'anoConclusao': this.formBuilder.control(egresso.egressoAnoConclusao, [Validators.required, ValidationService.anoValildo, ValidationService.tempoMinCurso])
+        'anoConclusao': this.formBuilder.control(egresso.egressoAnoConclusao, [Validators.required, ValidationService.anoValildo])
       });
       this.controls.push(group);
     });

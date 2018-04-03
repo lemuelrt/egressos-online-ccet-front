@@ -42,15 +42,16 @@ export class CoordEgressoFormComponent implements OnInit, AfterViewInit  {
       nome: this.formBuilder.control('', [Validators.required, ValidationService.nomeCompleto]),
       cpf: this.formBuilder.control('', [Validators.required, ValidationService.CPFValidator]),
       anoDeIngresso: this.formBuilder.control('', [Validators.required, ValidationService.anoValildo]),
-      anoDeConclusao: this.formBuilder.control('', [Validators.required, ValidationService.anoValildo, ValidationService.tempoMinCurso])
+      anoDeConclusao: this.formBuilder.control('', [Validators.required, ValidationService.anoValildo])
     });
 
   }
 
   ngAfterViewInit() {
-    // this.tempoMinCurso(this.coordEgressoform.controls.anoConclusao, this.coordEgressoform.controls.anoIngresso, true);
-    this.tempoMinCurso(this.coordEgressoform.controls.anoIngresso, this.coordEgressoform.controls.anoConclusao, true);
+    this.tempoMinCurso(this.coordEgressoform.controls.anoDeIngresso, this.coordEgressoform.controls.anoDeConclusao, true);
   }
+
+
   // Validação para tempo mínimo de integralização do curso
   tempoMinCurso(anoIngresso: AbstractControl, anoConclusao: AbstractControl, touched = true) {
     anoConclusao.valueChanges.subscribe(
@@ -72,9 +73,8 @@ export class CoordEgressoFormComponent implements OnInit, AfterViewInit  {
             anoConclusao.setErrors(null);
           }
 
-
       }
-    );
+    });
   }
 
 
