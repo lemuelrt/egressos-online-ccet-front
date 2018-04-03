@@ -151,6 +151,10 @@ export class CoordEgressosImportComponent implements OnInit {
     return this.controls.controls[i].get('nome').value;
   }
 
+  hasErrorGroup(i): boolean {
+    return this.controls.controls[i].invalid;
+  }
+
   hasError(i, name): boolean {
     return this.controls.controls[i].get(name).errors &&
       this.controls.controls[i].get(name).touched;

@@ -12,11 +12,15 @@
             <div formArrayName="egressos">
               <div *ngFor="let item of egressoImportGroup.controls.egressos.controls; let i = index">
                 <div [formGroupName]="i">
-                  <mat-expansion-panel>
+                  <mat-expansion-panel hideToggle="true">
                     <mat-expansion-panel-header>
                       <mat-panel-title>
                         {{getNameEgressoDoGroup(i)}}
                       </mat-panel-title>
+                      <mat-panel-description class="desc-header">
+                        <mat-icon *ngIf="hasErrorGroup(i)" class="icon-error">clear</mat-icon>
+                        <mat-icon *ngIf="!hasErrorGroup(i)" class="icon-success">done</mat-icon>
+                      </mat-panel-description>
                     </mat-expansion-panel-header>
 
                     <!-- Campo nome-->

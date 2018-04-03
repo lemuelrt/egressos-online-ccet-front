@@ -1,0 +1,14 @@
+.desc-header{
+  flex-direction: row-reverse;
+}
+.desc-header .icon-error{
+  background-color: red;
+  color: #fff !important;
+  border-radius: 50%;
+}
+
+.desc-header .icon-success{
+  background-color: green;
+  color: #fff !important;
+  border-radius: 50%;
+}
