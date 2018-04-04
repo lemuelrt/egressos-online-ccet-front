@@ -15,7 +15,7 @@ import { variable } from '@angular/compiler/src/output/output_ast';
   templateUrl: './coord-egresso-form.component.html',
   styleUrls: ['./coord-egresso-form.component.css']
 })
-export class CoordEgressoFormComponent implements OnInit, AfterViewInit  {
+export class CoordEgressoFormComponent implements OnInit, AfterViewInit {
 
   coordEgressoform: FormGroup;
 
@@ -48,6 +48,7 @@ export class CoordEgressoFormComponent implements OnInit, AfterViewInit  {
   }
 
   ngAfterViewInit() {
+    // this.tempoMinCurso(this.coordEgressoform.controls.anoConclusao, this.coordEgressoform.controls.anoIngresso, true);
     this.tempoMinCurso(this.coordEgressoform.controls.anoDeIngresso, this.coordEgressoform.controls.anoDeConclusao, true);
   }
 
@@ -61,7 +62,7 @@ export class CoordEgressoFormComponent implements OnInit, AfterViewInit  {
         const testar = (touched === false || (touched && anoConclusao.touched)) ? true : false;
 
         // tslint:disable-next-line:radix
-        if (testar && (parseInt(anoConclusao.value)  < ( parseInt(anoIngresso.value) + (tempMin - 1))) ) {
+        if (testar && (parseInt(anoConclusao.value) < (parseInt(anoIngresso.value) + (tempMin - 1)))) {
 
           if (anoConclusao.valid) {
             anoConclusao.setErrors({ 'invalidTempoMinForm': true });

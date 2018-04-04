@@ -4,7 +4,7 @@ import { error } from 'util';
 import { $ } from 'protractor';
 import { PapaParseService, PapaParseModule } from 'ngx-papaparse';
 import { EgressoService } from '../../../services/egresso.service';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-coord-egresso-index',
@@ -13,13 +13,13 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CoordEgressoIndexComponent implements OnInit, AfterViewInit {
 
-  @ViewChild('dialog') dialogLoading: ElementRef;
+  // @ViewChild('dialog') dialogLoading: any;
 
   constructor(
     private papa: PapaParseService,
     private egressoService: EgressoService,
     private router: Router,
-    private modalService: NgbModal
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
@@ -49,18 +49,15 @@ export class CoordEgressoIndexComponent implements OnInit, AfterViewInit {
 
   importCsv(event: any) {
 
-    const modal = this.modalService.open(this.dialogLoading.nativeElement, {
-      centered: true
-    });
-    console.log('teste');
+    // this.dialogLoading.open();
+    this.spinner.show();
     setTimeout(() => {
-      console.log('teste');
 
       const file: File = event.target.files[0];
 
       this.papa.parse(file, {
         complete: (results, file2) => {
-          modal.close();
+          this.spinner.hide();
           this.egressoService.setEgressosImportados(results.data);
 
           if (this.egressoService.egressosImportados.length > 0) {
@@ -69,7 +66,7 @@ export class CoordEgressoIndexComponent implements OnInit, AfterViewInit {
           }
         }
       });
-    }, 3000);
+    }, 1000);
 
 
 
