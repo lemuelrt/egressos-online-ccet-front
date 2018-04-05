@@ -96,7 +96,7 @@ export class ValidationService {
     // regex.test(value) verifica se o ano informado está no padrao [1 ou 2] +(3 num [0-9])
     // (value > anoAtual) verifica se o ano informado é superior ao ano atual
 
-      if (!regex.test(value) || (value > anoAtual) || ) {
+      if (!regex.test(value) || (value > anoAtual)) {
         return { 'invalidAno': true };
       }
 
