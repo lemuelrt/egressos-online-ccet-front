@@ -51,22 +51,22 @@ export class CoordEgressoIndexComponent implements OnInit, AfterViewInit {
 
     // this.dialogLoading.open();
     this.spinner.show();
-    setTimeout(() => {
 
-      const file: File = event.target.files[0];
 
-      this.papa.parse(file, {
-        complete: (results, file2) => {
-          this.spinner.hide();
-          this.egressoService.setEgressosImportados(results.data);
+    const file: File = event.target.files[0];
 
-          if (this.egressoService.egressosImportados.length > 0) {
+    this.papa.parse(file, {
+      complete: (results, file2) => {
+        this.spinner.hide();
+        this.egressoService.setEgressosImportados(results.data);
 
-            this.router.navigate(['/coord/egressos-import']);
-          }
+        if (this.egressoService.egressosImportados.length > 0) {
+
+          this.router.navigate(['/coord/egressos-import']);
         }
-      });
-    }, 1000);
+      }
+    });
+
 
 
 

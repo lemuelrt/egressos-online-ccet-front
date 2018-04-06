@@ -17,7 +17,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoordEgressosImportComponent implements OnInit {
 
-
   title = 'Cadastrar egressos por importação';
   btnDescricao = 'Cadastrar';
 
@@ -116,6 +115,10 @@ export class CoordEgressosImportComponent implements OnInit {
     anoConclusao.valueChanges.subscribe(
       (selectedValue) => {
 
+        /**
+         *  Após a implementação do caso de uso de realizar login o tempo minimo será dinâmico
+         *  conforme qual coordenador está realizando o cadastro
+         */
         const tempMin = 4;
         const testar = (touched === false || (touched && anoConclusao.touched)) ? true : false;
 
