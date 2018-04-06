@@ -81,7 +81,7 @@ export class CoordAtuacaoProfissionalFormComponent implements OnInit, AfterViewI
         this.atuacaoProfissionalService.save(atuacaoProfissional).subscribe(
           (coordenadorResponse) => {
             // console.log(atuacaoProfissionalResponse);
-            this.toastr.success(MESSAGES['M013']);
+            this.toastr.success(MESSAGES['M010']);
             this.router.navigate(['/coord/atuacoes-profissionais']);
           }
         );
@@ -89,7 +89,7 @@ export class CoordAtuacaoProfissionalFormComponent implements OnInit, AfterViewI
         this.atuacaoProfissionalService.update(this.atuacaoProfissional.atuacaoProfissionalId, atuacaoProfissional).subscribe(
           (atuacaoProfissionalResponse) => {
             // console.log(atuacaoProfissionalResponse);
-            this.toastr.success(MESSAGES['M014']);
+            this.toastr.success(MESSAGES['M011']);
             this.router.navigate(['/coord/atuacoes-profissionais']);
           }
         );
