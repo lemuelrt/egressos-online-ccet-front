@@ -12,8 +12,8 @@
             <div formArrayName="egressos">
               <div *ngFor="let item of egressoImportGroup.controls.egressos.controls; let i = index">
                 <div [formGroupName]="i">
-                  <mat-expansion-panel hideToggle="true">
-                    <mat-expansion-panel-header>
+                  <mat-expansion-panel hideToggle="true"  >
+                    <mat-expansion-panel-header >
                       <mat-panel-title>
                         {{getNameEgressoDoGroup(i)}}
                       </mat-panel-title>
