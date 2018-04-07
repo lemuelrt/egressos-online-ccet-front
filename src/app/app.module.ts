@@ -17,6 +17,7 @@ import { CoordEgressoFormComponent } from './components/coord/coord-egresso-form
 import { CoordEgressosImportComponent } from './components/coord/coord-egressos-import/coord-egressos-import.component';
 import { CoordEgressoIndexComponent } from './components/coord/coord-egresso-index/coord-egresso-index.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { SharedModule } from './components/shared/shared.module';
 
 
 
@@ -29,7 +30,8 @@ import { AdminComponent } from './components/admin/admin.component';
     BrowserModule,
     AppRoutingModule,
     AdminModule,
-    CoordModule
+    CoordModule,
+    SharedModule,
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandle },
