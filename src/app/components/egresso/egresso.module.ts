@@ -1,3 +1,4 @@
+import { EgressoIndexComponent } from './egresso-index/egresso-index.component';
 import { egresso_routes } from './const/egresso.config';
 import { SharedModule } from './../shared/shared.module';
 import { RouterModule } from '@angular/router';
@@ -14,6 +15,8 @@ import { EgressoAtualizarFormComponent } from './egresso-atualizar-form/egresso-
   ],
   declarations: [
     EgressoComponent,
-    EgressoAtualizarFormComponent]
+    EgressoAtualizarFormComponent,
+    EgressoIndexComponent
+  ]
 })
 export class EgressoModule { }
