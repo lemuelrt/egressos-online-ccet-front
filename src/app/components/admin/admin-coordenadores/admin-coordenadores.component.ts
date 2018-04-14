@@ -35,7 +35,7 @@ export class AdminCoordenadoresComponent implements OnInit {
     private _lpad: LeftPadPipe,
     private toastr: ToastrService,
     private coordenadorService: CoordenadorService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit() {

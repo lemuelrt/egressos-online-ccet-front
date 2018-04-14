@@ -10,6 +10,8 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'app-admin-coordenador-form',
@@ -34,6 +36,7 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
     private coordenadorService: CoordenadorService,
     private router: Router,
     private route: ActivatedRoute,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
@@ -128,6 +131,7 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
 
       this.toastr.error(MESSAGES['M011']);
     } else {
+      this.spinner.show();
       const ofertaSeleciona: Oferta = this.ofertas.find((o) => o.ofertaId.toString() === this.adminForm.get('oferta').value);
 
       const coordenador: Coordenador = {
@@ -142,7 +146,9 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
       // console.log(coordenador);
 
       if (this.coordenador === null) {
-        this.coordenadorService.save(coordenador).subscribe(
+        this.coordenadorService.save(coordenador)
+        .finally(() => this.spinner.hide())
+        .subscribe(
           (coordenadorResponse) => {
             // console.log(coordenadorResponse);
             this.toastr.success(MESSAGES['M013']);

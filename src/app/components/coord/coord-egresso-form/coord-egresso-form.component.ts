@@ -48,7 +48,6 @@ export class CoordEgressoFormComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // this.tempoMinCurso(this.coordEgressoform.controls.anoConclusao, this.coordEgressoform.controls.anoIngresso, true);
     this.tempoMinCurso(this.coordEgressoform.controls.anoDeIngresso, this.coordEgressoform.controls.anoDeConclusao, true);
   }
 

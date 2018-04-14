@@ -7,6 +7,8 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AtuacaoProfissional } from '../../../models/atuacao-profissional.model';
+import { NgxSpinnerService } from 'ngx-spinner';
+import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'app-coord-atuacao-profissional-form',
@@ -28,6 +30,7 @@ export class CoordAtuacaoProfissionalFormComponent implements OnInit, AfterViewI
     private atuacaoProfissionalService: AtuacaoProfissionalService,
     private router: Router,
     private route: ActivatedRoute,
+    private spinner: NgxSpinnerService,
   ) { }
 
   ngOnInit() {
@@ -70,18 +73,22 @@ export class CoordAtuacaoProfissionalFormComponent implements OnInit, AfterViewI
 
       this.toastr.error(MESSAGES['M008']);
     } else {
+      this.spinner.show();
       const atuacaoProfissional: AtuacaoProfissional = {
         atuacaoProfissionalNome: this.coordForm.controls.nome.value,
         atuacaoProfissionalStatus: 1
       };
 
+
       // console.log(atuacaoProfissional);
 
       if (this.atuacaoProfissional === null) {
-        this.atuacaoProfissionalService.save(atuacaoProfissional).subscribe(
+        this.atuacaoProfissionalService.save(atuacaoProfissional)
+        .finally(() => this.spinner.hide())
+        .subscribe(
           (coordenadorResponse) => {
             // console.log(atuacaoProfissionalResponse);
-            this.toastr.success(MESSAGES['M013']);
+            this.toastr.success(MESSAGES['M010']);
             this.router.navigate(['/coord/atuacoes-profissionais']);
           }
         );
@@ -89,7 +96,7 @@ export class CoordAtuacaoProfissionalFormComponent implements OnInit, AfterViewI
         this.atuacaoProfissionalService.update(this.atuacaoProfissional.atuacaoProfissionalId, atuacaoProfissional).subscribe(
           (atuacaoProfissionalResponse) => {
             // console.log(atuacaoProfissionalResponse);
-            this.toastr.success(MESSAGES['M014']);
+            this.toastr.success(MESSAGES['M011']);
             this.router.navigate(['/coord/atuacoes-profissionais']);
           }
         );
