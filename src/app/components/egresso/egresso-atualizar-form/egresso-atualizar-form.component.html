@@ -1,3 +1,53 @@
-<p>
-  egresso-atualizar-form works!
-</p>
+<mk-box header='' [isRemovable]='false' [isCollapsable]='false'>
+
+  <mk-box-header>{{title}}</mk-box-header>
+
+  <mk-box-content>
+
+    <div>
+
+      <form [formGroup]="coordForm" class="form-horizontal" role="form" novalidate (ngSubmit)="update()">
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label"></label>
+          <div class="col-sm-10">
+            <h5>* Campos Obrigatórios</h5>
+          </div>
+        </div>
+        <!-- Campo Nome -->
+
+        <div class="form-group" [class.has-error]="coordForm.controls.foto.errors && (coordForm.controls.foto.touched)">
+          <label class="col-sm-2 control-label">Foto perfil *</label>
+          <div class="col-sm-10">
+            <input type="file" formControlName="foto" class="form-control">
+            <app-control-messages [control]="coordForm.controls.foto"></app-control-messages>
+          </div>
+        </div>
+
+        <div class="form-group" [class.has-error]="coordForm.controls.nome.errors && (coordForm.controls.nome.touched)">
+          <label class="col-sm-2 control-label">Nome *</label>
+          <div class="col-sm-10">
+            <input type="name" formControlName="nome" class="form-control">
+            <app-control-messages [control]="coordForm.controls.nome"></app-control-messages>
+          </div>
+        </div>
+
+        <!-- Botão Cancelar-->
+        <!-- Botão Cadastrar-->
+
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <a class="btn default" [routerLink]="['/coord/atuacoes-profissionais']">Cancelar</a>
+            <button type="submit" class="btn btn-success">{{btndescricao}}</button>
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </mk-box-content>
+
+
+</mk-box>
