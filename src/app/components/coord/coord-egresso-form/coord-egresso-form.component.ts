@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CoordComponent } from './../coord.component';
 import { variable } from '@angular/compiler/src/output/output_ast';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-coord-egresso-form',
@@ -16,6 +17,7 @@ import { variable } from '@angular/compiler/src/output/output_ast';
   styleUrls: ['./coord-egresso-form.component.css']
 })
 export class CoordEgressoFormComponent implements OnInit, AfterViewInit {
+
 
   coordEgressoform: FormGroup;
 
@@ -30,6 +32,7 @@ export class CoordEgressoFormComponent implements OnInit, AfterViewInit {
     private router: Router,
     private route: ActivatedRoute,
     private egressoService: EgressoService,
+    private spinner: NgxSpinnerService,
   ) { }
 
   ngOnInit() {
@@ -92,7 +95,7 @@ export class CoordEgressoFormComponent implements OnInit, AfterViewInit {
 
     } else {
 
-
+      this.spinner.show();
       // No TypeScript é permitido atribuir objetos literais para variáveis declaradas
       // como classes ou interface - desde que sejam compativeis
 
@@ -112,15 +115,15 @@ export class CoordEgressoFormComponent implements OnInit, AfterViewInit {
 
 
       if (this.egresso === null) {
-        this.egressoService.save(egresso).subscribe(
+        this.egressoService.save(egresso)
+        .finally(() => this.spinner.hide())
+        .subscribe(
           (egressoResponse) => {
-
             this.toastr.success(MESSAGES['M022']);
             this.router.navigate(['/coord/egressos']);
           }
         );
       }
-
     }
   }
 }
