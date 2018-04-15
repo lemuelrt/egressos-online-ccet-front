@@ -1,0 +1,31 @@
+<mk-layout-wrapper>
+
+  <app-layout-header></app-layout-header>
+
+  <mk-layout-sidebar-left>
+    <ul class="sidebar-menu">
+      <li class="header">
+        <span>MAIN NAVIGATION</span>
+      </li>
+      <li class="">
+        <a [routerLink]="['/egresso/index']" routerLinkActive="active">
+          <i class="glyphicon glyphicon-briefcase"></i>
+          <span>Atuações Profissionais</span>
+        </a>
+      </li>
+      <li class="">
+        <a [routerLink]="['/egresso/atualizar']" routerLinkActive="active">
+          <i class="fa fa-graduation-cap"></i>
+          <span>Atualizar meus dados</span>
+        </a>
+      </li>
+    </ul>
+  </mk-layout-sidebar-left>
+
+  <mk-layout-content>
+    <router-outlet></router-outlet>
+  </mk-layout-content>
+
+  <app-layout-footer></app-layout-footer>
+
+</mk-layout-wrapper>

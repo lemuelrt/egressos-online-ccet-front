@@ -1,3 +1,4 @@
+import { EgressoModule } from './components/egresso/egresso.module';
 import { AppErrorHandle } from './app-error-handle';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -32,6 +33,7 @@ import { SharedModule } from './components/shared/shared.module';
     AdminModule,
     CoordModule,
     SharedModule,
+    EgressoModule
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandle },
