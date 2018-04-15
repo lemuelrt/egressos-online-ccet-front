@@ -4,48 +4,107 @@
 
   <mk-box-content>
 
-    <div>
 
-      <form [formGroup]="coordForm" class="form-horizontal" role="form" novalidate (ngSubmit)="update()">
+        <mat-tab-group class="demo-tab-group">
+          <mat-tab label="Tab 1">
+            <ng-template mat-tab-label>
+              <i class="glyphicon glyphicon-camera"></i>
+              <span class="tab-label-title">Foto Perfil</span>
+            </ng-template>
+            <div class="demo-tab-content">
+              Aqui ele altera o foto do perfil
 
-        <div class="form-group">
-          <label class="col-sm-2 control-label"></label>
-          <div class="col-sm-10">
-            <h5>* Campos Obrigatórios</h5>
+            </div>
+          </mat-tab>
+          <mat-tab label="Tab 1">
+            <ng-template mat-tab-label>
+              <i class="glyphicon glyphicon-user"></i>
+              <span class="tab-label-title">Dados Pessoais</span>
+            </ng-template>
+            <div class="demo-tab-content">
+              Aqui ele alterar os dados pessoais
+            </div>
+          </mat-tab>
+          <mat-tab label="Tab 2">
+            <ng-template mat-tab-label>
+              <i class="glyphicon glyphicon-thumbs-up"></i>
+              <span class="tab-label-title">Redes sociais</span>
+            </ng-template>
+            <div class="demo-tab-content">
+               Aqui ele acrescenta as redes sociais
+            </div>
+          </mat-tab>
+          <mat-tab label="Tab 3" >
+            <ng-template mat-tab-label>
+              <i class="glyphicon glyphicon-picture"></i>
+              <span class="tab-label-title">Galeria de fotos</span>
+            </ng-template>
+            <div class="demo-tab-content">
+               Aqui ele adiciona as três fotos da galeria
+            </div>
+          </mat-tab>
+          <mat-tab label="Tab 4">
+            <ng-template mat-tab-label>
+              <i class="glyphicon glyphicon-book"></i>
+              <span class="tab-label-title">Acadêmico</span>
+            </ng-template>
+            <div class="demo-tab-content">
+               Aqui ele edita as informações acadêmicas
+            </div>
+          </mat-tab>
+          <mat-tab label="Tab 5">
+            <ng-template mat-tab-label>
+              <i class="glyphicon glyphicon-lock"></i>
+              <span class="tab-label-title">Profissional</span>
+            </ng-template>
+            <div class="demo-tab-content">
+               Aqui ele edita as informações profissionais
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+
+    <!--
+      <div>
+
+        <form [formGroup]="egressoForm" class="form-horizontal" role="form" novalidate (ngSubmit)="update()">
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+              <h5>* Campos Obrigatórios</h5>
+            </div>
           </div>
-        </div>
-        <!-- Campo Nome -->
 
-        <div class="form-group" [class.has-error]="coordForm.controls.foto.errors && (coordForm.controls.foto.touched)">
-          <label class="col-sm-2 control-label">Foto perfil *</label>
-          <div class="col-sm-10">
-            <input type="file" formControlName="foto" class="form-control">
-            <app-control-messages [control]="coordForm.controls.foto"></app-control-messages>
-          </div>
-        </div>
 
-        <div class="form-group" [class.has-error]="coordForm.controls.nome.errors && (coordForm.controls.nome.touched)">
-          <label class="col-sm-2 control-label">Nome *</label>
-          <div class="col-sm-10">
-            <input type="name" formControlName="nome" class="form-control">
-            <app-control-messages [control]="coordForm.controls.nome"></app-control-messages>
-          </div>
-        </div>
-
-        <!-- Botão Cancelar-->
-        <!-- Botão Cadastrar-->
-
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <a class="btn default" [routerLink]="['/coord/atuacoes-profissionais']">Cancelar</a>
-            <button type="submit" class="btn btn-success">{{btndescricao}}</button>
+          <div class="form-group" [class.has-error]="egressoForm.controls.foto.errors && (egressoForm.controls.foto.touched)">
+            <label class="col-sm-2 control-label">Foto perfil *</label>
+            <div class="col-sm-10">
+              <input type="file" formControlName="foto" class="form-control" #fotoPerfil>
+              <app-control-messages [control]="egressoForm.controls.foto"></app-control-messages>
+            </div>
           </div>
 
-        </div>
+          <div class="form-group" [class.has-error]="egressoForm.controls.nome.errors && (egressoForm.controls.nome.touched)">
+            <label class="col-sm-2 control-label">Nome *</label>
+            <div class="col-sm-10">
+              <input type="name" formControlName="nome" class="form-control">
+              <app-control-messages [control]="egressoForm.controls.nome"></app-control-messages>
+            </div>
+          </div>
 
-      </form>
 
-    </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <a class="btn default" [routerLink]="['/coord/atuacoes-profissionais']">Cancelar</a>
+              <button type="submit" class="btn btn-success">{{btndescricao}}</button>
+            </div>
+
+          </div>
+
+        </form>
+
+      </div>
+    -->
 
   </mk-box-content>
 
