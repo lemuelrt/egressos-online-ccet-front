@@ -7,10 +7,15 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+<<<<<<< HEAD
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 
 import { MapsAPILoader } from '@agm/core';
 import { } from '@types/googlemaps';
+=======
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { EOCCET_API_EGRESSO_FOTO } from '../../../app.api';
+>>>>>>> 31647bad5abad5494db6ff03de7ff2cb21409520
 
 @Component({
   selector: 'app-egresso-atualizar-form',
@@ -21,18 +26,25 @@ import { } from '@types/googlemaps';
 
 export class EgressoAtualizarFormComponent implements OnInit {
 
-  egressoForm: FormGroup;
+  egressoFormDP: FormGroup;
+
+  egresso: Egresso;
 
 
-  title = 'Título a definir / Alterar meus dados';
+  title = 'ALTERAR MEUS DADOS';
   btndescricao = 'Atualizar';
 
   @ViewChild('fotoPerfil') fotoPerfil;
+
   @ViewChild('fotoGaleria1') fotoGaleria1;
   @ViewChild('fotoGaleria2') fotoGaleria2;
   @ViewChild('fotoGaleria3') fotoGaleria3;
 
+<<<<<<< HEAD
   @ViewChild('search') public searchElement: ElementRef;
+=======
+  urlFotoPerfil: string;
+>>>>>>> 31647bad5abad5494db6ff03de7ff2cb21409520
 
   constructor(
     private formBuilder: FormBuilder,
@@ -47,11 +59,18 @@ export class EgressoAtualizarFormComponent implements OnInit {
 
   ngOnInit() {
 
-    this.egressoForm = this.formBuilder.group({
+    this.egressoFormDP = this.formBuilder.group({
       nome: this.formBuilder.control('', [Validators.required, ValidationService.nomeCompleto]),
-      foto: this.formBuilder.control('')
+      email: this.formBuilder.control('', [Validators.required, ValidationService.emailValidator]),
+      telefone: this.formBuilder.control('', [Validators.required]),
+      cidade: this.formBuilder.control('', [Validators.required]),
+      estado: this.formBuilder.control('', [Validators.required]),
+      pais: this.formBuilder.control('', [Validators.required]),
+      estadoCivil: this.formBuilder.control('', [Validators.required]),
+      qtdFilhos: this.formBuilder.control(''),
     });
 
+<<<<<<< HEAD
     this.mapsAPILoader.load().then(
       () => {
         // tslint:disable-next-line:prefer-const
@@ -71,15 +90,67 @@ export class EgressoAtualizarFormComponent implements OnInit {
       }
     );
 
+=======
+    this.egressoService.getByid(68).subscribe(
+      (egresso) => {
+        this.egresso = egresso;
+      }
+    );
   }
 
+  showPreview(event) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      // tslint:disable-next-line:no-shadowed-variable
+      reader.onload = (event: any) => {
+        this.urlFotoPerfil = event.target.result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
 
+  getUrlFoto(): string {
+    if (this.urlFotoPerfil) {
+      return this.urlFotoPerfil;
+    } else if (this.egresso && this.egresso.aluno.alunoFotoPerfil) {
+      return `${EOCCET_API_EGRESSO_FOTO}/${this.egresso.aluno.alunoFotoPerfil}`;
+    }
+    return null;
+>>>>>>> 31647bad5abad5494db6ff03de7ff2cb21409520
+  }
 
-  update() {
+  alterarFotoPerfil() {
 
-    if (this.egressoForm.invalid) {
-      Object.keys(this.egressoForm.controls).forEach(field => {
-        const control = this.egressoForm.get(field);
+    this.spinner.show();
+    const formData = new FormData();
+
+    if (this.fotoPerfil.nativeElement.files[0] !== undefined) {
+      formData.append('fotoPerfil', this.fotoPerfil.nativeElement.files[0], this.fotoPerfil.nativeElement.files[0].name);
+    }
+
+    this.egressoService.updateFotoPerfil(formData, 68)
+      .finally(() => this.spinner.hide())
+      .subscribe(
+        (response) => {
+          this.urlFotoPerfil = null;
+          this.egresso = response;
+          this.toastr.success('FOTO SALVA');
+          console.log('------------- RESPONSE -----------------');
+          console.log(response);
+          console.log('----------------------------------------');
+        }
+
+      );
+  }
+
+  /*
+   * Alterar dados pessoais
+   */
+  alterarDP() {
+
+    if (this.egressoFormDP.invalid) {
+      Object.keys(this.egressoFormDP.controls).forEach(field => {
+        const control = this.egressoFormDP.get(field);
         control.markAsTouched({ onlySelf: true });
       });
 
@@ -108,7 +179,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
       // formData.append('titulacoes', null);
       // formData.append('atuacoesProfissional', null);
 
-      this.egressoService.updateWithFormData(formData, 42)
+      this.egressoService.updateFotoPerfil(formData, 68)
         .finally(() => this.spinner.hide())
         .subscribe(
           (response) => {
