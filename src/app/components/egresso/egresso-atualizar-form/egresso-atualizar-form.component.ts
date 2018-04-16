@@ -9,7 +9,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
+
+import { MapsAPILoader } from '@agm/core';
+import { } from '@types/googlemaps';
 import { EOCCET_API_EGRESSO_FOTO } from '../../../app.api';
 
 @Component({
@@ -17,6 +20,8 @@ import { EOCCET_API_EGRESSO_FOTO } from '../../../app.api';
   templateUrl: './egresso-atualizar-form.component.html',
   styleUrls: ['./egresso-atualizar-form.component.css']
 })
+
+
 export class EgressoAtualizarFormComponent implements OnInit {
 
   egressoFormDP: FormGroup;
@@ -40,6 +45,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
   urlFotosGaleria: string[];
 
 
+  @ViewChild('search') public searchElement: ElementRef;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -49,6 +55,8 @@ export class EgressoAtualizarFormComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private egressoService: EgressoService,
     private redeSocialService: RedeSocialService,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone
   ) { }
 
   ngOnInit() {
@@ -64,11 +72,32 @@ export class EgressoAtualizarFormComponent implements OnInit {
       qtdFilhos: this.formBuilder.control(''),
     });
 
+
     this.egressoFormGaleria = this.formBuilder.group({
       descricao1: this.formBuilder.control(''),
       descricao2: this.formBuilder.control(''),
       descricao3: this.formBuilder.control('')
     });
+
+
+    this.mapsAPILoader.load().then(
+      () => {
+        // tslint:disable-next-line:prefer-const
+        let autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types: ['(cities)'] });
+
+        autocomplete.addListener('place_changed', () => {
+          this.ngZone.run(() => {
+            // tslint:disable-next-line:prefer-const
+            let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+            console.log(autocomplete.getPlace());
+
+            if (place.geometry === undefined || place.geometry === null) {
+              return;
+            }
+          });
+        });
+      }
+    );
 
     this.egressoService.getByid(68).subscribe(
       (egresso) => {

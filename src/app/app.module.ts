@@ -21,7 +21,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { SharedModule } from './components/shared/shared.module';
 
 
-
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,11 @@ import { SharedModule } from './components/shared/shared.module';
     AdminModule,
     CoordModule,
     SharedModule,
-    EgressoModule
+    EgressoModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyALTRQfVSXeAVJfH8A__FmN1Rh38C68-Z4',
+      libraries: ['places']
+})
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandle },
