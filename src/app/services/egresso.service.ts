@@ -24,19 +24,14 @@ export class EgressoService {
     return this.http.post<Egresso[]>(`${EOCCET_API}/egresso/egressos`, egressos);
   }
 
-  updateWithFormData(form: FormData, id: number): Observable<any> {
+  updateFotoPerfil(form: FormData, id: number): Observable<any> {
 
+    return this.http.post<any>(`${EOCCET_API}/egresso/atualizar-foto-perfil/${id}`, form);
 
-    return this.http.post<any>(`${EOCCET_API}/egresso/atualizar-ft-perfil/${id}`, form);
+  }
 
-/*
-    const req = new HttpRequest('POST', `${EOCCET_API}/egresso/atualizar/${id}`, form, {
-      reportProgress: true,
-      responseType: 'json'
-    });
-
-    return this.http.request(req);
-*/
+  getByid(id: number): Observable<Egresso> {
+    return this.http.get<Egresso>(`${EOCCET_API}/egresso/${id}`);
   }
 
   setEgressosImportados(data: any) {

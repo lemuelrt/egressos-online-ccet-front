@@ -14,17 +14,18 @@
             <div class="tab-content">
               <div class="iptFotoPerfil">
                 <div class="preview-foto-perfil">
-                  <i class="glyphicon glyphicon-user"></i>
+                  <i *ngIf="!getUrlFoto()" class="glyphicon glyphicon-user"></i>
+                  <img *ngIf="getUrlFoto()" [src]="getUrlFoto()">
                 </div>
-                <input type="file" class="hidden">
-                <button mat-raised-button color="primary" (click)="false">Upload</button>
+                <input type="file" class="hidden" #fotoPerfil (change)="showPreview($event)">
+                <button mat-raised-button color="primary" (click)="fotoPerfil.click()">Upload</button>
               </div>
 
 
             </div>
             <div class="tab-footer">
                 <button class="btn default">Cancelar</button>
-                <button class="btn btn-success">Alterar</button>
+                <button class="btn btn-success" (click)="alterarFotoPerfil()">Alterar</button>
             </div>
           </mat-tab>
           <mat-tab label="Tab 1">
