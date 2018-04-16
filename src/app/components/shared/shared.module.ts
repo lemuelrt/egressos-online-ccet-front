@@ -1,3 +1,4 @@
+import { RedeSocialService } from './../../services/rede-social.service';
 import { NgxMaskModule } from 'ngx-mask';
 import { LayoutModule, BoxModule } from 'angular-admin-lte';
 import { appLteConfig } from './../../const/app-lte.config';
@@ -37,7 +38,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
   providers: [
     ValidationService,
     OfertaService,
-    CoordenadorService
+    CoordenadorService,
+    RedeSocialService
   ],
   entryComponents: [
     DialogConfirmationComponent,
