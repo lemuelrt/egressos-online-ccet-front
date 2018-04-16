@@ -7,15 +7,11 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-<<<<<<< HEAD
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 
 import { MapsAPILoader } from '@agm/core';
 import { } from '@types/googlemaps';
-=======
-import { Component, OnInit, ViewChild } from '@angular/core';
 import { EOCCET_API_EGRESSO_FOTO } from '../../../app.api';
->>>>>>> 31647bad5abad5494db6ff03de7ff2cb21409520
 
 @Component({
   selector: 'app-egresso-atualizar-form',
@@ -40,11 +36,8 @@ export class EgressoAtualizarFormComponent implements OnInit {
   @ViewChild('fotoGaleria2') fotoGaleria2;
   @ViewChild('fotoGaleria3') fotoGaleria3;
 
-<<<<<<< HEAD
   @ViewChild('search') public searchElement: ElementRef;
-=======
   urlFotoPerfil: string;
->>>>>>> 31647bad5abad5494db6ff03de7ff2cb21409520
 
   constructor(
     private formBuilder: FormBuilder,
@@ -70,7 +63,6 @@ export class EgressoAtualizarFormComponent implements OnInit {
       qtdFilhos: this.formBuilder.control(''),
     });
 
-<<<<<<< HEAD
     this.mapsAPILoader.load().then(
       () => {
         // tslint:disable-next-line:prefer-const
@@ -90,7 +82,6 @@ export class EgressoAtualizarFormComponent implements OnInit {
       }
     );
 
-=======
     this.egressoService.getByid(68).subscribe(
       (egresso) => {
         this.egresso = egresso;
@@ -116,7 +107,6 @@ export class EgressoAtualizarFormComponent implements OnInit {
       return `${EOCCET_API_EGRESSO_FOTO}/${this.egresso.aluno.alunoFotoPerfil}`;
     }
     return null;
->>>>>>> 31647bad5abad5494db6ff03de7ff2cb21409520
   }
 
   alterarFotoPerfil() {
