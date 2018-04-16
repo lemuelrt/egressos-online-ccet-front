@@ -7,13 +7,18 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
+
+import { MapsAPILoader } from '@agm/core';
+import { } from '@types/googlemaps';
 
 @Component({
   selector: 'app-egresso-atualizar-form',
   templateUrl: './egresso-atualizar-form.component.html',
   styleUrls: ['./egresso-atualizar-form.component.css']
 })
+
+
 export class EgressoAtualizarFormComponent implements OnInit {
 
   egressoForm: FormGroup;
@@ -27,6 +32,8 @@ export class EgressoAtualizarFormComponent implements OnInit {
   @ViewChild('fotoGaleria2') fotoGaleria2;
   @ViewChild('fotoGaleria3') fotoGaleria3;
 
+  @ViewChild('search') public searchElement: ElementRef;
+
   constructor(
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
@@ -34,6 +41,8 @@ export class EgressoAtualizarFormComponent implements OnInit {
     private route: ActivatedRoute,
     private spinner: NgxSpinnerService,
     private egressoService: EgressoService,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone
   ) { }
 
   ngOnInit() {
@@ -42,6 +51,25 @@ export class EgressoAtualizarFormComponent implements OnInit {
       nome: this.formBuilder.control('', [Validators.required, ValidationService.nomeCompleto]),
       foto: this.formBuilder.control('')
     });
+
+    this.mapsAPILoader.load().then(
+      () => {
+        // tslint:disable-next-line:prefer-const
+        let autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types: ['(cities)'] });
+
+        autocomplete.addListener('place_changed', () => {
+          this.ngZone.run(() => {
+            // tslint:disable-next-line:prefer-const
+            let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+            console.log(autocomplete.getPlace());
+
+            if (place.geometry === undefined || place.geometry === null) {
+              return;
+            }
+          });
+        });
+      }
+    );
 
   }
 
