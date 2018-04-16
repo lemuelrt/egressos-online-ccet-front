@@ -16,10 +16,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class EgressoAtualizarFormComponent implements OnInit {
 
-  egressoForm: FormGroup;
+  egressoFormDP: FormGroup;
 
 
-  title = 'Título a definir / Alterar meus dados';
+  title = 'ALTERAR MEUS DADOS';
   btndescricao = 'Atualizar';
 
   @ViewChild('fotoPerfil') fotoPerfil;
@@ -38,9 +38,15 @@ export class EgressoAtualizarFormComponent implements OnInit {
 
   ngOnInit() {
 
-    this.egressoForm = this.formBuilder.group({
+    this.egressoFormDP = this.formBuilder.group({
       nome: this.formBuilder.control('', [Validators.required, ValidationService.nomeCompleto]),
-      foto: this.formBuilder.control('')
+      email: this.formBuilder.control('', [Validators.required, ValidationService.emailValidator]),
+      telefone: this.formBuilder.control('', [Validators.required]),
+      cidade: this.formBuilder.control('', [Validators.required]),
+      estado: this.formBuilder.control('', [Validators.required]),
+      pais: this.formBuilder.control('', [Validators.required]),
+      estadoCivil: this.formBuilder.control('', [Validators.required]),
+      qtdFilhos: this.formBuilder.control(''),
     });
 
   }
@@ -49,9 +55,9 @@ export class EgressoAtualizarFormComponent implements OnInit {
 
   update() {
 
-    if (this.egressoForm.invalid) {
-      Object.keys(this.egressoForm.controls).forEach(field => {
-        const control = this.egressoForm.get(field);
+    if (this.egressoFormDP.invalid) {
+      Object.keys(this.egressoFormDP.controls).forEach(field => {
+        const control = this.egressoFormDP.get(field);
         control.markAsTouched({ onlySelf: true });
       });
 

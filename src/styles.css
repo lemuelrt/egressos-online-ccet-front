@@ -43,3 +43,8 @@
 .btn, .form-control{
   border-color:  gray;
 }
+
+.ipt-local-reside{
+  border-right: 0;
+  border-radius: 4px 0 0 4px !important;
+}

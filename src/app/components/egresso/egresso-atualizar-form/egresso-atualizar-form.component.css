@@ -1,4 +1,4 @@
-.demo-tab-content{
+.tab-content{
   min-height: 300px;
   padding-top: 15px;
 }
@@ -7,4 +7,41 @@
   padding-left: 5px;
   text-transform: uppercase;
   font-size: .8em;
+}
+
+.iptFotoPerfil{
+  margin: 30px 0!important;
+  text-align: center;
+}
+
+.preview-foto-perfil{
+  width: 120px;
+  height: 140px;
+  margin: 5px auto;
+  border: 1px solid #ccc;
+}
+
+.preview-foto-perfil i{
+  font-size: 100px;
+  margin-top: 30px;
+  color: #ccc;
+}
+
+.iptFotoPerfil > button{
+  width: 120px !important;
+  border-radius: 5px;
+}
+
+.tab-footer{
+  border-top: 1px solid #ededed;
+  text-align: right;
+  padding: 20px 0 10px 0;
+}
+
+.tab-footer .btn{
+  margin: 0 5px;
+}
+.input-group-addon{
+  border-color: gray;
+  background-color: #ccc;
 }
