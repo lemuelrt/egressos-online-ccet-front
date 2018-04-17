@@ -230,6 +230,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
     } else {
       this.spinner.show();
 
+      console.log(this.egresso.egressoid);
       this.egressoService.updateDadosPessoais(this.prepareEgressoAlterarDP(), this.egresso.egressoid)
         .finally(() => this.spinner.hide())
         .subscribe(
