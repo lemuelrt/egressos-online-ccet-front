@@ -184,6 +184,14 @@ export class EgressoAtualizarFormComponent implements OnInit {
     }
   }
 
+  localReside() {
+    if (this.egressoFormDP.get('cidade').value){
+      // tslint:disable-next-line:max-line-length
+      return `${this.egressoFormDP.get('cidade').value}, ${this.egressoFormDP.get('estado').value}, ${this.egressoFormDP.get('pais').value}`;
+    }
+    return '';
+  }
+
   searchEndereco() {
     const dialogRef = this.dialog.open(PesquisarEnderecoComponent, {
       width: 'auto',
@@ -230,8 +238,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
     } else {
       this.spinner.show();
 
-      console.log(this.egresso.egressoid);
-      this.egressoService.updateDadosPessoais(this.prepareEgressoAlterarDP(), this.egresso.egressoid)
+      this.egressoService.updateDadosPessoais(this.prepareEgressoAlterarDP(), this.egresso.egressoId)
         .finally(() => this.spinner.hide())
         .subscribe(
           (response) => {

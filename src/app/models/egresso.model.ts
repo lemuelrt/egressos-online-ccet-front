@@ -5,7 +5,7 @@ import { Aluno } from './aluno.model';
 
 
 export interface Egresso {
-  egressoid?: number;
+  egressoId?: number;
   egressoAnoIngresso: string;
   egressoAnoConclusao: string;
   aluno: Aluno;
