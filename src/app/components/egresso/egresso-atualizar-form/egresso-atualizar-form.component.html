@@ -143,8 +143,130 @@
           <span class="tab-label-title">Profissional</span>
         </ng-template>
         <div class="tab-content">
-          Aqui ele edita as informações profissionais
+
+          <form [formGroup]="" class="form-horizontal" role="form" novalidate>
+
+            <!-->inicio -Div trabalha na área
+            <!-->
+            <div class="form-group">
+
+              <mat-radio-group>
+                <label class="col-sm-2 control-label">Trabalha na área </label>
+                <div class="col-sm-10">
+                  <mat-radio-button value="1"> Sim </mat-radio-button>
+                  <mat-radio-button value="2"> Não </mat-radio-button>
+                </div>
+              </mat-radio-group>
+
+            </div>
+            <!-->fim -Div trabalha na área
+            <!-->
+
+            <!-->inicio -Div conteudo restante se trabalha na área
+            <!-->
+
+            <div class="clearfix">
+              <mat-divider></mat-divider>
+            </div>
+
+            <!-->Setor
+            <!-->
+
+            <div class="form-group">
+              <mat-radio-group>
+                <label class="col-sm-2 control-label">Setor </label>
+                <div class="col-sm-10">
+                  <mat-radio-button value="1"> Público</mat-radio-button>
+                  <mat-radio-button value="2"> Privado </mat-radio-button>
+                </div>
+              </mat-radio-group>
+            </div>
+
+            <!-->Empresa
+            <!-->
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Empresa </label>
+              <div class="col-sm-10">
+                <input type="" class="form-control">
+                <app-control-messages></app-control-messages>
+              </div>
+            </div>
+
+            <!-->Cargo
+            <!-->
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Cargo </label>
+              <div class="col-sm-10">
+                <select class="form-control" formControlName="">
+                  <option value="">Selecione o cargo</option>
+                  <option value=""></option>
+                </select>
+              </div>
+            </div>
+
+            <!-->Home office
+            <!-->
+            <div class="form-group">
+              <mat-radio-group>
+                <label class="col-sm-2 control-label">Home office </label>
+                <div class="col-sm-10">
+                  <mat-radio-button value="1"> Sim</mat-radio-button>
+                  <mat-radio-button value="2"> Não </mat-radio-button>
+                </div>
+              </mat-radio-group>
+            </div>
+
+            <!-->Local de trabalho
+            <!-->
+            <div class="form-group">
+              <!-->a msg deixei estática , mas se quiser colocar na constante
+              <!-->
+              <label class=" col-sm-10 control-label">Local de trabalho (cidade / estado, província, região / país). Para a modalidade Home Office, informe a localidade
+                da empresa e não de sua residência.</label>
+
+            </div>
+
+            <!-->Local de trabalho
+            <!-->
+            <div class="form-group" >
+              <label class="col-sm-2 control-label">Local de trabalho </label>
+              <div class="col-sm-10">
+                <div class="input-group">
+                  <input type="name" >
+                  <span class="input-group-addon" >
+                    <i class="glyphicon glyphicon-pencil"></i>
+                  </span>
+                </div>
+                <app-control-messages ></app-control-messages>
+              </div>
+            </div>
+
+
+            <!-->Salário
+            <!-->
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Salário (faixa salarial em R$) </label>
+              <div class="col-sm-10">
+                <select class="form-control" formControlName="">
+                  <option value="">Selecione a faixa salarial</option>
+                  <option value=""></option>
+                </select>
+              </div>
+            </div>
+
+          </form>
+          <!-->fim -Div conteudo restante se trabalha na área
+          <!-->
+
         </div>
+        <div class="clearfix"></div>
+
+        <div class="tab-footer">
+          <button class="btn default">Cancelar</button>
+          <button class="btn btn-success" >Alterar</button>
+        </div>
+
+
       </mat-tab>
     </mat-tab-group>
 
