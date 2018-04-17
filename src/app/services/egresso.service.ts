@@ -38,6 +38,12 @@ export class EgressoService {
     return this.http.get<Egresso>(`${EOCCET_API}/egresso/${id}`);
   }
 
+  updateGaleria(form: FormData, id: number): Observable<any> {
+
+    return this.http.post<any>(`${EOCCET_API}/egresso/atualizar-fotos-galeria/${id}`, form);
+
+  }
+
   setEgressosImportados(data: any) {
     this.egressosImportados = [];
     if (data instanceof Array) {

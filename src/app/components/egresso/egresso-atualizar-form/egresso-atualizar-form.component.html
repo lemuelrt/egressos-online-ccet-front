@@ -132,25 +132,27 @@
                   <i *ngIf="!getUrlFotoGaleria(0)" class="glyphicon glyphicon-picture"></i>
                   <img *ngIf="getUrlFotoGaleria(0)" [src]="getUrlFotoGaleria(0)" accept="image/*">
                 </div>
-                <input type="file" class="hidden" #fotoGaleria1 (change)="showPreview($event, 0)">
+                <input type="file" class="hidden" #fotoGaleria1 (change)="showPreviewEValidaDesc($event, 0)">
                 <button class="btnupl-galeria" mat-raised-button color="primary" (click)="fotoGaleria1.click()">Upload de imagem</button>
               </div>
               <div class="form-group col-sm-9" [class.has-error]="egressoFormGaleria.controls.descricao1.errors && (egressoFormGaleria.controls.descricao1.touched)">
-                <textarea class="form-control" formControlName="descricao1" rows="4" placeholder=""></textarea>
+                <textarea class="form-control" formControlName="descricao1" rows="5" placeholder="">{{getDescricaoGaleriaEgresso(0)}}</textarea>
+                <app-control-messages [control]="egressoFormGaleria.controls.descricao1"></app-control-messages>
               </div>
             </div>
             <div class="clearfix"></div>
             <div class="row-foto-galeria row-foto-2">
-              <div class="form-group col-sm-9" [class.has-error]="egressoFormGaleria.controls.descricao2.errors && (egressoFormGaleria.controls.descricao2.touched)">
-                <textarea class="form-control" formControlName="descricao2" rows="4" placeholder=""></textarea>
-              </div>
               <div class="col-sm-3">
                 <div class="preview-foto-galeria">
                   <i *ngIf="!getUrlFotoGaleria(1)" class="glyphicon glyphicon-picture"></i>
                   <img *ngIf="getUrlFotoGaleria(1)" [src]="getUrlFotoGaleria(1)" accept="image/*">
                 </div>
-                <input type="file" class="hidden" #fotoGaleria2 (change)="showPreview($event, 1)">
+                <input type="file" class="hidden" #fotoGaleria2 (change)="showPreviewEValidaDesc($event, 1)">
                 <button class="btnupl-galeria" mat-raised-button color="primary" (click)="fotoGaleria2.click()">Upload de imagem</button>
+              </div>
+              <div class="form-group col-sm-9" [class.has-error]="egressoFormGaleria.controls.descricao2.errors && (egressoFormGaleria.controls.descricao2.touched)">
+                <textarea class="form-control" formControlName="descricao2" rows="5" placeholder="">{{getDescricaoGaleriaEgresso(1)}}</textarea>
+                <app-control-messages [control]="egressoFormGaleria.controls.descricao2"></app-control-messages>
               </div>
             </div>
             <div class="clearfix"></div>
@@ -160,15 +162,20 @@
                   <i *ngIf="!getUrlFotoGaleria(2)" class="glyphicon glyphicon-picture"></i>
                   <img *ngIf="getUrlFotoGaleria(2)" [src]="getUrlFotoGaleria(2)" accept="image/*">
                 </div>
-                <input type="file" class="hidden" #fotoGaleria3 (change)="showPreview($event, 2)">
+                <input type="file" class="hidden" #fotoGaleria3 (change)="showPreviewEValidaDesc($event, 2)">
                 <button class="btnupl-galeria" mat-raised-button color="primary" (click)="fotoGaleria3.click()">Upload de imagem</button>
               </div>
               <div class="form-group col-sm-9" [class.has-error]="egressoFormGaleria.controls.descricao3.errors && (egressoFormGaleria.controls.descricao3.touched)">
-                <textarea class="form-control" formControlName="descricao3" rows="4" placeholder=""></textarea>
+                <textarea class="form-control" formControlName="descricao3" rows="5" placeholder="">{{getDescricaoGaleriaEgresso(2)}}</textarea>
+                <app-control-messages [control]="egressoFormGaleria.controls.descricao3"></app-control-messages>
               </div>
             </div>
             <div class="clearfix"></div>
           </form>
+        </div>
+        <div class="tab-footer">
+          <button class="btn default">Cancelar</button>
+          <button class="btn btn-success" (click)="alterarGaleria()">Alterar</button>
         </div>
       </mat-tab>
       <mat-tab label="Tab 4">

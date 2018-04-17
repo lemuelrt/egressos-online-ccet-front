@@ -1,3 +1,4 @@
+import { FotoGaleria } from './../../../models/foto-galeria.model';
 import { Address } from './../../../models/address.model';
 import { PesquisarEnderecoComponent } from './pesquisar-endereco/pesquisar-endereco.component';
 import { RedeSocialService } from './../../../services/rede-social.service';
@@ -10,7 +11,7 @@ import { ValidationService } from './../../../services/validation.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, AbstractControl } from '@angular/forms';
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
@@ -70,13 +71,10 @@ export class EgressoAtualizarFormComponent implements OnInit {
 
     this.initFormDP();
 
+    this.initFormGaleria();
 
 
-    this.egressoFormGaleria = this.formBuilder.group({
-      descricao1: this.formBuilder.control(''),
-      descricao2: this.formBuilder.control(''),
-      descricao3: this.formBuilder.control('')
-    });
+
 
 
 
@@ -85,6 +83,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
       (egresso) => {
         this.egresso = egresso;
         this.setValoresFormDP();
+        this.setValoresFormGaleria();
 
 
       }
@@ -263,13 +262,63 @@ export class EgressoAtualizarFormComponent implements OnInit {
   /**
   * parte de alterar galeria de fotos
   */
+  initFormGaleria() {
+    this.egressoFormGaleria = this.formBuilder.group({
+      descricao1: this.formBuilder.control(''),
+      descricao2: this.formBuilder.control(''),
+      descricao3: this.formBuilder.control('')
+    });
+
+    this.addValidacaoDescChange(this.egressoFormGaleria.controls.descricao1, 0);
+    this.addValidacaoDescChange(this.egressoFormGaleria.controls.descricao2, 1);
+    this.addValidacaoDescChange(this.egressoFormGaleria.controls.descricao3, 2);
+
+  }
+
+  addValidacaoDescChange(control: AbstractControl, indice) {
+    control.valueChanges.subscribe((value) => {
+
+      if (this.getUrlFotoGaleria(indice) && value === '') {
+        console.log('Valor' + indice + ': ' + value);
+        control.setErrors({ 'required': true });
+      }
+    });
+  }
+
+  showPreviewEValidaDesc(event, indice) {
+    this.showPreview(event, indice);
+
+    const name_control = 'descricao' + (indice + 1);
+    if (this.egressoFormGaleria.get(name_control).value === '') {
+      this.egressoFormGaleria.get(name_control).setErrors({ 'required': true });
+    }
+  }
+
+  setValoresFormGaleria() {
+    if (this.egresso.aluno.fotos.length > 0) {
+      this.egressoFormGaleria.controls.descricao1.setValue(this.egresso.aluno.fotos[0].fotoGaleriaDescricao);
+    }
+
+    if (this.egresso.aluno.fotos.length > 1) {
+      this.egressoFormGaleria.controls.descricao2.setValue(this.egresso.aluno.fotos[1].fotoGaleriaDescricao);
+    }
+
+    if (this.egresso.aluno.fotos.length > 2) {
+      this.egressoFormGaleria.controls.descricao3.setValue(this.egresso.aluno.fotos[2].fotoGaleriaDescricao);
+    }
+  }
+
+
   getUrlFotoGaleria(indice): string {
 
-    if (this.urlFotosGaleria[indice] !== undefined && this.urlFotosGaleria[indice]) {
+    if (this.urlFotosGaleria[indice] !== undefined && this.urlFotosGaleria[indice] !== '') {
+
       return this.urlFotosGaleria[indice];
-    } else if (this.egresso && indice < this.egresso.aluno.fotos.length &&
-      this.egresso.aluno.fotos[indice] !== undefined && this.egresso.aluno.fotos[indice].fotoGaleriaLink) {
+    } else if (this.egresso && this.egresso.aluno.fotos !== undefined &&
+      indice < this.egresso.aluno.fotos.length) {
       return `${EOCCET_API_EGRESSO_FOTO}/${this.egresso.aluno.fotos[indice].fotoGaleriaLink}`;
+    } else {
+
     }
     return null;
   }
@@ -279,5 +328,56 @@ export class EgressoAtualizarFormComponent implements OnInit {
       return `${EOCCET_API_EGRESSO_FOTO}/${this.egresso.aluno.fotos[indice].fotoGaleriaLink}`;
     }
     return null;
+  }
+
+  alterarGaleria() {
+
+    if (this.egressoFormGaleria.invalid) {
+      Object.keys(this.egressoFormGaleria.controls).forEach(field => {
+        this.egressoFormGaleria.get(field).markAsTouched({ onlySelf: true });
+      });
+      this.toastr.error(MESSAGES['M008']);
+    } else {
+      this.spinner.show();
+
+      const formData = new FormData();
+
+      if (this.fotoGaleria1.nativeElement.files[0] !== undefined) {
+        formData.append('fotoGaleria1', this.fotoGaleria1.nativeElement.files[0], this.fotoGaleria1.nativeElement.files[0].name);
+        formData.append('descFotoGalaria1', this.egressoFormGaleria.get('descricao1').value);
+        if (this.egresso.aluno.fotos.length > 0) {
+          formData.append('idFotoGalaria1', this.egresso.aluno.fotos[0].fotoGaleriaId);
+        }
+      }
+
+      if (this.fotoGaleria2.nativeElement.files[0] !== undefined) {
+        formData.append('fotoGaleria2', this.fotoGaleria2.nativeElement.files[0], this.fotoGaleria2.nativeElement.files[0].name);
+        formData.append('descFotoGalaria2', this.egressoFormGaleria.get('descricao2').value);
+        if (this.egresso.aluno.fotos.length > 1) {
+          formData.append('idFotoGalaria2', this.egresso.aluno.fotos[1].fotoGaleriaId);
+        }
+      }
+
+      if (this.fotoGaleria3.nativeElement.files[0] !== undefined) {
+        formData.append('fotoGaleria3', this.fotoGaleria3.nativeElement.files[0], this.fotoGaleria3.nativeElement.files[0].name);
+        formData.append('descFotoGalaria3', this.egressoFormGaleria.get('descricao3').value);
+        if (this.egresso.aluno.fotos.length > 2) {
+          formData.append('idFotoGalaria3', this.egresso.aluno.fotos[2].fotoGaleriaId);
+        }
+      }
+
+      this.egressoService.updateGaleria(formData, this.egresso.egressoId)
+        .finally(() => this.spinner.hide())
+        .subscribe(
+          (response) => {
+            this.urlFotosGaleria = { 0: '', 1: '', 2: '' };
+            this.egresso = response;
+            console.log('------------- RESPONSE -----------------');
+            console.log(response);
+            console.log('----------------------------------------');
+          }
+
+        );
+    }
   }
 }
