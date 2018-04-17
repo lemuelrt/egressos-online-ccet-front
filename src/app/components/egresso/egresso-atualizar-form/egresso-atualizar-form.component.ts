@@ -44,7 +44,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
   @ViewChild('fotoGaleria1') fotoGaleria1;
   @ViewChild('fotoGaleria2') fotoGaleria2;
   @ViewChild('fotoGaleria3') fotoGaleria3;
-  urlFotosGaleria: string[];
+  urlFotosGaleria = { 0: '', 1: '', 2: '' };
 
   endereco_formatado: string;
 
@@ -108,12 +108,16 @@ export class EgressoAtualizarFormComponent implements OnInit {
     );
   }
 
-  showPreview(event) {
+  showPreview(event, indice?: number) {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       // tslint:disable-next-line:no-shadowed-variable
       reader.onload = (event: any) => {
-        this.urlFotoPerfil = event.target.result;
+        if (indice === undefined) {
+          this.urlFotoPerfil = event.target.result;
+        } else if (indice >= 0 && indice <= 2) {
+          this.urlFotosGaleria[indice] = event.target.result;
+        }
       };
       reader.readAsDataURL(event.target.files[0]);
     }
@@ -185,7 +189,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
   }
 
   localReside() {
-    if (this.egressoFormDP.get('cidade').value){
+    if (this.egressoFormDP.get('cidade').value) {
       // tslint:disable-next-line:max-line-length
       return `${this.egressoFormDP.get('cidade').value}, ${this.egressoFormDP.get('estado').value}, ${this.egressoFormDP.get('pais').value}`;
     }
@@ -260,9 +264,11 @@ export class EgressoAtualizarFormComponent implements OnInit {
   * parte de alterar galeria de fotos
   */
   getUrlFotoGaleria(indice): string {
+
     if (this.urlFotosGaleria[indice] !== undefined && this.urlFotosGaleria[indice]) {
-      return this.urlFotoPerfil;
-    } else if (this.egresso && this.egresso.aluno.fotos[indice] !== undefined) {
+      return this.urlFotosGaleria[indice];
+    } else if (this.egresso && indice < this.egresso.aluno.fotos.length &&
+      this.egresso.aluno.fotos[indice] !== undefined && this.egresso.aluno.fotos[indice].fotoGaleriaLink) {
       return `${EOCCET_API_EGRESSO_FOTO}/${this.egresso.aluno.fotos[indice].fotoGaleriaLink}`;
     }
     return null;

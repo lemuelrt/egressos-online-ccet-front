@@ -50,3 +50,31 @@
   border-color: gray;
   background-color: #ccc;
 }
+
+.row-foto-galeria textarea{
+  margin-top: 10px;
+}
+
+.preview-foto-galeria{
+  width: 95%;
+  margin: 0 auto;
+  background-color: #ededed;
+  min-height: 80px;
+  text-align: center;
+}
+
+.preview-foto-galeria i{
+  font-size: 80px;
+  margin: 15px auto;
+  color: #ccc;
+}
+.preview-foto-galeria img{
+  width: 95%;
+  margin: 0 auto;
+}
+
+.btnupl-galeria{
+  width: 80%;
+  margin: 5px 10% 15px 10% !important;
+  border-radius: 8px;
+}
