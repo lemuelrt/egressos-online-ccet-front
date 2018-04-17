@@ -1,3 +1,4 @@
+import { CadastroRedeSocialComponent } from './cadastro-rede-social/cadastro-rede-social.component';
 import { FotoGaleria } from './../../../models/foto-galeria.model';
 import { Address } from './../../../models/address.model';
 import { PesquisarEnderecoComponent } from './pesquisar-endereco/pesquisar-endereco.component';
@@ -30,9 +31,6 @@ export class EgressoAtualizarFormComponent implements OnInit {
   egressoFormDP: FormGroup;
 
   egresso: Egresso;
-
-  redesSociais: RedeSocial[] = [];
-  egressoFormRS: FormGroup;
 
   egressoFormGaleria: FormGroup;
 
@@ -73,38 +71,14 @@ export class EgressoAtualizarFormComponent implements OnInit {
 
     this.initFormGaleria();
 
-
-
-
-
-
-
     this.egressoService.getByid(68).subscribe(
       (egresso) => {
         this.egresso = egresso;
         this.setValoresFormDP();
         this.setValoresFormGaleria();
-
-
       }
     );
 
-    this.egressoFormRS = this.formBuilder.group({
-      'redes': this.formBuilder.array([])
-    });
-    const controls = <FormArray>this.egressoFormRS.get('redes');
-    this.redeSocialService.list().subscribe(
-      (redes) => {
-        this.redesSociais = redes;
-        this.redesSociais.forEach((r) => {
-          const group = this.formBuilder.group({
-            'id': this.formBuilder.control(r.redeSocialId),
-            'link': this.formBuilder.control(''),
-          });
-          controls.push(group);
-        });
-      }
-    );
   }
 
   showPreview(event, indice?: number) {
@@ -165,7 +139,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
     this.egressoFormDP = this.formBuilder.group({
       nome: this.formBuilder.control('', [Validators.required, ValidationService.nomeCompleto]),
       email: this.formBuilder.control('', [ValidationService.emailValidator]),
-      telefone: this.formBuilder.control('', []),
+      telefone: this.formBuilder.control('', [ValidationService.telefoneValidator]),
       cidade: this.formBuilder.control('', []),
       estado: this.formBuilder.control('', []),
       pais: this.formBuilder.control('', []),
@@ -258,6 +232,23 @@ export class EgressoAtualizarFormComponent implements OnInit {
   /**
    * parte de alterar redes sociais
    */
+  openDialogAddRS() {
+    const dialogRef = this.dialog.open(CadastroRedeSocialComponent, {
+      width: 'auto',
+      autoFocus: false,
+      data: {egresso: this.egresso}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result instanceof Egresso) {
+        this.egresso = result;
+      }
+    });
+  }
+
+
+
+
 
   /**
   * parte de alterar galeria de fotos

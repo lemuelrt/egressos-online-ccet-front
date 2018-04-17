@@ -4,7 +4,7 @@ import { Oferta } from './oferta.model';
 import { Aluno } from './aluno.model';
 
 
-export interface Egresso {
+export class Egresso {
   egressoId?: number;
   egressoAnoIngresso: string;
   egressoAnoConclusao: string;

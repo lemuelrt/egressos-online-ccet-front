@@ -19,7 +19,9 @@ export class ValidationService {
       'invalidSenha': MESSAGES['M005'],
       'invalidNomeSimples': MESSAGES['M017'],
       'invalidAno': MESSAGES['M023'],
-      'invalidTempoMinForm': MESSAGES['M024']
+      'invalidTempoMinForm': MESSAGES['M024'],
+      'invalidTelefone': 'Telefone inválido!',
+      'invalidQtdFilhos': MESSAGES['M032']
     };
 
     return config[validatorName];
@@ -140,6 +142,35 @@ export class ValidationService {
     return null;
 
   }
+
+  // Validar telefones
+  static telefoneValidator(control) {
+    // RFC 2822 compliant regex
+    // tslint:disable-next-line:max-line-length
+
+    const value: string = control.value;
+
+    if (value !== '' && (value.length < 10)) {
+        return { 'invalidTelefone': true };
+    }
+    return null;
+
+  }
+
+  // Validar quantidade de filhos
+  static qtdFilhos(control) {
+    // RFC 2822 compliant regex
+    // tslint:disable-next-line:max-line-length
+
+    const value: string = control.value;
+
+    if (value !== '' && (parseInt(value, 10) < 0)) {
+      return { 'invalidQtdFilhos': true };
+    }
+    return null;
+
+  }
+
 
   // Validação de CPF
 

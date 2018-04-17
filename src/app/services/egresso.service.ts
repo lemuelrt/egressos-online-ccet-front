@@ -1,3 +1,4 @@
+import { RedeAluno } from './../models/rede-aluno.model';
 import { Egresso } from './../models/egresso.model';
 import { EOCCET_API } from './../app.api';
 import { Injectable } from '@angular/core';
@@ -41,6 +42,12 @@ export class EgressoService {
   updateGaleria(form: FormData, id: number): Observable<any> {
 
     return this.http.post<any>(`${EOCCET_API}/egresso/atualizar-fotos-galeria/${id}`, form);
+
+  }
+
+  updateRedeSocial(redeAluno: RedeAluno, id: number): Observable<any> {
+
+    return this.http.post<any>(`${EOCCET_API}/egresso/atualizar-rede-social/${id}`, redeAluno);
 
   }
 

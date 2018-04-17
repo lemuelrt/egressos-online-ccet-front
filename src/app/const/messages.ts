@@ -26,5 +26,12 @@ export const MESSAGES = {
   'M023': 'Ano inválido.',
   // tslint:disable-next-line:max-line-length
   'M024': 'O ano de conclusão deve ser superior ao ano de início da graduação. Deve ser respeitado o tempo mínimo de integralização do curso.',
-  'M025': 'Não foi possível finalizar a operação! '
+  'M025': 'Não foi possível finalizar a operação! ',
+  'M026': 'Dados pessoais atualizados com sucesso!',
+  'M027': 'Extensão do link inválida. O link deve conter no mínimo 1 e no máximo 100 caracteres. ',
+  'M028': 'Extensão da descrição inválida. A descrição deve conter no mínimo 1 e no máximo 200 caracteres.  ',
+  'M029': 'Extensão da descrição inválida. A descrição deve conter no mínimo 1 e no máximo 30 caracteres. ',
+  'M030': 'Extensão da descrição inválida. A descrição deve conter no mínimo 1 e no máximo 30 caracteres. ',
+  'M031': 'Ano de conclusão da titulação deve ser superior ao ano de conclusão da graduação.',
+  'M032': 'A quantidade de filhos não pode ser negativa. ',
 };

@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { EgressoComponent } from './egresso.component';
 import { EgressoAtualizarFormComponent } from './egresso-atualizar-form/egresso-atualizar-form.component';
 import { PesquisarEnderecoComponent } from './egresso-atualizar-form/pesquisar-endereco/pesquisar-endereco.component';
+import { CadastroRedeSocialComponent } from './egresso-atualizar-form/cadastro-rede-social/cadastro-rede-social.component';
 
 @NgModule({
   imports: [
@@ -18,10 +19,12 @@ import { PesquisarEnderecoComponent } from './egresso-atualizar-form/pesquisar-e
     EgressoComponent,
     EgressoAtualizarFormComponent,
     EgressoIndexComponent,
-    PesquisarEnderecoComponent
+    PesquisarEnderecoComponent,
+    CadastroRedeSocialComponent
   ],
   entryComponents: [
-    PesquisarEnderecoComponent
+    PesquisarEnderecoComponent,
+    CadastroRedeSocialComponent
   ]
 })
 export class EgressoModule { }
