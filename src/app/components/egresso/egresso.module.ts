@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EgressoComponent } from './egresso.component';
 import { EgressoAtualizarFormComponent } from './egresso-atualizar-form/egresso-atualizar-form.component';
+import { PesquisarEnderecoComponent } from './egresso-atualizar-form/pesquisar-endereco/pesquisar-endereco.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,11 @@ import { EgressoAtualizarFormComponent } from './egresso-atualizar-form/egresso-
   declarations: [
     EgressoComponent,
     EgressoAtualizarFormComponent,
-    EgressoIndexComponent
+    EgressoIndexComponent,
+    PesquisarEnderecoComponent
+  ],
+  entryComponents: [
+    PesquisarEnderecoComponent
   ]
 })
 export class EgressoModule { }

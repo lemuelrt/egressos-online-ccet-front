@@ -1,3 +1,5 @@
+import { Address } from './../../../models/address.model';
+import { PesquisarEnderecoComponent } from './pesquisar-endereco/pesquisar-endereco.component';
 import { RedeSocialService } from './../../../services/rede-social.service';
 import { RedeSocial } from './../../../models/rede-social.model';
 import { HttpResponse } from '@angular/common/http';
@@ -10,9 +12,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { MatDialog } from '@angular/material';
 
-import { MapsAPILoader } from '@agm/core';
-import { } from '@types/googlemaps';
+
 import { EOCCET_API_EGRESSO_FOTO } from '../../../app.api';
 
 @Component({
@@ -44,8 +46,14 @@ export class EgressoAtualizarFormComponent implements OnInit {
   @ViewChild('fotoGaleria3') fotoGaleria3;
   urlFotosGaleria: string[];
 
+  endereco_formatado: string;
 
-  @ViewChild('search') public searchElement: ElementRef;
+  estadosCivis: { id: string, nome: string }[] = [
+    { id: '1', nome: 'Solteiro' },
+    { id: '2', nome: 'Casado' },
+    { id: '3', nome: 'Divorciado' },
+    { id: '4', nome: 'Viúvo' },
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -55,22 +63,13 @@ export class EgressoAtualizarFormComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private egressoService: EgressoService,
     private redeSocialService: RedeSocialService,
-    private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit() {
 
-    this.egressoFormDP = this.formBuilder.group({
-      nome: this.formBuilder.control('', [Validators.required, ValidationService.nomeCompleto]),
-      email: this.formBuilder.control('', [Validators.required, ValidationService.emailValidator]),
-      telefone: this.formBuilder.control('', [Validators.required]),
-      cidade: this.formBuilder.control('', [Validators.required]),
-      estado: this.formBuilder.control('', [Validators.required]),
-      pais: this.formBuilder.control('', [Validators.required]),
-      estadoCivil: this.formBuilder.control('', [Validators.required]),
-      qtdFilhos: this.formBuilder.control(''),
-    });
+    this.initFormDP();
+
 
 
     this.egressoFormGaleria = this.formBuilder.group({
@@ -80,28 +79,14 @@ export class EgressoAtualizarFormComponent implements OnInit {
     });
 
 
-    this.mapsAPILoader.load().then(
-      () => {
-        // tslint:disable-next-line:prefer-const
-        let autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types: ['(cities)'] });
 
-        autocomplete.addListener('place_changed', () => {
-          this.ngZone.run(() => {
-            // tslint:disable-next-line:prefer-const
-            let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-            console.log(autocomplete.getPlace());
-
-            if (place.geometry === undefined || place.geometry === null) {
-              return;
-            }
-          });
-        });
-      }
-    );
 
     this.egressoService.getByid(68).subscribe(
       (egresso) => {
         this.egresso = egresso;
+        this.setValoresFormDP();
+
+
       }
     );
 
@@ -173,6 +158,66 @@ export class EgressoAtualizarFormComponent implements OnInit {
   /*
    * Parte de alterar dados pessoais
    */
+  initFormDP() {
+    this.egressoFormDP = this.formBuilder.group({
+      nome: this.formBuilder.control('', [Validators.required, ValidationService.nomeCompleto]),
+      email: this.formBuilder.control('', [ValidationService.emailValidator]),
+      telefone: this.formBuilder.control('', []),
+      cidade: this.formBuilder.control('', []),
+      estado: this.formBuilder.control('', []),
+      pais: this.formBuilder.control('', []),
+      estadoCivil: this.formBuilder.control('', []),
+      qtdFilhos: this.formBuilder.control('', []),
+    });
+  }
+
+  setValoresFormDP() {
+    if (this.egresso !== undefined) {
+      this.egressoFormDP.get('nome').setValue('' + this.egresso.aluno.alunoNome);
+      this.egressoFormDP.get('email').setValue(this.egresso.aluno.alunoEmail ? this.egresso.aluno.alunoEmail : '');
+      this.egressoFormDP.get('telefone').setValue(this.egresso.aluno.alunoTelefone ? this.egresso.aluno.alunoTelefone : '');
+      this.egressoFormDP.get('cidade').setValue(this.egresso.aluno.alunoCidade);
+      this.egressoFormDP.get('estado').setValue(this.egresso.aluno.alunoEstado);
+      this.egressoFormDP.get('pais').setValue(this.egresso.aluno.alunoPais);
+      this.egressoFormDP.get('estadoCivil').setValue(this.egresso.aluno.alunoEstadoCivil ? this.egresso.aluno.alunoEstadoCivil : '');
+      this.egressoFormDP.get('qtdFilhos').setValue(this.egresso.aluno.alunoQtdFilhos);
+    }
+  }
+
+  searchEndereco() {
+    const dialogRef = this.dialog.open(PesquisarEnderecoComponent, {
+      width: 'auto',
+      autoFocus: false,
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result instanceof Address) {
+        this.egressoFormDP.get('cidade').setValue(result.cidade);
+        this.egressoFormDP.get('estado').setValue(result.estado);
+        this.egressoFormDP.get('pais').setValue(result.pais);
+
+        this.endereco_formatado = this.egressoFormDP.get('cidade').value + ', ' +
+          this.egressoFormDP.get('estado').value + ', ' +
+          this.egressoFormDP.get('pais').value;
+      }
+    });
+  }
+
+  prepareEgressoAlterarDP(): Egresso {
+    const egressoAlterar: Egresso = this.egresso;
+    egressoAlterar.aluno.alunoNome = this.egressoFormDP.get('nome').value;
+    egressoAlterar.aluno.alunoEmail = this.egressoFormDP.get('email').value;
+    egressoAlterar.aluno.alunoTelefone = this.egressoFormDP.get('telefone').value;
+    egressoAlterar.aluno.alunoCidade = this.egressoFormDP.get('cidade').value;
+    egressoAlterar.aluno.alunoEstado = this.egressoFormDP.get('estado').value;
+    egressoAlterar.aluno.alunoPais = this.egressoFormDP.get('pais').value;
+    egressoAlterar.aluno.alunoEstadoCivil = this.egressoFormDP.get('estadoCivil').value;
+    egressoAlterar.aluno.alunoQtdFilhos = this.egressoFormDP.get('qtdFilhos').value;
+
+    return egressoAlterar;
+  }
+
   alterarDP() {
 
     if (this.egressoFormDP.invalid) {
@@ -184,45 +229,18 @@ export class EgressoAtualizarFormComponent implements OnInit {
       this.toastr.error(MESSAGES['M008']);
     } else {
       this.spinner.show();
-      const formData = new FormData();
 
-      if (this.fotoPerfil.nativeElement.files[0] !== undefined) {
-        formData.append('fotoPerfil', this.fotoPerfil.nativeElement.files[0], this.fotoPerfil.nativeElement.files[0].name);
-      }
-
-
-      formData.append('egressoid', '42');
-      formData.append('egressoAnoIngresso', '2010');
-      formData.append('egressoAnoConclusao', '2014');
-      formData.append('aluno', new Blob([JSON.stringify({
-        'alunoId': '43',
-        'alunoNome': 'Marcos Roberto',
-        'alunoCpf': '03073673121'
-      })], {
-          type: 'application/json'
-        }));
-      // formData.append('oferta', null);
-      // formData.append('egressoDataAtualizacao', '2018-04-14');
-      // formData.append('titulacoes', null);
-      // formData.append('atuacoesProfissional', null);
-
-      this.egressoService.updateFotoPerfil(formData, 68)
+      this.egressoService.updateDadosPessoais(this.prepareEgressoAlterarDP(), this.egresso.egressoid)
         .finally(() => this.spinner.hide())
         .subscribe(
           (response) => {
-            if (response instanceof HttpResponse) {
-              console.log('------------- RESPONSE -----------------');
-              console.log(response);
-              console.log('----------------------------------------');
-            }
-
+            this.egresso = response;
+            console.log('------------- RESPONSE -----------------');
+            console.log(response);
+            console.log('----------------------------------------');
           }
 
         );
-
-      // console.log(atuacaoProfissional);
-
-
     }
   }
 
@@ -243,7 +261,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
   }
 
   getDescricaoGaleriaEgresso(indice) {
-    if (this.egresso && this.egresso.aluno.fotos !== undefined && this.egresso.aluno.fotos.length) {
+    if (this.egresso && this.egresso.aluno.fotos !== undefined && indice < this.egresso.aluno.fotos.length) {
       return `${EOCCET_API_EGRESSO_FOTO}/${this.egresso.aluno.fotos[indice].fotoGaleriaLink}`;
     }
     return null;

@@ -5,177 +5,148 @@
   <mk-box-content>
 
 
-        <mat-tab-group class="demo-tab-group">
-          <mat-tab label="Tab 1">
-            <ng-template mat-tab-label>
-              <i class="glyphicon glyphicon-camera"></i>
-              <span class="tab-label-title">Foto Perfil</span>
-            </ng-template>
-            <div class="tab-content">
-              <div class="iptFotoPerfil">
-                <div class="preview-foto-perfil">
-                  <i *ngIf="!getUrlFoto()" class="glyphicon glyphicon-user"></i>
-                  <img *ngIf="getUrlFoto()" [src]="getUrlFoto()">
+    <mat-tab-group class="demo-tab-group">
+      <mat-tab label="Tab 1">
+        <ng-template mat-tab-label>
+          <i class="glyphicon glyphicon-camera"></i>
+          <span class="tab-label-title">Foto Perfil</span>
+        </ng-template>
+        <div class="tab-content">
+          <div class="iptFotoPerfil">
+            <div class="preview-foto-perfil">
+              <i *ngIf="!getUrlFoto()" class="glyphicon glyphicon-user"></i>
+              <img *ngIf="getUrlFoto()" [src]="getUrlFoto()">
+            </div>
+            <input type="file" class="hidden" #fotoPerfil (change)="showPreview($event)">
+            <button mat-raised-button color="primary" (click)="fotoPerfil.click()">Upload</button>
+          </div>
+
+
+        </div>
+        <div class="tab-footer">
+          <button class="btn default">Cancelar</button>
+          <button class="btn btn-success" (click)="alterarFotoPerfil()">Alterar</button>
+        </div>
+      </mat-tab>
+      <mat-tab label="Tab 1">
+        <ng-template mat-tab-label>
+          <i class="glyphicon glyphicon-user"></i>
+          <span class="tab-label-title">Dados Pessoais</span>
+        </ng-template>
+        <div class="tab-content">
+          <div class="col-lg-12">
+            <form [formGroup]="egressoFormDP" class="form-horizontal" role="form" novalidate>
+
+              <div class="form-group" [class.has-error]="egressoFormDP.controls.nome.errors && (egressoFormDP.controls.nome.touched)">
+                <label class="col-sm-2 control-label">Nome completo </label>
+                <div class="col-sm-10">
+                  <input type="name" class="form-control" formControlName="nome">
+                  <app-control-messages [control]="egressoFormDP.controls.nome"></app-control-messages>
                 </div>
-                <input type="file" class="hidden" #fotoPerfil (change)="showPreview($event)">
-                <button mat-raised-button color="primary" (click)="fotoPerfil.click()">Upload</button>
               </div>
 
-
-            </div>
-            <div class="tab-footer">
-                <button class="btn default">Cancelar</button>
-                <button class="btn btn-success" (click)="alterarFotoPerfil()">Alterar</button>
-            </div>
-          </mat-tab>
-          <mat-tab label="Tab 1">
-            <ng-template mat-tab-label>
-              <i class="glyphicon glyphicon-user"></i>
-              <span class="tab-label-title">Dados Pessoais</span>
-            </ng-template>
-            <div class="tab-content">
-              <div class="col-lg-12">
-                <form [formGroup]="egressoFormDP" class="form-horizontal" role="form" novalidate>
-
-                  <div class="form-group" [class.has-error]="egressoFormDP.controls.nome.errors && (egressoFormDP.controls.nome.touched)">
-                    <label class="col-sm-2 control-label">Nome completo *</label>
-                    <div class="col-sm-10">
-                      <input type="name" class="form-control" formControlName="nome">
-                      <app-control-messages [control]="egressoFormDP.controls.nome"></app-control-messages>
-                    </div>
-                  </div>
-
-                  <div class="form-group" [class.has-error]="egressoFormDP.controls.email.errors && (egressoFormDP.controls.email.touched)">
-                    <label class="col-sm-2 control-label">E-mail *</label>
-                    <div class="col-sm-10">
-                      <input type="name" class="form-control" formControlName="email">
-                      <app-control-messages [control]="egressoFormDP.controls.email"></app-control-messages>
-                    </div>
-                  </div>
-
-                  <div class="form-group" [class.has-error]="egressoFormDP.controls.telefone.errors && (egressoFormDP.controls.telefone.touched)">
-                    <label class="col-sm-2 control-label">Telefone *</label>
-                    <div class="col-sm-10">
-                      <input type="name" class="form-control" formControlName="telefone">
-                      <app-control-messages [control]="egressoFormDP.controls.telefone"></app-control-messages>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">CPF *</label>
-                    <div class="col-sm-10">
-                      <input type="name" class="form-control" disabled value="">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label"> </label>
-                    <div class="col-sm-10">
-                      <h4>Local de redidência (cidade, estado/província/região e país)</h4>
-                    </div>
-                  </div>
-
-
-                    <div class="form-group" [class.has-error]="egressoFormDP.controls.cidade.errors && (egressoFormDP.controls.cidade.touched)">
-                      <label class="col-sm-2 control-label">Local que reside </label>
-                      <div class="col-sm-10">
-                        <div class="input-group">
-                          <input type="name" class="form-control ipt-local-reside" disabled formControlName="cidade">
-                          <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-pencil"></i>
-                          </span>
-                        </div>
-                        <app-control-messages [control]="egressoFormDP.controls.cidade"></app-control-messages>
-                      </div>
-                    </div>
-
-
-                  <div class="form-group" [class.has-error]="egressoFormDP.controls.cidade.errors && (egressoFormDP.controls.cidade.touched)">
-                    <label class="col-sm-2 control-label">Cidade </label>
-                    <div class="col-sm-10">
-                      <input type="name" class="form-control" formControlName="cidade">
-                      <app-control-messages [control]="egressoFormDP.controls.cidade"></app-control-messages>
-                    </div>
-                  </div>
-
-                  <div class="form-group" [class.has-error]="egressoFormDP.controls.estado.errors && (egressoFormDP.controls.estado.touched)">
-                    <label class="col-sm-2 control-label">Estado </label>
-                    <div class="col-sm-10">
-                      <input type="name" class="form-control" formControlName="estado">
-                      <app-control-messages [control]="egressoFormDP.controls.estado"></app-control-messages>
-                    </div>
-                  </div>
-
-                  <div class="form-group" [class.has-error]="egressoFormDP.controls.pais.errors && (egressoFormDP.controls.pais.touched)">
-                    <label class="col-sm-2 control-label">País </label>
-                    <div class="col-sm-10">
-                      <input type="name" class="form-control" formControlName="pais">
-                      <app-control-messages [control]="egressoFormDP.controls.pais"></app-control-messages>
-                    </div>
-                  </div>
-
-                  <div class="form-group" [class.has-error]="egressoFormDP.controls.estadoCivil.errors && (egressoFormDP.controls.estadoCivil.touched)">
-                    <label class="col-sm-2 control-label">Estado civil </label>
-                    <div class="col-sm-10">
-                      <input type="name" class="form-control" formControlName="estadoCivil">
-                      <app-control-messages [control]="egressoFormDP.controls.estadoCivil"></app-control-messages>
-                    </div>
-                  </div>
-
-                  <div class="form-group" [class.has-error]="egressoFormDP.controls.qtdFilhos.errors && (egressoFormDP.controls.qtdFilhos.touched)">
-                    <label class="col-sm-2 control-label">Nº de filhos </label>
-                    <div class="col-sm-10">
-                      <input type="name" class="form-control" formControlName="qtdFilhos">
-                      <app-control-messages [control]="egressoFormDP.controls.qtdFilhos"></app-control-messages>
-                    </div>
-                  </div>
-                </form>
+              <div class="form-group" [class.has-error]="egressoFormDP.controls.email.errors && (egressoFormDP.controls.email.touched)">
+                <label class="col-sm-2 control-label">E-mail </label>
+                <div class="col-sm-10">
+                  <input type="name" class="form-control" formControlName="email">
+                  <app-control-messages [control]="egressoFormDP.controls.email"></app-control-messages>
+                </div>
               </div>
-              <div class="clearfix"></div>
-            </div>
-            <div class="tab-footer">
-              <button class="btn default">Cancelar</button>
-              <button class="btn btn-success">Alterar</button>
-            </div>
 
-          </mat-tab>
-          <mat-tab label="Tab 2">
-            <ng-template mat-tab-label>
-              <i class="glyphicon glyphicon-thumbs-up"></i>
-              <span class="tab-label-title">Redes sociais</span>
-            </ng-template>
-            <div class="tab-content">
+              <div class="form-group" [class.has-error]="egressoFormDP.controls.telefone.errors && (egressoFormDP.controls.telefone.touched)">
+                <label class="col-sm-2 control-label">Telefone </label>
+                <div class="col-sm-10">
+                  <input type="name" class="form-control" formControlName="telefone">
+                  <app-control-messages [control]="egressoFormDP.controls.telefone"></app-control-messages>
+                </div>
+              </div>
 
-            </div>
-          </mat-tab>
-          <mat-tab label="Tab 3" >
-            <ng-template mat-tab-label>
-              <i class="glyphicon glyphicon-picture"></i>
-              <span class="tab-label-title">Galeria de fotos</span>
-            </ng-template>
-            <div class="tab-content">
-               Aqui ele adiciona as três fotos da galeria
-            </div>
-          </mat-tab>
-          <mat-tab label="Tab 4">
-            <ng-template mat-tab-label>
-              <i class="glyphicon glyphicon-book"></i>
-              <span class="tab-label-title">Acadêmico</span>
-            </ng-template>
-            <div class="tab-content">
-               Aqui ele edita as informações acadêmicas
-            </div>
-          </mat-tab>
-          <mat-tab label="Tab 5">
-            <ng-template mat-tab-label>
-              <i class="glyphicon glyphicon-lock"></i>
-              <span class="tab-label-title">Profissional</span>
-            </ng-template>
-            <div class="tab-content">
-               Aqui ele edita as informações profissionais
-            </div>
-          </mat-tab>
-        </mat-tab-group>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">CPF </label>
+                <div class="col-sm-10">
+                  <input type="name" class="form-control" disabled value="{{egresso?.aluno.alunoCpf}}">
+                  <br />
+                </div>
+              </div>
+
+              <div class="form-group" [class.has-error]="egressoFormDP.controls.cidade.errors && (egressoFormDP.controls.cidade.touched)">
+                <label class="col-sm-2 control-label">Local que reside </label>
+                <div class="col-sm-10">
+                  <div class="input-group">
+                    <input type="name" class="form-control ipt-local-reside" disabled value="{{endereco_formatado}}">
+                    <span class="input-group-addon" (click)="searchEndereco()">
+                      <i class="glyphicon glyphicon-pencil"></i>
+                    </span>
+                  </div>
+                  <app-control-messages [control]="egressoFormDP.controls.cidade"></app-control-messages>
+                </div>
+              </div>
+
+              <div class="form-group" [class.has-error]="egressoFormDP.controls.estadoCivil.errors && (egressoFormDP.controls.estadoCivil.touched)">
+                <label for="inputEmail3" class="col-sm-2 control-label">Estado civil</label>
+                <div class="col-sm-10">
+                  <select class="form-control" formControlName="estadoCivil">
+                    <option value="">Selecione o estado civil</option>
+                    <option value="{{estadoCivil.id}}" *ngFor="let estadoCivil of estadosCivis">{{estadoCivil.nome}}</option>
+                  </select>
+                  <app-control-messages [control]="egressoFormDP.controls.estadoCivil"></app-control-messages>
+                </div>
+              </div>
+
+              <div class="form-group" [class.has-error]="egressoFormDP.controls.qtdFilhos.errors && (egressoFormDP.controls.qtdFilhos.touched)">
+                <label class="col-sm-2 control-label">Nº de filhos </label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" formControlName="qtdFilhos">
+                  <app-control-messages [control]="egressoFormDP.controls.qtdFilhos"></app-control-messages>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="tab-footer">
+          <button class="btn default">Cancelar</button>
+          <button class="btn btn-success">Alterar</button>
+        </div>
+
+      </mat-tab>
+      <mat-tab label="Tab 2">
+        <ng-template mat-tab-label>
+          <i class="glyphicon glyphicon-thumbs-up"></i>
+          <span class="tab-label-title">Redes sociais</span>
+        </ng-template>
+        <div class="tab-content">
+
+        </div>
+      </mat-tab>
+      <mat-tab label="Tab 3">
+        <ng-template mat-tab-label>
+          <i class="glyphicon glyphicon-picture"></i>
+          <span class="tab-label-title">Galeria de fotos</span>
+        </ng-template>
+        <div class="tab-content">
+          Aqui ele adiciona as três fotos da galeria
+        </div>
+      </mat-tab>
+      <mat-tab label="Tab 4">
+        <ng-template mat-tab-label>
+          <i class="glyphicon glyphicon-book"></i>
+          <span class="tab-label-title">Acadêmico</span>
+        </ng-template>
+        <div class="tab-content">
+          Aqui ele edita as informações acadêmicas
+        </div>
+      </mat-tab>
+      <mat-tab label="Tab 5">
+        <ng-template mat-tab-label>
+          <i class="glyphicon glyphicon-lock"></i>
+          <span class="tab-label-title">Profissional</span>
+        </ng-template>
+        <div class="tab-content">
+          Aqui ele edita as informações profissionais
+        </div>
+      </mat-tab>
+    </mat-tab-group>
 
     <!--
       <div>

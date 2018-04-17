@@ -30,6 +30,10 @@ export class EgressoService {
 
   }
 
+  updateDadosPessoais(egresso: Egresso, id: number): Observable<Egresso> {
+    return this.http.post<Egresso>(`${EOCCET_API}/egresso/atualizar-dados-pessoais/${id}`, egresso);
+  }
+
   getByid(id: number): Observable<Egresso> {
     return this.http.get<Egresso>(`${EOCCET_API}/egresso/${id}`);
   }
