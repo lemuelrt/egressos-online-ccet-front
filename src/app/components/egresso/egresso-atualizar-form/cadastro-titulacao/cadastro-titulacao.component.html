@@ -1,0 +1,62 @@
+<div class="col-sm-12">
+  <h1 mat-dialog-title>Cadastrar titulação</h1>
+  <form [formGroup]="coordEgressoform" class="form-horizontal" role="form" novalidate>
+
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label"></label>
+      <div class="col-sm-10">
+        <h5>* Campos Obrigatórios</h5>
+      </div>
+    </div>
+
+    <!-- Campo Título -->
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Título *</label>
+      <div class="col-sm-10">
+        <select class="form-control" formControlName="">
+          <option value="">Selecione um título</option>
+          <option value=""></option>
+        </select>
+
+      </div>
+    </div>
+
+
+    <!-- Campo Área-->
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Área *</label>
+      <div class="col-sm-10">
+        <input class="form-control">
+
+      </div>
+    </div>
+
+    <!-- Campo Instituição -->
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Instituição *</label>
+      <div class="col-sm-10">
+        <input type="number" class="form-control">
+      </div>
+    </div>
+
+    <!-- Campo Ano de conclusão -->
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Ano de conclusão *</label>
+      <div class="col-sm-10">
+        <input type="number" class="form-control">
+
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<div mat-dialog-actions class="col-sm-12">
+  <button mat-button tabindex="-1">Cadastrar</button>
+  <button mat-button [mat-dialog-close]="true" tabindex="2">Cancelar</button>
+</div>
