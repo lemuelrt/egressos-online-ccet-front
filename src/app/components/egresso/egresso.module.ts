@@ -8,6 +8,7 @@ import { EgressoComponent } from './egresso.component';
 import { EgressoAtualizarFormComponent } from './egresso-atualizar-form/egresso-atualizar-form.component';
 import { PesquisarEnderecoComponent } from './egresso-atualizar-form/pesquisar-endereco/pesquisar-endereco.component';
 import { CadastroRedeSocialComponent } from './egresso-atualizar-form/cadastro-rede-social/cadastro-rede-social.component';
+import { CadastroTitulacaoComponent } from './egresso-atualizar-form/cadastro-titulacao/cadastro-titulacao.component';
 
 @NgModule({
   imports: [
@@ -20,11 +21,13 @@ import { CadastroRedeSocialComponent } from './egresso-atualizar-form/cadastro-r
     EgressoAtualizarFormComponent,
     EgressoIndexComponent,
     PesquisarEnderecoComponent,
-    CadastroRedeSocialComponent
+    CadastroRedeSocialComponent,
+    CadastroTitulacaoComponent
   ],
   entryComponents: [
     PesquisarEnderecoComponent,
-    CadastroRedeSocialComponent
+    CadastroRedeSocialComponent,
+    CadastroTitulacaoComponent
   ]
 })
 export class EgressoModule { }

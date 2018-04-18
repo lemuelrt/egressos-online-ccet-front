@@ -6,6 +6,9 @@
 
 
     <mat-tab-group class="demo-tab-group">
+
+      <!-->Foto Perfil
+      <!-->
       <mat-tab label="Tab 1">
         <ng-template mat-tab-label>
           <i class="glyphicon glyphicon-camera"></i>
@@ -28,6 +31,9 @@
           <button class="btn btn-success" (click)="alterarFotoPerfil()">Alterar</button>
         </div>
       </mat-tab>
+
+      <!-->Dados Pessoais
+      <!-->
       <mat-tab label="Tab 2">
         <ng-template mat-tab-label>
           <i class="glyphicon glyphicon-user"></i>
@@ -110,12 +116,15 @@
         </div>
 
       </mat-tab>
+
+      <!-->Rede Social
+      <!-->
       <mat-tab label="Tab 3">
         <ng-template mat-tab-label>
           <i class="glyphicon glyphicon-thumbs-up"></i>
           <span class="tab-label-title">Redes sociais</span>
         </ng-template>
-        <div class="tab-content">
+        <div class="tab-content col-sm-12">
           <button class="btn btn-info" (click)="openDialogAddRS()">
             <i class="glyphicon glyphicon-plus"></i>
           </button>
@@ -149,6 +158,9 @@
           </div>
         </div>
       </mat-tab>
+
+      <!-->Galeria de Fotos
+      <!-->
       <mat-tab label="Tab 4">
         <ng-template mat-tab-label>
           <i class="glyphicon glyphicon-picture"></i>
@@ -208,15 +220,86 @@
           <button class="btn btn-success" (click)="alterarGaleria()">Alterar</button>
         </div>
       </mat-tab>
+
+      <!--Acadêmico<!-->
       <mat-tab label="Tab 5">
+
         <ng-template mat-tab-label>
           <i class="glyphicon glyphicon-book"></i>
           <span class="tab-label-title">Acadêmico</span>
         </ng-template>
+
         <div class="tab-content">
-          Aqui ele edita as informações acadêmicas
+          <div class="col-sm-12">
+
+            <!--Inicio - Table com curso/ano de inicio/ano de conclusao<!-->
+            <div class="table-responsive">
+              <table class="table table-striped">
+
+                <thead>
+                  <tr>
+                    <th>Curso</th>
+                    <th>Ano de início</th>
+                    <th>ano de conclusão</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+
+                    </td>
+                  </tr>
+                </tbody>
+
+              </table>
+              <!--Inicio - Table com curso/ano de inicio/ano de conclusao<!-->
+            </div>
+          </div>
+
+          <hr>
+
+          <!--Inicio - btn incluir nova titulação<!-->
+          <div class="col-sm-12">
+
+
+            <button class="btn btn-success" (click)="openDialogAddTL()" title="Incluir nova Titulação">
+              <i class="glyphicon glyphicon-plus"></i>
+            </button>
+          </div>
+          <!--fim - btn incluir nova titulação<!-->
+
+          <hr>
+
+          <!--Inicio - Table titulações cadastradas<!-->
+          <div class="col-sm-12">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Título</th>
+                    <th>Área</th>
+                    <th>Instituição</th>
+                    <th>Ano de conclusão</th>
+                    <th>Alterar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+
+                    </td>
+                  </tr>
+                </tbody>
+
+              </table>
+            </div>
+            <!--fim - Table titulações cadastradas<!-->
+          </div>
         </div>
       </mat-tab>
+
+      <!-->Profissional
+      <!-->
       <mat-tab label="Tab 6">
         <ng-template mat-tab-label>
           <i class="glyphicon glyphicon-lock"></i>

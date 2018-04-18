@@ -23,6 +23,7 @@ import { MatDialog } from '@angular/material';
 import { EOCCET_API_EGRESSO_FOTO } from '../../../app.api';
 import { AtuacaoProfissional } from '../../../models/atuacao-profissional.model';
 import { AtuacaoEgresso } from '../../../models/atuacao-egresso.model';
+import { CadastroTitulacaoComponent } from './cadastro-titulacao/cadastro-titulacao.component';
 
 @Component({
   selector: 'app-egresso-atualizar-form',
@@ -262,6 +263,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
       data: { egresso: this.egresso }
     });
 
+
     dialogRef.afterClosed().subscribe(result => {
       if (result && result instanceof Egresso) {
         this.egresso = result;
@@ -270,6 +272,16 @@ export class EgressoAtualizarFormComponent implements OnInit {
   }
 
 
+/**
+   * parte de adicionar uma nova titulação
+   */
+  openDialogAddTL() {
+    const dialogRef = this.dialog.open(CadastroTitulacaoComponent, {
+      width: 'auto',
+      autoFocus: false,
+      data: {egresso: this.egresso}
+    });
+  }
 
 
 
