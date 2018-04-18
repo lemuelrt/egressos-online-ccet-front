@@ -1,3 +1,5 @@
+import { AtuacaoProfissionalService } from './../../services/atuacao-profissional.service';
+import { FaixaSalarialService } from './../../services/faixa-salarial.service';
 import { RedeSocialService } from './../../services/rede-social.service';
 import { NgxMaskModule } from 'ngx-mask';
 import { LayoutModule, BoxModule } from 'angular-admin-lte';
@@ -39,7 +41,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ValidationService,
     OfertaService,
     CoordenadorService,
-    RedeSocialService
+    RedeSocialService,
+    FaixaSalarialService,
+    AtuacaoProfissionalService
   ],
   entryComponents: [
     DialogConfirmationComponent,

@@ -1,3 +1,6 @@
+import { AtuacaoProfissionalService } from './../../../services/atuacao-profissional.service';
+import { FaixaSalarialService } from './../../../services/faixa-salarial.service';
+import { FaixaSalarial } from './../../../models/faixa-salarial.model';
 import { CadastroRedeSocialComponent } from './cadastro-rede-social/cadastro-rede-social.component';
 import { FotoGaleria } from './../../../models/foto-galeria.model';
 import { Address } from './../../../models/address.model';
@@ -18,6 +21,8 @@ import { MatDialog } from '@angular/material';
 
 
 import { EOCCET_API_EGRESSO_FOTO } from '../../../app.api';
+import { AtuacaoProfissional } from '../../../models/atuacao-profissional.model';
+import { AtuacaoEgresso } from '../../../models/atuacao-egresso.model';
 
 @Component({
   selector: 'app-egresso-atualizar-form',
@@ -33,6 +38,12 @@ export class EgressoAtualizarFormComponent implements OnInit {
   egresso: Egresso;
 
   egressoFormGaleria: FormGroup;
+
+  egressoFormAtuacao: FormGroup;
+  trabalhaArea = '1';
+
+  faixasSalariais: FaixaSalarial[] = [];
+  atuacoesProfissionais: AtuacaoProfissional[] = [];
 
   title = 'ALTERAR MEUS DADOS';
   btndescricao = 'Atualizar';
@@ -63,6 +74,8 @@ export class EgressoAtualizarFormComponent implements OnInit {
     private egressoService: EgressoService,
     private redeSocialService: RedeSocialService,
     private dialog: MatDialog,
+    private faixasSalariaisService: FaixaSalarialService,
+    private atuacoesProfissionaisSerivice: AtuacaoProfissionalService,
   ) { }
 
   ngOnInit() {
@@ -71,14 +84,24 @@ export class EgressoAtualizarFormComponent implements OnInit {
 
     this.initFormGaleria();
 
+    this.initFormAtuacao();
+
     this.egressoService.getByid(68).subscribe(
       (egresso) => {
         this.egresso = egresso;
         this.setValoresFormDP();
         this.setValoresFormGaleria();
+        this.setValoresFormAtuacao();
       }
     );
 
+    this.atuacoesProfissionaisSerivice.list().subscribe(
+      (atuacoes) => this.atuacoesProfissionais = atuacoes
+    );
+
+    this.faixasSalariaisService.list().subscribe(
+      (faixas) => this.faixasSalariais = faixas
+    );
   }
 
   showPreview(event, indice?: number) {
@@ -123,7 +146,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
         (response) => {
           this.urlFotoPerfil = null;
           this.egresso = response;
-          this.toastr.success('FOTO SALVA');
+          this.toastr.success(MESSAGES['M009']);
           console.log('------------- RESPONSE -----------------');
           console.log(response);
           console.log('----------------------------------------');
@@ -144,7 +167,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
       estado: this.formBuilder.control('', []),
       pais: this.formBuilder.control('', []),
       estadoCivil: this.formBuilder.control('', []),
-      qtdFilhos: this.formBuilder.control('', []),
+      qtdFilhos: this.formBuilder.control('', [ValidationService.qtdFilhos]),
     });
   }
 
@@ -236,7 +259,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
     const dialogRef = this.dialog.open(CadastroRedeSocialComponent, {
       width: 'auto',
       autoFocus: false,
-      data: {egresso: this.egresso}
+      data: { egresso: this.egresso }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -370,5 +393,147 @@ export class EgressoAtualizarFormComponent implements OnInit {
 
         );
     }
+  }
+
+  /**
+   * Form atuação
+   */
+  initFormAtuacao() {
+    this.egressoFormAtuacao = this.formBuilder.group({
+      'trabalhaArea': this.formBuilder.control('1', [Validators.required]),
+      'setor': this.formBuilder.control('', [Validators.required]),
+      'empresa': this.formBuilder.control('', [Validators.required, ValidationService.nomeAtuacaoProfissionalCompleto]),
+      'atuacaoProfissionalId': this.formBuilder.control('', [Validators.required]),
+      'homeOffice': this.formBuilder.control('', [Validators.required]),
+      'cidade': this.formBuilder.control('', [Validators.required]),
+      'estado': this.formBuilder.control('', [Validators.required]),
+      'pais': this.formBuilder.control('', [Validators.required]),
+      'faixaSalarialId': this.formBuilder.control(''),
+      'reside': this.formBuilder.control('', [Validators.required]),
+    });
+
+    this.egressoFormAtuacao.get('reside').disable({ onlySelf: true });
+  }
+
+  setValoresFormAtuacao() {
+    if (this.egresso !== undefined) {
+
+      if (this.egresso.atuacoesProfissional || this.egresso.atuacoesProfissional.length > 0) {
+        this.egressoFormAtuacao.get('setor').setValue('' + this.egresso.atuacoesProfissional[0].atuacaoEgressoSetor);
+        // this.egressoFormAtuacao.get('empresa').setValue(this.egresso.atuacoesProfissional[0].atuacaoEgressoEmpresa);
+        // tslint:disable-next-line:max-line-length
+        this.egressoFormAtuacao.get('atuacaoProfissionalId').setValue(this.egresso.atuacoesProfissional[0].atuacaoProfissional.atuacaoProfissionalId);
+        this.egressoFormAtuacao.get('cidade').setValue(this.egresso.atuacoesProfissional[0].atuacaoEgressoCidade);
+        this.egressoFormAtuacao.get('estado').setValue(this.egresso.atuacoesProfissional[0].atuacaoEgressoEstado);
+        this.egressoFormAtuacao.get('pais').setValue(this.egresso.atuacoesProfissional[0].atuacaoEgressoPais);
+        this.egressoFormAtuacao.get('homeOffice').setValue(this.egresso.atuacoesProfissional[0].atuacaoEgressoHomeOffice);
+        this.egressoFormAtuacao.get('faixaSalarialId').setValue(this.egresso.atuacoesProfissional[0].faixaSalarial.faixaSalarialId);
+        this.egressoFormAtuacao.get('reside').setValue(
+          (this.egresso.atuacoesProfissional[0].atuacaoEgressoCidade) ?
+            this.egresso.atuacoesProfissional[0].atuacaoEgressoCidade + ', ' +
+            this.egresso.atuacoesProfissional[0].atuacaoEgressoEstado + ', ' +
+            this.egresso.atuacoesProfissional[0].atuacaoEgressoPais : ''
+        );
+      }
+
+    }
+  }
+
+
+  isArea() {
+    if (this.egressoFormAtuacao.get('trabalhaArea').value === '1') {
+      this.egressoFormAtuacao.enable({ onlySelf: true });
+    } else {
+      this.egressoFormAtuacao.disable({ onlySelf: true });
+      this.egressoFormAtuacao.get('trabalhaArea').enable({ onlySelf: true });
+    }
+
+  }
+
+  alterarAtuacao() {
+
+    if (this.egressoFormAtuacao.invalid) {
+      Object.keys(this.egressoFormAtuacao.controls).forEach(field => {
+        const control = this.egressoFormAtuacao.get(field);
+        control.markAsTouched({ onlySelf: true });
+      });
+
+      this.toastr.error(MESSAGES['M008']);
+    } else {
+      this.spinner.show();
+
+      if (this.egressoFormAtuacao.get('trabalhaArea').value === '1') {
+        this.egressoService.updateAtuacao(this.prepareAtuacaoAlterar(), this.egresso.egressoId)
+          .finally(() => this.spinner.hide())
+          .subscribe(
+            (response) => {
+              this.egresso = response;
+              console.log('------------- RESPONSE 1 -----------------');
+              console.log(response);
+              console.log('----------------------------------------');
+            }
+
+          );
+      } else {
+        this.egressoService.removeAtuacao(this.egresso.egressoId)
+          .finally(() => this.spinner.hide())
+          .subscribe(
+            (response) => {
+              this.egresso = response;
+              console.log('------------- RESPONSE 2 -----------------');
+              console.log(response);
+              console.log('----------------------------------------');
+            }
+
+          );
+      }
+    }
+  }
+
+  prepareAtuacaoAlterar(): AtuacaoEgresso {
+    const atuacao: AtuacaoEgresso = new AtuacaoEgresso();
+
+    if (this.egresso.atuacoesProfissional && this.egresso.atuacoesProfissional.length > 0) {
+      atuacao.atuacaoEgressoId = this.egresso.atuacoesProfissional[0].atuacaoEgressoId;
+    }
+
+    atuacao.atuacaoEgressoCidade = this.egressoFormAtuacao.get('cidade').value;
+    atuacao.atuacaoEgressoEmpresa = this.egressoFormAtuacao.get('empresa').value;
+    atuacao.atuacaoEgressoEstado = this.egressoFormAtuacao.get('estado').value;
+    atuacao.atuacaoEgressoHomeOffice = this.egressoFormAtuacao.get('homeOffice').value;
+    atuacao.atuacaoEgressoPais = this.egressoFormAtuacao.get('pais').value;
+    atuacao.atuacaoEgressoSetor = this.egressoFormAtuacao.get('setor').value;
+    if (this.egressoFormAtuacao.get('faixaSalarialId').value !== '') {
+      // tslint:disable-next-line:max-line-length
+      atuacao.faixaSalarial = this.faixasSalariais.find((f) => f.faixaSalarialId.toString() === this.egressoFormAtuacao.get('faixaSalarialId').value);
+    }
+
+    // tslint:disable-next-line:max-line-length
+    atuacao.atuacaoProfissional = this.atuacoesProfissionais.find((a) => a.atuacaoProfissionalId.toString() === this.egressoFormAtuacao.get('atuacaoProfissionalId').value);
+    console.log(this.atuacoesProfissionais);
+    console.log(this.egressoFormAtuacao.get('atuacaoProfissionalId').value);
+    console.log(atuacao);
+    return atuacao;
+  }
+
+  pesquisaLocalTrabalha() {
+    const dialogRef = this.dialog.open(PesquisarEnderecoComponent, {
+      width: 'auto',
+      autoFocus: false,
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result instanceof Address) {
+        this.egressoFormAtuacao.get('cidade').setValue(result.cidade);
+        this.egressoFormAtuacao.get('estado').setValue(result.estado);
+        this.egressoFormAtuacao.get('pais').setValue(result.pais);
+
+        this.egressoFormAtuacao.get('reside').setValue(this.egressoFormAtuacao.get('cidade').value + ', ' +
+          this.egressoFormAtuacao.get('estado').value + ', ' +
+          this.egressoFormAtuacao.get('pais').value
+        );
+      }
+    });
   }
 }

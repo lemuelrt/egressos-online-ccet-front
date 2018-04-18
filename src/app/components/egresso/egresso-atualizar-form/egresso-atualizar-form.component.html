@@ -96,7 +96,7 @@
               <div class="form-group" [class.has-error]="egressoFormDP.controls.qtdFilhos.errors && (egressoFormDP.controls.qtdFilhos.touched)">
                 <label class="col-sm-2 control-label">Nº de filhos </label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" formControlName="qtdFilhos">
+                  <input type="number" class="form-control" formControlName="qtdFilhos" mask="09">
                   <app-control-messages [control]="egressoFormDP.controls.qtdFilhos"></app-control-messages>
                 </div>
               </div>
@@ -224,178 +224,164 @@
         </ng-template>
         <div class="tab-content">
 
-          <!--
-            <form [formGroup]="" class="form-horizontal" role="form" novalidate>
+          <div class="col-sm-12">
+            <form [formGroup]="egressoFormAtuacao" class="form-horizontal" role="form" novalidate>
 
               <!-->inicio -Div trabalha na área
-          <!-->
-          <div class="form-group">
+              <!-->
+              <div class="form-group">
 
-            <mat-radio-group>
-              <label class="col-sm-2 control-label">Trabalha na área </label>
-              <div class="col-sm-10">
-                <mat-radio-button value="1"> Sim </mat-radio-button>
-                <mat-radio-button value="2"> Não </mat-radio-button>
+                <mat-radio-group formControlName="trabalhaArea" (change)="isArea()">
+                  <label class="col-sm-2 control-label">Trabalha na área </label>
+                  <div class="col-sm-10">
+                    <div class="col-xs-6 col-sm-3 col-md-2 pad0">
+                      <mat-radio-button value="1"> Sim </mat-radio-button>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 col-md-2 pad0">
+                      <mat-radio-button value="2"> Não </mat-radio-button>
+                    </div>
+
+                  </div>
+                </mat-radio-group>
+
               </div>
-            </mat-radio-group>
 
-          </div>
-          <!-->fim -Div trabalha na área
-          <!-->
+              <!-->fim -Div trabalha na área
+              <!-->
 
-          <!-->inicio -Div conteudo restante se trabalha na área
-          <!-->
+              <!-->inicio -Div conteudo restante se trabalha na área
+              <!-->
 
-          <div class="clearfix">
-            <mat-divider></mat-divider>
-          </div>
+              <hr />
 
-          <!-->Setor
-          <!-->
 
-          <div class="form-group">
-            <mat-radio-group>
-              <label class="col-sm-2 control-label">Setor </label>
-              <div class="col-sm-10">
-                <mat-radio-button value="1"> Público</mat-radio-button>
-                <mat-radio-button value="2"> Privado </mat-radio-button>
+              <!-->Setor
+              <!-->
+
+              <div class="form-group" [class.has-error]="egressoFormAtuacao.controls.setor.errors && (egressoFormAtuacao.controls.setor.touched)">
+                <mat-radio-group formControlName="setor">
+                  <label class="col-sm-2 control-label">Setor </label>
+                  <div class="col-sm-10">
+                    <div class="col-xs-6 col-sm-3 col-md-2 pad0">
+                      <mat-radio-button value="1">Público</mat-radio-button>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 col-md-2 pad0">
+                      <mat-radio-button value="2">Privado</mat-radio-button>
+                    </div>
+                  </div>
+                </mat-radio-group>
+                <app-control-messages [control]="egressoFormAtuacao.controls.setor"></app-control-messages>
               </div>
-            </mat-radio-group>
-          </div>
 
-          <!-->Empresa
-          <!-->
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Empresa </label>
-            <div class="col-sm-10">
-              <input type="" class="form-control">
-              <app-control-messages></app-control-messages>
-            </div>
-          </div>
-
-          <!-->Cargo
-          <!-->
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Cargo </label>
-            <div class="col-sm-10">
-              <select class="form-control" formControlName="">
-                <option value="">Selecione o cargo</option>
-                <option value=""></option>
-              </select>
-            </div>
-          </div>
-
-          <!-->Home office
-          <!-->
-          <div class="form-group">
-            <mat-radio-group>
-              <label class="col-sm-2 control-label">Home office </label>
-              <div class="col-sm-10">
-                <mat-radio-button value="1"> Sim</mat-radio-button>
-                <mat-radio-button value="2"> Não </mat-radio-button>
+              <!-->Empresa
+              <!-->
+              <div class="form-group" [class.has-error]="egressoFormAtuacao.controls.empresa.errors && (egressoFormAtuacao.controls.empresa.touched)">
+                <label class="col-sm-2 control-label">Empresa </label>
+                <div class="col-sm-10">
+                  <input type="" class="form-control" formControlName="empresa">
+                  <app-control-messages [control]="egressoFormAtuacao.controls.empresa"></app-control-messages>
+                </div>
               </div>
-            </mat-radio-group>
-          </div>
 
-          <!-->Local de trabalho
-          <!-->
-          <div class="form-group">
-            <!-->a msg deixei estática , mas se quiser colocar na constante
-            <!-->
-            <label class=" col-sm-10 control-label">Local de trabalho (cidade / estado, província, região / país). Para a modalidade Home Office, informe a localidade
-              da empresa e não de sua residência.</label>
-
-          </div>
-
-          <!-->Local de trabalho
-          <!-->
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Local de trabalho </label>
-            <div class="col-sm-10">
-              <div class="input-group">
-                <input type="name">
-                <span class="input-group-addon">
-                  <i class="glyphicon glyphicon-pencil"></i>
-                </span>
+              <!-->Cargo
+              <!-->
+              <div class="form-group" [class.has-error]="egressoFormAtuacao.controls.atuacaoProfissionalId.errors && (egressoFormAtuacao.controls.atuacaoProfissionalId.touched)">
+                <label class="col-sm-2 control-label">Cargo </label>
+                <div class="col-sm-10">
+                  <select class="form-control" formControlName="atuacaoProfissionalId">
+                    <option value="">Selecione o cargo</option>
+                    <option value="{{atuacao.atuacaoProfissionalId}}" *ngFor="let atuacao of atuacoesProfissionais">
+                      {{atuacao.atuacaoProfissionalNome}}
+                    </option>
+                  </select>
+                  <app-control-messages [control]="egressoFormAtuacao.controls.atuacaoProfissionalId"></app-control-messages>
+                </div>
               </div>
-              <app-control-messages></app-control-messages>
-            </div>
+
+              <!-->Home office
+              <!-->
+              <div class="form-group" [class.has-error]="egressoFormAtuacao.controls.homeOffice.errors && (egressoFormAtuacao.controls.homeOffice.touched)">
+                <mat-radio-group formControlName="homeOffice">
+                  <label class="col-sm-2 control-label">Home office </label>
+                  <div class="col-sm-10">
+                    <div class="col-xs-6 col-sm-3 col-md-2 pad0">
+                      <mat-radio-button value="1">Sim</mat-radio-button>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 col-md-2 pad0">
+                      <mat-radio-button value="2">Não</mat-radio-button>
+                    </div>
+                    <app-control-messages [control]="egressoFormAtuacao.controls.homeOffice"></app-control-messages>
+                  </div>
+                </mat-radio-group>
+              </div>
+
+              <!-->Local de trabalho
+              <!-->
+              <div class="form-group">
+                <!-->a msg deixei estática , mas se quiser colocar na constante
+                <!-->
+                <label class=" col-sm-2 control-label"></label>
+                <label class=" col-sm-10">Local de trabalho (cidade / estado, província, região / país).
+                  <br />Para a modalidade Home Office, informe a localidade da empresa e não de sua residência.</label>
+
+              </div>
+
+              <!-->Local de trabalho
+              <!-->
+              <div class="form-group" [class.has-error]="egressoFormAtuacao.controls.reside.errors && (egressoFormAtuacao.controls.reside.touched)">
+                <label class="col-sm-2 control-label">Local de trabalho </label>
+                <div class="col-sm-10">
+                  <div class="input-group">
+                    <input class="form-control ipt-local-reside" formControlName="reside" >
+                    <span class="input-group-addon" (click)="pesquisaLocalTrabalha()">
+                      <i class="glyphicon glyphicon-pencil"></i>
+                    </span>
+                    <app-control-messages [control]="egressoFormAtuacao.controls.reside"></app-control-messages>
+                  </div>
+
+                </div>
+              </div>
+
+
+              <!-->Salário
+              <!-->
+              <div class="form-group" [class.has-error]="egressoFormAtuacao.controls.faixaSalarialId.errors && (egressoFormAtuacao.controls.faixaSalarialId.touched)">
+                <label class="col-sm-2 control-label">Salário (faixa salarial em R$) </label>
+                <div class="col-sm-10">
+                  <select class="form-control" formControlName="faixaSalarialId">
+                    <option value="">Selecione a faixa salarial</option>
+                    <option value="{{faixa.faixaSalarialId}}" *ngFor="let faixa of faixasSalariais">
+                      <span *ngIf="!faixa.faixaSalarialFinal">
+                        >= {{faixa.faixaSalarialInicial}}
+                      </span>
+                      <span *ngIf="faixa.faixaSalarialFinal">
+                        {{faixa.faixaSalarialInicial}} - {{faixa.faixaSalarialFinal}}
+                      </span>
+                    </option>
+                  </select>
+                  <app-control-messages [control]="egressoFormAtuacao.controls.faixaSalarialId"></app-control-messages>
+                </div>
+              </div>
+
+            </form>
+
+
+            <!-->fim -Div conteudo restante se trabalha na área
+              <!-->
           </div>
 
 
-          <!-->Salário
-          <!-->
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Salário (faixa salarial em R$) </label>
-            <div class="col-sm-10">
-              <select class="form-control" formControlName="">
-                <option value="">Selecione a faixa salarial</option>
-                <option value=""></option>
-              </select>
-            </div>
-          </div>
 
-          </form>
-          -->
-
-          <!-->fim -Div conteudo restante se trabalha na área
-          <!-->
 
         </div>
         <div class="clearfix"></div>
 
         <div class="tab-footer">
-          <button class="btn default">Cancelar</button>
-          <button class="btn btn-success">Alterar</button>
+          <button class="btn default" (click)="alterarAtuacao()">Cancelar</button>
+          <button class="btn btn-success" (click)="alterarAtuacao()">Alterar</button>
         </div>
-
-
       </mat-tab>
     </mat-tab-group>
-
-    <!--
-      <div>
-
-        <form [formGroup]="egressoForm" class="form-horizontal" role="form" novalidate (ngSubmit)="update()">
-
-          <div class="form-group">
-            <label class="col-sm-2 control-label"></label>
-            <div class="col-sm-10">
-              <h5>* Campos Obrigatórios</h5>
-            </div>
-          </div>
-
-
-          <div class="form-group" [class.has-error]="egressoForm.controls.foto.errors && (egressoForm.controls.foto.touched)">
-            <label class="col-sm-2 control-label">Foto perfil *</label>
-            <div class="col-sm-10">
-              <input type="file" formControlName="foto" class="form-control" #fotoPerfil>
-              <app-control-messages [control]="egressoForm.controls.foto"></app-control-messages>
-            </div>
-          </div>
-
-          <div class="form-group" [class.has-error]="egressoForm.controls.nome.errors && (egressoForm.controls.nome.touched)">
-            <label class="col-sm-2 control-label">Nome *</label>
-            <div class="col-sm-10">
-              <input type="name" formControlName="nome" class="form-control">
-              <app-control-messages [control]="egressoForm.controls.nome"></app-control-messages>
-            </div>
-          </div>
-
-
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <a class="btn default" [routerLink]="['/coord/atuacoes-profissionais']">Cancelar</a>
-              <button type="submit" class="btn btn-success">{{btndescricao}}</button>
-            </div>
-
-          </div>
-
-        </form>
-
-      </div>
-    -->
-
   </mk-box-content>
 
 

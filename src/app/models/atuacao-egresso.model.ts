@@ -2,7 +2,7 @@ import { FaixaSalarial } from './faixa-salarial.model';
 import { Egresso } from './egresso.model';
 import { AtuacaoProfissional } from './atuacao-profissional.model';
 
-export interface AtuacaoEgresso {
+export class AtuacaoEgresso {
   atuacaoEgressoId: string;
   egresso: Egresso;
   atuacaoProfissional: AtuacaoProfissional;

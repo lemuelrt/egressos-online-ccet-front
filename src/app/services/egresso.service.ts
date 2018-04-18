@@ -1,3 +1,4 @@
+import { AtuacaoEgresso } from './../models/atuacao-egresso.model';
 import { RedeAluno } from './../models/rede-aluno.model';
 import { Egresso } from './../models/egresso.model';
 import { EOCCET_API } from './../app.api';
@@ -40,15 +41,19 @@ export class EgressoService {
   }
 
   updateGaleria(form: FormData, id: number): Observable<any> {
-
     return this.http.post<any>(`${EOCCET_API}/egresso/atualizar-fotos-galeria/${id}`, form);
-
   }
 
   updateRedeSocial(redeAluno: RedeAluno, id: number): Observable<any> {
-
     return this.http.post<any>(`${EOCCET_API}/egresso/atualizar-rede-social/${id}`, redeAluno);
+  }
 
+  updateAtuacao(atuacaoEgresso: AtuacaoEgresso, id: number): Observable<Egresso> {
+    return this.http.post<Egresso>(`${EOCCET_API}/egresso/atualizar-atuacao/${id}`, atuacaoEgresso);
+  }
+
+  removeAtuacao(id: number): Observable<Egresso> {
+    return this.http.post<Egresso>(`${EOCCET_API}/egresso/remover-atuacao/${id}`, {});
   }
 
   setEgressosImportados(data: any) {
