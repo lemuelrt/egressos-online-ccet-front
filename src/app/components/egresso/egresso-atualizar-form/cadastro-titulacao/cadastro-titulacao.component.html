@@ -26,30 +26,31 @@
 
     <!-- Campo Área-->
 
-    <div class="form-group">
+    <div class="form-group" [class.has-error]="egressoFormTitulacao.controls.area.errors && (egressoFormTitulacao.controls.area.touched)">
       <label class="col-sm-2 control-label">Área *</label>
       <div class="col-sm-10">
-        <input class="form-control" formControlName="area">
-
+        <input type="text" class="form-control" formControlName="area">
+        <app-control-messages [control]="egressoFormTitulacao.controls.area"></app-control-messages>
       </div>
     </div>
 
     <!-- Campo Instituição -->
 
-    <div class="form-group">
+    <div class="form-group" [class.has-error]="egressoFormTitulacao.controls.instituicao.errors && (egressoFormTitulacao.controls.instituicao.touched)">
       <label class="col-sm-2 control-label">Instituição *</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" formControlName="instituicao">
+        <app-control-messages [control]="egressoFormTitulacao.controls.instituicao"></app-control-messages>
       </div>
     </div>
 
     <!-- Campo Ano de conclusão -->
 
-    <div class="form-group">
+    <div class="form-group"[class.has-error]="egressoFormTitulacao.controls.anoConclusao.errors && (egressoFormTitulacao.controls.anoConclusao.touched)">
       <label class="col-sm-2 control-label">Ano de conclusão *</label>
       <div class="col-sm-10">
-        <input type="number" class="form-control" formControlName="anoConclusao">
-
+        <input type="number" class="form-control" formControlName="anoConclusao" mask="0000">
+        <app-control-messages [control]="egressoFormTitulacao.controls.anoConclusao"></app-control-messages>
       </div>
     </div>
 
