@@ -1,6 +1,7 @@
 <div class="col-sm-12">
   <h1 mat-dialog-title>Cadastrar rede social</h1>
   <form [formGroup]="egressoFormRS" class="form-horizontal">
+
     <div class="form-group" [class.has-error]="egressoFormRS.controls.redeSocialId.errors && (egressoFormRS.controls.redeSocialId.touched)">
       <label for="redeSocialId" class="col-sm-3 control-label">Rede social</label>
       <div class="col-sm-9">
@@ -11,6 +12,7 @@
         <app-control-messages [control]="egressoFormRS.controls.redeSocialId"></app-control-messages>
       </div>
     </div>
+
     <div class="form-group" [class.has-error]="egressoFormRS.controls.link.errors && (egressoFormRS.controls.link.touched)">
       <label class="col-sm-3 control-label">Link</label>
       <div class="col-sm-9">
