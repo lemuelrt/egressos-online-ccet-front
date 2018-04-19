@@ -21,7 +21,8 @@ export class ValidationService {
       'invalidAno': MESSAGES['M023'],
       'invalidTempoMinForm': MESSAGES['M024'],
       'invalidTelefone': 'Telefone inválido!',
-      'invalidQtdFilhos': MESSAGES['M032']
+      'invalidQtdFilhos': MESSAGES['M032'],
+      'anoConclusaoTitulacaoInvalido': MESSAGES['M031'],
     };
 
     return config[validatorName];

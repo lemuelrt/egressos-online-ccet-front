@@ -1,3 +1,4 @@
+import { TipoFormacao } from './tipo-formacao_.model';
 import { Titulacao } from './titulacao.model';
 import { AtuacaoEgresso } from './atuacao-egresso.model';
 import { Oferta } from './oferta.model';
@@ -11,6 +12,6 @@ export class Egresso {
   aluno: Aluno;
   oferta?: Oferta;
   EgressoDataAtualizacao?: string;
-  titulacoes?: Titulacao[];
+  tiposFormacao?: TipoFormacao[];
   atuacoesProfissional?: AtuacaoEgresso[];
 }

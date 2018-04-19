@@ -1,3 +1,4 @@
+import { TipoFormacao } from './../models/tipo-formacao_.model';
 import { AtuacaoEgresso } from './../models/atuacao-egresso.model';
 import { RedeAluno } from './../models/rede-aluno.model';
 import { Egresso } from './../models/egresso.model';
@@ -54,6 +55,10 @@ export class EgressoService {
 
   removeAtuacao(id: number): Observable<Egresso> {
     return this.http.post<Egresso>(`${EOCCET_API}/egresso/remover-atuacao/${id}`, {});
+  }
+
+  saveTipoFormacao(formacao: TipoFormacao, id: number): Observable<Egresso> {
+    return this.http.post<Egresso>(`${EOCCET_API}/egresso/tipo-formacao/${id}`, formacao);
   }
 
   setEgressosImportados(data: any) {

@@ -1,3 +1,4 @@
+import { TipoFormacao } from './../../../models/tipo-formacao_.model';
 import { egresso_routes } from './../const/egresso.config';
 import { AtuacaoProfissionalService } from './../../../services/atuacao-profissional.service';
 import { FaixaSalarialService } from './../../../services/faixa-salarial.service';
@@ -92,6 +93,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
 
     this.egressoService.getByid(68).subscribe(
       (egresso) => {
+        console.log(egresso);
         this.egresso = egresso;
         this.setValoresFormDP();
         this.setValoresFormGaleria();
@@ -300,16 +302,23 @@ export class EgressoAtualizarFormComponent implements OnInit {
   /**
      * inicio - adicionar uma nova titulação
      */
-  openDialogAddTL() {
+  openDialogAddTL(tipoFormacao?: TipoFormacao) {
     const dialogRef = this.dialog.open(CadastroTitulacaoComponent, {
       width: 'auto',
+      maxWidth: 400,
       autoFocus: false,
-      data: { egresso: this.egresso }
+      data: { egresso: this.egresso, tipoFormacao: tipoFormacao }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result && result instanceof Egresso) {
-        this.egresso = result;
+      if (result && result.egresso !== undefined) {
+        this.egresso = result.egresso;
+        if (tipoFormacao === undefined) {
+          this.toastr.success(MESSAGES['M010']);
+        } else {
+          this.toastr.success(MESSAGES['M011']);
+        }
+
       }
     });
   }

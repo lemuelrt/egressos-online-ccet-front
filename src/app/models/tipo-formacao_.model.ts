@@ -4,7 +4,7 @@ import { Egresso } from './egresso.model';
 
 export interface TipoFormacao {
 
-  tipoFormacaoId: string;
+  tipoFormacaoId?: string;
   titulacao: Titulacao;
   egresso: Egresso;
   tipoFormacaoAnoConclusao: number;

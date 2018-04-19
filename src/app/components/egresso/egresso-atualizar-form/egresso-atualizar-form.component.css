@@ -51,9 +51,6 @@
   background-color: #ccc;
 }
 
-.row-foto-galeria textarea{
-
-}
 
 .preview-foto-galeria{
   width: 95%;
@@ -81,4 +78,8 @@
 
 .pad0{
   padding: 0;
+}
+
+.btn-add-titulacoes{
+  margin: 5px 0 15px 0;
 }
