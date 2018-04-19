@@ -48,7 +48,7 @@
                     <div class="form-group" [class.has-error]="hasError(i, 'anoIngresso')">
                       <label class="col-sm-2 control-label">Ano de ingresso *</label>
                       <div class="col-sm-10">
-                        <input type="number" formControlName="anoIngresso" class="form-control">
+                        <input type="number" formControlName="anoIngresso" class="form-control" mask="0000">
                         <app-control-messages [control]="getControl(i, 'anoIngresso')"></app-control-messages>
                       </div>
                     </div>
@@ -59,7 +59,7 @@
 
                       <label class="col-sm-2 control-label">Ano de conclusão *</label>
                       <div class="col-sm-10">
-                        <input type="number" formControlName="anoConclusao" class="form-control">
+                        <input type="number" formControlName="anoConclusao" class="form-control" mask="0000">
                         <app-control-messages [control]="getControl(i, 'anoConclusao')"></app-control-messages>
                       </div>
 
