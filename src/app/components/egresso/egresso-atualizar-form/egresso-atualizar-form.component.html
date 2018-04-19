@@ -21,7 +21,7 @@
               <img *ngIf="getUrlFoto()" [src]="getUrlFoto()" accept="image/*">
             </div>
             <input type="file" class="hidden" #fotoPerfil (change)="showPreview($event)">
-            <button mat-raised-button color="primary" (click)="fotoPerfil.click()">Upload</button>
+            <button mat-raised-button color="primary" (click)="fotoPerfil.click()">Selecionar imagem</button>
           </div>
 
 
@@ -175,7 +175,7 @@
                   <img *ngIf="getUrlFotoGaleria(0)" [src]="getUrlFotoGaleria(0)" accept="image/*">
                 </div>
                 <input type="file" class="hidden" #fotoGaleria1 (change)="showPreviewEValidaDesc($event, 0)">
-                <button class="btnupl-galeria" mat-raised-button color="primary" (click)="fotoGaleria1.click()">Upload de imagem</button>
+                <button class="btnupl-galeria" mat-raised-button color="primary" (click)="fotoGaleria1.click()">Selecionar imagem</button>
               </div>
               <div class="form-group col-sm-9" [class.has-error]="egressoFormGaleria.controls.descricao1.errors && (egressoFormGaleria.controls.descricao1.touched)">
                 <textarea class="form-control" formControlName="descricao1" rows="5" placeholder="">{{getDescricaoGaleriaEgresso(0)}}</textarea>
@@ -190,7 +190,7 @@
                   <img *ngIf="getUrlFotoGaleria(1)" [src]="getUrlFotoGaleria(1)" accept="image/*">
                 </div>
                 <input type="file" class="hidden" #fotoGaleria2 (change)="showPreviewEValidaDesc($event, 1)">
-                <button class="btnupl-galeria" mat-raised-button color="primary" (click)="fotoGaleria2.click()">Upload de imagem</button>
+                <button class="btnupl-galeria" mat-raised-button color="primary" (click)="fotoGaleria2.click()">Selecionar imagem</button>
               </div>
               <div class="form-group col-sm-9" [class.has-error]="egressoFormGaleria.controls.descricao2.errors && (egressoFormGaleria.controls.descricao2.touched)">
                 <textarea class="form-control" formControlName="descricao2" rows="5" placeholder="">{{getDescricaoGaleriaEgresso(1)}}</textarea>
@@ -205,7 +205,7 @@
                   <img *ngIf="getUrlFotoGaleria(2)" [src]="getUrlFotoGaleria(2)" accept="image/*">
                 </div>
                 <input type="file" class="hidden" #fotoGaleria3 (change)="showPreviewEValidaDesc($event, 2)">
-                <button class="btnupl-galeria" mat-raised-button color="primary" (click)="fotoGaleria3.click()">Upload de imagem</button>
+                <button class="btnupl-galeria" mat-raised-button color="primary" (click)="fotoGaleria3.click()">Selecionar imagem</button>
               </div>
               <div class="form-group col-sm-9" [class.has-error]="egressoFormGaleria.controls.descricao3.errors && (egressoFormGaleria.controls.descricao3.touched)">
                 <textarea class="form-control" formControlName="descricao3" rows="5" placeholder="">{{getDescricaoGaleriaEgresso(2)}}</textarea>
