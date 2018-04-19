@@ -583,7 +583,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
     }
 
     // tslint:disable-next-line:max-line-length
-    atuacao.atuacaoProfissional = this.atuacoesProfissionais.find((a) => a.atuacaoProfissionalId.toString() === this.egressoFormAtuacao.get('atuacaoProfissionalId').value);
+    atuacao.atuacaoProfissional = this.atuacoesProfissionais.find((a) => a.atuacaoProfissionalId === parseInt(this.egressoFormAtuacao.get('atuacaoProfissionalId').value, 10));
 
     return atuacao;
   }
