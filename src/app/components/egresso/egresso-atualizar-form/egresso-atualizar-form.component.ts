@@ -138,25 +138,30 @@ export class EgressoAtualizarFormComponent implements OnInit {
   alterarFotoPerfil() {
 
     this.spinner.show();
-    const formData = new FormData();
-
     if (this.fotoPerfil.nativeElement.files[0] !== undefined) {
+      const formData = new FormData();
+
+
       formData.append('fotoPerfil', this.fotoPerfil.nativeElement.files[0], this.fotoPerfil.nativeElement.files[0].name);
+
+
+      this.egressoService.updateFotoPerfil(formData, 68)
+        .finally(() => this.spinner.hide())
+        .subscribe(
+          (response) => {
+            this.urlFotoPerfil = null;
+            this.egresso = response;
+            this.toastr.success(MESSAGES['M011']);
+            console.log('------------- RESPONSE -----------------');
+            console.log(response);
+            console.log('----------------------------------------');
+          }
+
+        );
+    } else {
+      this.toastr.success(MESSAGES['M011']);
+      this.spinner.hide();
     }
-
-    this.egressoService.updateFotoPerfil(formData, 68)
-      .finally(() => this.spinner.hide())
-      .subscribe(
-        (response) => {
-          this.urlFotoPerfil = null;
-          this.egresso = response;
-          this.toastr.success(MESSAGES['M009']);
-          console.log('------------- RESPONSE -----------------');
-          console.log(response);
-          console.log('----------------------------------------');
-        }
-
-      );
   }
   /**
    * fim -alteração da foto do perfil
@@ -251,6 +256,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
         .subscribe(
           (response) => {
             this.egresso = response;
+            this.toastr.success(MESSAGES['M011']);
             console.log('------------- RESPONSE -----------------');
             console.log(response);
             console.log('----------------------------------------');
@@ -277,6 +283,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
 
       if (result && result.egresso !== undefined) {
+        this.toastr.success(MESSAGES['M010']);
         this.egresso = result.egresso;
       }
 
@@ -290,9 +297,9 @@ export class EgressoAtualizarFormComponent implements OnInit {
   /**
      * parte de adicionar uma nova titulação
      */
-/**
-   * inicio - adicionar uma nova titulação
-   */
+  /**
+     * inicio - adicionar uma nova titulação
+     */
   openDialogAddTL() {
     const dialogRef = this.dialog.open(CadastroTitulacaoComponent, {
       width: 'auto',
@@ -306,9 +313,9 @@ export class EgressoAtualizarFormComponent implements OnInit {
       }
     });
   }
-/**
-   * fim - adicionar uma nova titulação
-   */
+  /**
+     * fim - adicionar uma nova titulação
+     */
 
 
   /**
@@ -423,6 +430,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
           (response) => {
             this.urlFotosGaleria = { 0: '', 1: '', 2: '' };
             this.egresso = response;
+            this.toastr.success(MESSAGES['M011']);
             console.log('------------- RESPONSE -----------------');
             console.log(response);
             console.log('----------------------------------------');
@@ -452,41 +460,51 @@ export class EgressoAtualizarFormComponent implements OnInit {
       'faixaSalarialId': this.formBuilder.control(''),
       'reside': this.formBuilder.control('', [Validators.required]),
     });
-
+    this.isArea();
     this.egressoFormAtuacao.get('reside').disable({ onlySelf: true });
   }
 
-  setValoresFormAtuacao() {
+  setValoresFormAtuacao(setTrabalhaArea = true, verifica_area = true) {
     if (this.egresso !== undefined) {
 
-      if (this.egresso.atuacoesProfissional && this.egresso.atuacoesProfissional.length > 0) {
-        this.egressoFormAtuacao.get('trabalhaArea').setValue('1');
-        this.egressoFormAtuacao.get('setor').setValue('' + this.egresso.atuacoesProfissional[0].atuacaoEgressoSetor);
-        this.egressoFormAtuacao.get('empresa').setValue(this.egresso.atuacoesProfissional[0].atuacaoEgressoEmpresa);
-        // tslint:disable-next-line:max-line-length
-        this.egressoFormAtuacao.get('atuacaoProfissionalId').setValue(this.egresso.atuacoesProfissional[0].atuacaoProfissional.atuacaoProfissionalId);
-        this.egressoFormAtuacao.get('cidade').setValue(this.egresso.atuacoesProfissional[0].atuacaoEgressoCidade);
-        this.egressoFormAtuacao.get('estado').setValue(this.egresso.atuacoesProfissional[0].atuacaoEgressoEstado);
-        this.egressoFormAtuacao.get('pais').setValue(this.egresso.atuacoesProfissional[0].atuacaoEgressoPais);
-        this.egressoFormAtuacao.get('homeOffice').setValue(this.egresso.atuacoesProfissional[0].atuacaoEgressoHomeOffice);
-        this.egressoFormAtuacao.get('faixaSalarialId').setValue(this.egresso.atuacoesProfissional[0].faixaSalarial.faixaSalarialId);
-        this.egressoFormAtuacao.get('reside').setValue(
-          (this.egresso.atuacoesProfissional[0].atuacaoEgressoCidade) ?
-            this.egresso.atuacoesProfissional[0].atuacaoEgressoCidade + ', ' +
-            this.egresso.atuacoesProfissional[0].atuacaoEgressoEstado + ', ' +
-            this.egresso.atuacoesProfissional[0].atuacaoEgressoPais : ''
-        );
+      const isAtuacao: boolean = (this.egresso.atuacoesProfissional && this.egresso.atuacoesProfissional.length > 0);
+
+      if (setTrabalhaArea) {
+        this.egressoFormAtuacao.get('trabalhaArea').setValue(isAtuacao ? '1' : '2');
       }
 
+      this.egressoFormAtuacao.get('setor').setValue(isAtuacao ? '' + this.egresso.atuacoesProfissional[0].atuacaoEgressoSetor : '');
+      this.egressoFormAtuacao.get('empresa').setValue(isAtuacao ? this.egresso.atuacoesProfissional[0].atuacaoEgressoEmpresa : '');
+      // tslint:disable-next-line:max-line-length
+      this.egressoFormAtuacao.get('atuacaoProfissionalId').setValue(isAtuacao ? this.egresso.atuacoesProfissional[0].atuacaoProfissional.atuacaoProfissionalId : '');
+      this.egressoFormAtuacao.get('cidade').setValue(isAtuacao ? this.egresso.atuacoesProfissional[0].atuacaoEgressoCidade : '');
+      this.egressoFormAtuacao.get('estado').setValue(isAtuacao ? this.egresso.atuacoesProfissional[0].atuacaoEgressoEstado : '');
+      this.egressoFormAtuacao.get('pais').setValue(isAtuacao ? this.egresso.atuacoesProfissional[0].atuacaoEgressoPais : '');
+      this.egressoFormAtuacao.get('homeOffice').setValue(isAtuacao ? this.egresso.atuacoesProfissional[0].atuacaoEgressoHomeOffice : '');
+      // tslint:disable-next-line:max-line-length
+      this.egressoFormAtuacao.get('faixaSalarialId').setValue(isAtuacao ? this.egresso.atuacoesProfissional[0].faixaSalarial.faixaSalarialId : '');
+      this.egressoFormAtuacao.get('reside').setValue(
+        isAtuacao ?
+          ((this.egresso.atuacoesProfissional[0].atuacaoEgressoCidade) ?
+            this.egresso.atuacoesProfissional[0].atuacaoEgressoCidade + ', ' +
+            this.egresso.atuacoesProfissional[0].atuacaoEgressoEstado + ', ' +
+            this.egresso.atuacoesProfissional[0].atuacaoEgressoPais : '') : ''
+      );
     }
-    this.isArea();
+
+    if (verifica_area) {
+      this.isArea();
+    }
   }
 
   isArea() {
     if (this.egressoFormAtuacao.get('trabalhaArea').value === '1') {
       this.egressoFormAtuacao.enable({ onlySelf: true });
+      this.setValoresFormAtuacao(false, false);
     } else {
       this.egressoFormAtuacao.disable({ onlySelf: true });
+      this.egressoFormAtuacao.reset();
+      this.egressoFormAtuacao.get('trabalhaArea').setValue('2');
       this.egressoFormAtuacao.get('trabalhaArea').enable({ onlySelf: true });
     }
 
@@ -511,6 +529,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
           .subscribe(
             (response) => {
               this.egresso = response;
+              this.toastr.success(MESSAGES['M011']);
               console.log('------------- RESPONSE 1 -----------------');
               console.log(response);
               console.log('----------------------------------------');
@@ -523,6 +542,8 @@ export class EgressoAtualizarFormComponent implements OnInit {
           .subscribe(
             (response) => {
               this.egresso = response;
+              this.toastr.success(MESSAGES['M011']);
+              this.setValoresFormAtuacao();
               console.log('------------- RESPONSE 2 -----------------');
               console.log(response);
               console.log('----------------------------------------');

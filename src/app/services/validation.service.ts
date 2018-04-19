@@ -78,7 +78,8 @@ export class ValidationService {
     // Suporte internacional de nomes
     const regex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
 
-    if (value.trim().length < 5 || value.trim().length > 80 ||  !regex.test(value)) {
+
+    if (value && (value.trim().length < 5 || value.trim().length > 80 ||  !regex.test(value))) {
       return { 'invalidNomeSimples': true };
     } else {
       return null;
