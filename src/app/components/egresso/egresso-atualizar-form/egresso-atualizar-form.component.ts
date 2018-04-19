@@ -461,7 +461,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
       'trabalhaArea': this.formBuilder.control('2', [Validators.required]),
       'setor': this.formBuilder.control('', [Validators.required]),
       'empresa': this.formBuilder.control('', [Validators.required, ValidationService.nomeAtuacaoProfissionalCompleto]),
-      'atuacaoProfissionalId': this.formBuilder.control('', [Validators.required]),
+      'atuacaoProfissionalId': this.formBuilder.control('', [ValidationService.selectedValidator]),
       'homeOffice': this.formBuilder.control('', [Validators.required]),
       'cidade': this.formBuilder.control('', [Validators.required]),
       'estado': this.formBuilder.control('', [Validators.required]),
