@@ -51,7 +51,13 @@ export class CadastroTitulacaoComponent implements OnInit {
 
     this.tipoFormacao = (this.data.tipoFormacao !== undefined) ? this.data.tipoFormacao : false;
 
+    if ( this.tipoFormacao) {
+      this.title = 'Alterar titulação';
+    this.btndescricao = 'Alterar';
+
+    }
     this.egressoFormTitulacao = this.formBuilder.group({
+
 
       // tslint:disable-next-line:max-line-length
       titulacao: this.formBuilder.control(this.tipoFormacao ? this.tipoFormacao.titulacao.titulacaoId.toString() : '', [Validators.required]),
