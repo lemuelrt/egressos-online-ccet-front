@@ -10,6 +10,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { EgressoService } from '../../../../services/egresso.service';
 import { Titulacao } from '../../../../models/titulacao.model';
+import { ValidationService } from '../../../../services/validation.service';
 
 @Component({
   selector: 'app-cadastro-titulacao',
@@ -60,7 +61,7 @@ export class CadastroTitulacaoComponent implements OnInit {
 
 
       // tslint:disable-next-line:max-line-length
-      titulacao: this.formBuilder.control(this.tipoFormacao ? this.tipoFormacao.titulacao.titulacaoId.toString() : '', [Validators.required]),
+      titulacao: this.formBuilder.control(this.tipoFormacao ? this.tipoFormacao.titulacao.titulacaoId.toString() : '', [ValidationService.selectedValidator]),
       area: this.formBuilder.control(this.tipoFormacao ? this.tipoFormacao.tipoFormacaoArea : '', [Validators.required]),
       instituicao: this.formBuilder.control(this.tipoFormacao ? this.tipoFormacao.tipoFormacaoInstituicao : '', [Validators.required]),
       anoConclusao: this.formBuilder.control(this.tipoFormacao ? this.tipoFormacao.tipoFormacaoAnoConclusao : '', [Validators.required]),

@@ -9,6 +9,7 @@ import { RedeSocialService } from './../../../../services/rede-social.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RedeSocial } from './../../../../models/rede-social.model';
 import { Component, OnInit, Inject } from '@angular/core';
+import { ValidationService } from '../../../../services/validation.service';
 
 @Component({
   selector: 'app-cadastro-rede-social',
@@ -39,7 +40,7 @@ export class CadastroRedeSocialComponent implements OnInit {
     );
 
     this.egressoFormRS = this.formBuilder.group({
-      redeSocialId: this.formBuilder.control('', [Validators.required]),
+      redeSocialId: this.formBuilder.control('', [ValidationService.selectedValidator]),
       link: this.formBuilder.control('', [Validators.required]),
     });
 
