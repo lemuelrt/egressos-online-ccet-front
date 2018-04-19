@@ -491,7 +491,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
       this.egressoFormAtuacao.get('pais').setValue(isAtuacao ? this.egresso.atuacoesProfissional[0].atuacaoEgressoPais : '');
       this.egressoFormAtuacao.get('homeOffice').setValue(isAtuacao ? this.egresso.atuacoesProfissional[0].atuacaoEgressoHomeOffice : '');
       // tslint:disable-next-line:max-line-length
-      this.egressoFormAtuacao.get('faixaSalarialId').setValue(isAtuacao ? this.egresso.atuacoesProfissional[0].faixaSalarial.faixaSalarialId : '');
+      this.egressoFormAtuacao.get('faixaSalarialId').setValue(isAtuacao && this.egresso.atuacoesProfissional[0].faixaSalarial ? this.egresso.atuacoesProfissional[0].faixaSalarial.faixaSalarialId : '');
       this.egressoFormAtuacao.get('reside').setValue(
         isAtuacao ?
           ((this.egresso.atuacoesProfissional[0].atuacaoEgressoCidade) ?
@@ -501,7 +501,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
       );
     }
 
-    if (verifica_area) {
+      if (verifica_area) {
       this.isArea();
     }
   }
@@ -509,6 +509,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
   isArea() {
     if (this.egressoFormAtuacao.get('trabalhaArea').value === '1') {
       this.egressoFormAtuacao.enable({ onlySelf: true });
+      this.egressoFormAtuacao.get('reside').disable({ onlySelf: true });
       this.setValoresFormAtuacao(false, false);
     } else {
       this.egressoFormAtuacao.disable({ onlySelf: true });
