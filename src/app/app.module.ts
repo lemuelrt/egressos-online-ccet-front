@@ -36,7 +36,8 @@ import { AgmCoreModule } from '@agm/core';
     EgressoModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyALTRQfVSXeAVJfH8A__FmN1Rh38C68-Z4',
-      libraries: ['places']
+      libraries: ['places'],
+      language: 'pt-br'
 })
   ],
   providers: [
