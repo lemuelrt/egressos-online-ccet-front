@@ -25,6 +25,7 @@ import { EOCCET_API_EGRESSO_FOTO } from '../../../app.api';
 import { AtuacaoProfissional } from '../../../models/atuacao-profissional.model';
 import { AtuacaoEgresso } from '../../../models/atuacao-egresso.model';
 import { CadastroTitulacaoComponent } from './cadastro-titulacao/cadastro-titulacao.component';
+import { Titulacao } from '../../../models/titulacao.model';
 
 @Component({
   selector: 'app-egresso-atualizar-form',
@@ -38,6 +39,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
   egressoFormDP: FormGroup;
 
   egresso: Egresso;
+  titulacao: Titulacao;
 
   egressoFormGaleria: FormGroup;
 
@@ -122,7 +124,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
   }
 
   /**
-   * Parte de alteração da foto do perfil
+   * inicio -alteração da foto do perfil
    */
   getUrlFoto(): string {
     if (this.urlFotoPerfil) {
@@ -156,9 +158,13 @@ export class EgressoAtualizarFormComponent implements OnInit {
 
       );
   }
+  /**
+   * fim -alteração da foto do perfil
+   */
+
 
   /*
-   * Parte de alterar dados pessoais
+   * inicio - alterar DP (dados pessoais )
    */
   initFormDP() {
     this.egressoFormDP = this.formBuilder.group({
@@ -253,9 +259,13 @@ export class EgressoAtualizarFormComponent implements OnInit {
         );
     }
   }
+  /*
+   * fim - alterar DP (dados pessoais )
+   */
+
 
   /**
-   * parte de alterar redes sociais
+   * inicio - redes sociais
    */
   openDialogAddRS() {
     const dialogRef = this.dialog.open(CadastroRedeSocialComponent, {
@@ -263,7 +273,6 @@ export class EgressoAtualizarFormComponent implements OnInit {
       autoFocus: false,
       data: { egresso: this.egresso }
     });
-
 
     dialogRef.afterClosed().subscribe(result => {
 
@@ -273,23 +282,37 @@ export class EgressoAtualizarFormComponent implements OnInit {
 
     });
   }
+  /**
+   * fim - redes sociais
+   */
 
 
   /**
      * parte de adicionar uma nova titulação
      */
+/**
+   * inicio - adicionar uma nova titulação
+   */
   openDialogAddTL() {
     const dialogRef = this.dialog.open(CadastroTitulacaoComponent, {
       width: 'auto',
       autoFocus: false,
       data: { egresso: this.egresso }
     });
-  }
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result instanceof Egresso) {
+        this.egresso = result;
+      }
+    });
+  }
+/**
+   * fim - adicionar uma nova titulação
+   */
 
 
   /**
-  * parte de alterar galeria de fotos
+  *  Inicio -  galeria de fotos
   */
   initFormGaleria() {
     this.egressoFormGaleria = this.formBuilder.group({
@@ -336,7 +359,6 @@ export class EgressoAtualizarFormComponent implements OnInit {
       this.egressoFormGaleria.controls.descricao3.setValue(this.egresso.aluno.fotos[2].fotoGaleriaDescricao);
     }
   }
-
 
   getUrlFotoGaleria(indice): string {
 
@@ -409,9 +431,13 @@ export class EgressoAtualizarFormComponent implements OnInit {
         );
     }
   }
+  /**
+  *  fim -  galeria de fotos
+  */
+
 
   /**
-   * Form atuação
+   * inicio - Form atuação profissional
    */
   initFormAtuacao() {
     this.egressoFormAtuacao = this.formBuilder.group({
@@ -455,7 +481,6 @@ export class EgressoAtualizarFormComponent implements OnInit {
     }
     this.isArea();
   }
-
 
   isArea() {
     if (this.egressoFormAtuacao.get('trabalhaArea').value === '1') {
@@ -533,23 +558,32 @@ export class EgressoAtualizarFormComponent implements OnInit {
   }
 
   pesquisaLocalTrabalha() {
-    const dialogRef = this.dialog.open(PesquisarEnderecoComponent, {
-      width: 'auto',
-      autoFocus: false,
-      data: {}
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result && result instanceof Address) {
-        this.egressoFormAtuacao.get('cidade').setValue(result.cidade);
-        this.egressoFormAtuacao.get('estado').setValue(result.estado);
-        this.egressoFormAtuacao.get('pais').setValue(result.pais);
+    if (this.egressoFormAtuacao.get('trabalhaArea').value === '1') {
+      const dialogRef = this.dialog.open(PesquisarEnderecoComponent, {
+        width: 'auto',
+        autoFocus: false,
+        data: {}
+      });
 
-        this.egressoFormAtuacao.get('reside').setValue(this.egressoFormAtuacao.get('cidade').value + ', ' +
-          this.egressoFormAtuacao.get('estado').value + ', ' +
-          this.egressoFormAtuacao.get('pais').value
-        );
-      }
-    });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result && result instanceof Address) {
+          this.egressoFormAtuacao.get('cidade').setValue(result.cidade);
+          this.egressoFormAtuacao.get('estado').setValue(result.estado);
+          this.egressoFormAtuacao.get('pais').setValue(result.pais);
+
+          this.egressoFormAtuacao.get('reside').setValue(this.egressoFormAtuacao.get('cidade').value + ', ' +
+            this.egressoFormAtuacao.get('estado').value + ', ' +
+            this.egressoFormAtuacao.get('pais').value
+          );
+        }
+      });
+    }
+
+
   }
+
+  /**
+   * fim - Form atuação profissional
+   */
 }

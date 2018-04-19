@@ -21,6 +21,7 @@ import { LayoutFooterComponent } from './layout-footer/layout-footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PapaParseModule } from 'ngx-papaparse';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { TitulacaoService } from '../../services/titulacao.service';
 
 @NgModule({
   imports: [
@@ -43,7 +44,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     CoordenadorService,
     RedeSocialService,
     FaixaSalarialService,
-    AtuacaoProfissionalService
+    AtuacaoProfissionalService,
+    TitulacaoService
   ],
   entryComponents: [
     DialogConfirmationComponent,

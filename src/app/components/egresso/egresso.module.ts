@@ -22,12 +22,12 @@ import { CadastroTitulacaoComponent } from './egresso-atualizar-form/cadastro-ti
     EgressoIndexComponent,
     PesquisarEnderecoComponent,
     CadastroRedeSocialComponent,
-    CadastroTitulacaoComponent
+    CadastroTitulacaoComponent,
   ],
   entryComponents: [
     PesquisarEnderecoComponent,
     CadastroRedeSocialComponent,
-    CadastroTitulacaoComponent
+    CadastroTitulacaoComponent,
   ]
 })
 export class EgressoModule { }
