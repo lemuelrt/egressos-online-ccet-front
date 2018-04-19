@@ -1,3 +1,4 @@
+import { egresso_routes } from './../const/egresso.config';
 import { AtuacaoProfissionalService } from './../../../services/atuacao-profissional.service';
 import { FaixaSalarialService } from './../../../services/faixa-salarial.service';
 import { FaixaSalarial } from './../../../models/faixa-salarial.model';
@@ -265,21 +266,23 @@ export class EgressoAtualizarFormComponent implements OnInit {
 
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result && result instanceof Egresso) {
-        this.egresso = result;
+
+      if (result && result.egresso !== undefined) {
+        this.egresso = result.egresso;
       }
+
     });
   }
 
 
-/**
-   * parte de adicionar uma nova titulação
-   */
+  /**
+     * parte de adicionar uma nova titulação
+     */
   openDialogAddTL() {
     const dialogRef = this.dialog.open(CadastroTitulacaoComponent, {
       width: 'auto',
       autoFocus: false,
-      data: {egresso: this.egresso}
+      data: { egresso: this.egresso }
     });
   }
 
@@ -412,7 +415,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
    */
   initFormAtuacao() {
     this.egressoFormAtuacao = this.formBuilder.group({
-      'trabalhaArea': this.formBuilder.control('1', [Validators.required]),
+      'trabalhaArea': this.formBuilder.control('2', [Validators.required]),
       'setor': this.formBuilder.control('', [Validators.required]),
       'empresa': this.formBuilder.control('', [Validators.required, ValidationService.nomeAtuacaoProfissionalCompleto]),
       'atuacaoProfissionalId': this.formBuilder.control('', [Validators.required]),
@@ -430,9 +433,10 @@ export class EgressoAtualizarFormComponent implements OnInit {
   setValoresFormAtuacao() {
     if (this.egresso !== undefined) {
 
-      if (this.egresso.atuacoesProfissional || this.egresso.atuacoesProfissional.length > 0) {
+      if (this.egresso.atuacoesProfissional && this.egresso.atuacoesProfissional.length > 0) {
+        this.egressoFormAtuacao.get('trabalhaArea').setValue('1');
         this.egressoFormAtuacao.get('setor').setValue('' + this.egresso.atuacoesProfissional[0].atuacaoEgressoSetor);
-        // this.egressoFormAtuacao.get('empresa').setValue(this.egresso.atuacoesProfissional[0].atuacaoEgressoEmpresa);
+        this.egressoFormAtuacao.get('empresa').setValue(this.egresso.atuacoesProfissional[0].atuacaoEgressoEmpresa);
         // tslint:disable-next-line:max-line-length
         this.egressoFormAtuacao.get('atuacaoProfissionalId').setValue(this.egresso.atuacoesProfissional[0].atuacaoProfissional.atuacaoProfissionalId);
         this.egressoFormAtuacao.get('cidade').setValue(this.egresso.atuacoesProfissional[0].atuacaoEgressoCidade);
@@ -449,6 +453,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
       }
 
     }
+    this.isArea();
   }
 
 
@@ -475,6 +480,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
       this.spinner.show();
 
       if (this.egressoFormAtuacao.get('trabalhaArea').value === '1') {
+
         this.egressoService.updateAtuacao(this.prepareAtuacaoAlterar(), this.egresso.egressoId)
           .finally(() => this.spinner.hide())
           .subscribe(
@@ -522,9 +528,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
 
     // tslint:disable-next-line:max-line-length
     atuacao.atuacaoProfissional = this.atuacoesProfissionais.find((a) => a.atuacaoProfissionalId.toString() === this.egressoFormAtuacao.get('atuacaoProfissionalId').value);
-    console.log(this.atuacoesProfissionais);
-    console.log(this.egressoFormAtuacao.get('atuacaoProfissionalId').value);
-    console.log(atuacao);
+
     return atuacao;
   }
 

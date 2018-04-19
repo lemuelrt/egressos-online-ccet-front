@@ -44,8 +44,8 @@ export class EgressoService {
     return this.http.post<any>(`${EOCCET_API}/egresso/atualizar-fotos-galeria/${id}`, form);
   }
 
-  updateRedeSocial(redeAluno: RedeAluno, id: number): Observable<any> {
-    return this.http.post<any>(`${EOCCET_API}/egresso/atualizar-rede-social/${id}`, redeAluno);
+  updateRedeSocial(redeAluno: RedeAluno, id: number): Observable<Egresso> {
+    return this.http.post<Egresso>(`${EOCCET_API}/egresso/atualizar-rede-social/${id}`, redeAluno);
   }
 
   updateAtuacao(atuacaoEgresso: AtuacaoEgresso, id: number): Observable<Egresso> {

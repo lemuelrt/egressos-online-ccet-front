@@ -1,3 +1,4 @@
+import { Egresso } from './../../../../models/egresso.model';
 import { Aluno } from './../../../../models/aluno.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { RedeAluno } from './../../../../models/rede-aluno.model';
@@ -57,8 +58,8 @@ export class CadastroRedeSocialComponent implements OnInit {
       this.egressoService.updateRedeSocial(redeAluno, this.data.egresso.egressoId)
         .finally(() => this.spinner.hide())
         .subscribe(
-          (egresso) => {
-            this.dialogRef.close(egresso);
+          (egresso: Egresso) => {
+            this.dialogRef.close({egresso});
           }
         );
     }
