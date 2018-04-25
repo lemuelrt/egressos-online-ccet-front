@@ -23,7 +23,6 @@ export class CadastroRedeSocialComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private toastr: ToastrService,
     private spinner: NgxSpinnerService,
     private egressoService: EgressoService,
     private redeSocialService: RedeSocialService,
@@ -56,7 +55,7 @@ export class CadastroRedeSocialComponent implements OnInit {
         redeAlunoLink: this.egressoFormRS.get('link').value
       };
 
-      this.egressoService.updateRedeSocial(redeAluno, this.data.egresso.egressoId)
+      this.egressoService.saveRedeSocial(redeAluno, this.data.egresso.egressoId)
         .finally(() => this.spinner.hide())
         .subscribe(
           (egresso: Egresso) => {

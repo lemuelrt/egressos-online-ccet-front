@@ -56,10 +56,6 @@ export class PesquisarEnderecoComponent implements OnInit {
     );
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
   setEndereco() {
     if (this.address.pais && this.address.estado && this.address.cidade) {
       this.dialogRef.close(this.address);

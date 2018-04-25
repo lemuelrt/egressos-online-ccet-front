@@ -15,25 +15,25 @@
 }
 
 .preview-foto-perfil{
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
   margin: 5px auto;
   border: 1px solid #ccc;
 }
 
 .preview-foto-perfil img{
-  width: 118px;
-  height: 118px;
+  width: 148px;
+  height: 148px;
 }
 
 .preview-foto-perfil i{
-  font-size: 80px;
+  font-size: 120px;
   margin-top: 30px;
   color: #ccc;
 }
 
 .iptFotoPerfil > button{
-  width: 120px !important;
+  width: 150px !important;
   border-radius: 5px;
 }
 

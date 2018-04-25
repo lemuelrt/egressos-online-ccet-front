@@ -1,3 +1,4 @@
+import { EstadoCivil } from './../../../models/estado-civil.model';
 import { TipoFormacao } from './../../../models/tipo-formacao_.model';
 import { egresso_routes } from './../const/egresso.config';
 import { AtuacaoProfissionalService } from './../../../services/atuacao-profissional.service';
@@ -37,18 +38,16 @@ import { Titulacao } from '../../../models/titulacao.model';
 
 export class EgressoAtualizarFormComponent implements OnInit {
 
-  egressoFormDP: FormGroup;
+  egressoFormDP: FormGroup; //
 
-  egresso: Egresso;
-  titulacao: Titulacao;
+  egresso: Egresso; //
 
-  egressoFormGaleria: FormGroup;
+  egressoFormGaleria: FormGroup; //
 
-  egressoFormAtuacao: FormGroup;
-  trabalhaArea = '1';
+  egressoFormAtuacao: FormGroup; //
 
-  faixasSalariais: FaixaSalarial[] = [];
-  atuacoesProfissionais: AtuacaoProfissional[] = [];
+  faixasSalariais: FaixaSalarial[] = []; //
+  atuacoesProfissionais: AtuacaoProfissional[] = []; //
 
   title = 'ALTERAR MEUS DADOS';
   btndescricao = 'Atualizar';
@@ -63,7 +62,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
 
   endereco_formatado: string;
 
-  estadosCivis: { id: string, nome: string }[] = [
+  estadosCivis: EstadoCivil[] = [
     { id: '1', nome: 'Solteiro' },
     { id: '2', nome: 'Casado' },
     { id: '3', nome: 'Divorciado' },
@@ -128,7 +127,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
   /**
    * inicio -alteração da foto do perfil
    */
-  getUrlFoto(): string {
+  getUrlFotoPerfil(): string {
     if (this.urlFotoPerfil) {
       return this.urlFotoPerfil;
     } else if (this.egresso && this.egresso.aluno.alunoFotoPerfil) {
@@ -177,7 +176,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
     this.egressoFormDP = this.formBuilder.group({
       nome: this.formBuilder.control('', [Validators.required, ValidationService.nomeCompleto]),
       email: this.formBuilder.control('', [ValidationService.emailValidator]),
-      telefone: this.formBuilder.control('', [ValidationService.telefoneValidator]),
+      telefone: this.formBuilder.control('', []),
       cidade: this.formBuilder.control('', []),
       estado: this.formBuilder.control('', []),
       pais: this.formBuilder.control('', []),
@@ -199,7 +198,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
     }
   }
 
-  localReside() {
+  localReside(): string {
     if (this.egressoFormDP.get('cidade').value) {
       // tslint:disable-next-line:max-line-length
       return `${this.egressoFormDP.get('cidade').value}, ${this.egressoFormDP.get('estado').value}, ${this.egressoFormDP.get('pais').value}`;
@@ -207,7 +206,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
     return '';
   }
 
-  searchEndereco() {
+  pesquisarEnderecoReside() {
     const dialogRef = this.dialog.open(PesquisarEnderecoComponent, {
       width: 'auto',
       autoFocus: false,
@@ -225,20 +224,6 @@ export class EgressoAtualizarFormComponent implements OnInit {
           this.egressoFormDP.get('pais').value;
       }
     });
-  }
-
-  prepareEgressoAlterarDP(): Egresso {
-    const egressoAlterar: Egresso = this.egresso;
-    egressoAlterar.aluno.alunoNome = this.egressoFormDP.get('nome').value;
-    egressoAlterar.aluno.alunoEmail = this.egressoFormDP.get('email').value;
-    egressoAlterar.aluno.alunoTelefone = this.egressoFormDP.get('telefone').value;
-    egressoAlterar.aluno.alunoCidade = this.egressoFormDP.get('cidade').value;
-    egressoAlterar.aluno.alunoEstado = this.egressoFormDP.get('estado').value;
-    egressoAlterar.aluno.alunoPais = this.egressoFormDP.get('pais').value;
-    egressoAlterar.aluno.alunoEstadoCivil = this.egressoFormDP.get('estadoCivil').value;
-    egressoAlterar.aluno.alunoQtdFilhos = this.egressoFormDP.get('qtdFilhos').value;
-
-    return egressoAlterar;
   }
 
   alterarDP() {
@@ -266,6 +251,20 @@ export class EgressoAtualizarFormComponent implements OnInit {
 
         );
     }
+  }
+
+  prepareEgressoAlterarDP(): Egresso {
+    const egressoAlterar: Egresso = this.egresso;
+    egressoAlterar.aluno.alunoNome = this.egressoFormDP.get('nome').value;
+    egressoAlterar.aluno.alunoEmail = this.egressoFormDP.get('email').value;
+    egressoAlterar.aluno.alunoTelefone = this.egressoFormDP.get('telefone').value;
+    egressoAlterar.aluno.alunoCidade = this.egressoFormDP.get('cidade').value;
+    egressoAlterar.aluno.alunoEstado = this.egressoFormDP.get('estado').value;
+    egressoAlterar.aluno.alunoPais = this.egressoFormDP.get('pais').value;
+    egressoAlterar.aluno.alunoEstadoCivil = this.egressoFormDP.get('estadoCivil').value;
+    egressoAlterar.aluno.alunoQtdFilhos = this.egressoFormDP.get('qtdFilhos').value;
+
+    return egressoAlterar;
   }
   /*
    * fim - alterar DP (dados pessoais )
@@ -304,8 +303,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
      */
   openDialogAddTL(tipoFormacao?: TipoFormacao) {
     const dialogRef = this.dialog.open(CadastroTitulacaoComponent, {
-      width: 'auto',
-      maxWidth: 400,
+      width: '660px',
       autoFocus: false,
       data: { egresso: this.egresso, tipoFormacao: tipoFormacao }
     });
@@ -501,7 +499,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
       );
     }
 
-      if (verifica_area) {
+    if (verifica_area) {
       this.isArea();
     }
   }

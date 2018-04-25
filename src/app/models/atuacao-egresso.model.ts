@@ -3,7 +3,6 @@ import { Egresso } from './egresso.model';
 import { AtuacaoProfissional } from './atuacao-profissional.model';
 
 export class AtuacaoEgresso {
-  AtuacaoProfissional: AtuacaoProfissional;
   atuacaoEgressoId: string;
   egresso: Egresso;
   atuacaoProfissional: AtuacaoProfissional;

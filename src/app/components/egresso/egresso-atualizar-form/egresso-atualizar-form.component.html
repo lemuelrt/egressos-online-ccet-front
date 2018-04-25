@@ -17,8 +17,8 @@
         <div class="tab-content">
           <div class="iptFotoPerfil">
             <div class="preview-foto-perfil">
-              <i *ngIf="!getUrlFoto()" class="glyphicon glyphicon-user"></i>
-              <img *ngIf="getUrlFoto()" [src]="getUrlFoto()" accept="image/*">
+              <i *ngIf="!getUrlFotoPerfil()" class="glyphicon glyphicon-user"></i>
+              <img *ngIf="getUrlFotoPerfil()" [src]="getUrlFotoPerfil()" accept="image/*">
             </div>
             <input type="file" class="hidden" #fotoPerfil (change)="showPreview($event)">
             <button mat-raised-button color="primary" (click)="fotoPerfil.click()">Selecionar imagem</button>
@@ -80,7 +80,7 @@
                 <div class="col-sm-10">
                   <div class="input-group">
                     <input type="name" class="form-control ipt-local-reside" disabled value="{{localReside()}}">
-                    <span class="input-group-addon" (click)="searchEndereco()">
+                    <span class="input-group-addon" (click)="pesquisarEnderecoReside()">
                       <i class="glyphicon glyphicon-pencil"></i>
                     </span>
                   </div>
