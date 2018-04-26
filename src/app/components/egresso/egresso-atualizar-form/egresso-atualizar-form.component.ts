@@ -139,6 +139,8 @@ export class EgressoAtualizarFormComponent implements OnInit {
   alterarFotoPerfil() {
 
     this.spinner.show();
+    console.log(this.fotoPerfil.nativeElement.files[0]);
+
     if (this.fotoPerfil.nativeElement.files[0] !== undefined) {
       const formData = new FormData();
 
