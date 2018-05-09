@@ -14,7 +14,7 @@ export class ValidationService {
       'invalidEmailAddress': MESSAGES['M001'],
       'invalidPassword': MESSAGES['M005'],
       'invalidCPF': MESSAGES['M003'],
-      'senhasNaoConferem': MESSAGES['M012'],
+      'senhasNaoConferem': MESSAGES['M009'],
       'invalidNomeCompleto': MESSAGES['M002'],
       'invalidSenha': MESSAGES['M005'],
       'invalidNomeSimples': MESSAGES['M017'],
