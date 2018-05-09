@@ -16,6 +16,7 @@ import { CoordEgressoIndexComponent } from './coord-egresso-index/coord-egresso-
 import { CoordEgressosImportComponent } from './coord-egressos-import/coord-egressos-import.component';
 import { AtuacaoProfissionalService } from '../../services/atuacao-profissional.service';
 import { EgressoService } from '../../services/egresso.service';
+import { LeftPadPipe } from 'ngx-pipes';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { EgressoService } from '../../services/egresso.service';
   ],
   providers: [
     AtuacaoProfissionalService,
-    EgressoService
+    EgressoService,
+    LeftPadPipe
   ]
 })
 export class CoordModule { }

@@ -29,7 +29,7 @@ import { AgmCoreModule } from '@agm/core';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+
     AdminModule,
     CoordModule,
     SharedModule,
@@ -38,7 +38,8 @@ import { AgmCoreModule } from '@agm/core';
       apiKey: 'AIzaSyALTRQfVSXeAVJfH8A__FmN1Rh38C68-Z4',
       libraries: ['places'],
       language: 'pt-br'
-})
+    }),
+    AppRoutingModule,
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandle },

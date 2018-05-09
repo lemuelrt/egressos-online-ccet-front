@@ -1,3 +1,4 @@
+import { LeftPadPipe } from 'ngx-pipes';
 import { TipoFormacao } from './../models/tipo-formacao_.model';
 import { AtuacaoEgresso } from './../models/atuacao-egresso.model';
 import { RedeAluno } from './../models/rede-aluno.model';
@@ -15,7 +16,7 @@ export class EgressoService {
 
   egressosImportados: Egresso[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private _lpad: LeftPadPipe) { }
 
   save(egresso: Egresso): Observable<Egresso> {
 
@@ -71,7 +72,7 @@ export class EgressoService {
             egressoAnoConclusao: data[i][3],
             aluno: {
               alunoNome: data[i][0],
-              alunoCpf: data[i][1]
+              alunoCpf: this._lpad.transform(data[i][1], 11, '0')
             }
           });
         }

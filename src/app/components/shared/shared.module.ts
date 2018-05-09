@@ -1,3 +1,4 @@
+import { ConsultaDistribuicaoGeograficaService } from './../../services/consulta-distribuicao-geografica.service';
 import { AtuacaoProfissionalService } from './../../services/atuacao-profissional.service';
 import { FaixaSalarialService } from './../../services/faixa-salarial.service';
 import { RedeSocialService } from './../../services/rede-social.service';
@@ -9,7 +10,7 @@ import { CoordenadorService } from './../../services/coordenador.service';
 import { ToastrModule } from 'ngx-toastr';
 import { OfertaService } from './../../services/oferta.service';
 import { ValidationService } from './../../services/validation.service';
-import { NgModule,  } from '@angular/core';
+import { NgModule, } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ControlMessagesComponent } from './control-messages/control-messages.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -22,6 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PapaParseModule } from 'ngx-papaparse';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { TitulacaoService } from '../../services/titulacao.service';
+// tslint:disable-next-line:max-line-length
+import { ConsultaDistribuicaoGeograficaComponent } from './consultas/consulta-distribuicao-geografica/consulta-distribuicao-geografica.component';
 
 @NgModule({
   imports: [
@@ -37,7 +40,13 @@ import { TitulacaoService } from '../../services/titulacao.service';
     PapaParseModule,
     NgxSpinnerModule
   ],
-  declarations: [ControlMessagesComponent, DialogConfirmationComponent, LayoutHeaderComponent, LayoutFooterComponent],
+  declarations: [
+    ControlMessagesComponent,
+    DialogConfirmationComponent,
+    LayoutHeaderComponent,
+    LayoutFooterComponent,
+    ConsultaDistribuicaoGeograficaComponent
+  ],
   providers: [
     ValidationService,
     OfertaService,
@@ -45,7 +54,8 @@ import { TitulacaoService } from '../../services/titulacao.service';
     RedeSocialService,
     FaixaSalarialService,
     AtuacaoProfissionalService,
-    TitulacaoService
+    TitulacaoService,
+    ConsultaDistribuicaoGeograficaService
   ],
   entryComponents: [
     DialogConfirmationComponent,
@@ -65,7 +75,8 @@ import { TitulacaoService } from '../../services/titulacao.service';
     LayoutModule,
     BoxModule,
     NgxMaskModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ConsultaDistribuicaoGeograficaComponent
   ]
 })
 export class SharedModule { }
