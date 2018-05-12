@@ -1,3 +1,5 @@
+// tslint:disable-next-line:max-line-length
+import { ConsultaDistribuicaoGeograficaComponent } from './../../shared/consultas/consulta-distribuicao-geografica/consulta-distribuicao-geografica.component';
 import { CoordAtuacaoProfissionalFormComponent } from './../coord-atuacao-profissional-form/coord-atuacao-profissional-form.component';
 import { CoordAtuacaoProfissionalIndexComponent } from './../coord-atuacao-profissional-index/coord-atuacao-profissional-index.component';
 // tslint:disable-next-line:max-line-length
@@ -21,6 +23,7 @@ export const coord_routes: Routes = [
       { path: 'egressos-add', component: CoordEgressoFormComponent },
       { path: 'egressos-edit/:id', component: CoordEgressoFormComponent },
       { path: 'egressos-import', component: CoordEgressosImportComponent },
+      { path: 'consulta/distribuicao-geografica', component: ConsultaDistribuicaoGeograficaComponent },
     ]
   },
 ];

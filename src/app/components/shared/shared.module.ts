@@ -10,7 +10,7 @@ import { CoordenadorService } from './../../services/coordenador.service';
 import { ToastrModule } from 'ngx-toastr';
 import { OfertaService } from './../../services/oferta.service';
 import { ValidationService } from './../../services/validation.service';
-import { NgModule, } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ControlMessagesComponent } from './control-messages/control-messages.component';
 import { HttpClientModule } from '@angular/common/http';
