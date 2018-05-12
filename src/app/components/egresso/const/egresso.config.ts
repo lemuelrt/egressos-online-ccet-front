@@ -1,9 +1,11 @@
  // tslint:disable-next-line:max-line-length
 import { ConsultaDistribuicaoGeograficaComponent } from './../../shared/consultas/consulta-distribuicao-geografica/consulta-distribuicao-geografica.component';
+import { ConsultaFaixaSalarialComponent } from '../../shared/consultas/consulta-faixa-salarial/consulta-faixa-salarial.component';
 import { EgressoAtualizarFormComponent } from './../egresso-atualizar-form/egresso-atualizar-form.component';
 import { Routes } from '@angular/router';
 import { EgressoIndexComponent } from './../egresso-index/egresso-index.component';
 import { EgressoComponent } from './../egresso.component';
+
 
 export const egresso_routes: Routes = [
   {
@@ -11,6 +13,7 @@ export const egresso_routes: Routes = [
       { path: '', component: EgressoIndexComponent },
       { path: 'atualizar', component: EgressoAtualizarFormComponent },
       { path: 'consulta/distribuicao-geografica', component: ConsultaDistribuicaoGeograficaComponent },
+      { path: 'consulta/faixa-salarial', component: ConsultaFaixaSalarialComponent}
     ]
   },
 ];

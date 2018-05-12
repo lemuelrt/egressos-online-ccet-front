@@ -10,6 +10,7 @@ import { CoordEgressosImportComponent } from './../coord-egressos-import/coord-e
 import { CoordComponent } from './../coord.component';
 import { Routes } from '@angular/router';
 import { CoordIndexComponent } from '../coord-index/coord-index.component';
+import { ConsultaFaixaSalarialComponent } from '../../shared/consultas/consulta-faixa-salarial/consulta-faixa-salarial.component';
 
 
 export const coord_routes: Routes = [
@@ -24,6 +25,7 @@ export const coord_routes: Routes = [
       { path: 'egressos-edit/:id', component: CoordEgressoFormComponent },
       { path: 'egressos-import', component: CoordEgressosImportComponent },
       { path: 'consulta/distribuicao-geografica', component: ConsultaDistribuicaoGeograficaComponent },
+      { path: 'consulta/faixa-salarial', component: ConsultaFaixaSalarialComponent}
     ]
   },
 ];
