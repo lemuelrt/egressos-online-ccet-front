@@ -25,6 +25,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { TitulacaoService } from '../../services/titulacao.service';
 // tslint:disable-next-line:max-line-length
 import { ConsultaDistribuicaoGeograficaComponent } from './consultas/consulta-distribuicao-geografica/consulta-distribuicao-geografica.component';
+import { ConsultaFaixaSalarialComponent } from './consultas/consulta-faixa-salarial/consulta-faixa-salarial.component';
 
 @NgModule({
   imports: [
@@ -45,7 +46,8 @@ import { ConsultaDistribuicaoGeograficaComponent } from './consultas/consulta-di
     DialogConfirmationComponent,
     LayoutHeaderComponent,
     LayoutFooterComponent,
-    ConsultaDistribuicaoGeograficaComponent
+    ConsultaDistribuicaoGeograficaComponent,
+    ConsultaFaixaSalarialComponent
   ],
   providers: [
     ValidationService,
@@ -76,7 +78,8 @@ import { ConsultaDistribuicaoGeograficaComponent } from './consultas/consulta-di
     BoxModule,
     NgxMaskModule,
     NgxSpinnerModule,
-    ConsultaDistribuicaoGeograficaComponent
+    ConsultaDistribuicaoGeograficaComponent,
+    ConsultaFaixaSalarialComponent
   ]
 })
 export class SharedModule { }
