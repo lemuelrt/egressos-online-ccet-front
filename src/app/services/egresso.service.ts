@@ -62,6 +62,14 @@ export class EgressoService {
     return this.http.post<Egresso>(`${EOCCET_API}/egresso/tipo-formacao/${id}`, formacao);
   }
 
+  getAnosIngresso(): Observable<any> {
+    return this.http.get<any>(`${EOCCET_API}/egresso/anos-ingresso`);
+  }
+
+  getAnosConclusao(): Observable<any> {
+    return this.http.get<any>(`${EOCCET_API}/egresso/anos-conclusao`);
+  }
+
   setEgressosImportados(data: any) {
     this.egressosImportados = [];
     if (data instanceof Array) {

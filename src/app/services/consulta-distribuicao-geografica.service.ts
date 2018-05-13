@@ -15,6 +15,7 @@ export class ConsultaDistribuicaoGeograficaService {
       anosConclusao: anosConclusao
     };
 
+    console.log(params);
     return this.http.post<any[]>(`${EOCCET_API}/consulta/distribuicao-geografica`, params);
   }
 }

@@ -62,3 +62,13 @@
   border-color: #ffffff;
 }
 
+.alert-default{
+  background-color: #d2ecf7;
+}
+.text-bold{
+  font-weight: bold;
+}
+.text-small{
+  padding-top: 10px;
+  font-size: 1em;
+}

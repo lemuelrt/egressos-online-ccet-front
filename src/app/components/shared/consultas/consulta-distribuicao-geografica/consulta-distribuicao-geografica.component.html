@@ -23,7 +23,7 @@
         <div class="form-group"  *ngIf="consultaForm.controls.tipoAno.value == '1'" [class.has-error]="consultaForm.controls.anosIngresso.errors && (consultaForm.controls.anosIngresso.touched)">
           <label class="col-sm-2 control-label">Ano(s) de ingresso</label>
           <div class="col-sm-10">
-            <ng-select [items]="anosIngresso" [multiple]="true" [closeOnSelect]="false" bindLabel="ano" bindValue="ano" placeholder="Selecione o(s) ano(s) de ingresso"
+            <ng-select [items]="anosIngresso" [multiple]="true" [closeOnSelect]="false" placeholder="Selecione o(s) ano(s) de ingresso"
               formControlName="anosIngresso">
             </ng-select>
             <app-control-messages [control]="consultaForm.controls.anosIngresso"></app-control-messages>
@@ -33,7 +33,7 @@
         <div class="form-group" *ngIf="consultaForm.controls.tipoAno.value == '2'" [class.has-error]="consultaForm.controls.anosConclusao.errors && (consultaForm.controls.anosConclusao.touched)">
           <label class="col-sm-2 control-label">Ano(s) de conclusão</label>
           <div class="col-sm-10">
-            <ng-select [items]="anosConclusao" [multiple]="true" [closeOnSelect]="false" bindLabel="ano" bindValue="ano" placeholder="Selecione o(s) ano(s) de conclusão"
+            <ng-select [items]="anosConclusao" [multiple]="true" [closeOnSelect]="false" placeholder="Selecione o(s) ano(s) de conclusão"
               formControlName="anosConclusao">
             </ng-select>
             <app-control-messages [control]="consultaForm.controls.anosConclusao"></app-control-messages>
@@ -54,6 +54,36 @@
 
     </div>
     <hr />
+
+    <div class="alert alert-default">
+      <div class="text-bold">Total de egressos selecionados*:   {{totalEgressos(consultasDistribuicaoGeografica)}}</div>
+      <p class="text-small">
+        * O total de egressos selecionados são aqueles que atendem aos filtros e que informaram seus endereços.
+      </p>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Endereço</th>
+            <th>Residem</th>
+            <th>Percentual</th>
+            <th>Trabalham</th>
+            <th>Percentual</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cdg of consultasDistribuicaoGeografica">
+            <td>{{cdg.cidade}}, {{cdg.estado}}, {{cdg.pais}}</td>
+            <td>{{cdg.totalreside}}</td>
+            <td>{{percentualReside(cdg, consultasDistribuicaoGeografica) | number}}%</td>
+            <td>{{cdg.totaltrabalha}}</td>
+            <td>{{percentualTrabalha(cdg, consultasDistribuicaoGeografica) | number}}%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
   </mk-box-content>
 
