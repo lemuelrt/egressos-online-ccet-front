@@ -25,6 +25,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { TitulacaoService } from '../../services/titulacao.service';
 // tslint:disable-next-line:max-line-length
 import { ConsultaDistribuicaoGeograficaComponent } from './consultas/consulta-distribuicao-geografica/consulta-distribuicao-geografica.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { RouterModule } from '@angular/router';
 import { ConsultaFaixaSalarialComponent } from './consultas/consulta-faixa-salarial/consulta-faixa-salarial.component';
 
 @NgModule({
@@ -39,7 +41,10 @@ import { ConsultaFaixaSalarialComponent } from './consultas/consulta-faixa-salar
     BoxModule,
     NgxMaskModule.forRoot(),
     PapaParseModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgSelectModule,
+    ReactiveFormsModule,
+    RouterModule
   ],
   declarations: [
     ControlMessagesComponent,
@@ -74,6 +79,7 @@ import { ConsultaFaixaSalarialComponent } from './consultas/consulta-faixa-salar
     BrowserAnimationsModule,
     MaterialModule,
     NgPipesModule,
+    NgSelectModule,
     LayoutModule,
     BoxModule,
     NgxMaskModule,
