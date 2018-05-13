@@ -80,22 +80,23 @@ export class CoordAtuacaoProfissionalFormComponent implements OnInit, AfterViewI
       };
 
 
-      // console.log(atuacaoProfissional);
-
       if (this.atuacaoProfissional === null) {
         this.atuacaoProfissionalService.save(atuacaoProfissional)
         .finally(() => this.spinner.hide())
         .subscribe(
           (coordenadorResponse) => {
-            // console.log(atuacaoProfissionalResponse);
+
             this.toastr.success(MESSAGES['M010']);
             this.router.navigate(['/coord/atuacoes-profissionais']);
           }
         );
       } else {
-        this.atuacaoProfissionalService.update(this.atuacaoProfissional.atuacaoProfissionalId, atuacaoProfissional).subscribe(
+          this.atuacaoProfissionalService.update(
+          this.atuacaoProfissional.atuacaoProfissionalId, atuacaoProfissional)
+          .finally(() => this.spinner.hide())
+          .subscribe(
           (atuacaoProfissionalResponse) => {
-            // console.log(atuacaoProfissionalResponse);
+
             this.toastr.success(MESSAGES['M011']);
             this.router.navigate(['/coord/atuacoes-profissionais']);
           }

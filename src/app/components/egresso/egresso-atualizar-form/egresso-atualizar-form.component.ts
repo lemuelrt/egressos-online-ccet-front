@@ -92,7 +92,6 @@ export class EgressoAtualizarFormComponent implements OnInit {
 
     this.egressoService.getByid(68).subscribe(
       (egresso) => {
-        console.log(egresso);
         this.egresso = egresso;
         this.setValoresFormDP();
         this.setValoresFormGaleria();
@@ -139,7 +138,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
   alterarFotoPerfil() {
 
     this.spinner.show();
-    console.log(this.fotoPerfil.nativeElement.files[0]);
+
 
     if (this.fotoPerfil.nativeElement.files[0] !== undefined) {
       const formData = new FormData();
@@ -155,9 +154,6 @@ export class EgressoAtualizarFormComponent implements OnInit {
             this.urlFotoPerfil = null;
             this.egresso = response;
             this.toastr.success(MESSAGES['M011']);
-            console.log('------------- RESPONSE -----------------');
-            console.log(response);
-            console.log('----------------------------------------');
           }
 
         );
@@ -211,7 +207,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
   pesquisarEnderecoReside() {
     const dialogRef = this.dialog.open(PesquisarEnderecoComponent, {
       width: 'auto',
-      autoFocus: false,
+      autoFocus: true,
       data: {}
     });
 
@@ -246,9 +242,6 @@ export class EgressoAtualizarFormComponent implements OnInit {
           (response) => {
             this.egresso = response;
             this.toastr.success(MESSAGES['M011']);
-            console.log('------------- RESPONSE -----------------');
-            console.log(response);
-            console.log('----------------------------------------');
           }
 
         );
@@ -347,7 +340,6 @@ export class EgressoAtualizarFormComponent implements OnInit {
     control.valueChanges.subscribe((value) => {
 
       if (this.getUrlFotoGaleria(indice) && value === '') {
-        console.log('Valor' + indice + ': ' + value);
         control.setErrors({ 'required': true });
       }
     });
@@ -440,9 +432,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
             this.urlFotosGaleria = { 0: '', 1: '', 2: '' };
             this.egresso = response;
             this.toastr.success(MESSAGES['M011']);
-            console.log('------------- RESPONSE -----------------');
-            console.log(response);
-            console.log('----------------------------------------');
+
           }
 
         );
@@ -540,9 +530,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
             (response) => {
               this.egresso = response;
               this.toastr.success(MESSAGES['M011']);
-              console.log('------------- RESPONSE 1 -----------------');
-              console.log(response);
-              console.log('----------------------------------------');
+
             }
 
           );
@@ -554,9 +542,6 @@ export class EgressoAtualizarFormComponent implements OnInit {
               this.egresso = response;
               this.toastr.success(MESSAGES['M011']);
               this.setValoresFormAtuacao();
-              console.log('------------- RESPONSE 2 -----------------');
-              console.log(response);
-              console.log('----------------------------------------');
             }
 
           );
@@ -593,7 +578,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
     if (this.egressoFormAtuacao.get('trabalhaArea').value === '1') {
       const dialogRef = this.dialog.open(PesquisarEnderecoComponent, {
         width: 'auto',
-        autoFocus: false,
+        autoFocus: true,
         data: {}
       });
 
