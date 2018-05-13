@@ -40,7 +40,7 @@ export class ConsultaFaixaSalarialComponent implements OnInit {
       tipoAno: this.formBuilder.control('1', []),
       anosIngresso: this.formBuilder.control('', []),
       anosConclusao: this.formBuilder.control('', []),
-      setor : this.formBuilder.control('1', [])
+      setor : this.formBuilder.control('', [])
     });
 
     this.consultaForm.get('tipoAno').valueChanges.subscribe(() => {
@@ -76,8 +76,8 @@ export class ConsultaFaixaSalarialComponent implements OnInit {
     // tslint:disable-next-line:max-line-length
     const anosC = this.consultaForm.get('tipoAno').value === '2' && this.consultaForm.get('anosConclusao').value ? this.consultaForm.get('anosConclusao').value : [];
     // tslint:disable-next-line:max-line-length
-    const setor = this.consultaForm.get('setor').value === '1' || '2' && this.consultaForm.get('setor').value ? this.consultaForm.get('setor').value : [];
-    console.log(setor);
+    const setor = this.consultaForm.get('setor').value === '1' || this.consultaForm.get('setor').value === '2' ? parseInt(this.consultaForm.get('setor').value, 10) : null;
+
     this.consultaFSService.consulta(anosI, anosC, setor)
       .finally(() => this.spinner.hide())
       .subscribe(
