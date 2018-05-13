@@ -17,9 +17,9 @@ export class ConsultaDistribuicaoGeograficaComponent implements OnInit {
   title = 'Consulta de distribuição geográfica';
   btndescricao = 'Consultar';
 
-  anosIngresso = [];
+  anosIngresso: number[] = [];
 
-  anosConclusao = [];
+  anosConclusao: number[] = [];
 
   consultaForm: FormGroup;
 
