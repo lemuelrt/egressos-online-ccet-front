@@ -72,12 +72,12 @@ export class ConsultaDistribuicaoGeograficaComponent implements OnInit {
     const anosC = this.consultaForm.get('tipoAno').value === '2' && this.consultaForm.get('anosConclusao').value ? this.consultaForm.get('anosConclusao').value : [];
 
     this.consultaDGService.consulta(anosI, anosC)
-    .finally(() => this.spinner.hide() )
-    .subscribe(
-      (result) => {
-        this.consultasDistribuicaoGeografica = result;
-      }
-    );
+      .finally(() => this.spinner.hide())
+      .subscribe(
+        (result) => {
+          this.consultasDistribuicaoGeografica = result;
+        }
+      );
 
   }
 
