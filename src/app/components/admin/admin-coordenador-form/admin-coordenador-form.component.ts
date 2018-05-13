@@ -44,7 +44,7 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
     this.ofertaService.getAll().subscribe(
       (ofertas) => {
         this.ofertas = ofertas;
-        console.log(ofertas);
+
       }
     );
 
@@ -129,7 +129,7 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
         control.markAsTouched({ onlySelf: true });
       });
 
-      this.toastr.error(MESSAGES['M011']);
+      this.toastr.error(MESSAGES['M008']);
     } else {
       this.spinner.show();
       const ofertaSeleciona: Oferta = this.ofertas.find((o) => o.ofertaId.toString() === this.adminForm.get('oferta').value);
@@ -143,22 +143,25 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
         coordenadorOferta: ofertaSeleciona
       };
 
-      // console.log(coordenador);
+
 
       if (this.coordenador === null) {
         this.coordenadorService.save(coordenador)
         .finally(() => this.spinner.hide())
         .subscribe(
           (coordenadorResponse) => {
-            // console.log(coordenadorResponse);
+
             this.toastr.success(MESSAGES['M013']);
             this.router.navigate(['/admin/coordenadores']);
           }
         );
       } else {
-        this.coordenadorService.update(this.coordenador.coordenadorId, coordenador).subscribe(
+        this.coordenadorService.update(
+          this.coordenador.coordenadorId, coordenador)
+          .finally(() => this.spinner.hide())
+          .subscribe(
           (coordenadorResponse) => {
-            // console.log(coordenadorResponse);
+
             this.toastr.success(MESSAGES['M014']);
             this.router.navigate(['/admin/coordenadores']);
           }

@@ -119,7 +119,6 @@ export class ValidationService {
 
     if (value < (anoingresso + (tempMin - 1))) {
       return { 'invalidTempoMinForm': true };
-      // console.log(value);
     }
     return null;
   }

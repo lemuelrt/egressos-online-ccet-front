@@ -28,6 +28,7 @@ import { ConsultaDistribuicaoGeograficaComponent } from './consultas/consulta-di
 import { NgSelectModule } from '@ng-select/ng-select';
 import { RouterModule } from '@angular/router';
 import { ConsultaFaixaSalarialComponent } from './consultas/consulta-faixa-salarial/consulta-faixa-salarial.component';
+import { ConsultaFaixaSalarialService } from '../../services/consulta-faixa-salarial.service';
 
 @NgModule({
   imports: [
@@ -62,7 +63,8 @@ import { ConsultaFaixaSalarialComponent } from './consultas/consulta-faixa-salar
     FaixaSalarialService,
     AtuacaoProfissionalService,
     TitulacaoService,
-    ConsultaDistribuicaoGeograficaService
+    ConsultaDistribuicaoGeograficaService,
+    ConsultaFaixaSalarialService
   ],
   entryComponents: [
     DialogConfirmationComponent,

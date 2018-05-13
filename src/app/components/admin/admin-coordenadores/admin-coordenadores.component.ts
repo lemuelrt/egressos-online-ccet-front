@@ -42,7 +42,6 @@ export class AdminCoordenadoresComponent implements OnInit {
 
     this.coordenadorService.list().subscribe(
       (coordenadores) => {
-        // console.log(coordenadores);
         this.coordenadores = coordenadores;
       }
     );
@@ -70,7 +69,7 @@ export class AdminCoordenadoresComponent implements OnInit {
         coordenador.coordenadorSenha = '';
 
         this.coordenadorService.update(id, coordenador).subscribe(
-          (respnse) => {
+          (response) => {
             this.toastr.success(MESSAGES['M012']);
             this.coordenadores = this.coordenadores.filter((c2) => c2.coordenadorId !== id);
           }

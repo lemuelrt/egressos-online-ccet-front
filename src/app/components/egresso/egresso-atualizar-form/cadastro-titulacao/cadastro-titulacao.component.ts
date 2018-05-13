@@ -45,16 +45,15 @@ export class CadastroTitulacaoComponent implements OnInit {
     this.titulacaoService.list().subscribe(
       (titulacoes) => {
         this.titulacoesEgresso = titulacoes;
-        console.log(titulacoes);
       }
 
     );
 
     this.tipoFormacao = (this.data.tipoFormacao !== undefined) ? this.data.tipoFormacao : false;
 
-    if ( this.tipoFormacao) {
+    if (this.tipoFormacao) {
       this.title = 'Alterar titulação';
-    this.btndescricao = 'Alterar';
+      this.btndescricao = 'Alterar';
 
     }
     this.egressoFormTitulacao = this.formBuilder.group({
@@ -77,14 +76,17 @@ export class CadastroTitulacaoComponent implements OnInit {
   }
 
   cadastrar() {
-    console.log('teste');
+
     if (this.egressoFormTitulacao.invalid) {
       Object.keys(this.egressoFormTitulacao.controls).forEach(field => {
         const control = this.egressoFormTitulacao.get(field);
         control.markAsTouched({ onlySelf: true });
       });
+
       this.toastr.error(MESSAGES['M008']);
+
     } else {
+
       this.spinner.show();
 
       const tipoFormacao: TipoFormacao = {
