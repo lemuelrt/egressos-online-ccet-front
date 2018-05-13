@@ -27,6 +27,7 @@ import { TitulacaoService } from '../../services/titulacao.service';
 import { ConsultaDistribuicaoGeograficaComponent } from './consultas/consulta-distribuicao-geografica/consulta-distribuicao-geografica.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { RouterModule } from '@angular/router';
+import { ConsultaFaixaSalarialComponent } from './consultas/consulta-faixa-salarial/consulta-faixa-salarial.component';
 
 @NgModule({
   imports: [
@@ -50,7 +51,8 @@ import { RouterModule } from '@angular/router';
     DialogConfirmationComponent,
     LayoutHeaderComponent,
     LayoutFooterComponent,
-    ConsultaDistribuicaoGeograficaComponent
+    ConsultaDistribuicaoGeograficaComponent,
+    ConsultaFaixaSalarialComponent
   ],
   providers: [
     ValidationService,
@@ -82,7 +84,8 @@ import { RouterModule } from '@angular/router';
     BoxModule,
     NgxMaskModule,
     NgxSpinnerModule,
-    ConsultaDistribuicaoGeograficaComponent
+    ConsultaDistribuicaoGeograficaComponent,
+    ConsultaFaixaSalarialComponent
   ]
 })
 export class SharedModule { }
