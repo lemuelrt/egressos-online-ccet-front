@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "^5.2.8",
     "@angular/router": "^5.2.8",
     "@ng-bootstrap/ng-bootstrap": "^1.1.0",
+    "@ng-select/ng-select": "^1.*",
     "admin-lte": "^2.4.2",
     "ajv": "^6.2.1",
     "angular-admin-lte": "^0.2.7",
