@@ -8,7 +8,7 @@ export class ConsultaFaixaSalarialService {
 
   constructor(private http: HttpClient) { }
 
-  consulta(anosIngresso: string[], anosConclusao: string[], setor: string[]): Observable <any[]> {
+  consulta(anosIngresso: string[], anosConclusao: string[], setor: number): Observable <any[]> {
 
     const params = {
       anosIngresso  : anosIngresso,
