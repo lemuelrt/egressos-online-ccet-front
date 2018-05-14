@@ -1,4 +1,6 @@
 // tslint:disable-next-line:max-line-length
+import { ConsultaAtuacaoProfissionalComponent } from './../../shared/consultas/consulta-atuacao-profissional/consulta-atuacao-profissional.component';
+// tslint:disable-next-line:max-line-length
 import { ConsultaDistribuicaoGeograficaComponent } from './../../shared/consultas/consulta-distribuicao-geografica/consulta-distribuicao-geografica.component';
 import { CoordAtuacaoProfissionalFormComponent } from './../coord-atuacao-profissional-form/coord-atuacao-profissional-form.component';
 import { CoordAtuacaoProfissionalIndexComponent } from './../coord-atuacao-profissional-index/coord-atuacao-profissional-index.component';
@@ -25,7 +27,8 @@ export const coord_routes: Routes = [
       { path: 'egressos-edit/:id', component: CoordEgressoFormComponent },
       { path: 'egressos-import', component: CoordEgressosImportComponent },
       { path: 'consulta/distribuicao-geografica', component: ConsultaDistribuicaoGeograficaComponent },
-      { path: 'consulta/faixa-salarial', component: ConsultaFaixaSalarialComponent}
+      { path: 'consulta/faixa-salarial', component: ConsultaFaixaSalarialComponent },
+      { path: 'consulta/atuacao-profissional', component: ConsultaAtuacaoProfissionalComponent }
     ]
   },
 ];

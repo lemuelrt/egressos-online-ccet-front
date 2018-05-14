@@ -1,34 +1,33 @@
 import { EgressoService } from './../../../../services/egresso.service';
-import { ConsultaDistribuicaoGeografica } from './../../../../models/consulta-distribuicao-geografica.model';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ConsultaAtuacaoProfissionalService } from './../../../../services/consulta-atuacao-profissional.service';
 import { ToastrService } from 'ngx-toastr';
-import { ConsultaDistribuicaoGeograficaService } from './../../../../services/consulta-distribuicao-geografica.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { ConsultaAtuacaoProfissional } from '../../../../models/consulta-atuacao-profissional.model';
 
 @Component({
-  selector: 'app-consulta-distribuicao-geografica',
-  templateUrl: './consulta-distribuicao-geografica.component.html',
-  styleUrls: ['./consulta-distribuicao-geografica.component.css']
+  selector: 'app-consulta-atuacao-profissional',
+  templateUrl: './consulta-atuacao-profissional.component.html',
+  styleUrls: ['./consulta-atuacao-profissional.component.css']
 })
-export class ConsultaDistribuicaoGeograficaComponent implements OnInit {
+export class ConsultaAtuacaoProfissionalComponent implements OnInit {
 
-  title = 'Consulta de distribuição geográfica';
+  title = 'Consulta de atuação profissional';
   btndescricao = 'Consultar';
 
-  anosIngresso: number[] = [];
+  anosIngresso = [];
 
-  anosConclusao: number[] = [];
+  anosConclusao = [];
 
   consultaForm: FormGroup;
 
-  consultasDistribuicaoGeografica: ConsultaDistribuicaoGeografica[] = [];
+  consultasAtuacaoProfissional: ConsultaAtuacaoProfissional[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
-    private consultaDGService: ConsultaDistribuicaoGeograficaService,
+    private consultaAPService: ConsultaAtuacaoProfissionalService,
     private spinner: NgxSpinnerService,
     private egressoService: EgressoService
   ) { }
@@ -38,7 +37,8 @@ export class ConsultaDistribuicaoGeograficaComponent implements OnInit {
     this.consultaForm = this.formBuilder.group({
       tipoAno: this.formBuilder.control('1', []),
       anosIngresso: this.formBuilder.control('', []),
-      anosConclusao: this.formBuilder.control('', [])
+      anosConclusao: this.formBuilder.control('', []),
+      setorAtuacao: this.formBuilder.control('', [])
     });
 
     this.consultaForm.get('tipoAno').valueChanges.subscribe(() => {
@@ -71,35 +71,28 @@ export class ConsultaDistribuicaoGeograficaComponent implements OnInit {
     // tslint:disable-next-line:max-line-length
     const anosC = this.consultaForm.get('tipoAno').value === '2' && this.consultaForm.get('anosConclusao').value ? this.consultaForm.get('anosConclusao').value : [];
 
-    this.consultaDGService.consulta(anosI, anosC)
+    // tslint:disable-next-line:max-line-length
+    const setorAtuacao = this.consultaForm.get('setorAtuacao').value !== '' ? parseInt(this.consultaForm.get('setorAtuacao').value, 10) : null;
+
+    this.consultaAPService.consulta(anosI, anosC, setorAtuacao)
       .finally(() => this.spinner.hide())
       .subscribe(
         (result) => {
-          this.consultasDistribuicaoGeografica = result;
+          this.consultasAtuacaoProfissional = result;
         }
       );
 
   }
 
-  percentualReside(cdg: ConsultaDistribuicaoGeografica, arraycdg: ConsultaDistribuicaoGeografica[]) {
+  totalEgressos(arraycap: ConsultaAtuacaoProfissional[]) {
 
-    const total = arraycdg.map(item => item.totalreside)
-      .reduce((prev, value) => prev + value, 0);
+    let total = 0;
+    if (arraycap) {
+      total = arraycap.map(item => item.quantidade)
+        .reduce((prev, value) => prev + value, 0);
+    }
 
-    return cdg.totalreside / total * 100;
+    return total;
   }
-
-  percentualTrabalha(cdg: ConsultaDistribuicaoGeografica, arraycdg: ConsultaDistribuicaoGeografica[]) {
-
-    const total = arraycdg.map(item => item.totaltrabalha)
-      .reduce((prev, value) => prev + value, 0);
-
-    return cdg.totaltrabalha / total * 100;
-  }
-
-  totalEgressos(arraycdg: ConsultaDistribuicaoGeografica[]) {
-    return arraycdg && arraycdg.length > 0 ? arraycdg[0].totalegressos : 0;
-  }
-
 
 }
