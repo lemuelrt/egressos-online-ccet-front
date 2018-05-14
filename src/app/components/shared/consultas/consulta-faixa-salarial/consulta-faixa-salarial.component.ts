@@ -88,4 +88,8 @@ export class ConsultaFaixaSalarialComponent implements OnInit {
 
   }
 
+  totalEgressos(arraycfs: ConsultaFaixaSalarial[]) {
+    return arraycfs && arraycfs.length > 0 ? arraycfs[0].totalEgressos : 0;
+  }
+
 }

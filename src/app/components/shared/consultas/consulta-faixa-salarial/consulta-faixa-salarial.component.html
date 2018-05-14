@@ -67,7 +67,7 @@
     <hr />
 
     <div class="alert alert-default">
-      <div class="text-bold">Total de egressos selecionados*:   </div>
+      <div class="text-bold">Total de egressos selecionados*:  {{totalEgressos(consultasFaixaSalarial)}}  </div>
       <p class="text-small">
         * O total de egressos selecionados são aqueles que atendem aos filtros e que informaram seus salários.
       </p>
@@ -83,10 +83,11 @@
         </thead>
         <tbody>
           <tr *ngFor="let cfs of consultasFaixaSalarial">
-            <td>R$  {{cfs.faixaSalarialInicial}}  à R$  {{cfs.faixaSalarialFinal}}</td>
+            <td>R$ {{cfs.faixaSalarialInicial}} à R$ {{cfs.faixaSalarialFinal}}</td>
             <td>{{cfs.totalEgressos}}</td>
           </tr>
         </tbody>
+
       </table>
     </div>
 
