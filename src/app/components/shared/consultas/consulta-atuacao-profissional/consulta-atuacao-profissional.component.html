@@ -1,0 +1,103 @@
+<mk-box header='' [isRemovable]='false' [isCollapsable]='false'>
+
+  <mk-box-header>{{title}}</mk-box-header>
+
+  <mk-box-content>
+
+    <div>
+
+      <form [formGroup]="consultaForm" class="form-horizontal" role="form" novalidate (ngSubmit)="consultar()">
+
+        <!-- Campo Nome -->
+        <div class="form-group">
+          <label for="tipoAno" class="col-sm-2 control-label">Tipo de ano *</label>
+          <div class="col-sm-10">
+            <select class="form-control" formControlName="tipoAno">
+              <option value="1">Ano de ingresso da graduação</option>
+              <option value="2">Ano de conclusão da graduação</option>
+            </select>
+          </div>
+        </div>
+
+
+        <div class="form-group" *ngIf="consultaForm.controls.tipoAno.value == '1'" [class.has-error]="consultaForm.controls.anosIngresso.errors && (consultaForm.controls.anosIngresso.touched)">
+          <label class="col-sm-2 control-label">Ano(s) de ingresso</label>
+          <div class="col-sm-10">
+            <ng-select [items]="anosIngresso" [multiple]="true" [closeOnSelect]="false" placeholder="Selecione o(s) ano(s) de ingresso"
+              formControlName="anosIngresso">
+            </ng-select>
+            <app-control-messages [control]="consultaForm.controls.anosIngresso"></app-control-messages>
+          </div>
+        </div>
+
+        <div class="form-group" *ngIf="consultaForm.controls.tipoAno.value == '2'" [class.has-error]="consultaForm.controls.anosConclusao.errors && (consultaForm.controls.anosConclusao.touched)">
+          <label class="col-sm-2 control-label">Ano(s) de conclusão</label>
+          <div class="col-sm-10">
+            <ng-select [items]="anosConclusao" [multiple]="true" [closeOnSelect]="false" placeholder="Selecione o(s) ano(s) de conclusão"
+              formControlName="anosConclusao">
+            </ng-select>
+            <app-control-messages [control]="consultaForm.controls.anosConclusao"></app-control-messages>
+          </div>
+        </div>
+
+        <div class="form-group" [class.has-error]="consultaForm.controls.setorAtuacao.errors && (consultaForm.controls.setorAtuacao.touched)">
+          <label for="tipoAno" class="col-sm-2 control-label">Setor de atuação profissional</label>
+          <div class="col-sm-10">
+            <select class="form-control" formControlName="setorAtuacao">
+              <option value=""></option>
+              <option value="1">Publico</option>
+              <option value="2">Privado</option>
+            </select>
+            <app-control-messages [control]="consultaForm.controls.setorAtuacao"></app-control-messages>
+          </div>
+        </div>
+
+        <!-- Botão Cancelar-->
+        <!-- Botão Cadastrar-->
+
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success">{{btndescricao}}</button>
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+    <hr />
+
+    <div class="alert alert-default">
+      <div class="text-bold">Total de egressos selecionados*: {{totalEgressos(consultasAtuacaoProfissional)}}</div>
+      <p class="text-small">
+        * O total de egressos selecionados são aqueles que atendem aos filtros e que informaram os dados pelos menos uma vez
+      </p>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Atuação profissional</th>
+            <th>Quantidade</th>
+            <th>Média salarial</th>
+            <th>Menor salario</th>
+            <th>Maior salario</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cap of consultasAtuacaoProfissional">
+            <td>{{cap.atuacaoprofissional}}</td>
+            <td>{{cap.quantidade}}</td>
+            <td>{{cap.mediasalarial | number}}</td>
+            <td>{{cap.menorsalario | number}}</td>
+            <td>{{cap.maiorsalario | number}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </mk-box-content>
+
+
+</mk-box>

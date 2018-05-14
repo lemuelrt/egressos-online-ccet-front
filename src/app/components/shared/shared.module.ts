@@ -1,3 +1,5 @@
+import { ConsultaAtuacaoProfissionalService } from './../../services/consulta-atuacao-profissional.service';
+import { ConsultaAtuacaoProfissionalComponent } from './consultas/consulta-atuacao-profissional/consulta-atuacao-profissional.component';
 import { ConsultaDistribuicaoGeograficaService } from './../../services/consulta-distribuicao-geografica.service';
 import { AtuacaoProfissionalService } from './../../services/atuacao-profissional.service';
 import { FaixaSalarialService } from './../../services/faixa-salarial.service';
@@ -53,7 +55,8 @@ import { ConsultaFaixaSalarialService } from '../../services/consulta-faixa-sala
     LayoutHeaderComponent,
     LayoutFooterComponent,
     ConsultaDistribuicaoGeograficaComponent,
-    ConsultaFaixaSalarialComponent
+    ConsultaFaixaSalarialComponent,
+    ConsultaAtuacaoProfissionalComponent
   ],
   providers: [
     ValidationService,
@@ -64,7 +67,8 @@ import { ConsultaFaixaSalarialService } from '../../services/consulta-faixa-sala
     AtuacaoProfissionalService,
     TitulacaoService,
     ConsultaDistribuicaoGeograficaService,
-    ConsultaFaixaSalarialService
+    ConsultaFaixaSalarialService,
+    ConsultaAtuacaoProfissionalService
   ],
   entryComponents: [
     DialogConfirmationComponent,
@@ -87,7 +91,8 @@ import { ConsultaFaixaSalarialService } from '../../services/consulta-faixa-sala
     NgxMaskModule,
     NgxSpinnerModule,
     ConsultaDistribuicaoGeograficaComponent,
-    ConsultaFaixaSalarialComponent
+    ConsultaFaixaSalarialComponent,
+    ConsultaAtuacaoProfissionalComponent
   ]
 })
 export class SharedModule { }
