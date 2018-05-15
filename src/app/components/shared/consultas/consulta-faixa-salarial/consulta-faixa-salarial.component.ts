@@ -18,7 +18,6 @@ export class ConsultaFaixaSalarialComponent implements OnInit {
   btndescricao = 'Consultar';
 
   anosIngresso = [];
-
   anosConclusao = [];
 
   consultaForm: FormGroup;
@@ -40,7 +39,7 @@ export class ConsultaFaixaSalarialComponent implements OnInit {
       tipoAno: this.formBuilder.control('1', []),
       anosIngresso: this.formBuilder.control('', []),
       anosConclusao: this.formBuilder.control('', []),
-      setor : this.formBuilder.control('', [])
+      setorAtuacao: this.formBuilder.control('', [])
     });
 
     this.consultaForm.get('tipoAno').valueChanges.subscribe(() => {
@@ -48,21 +47,15 @@ export class ConsultaFaixaSalarialComponent implements OnInit {
       this.consultaForm.get('anosConclusao').setValue('');
     });
 
-    this.consultaForm.get('setor').valueChanges.subscribe(() => {
-      this.consultaForm.get('setor').setValue('');
-    });
-
     this.egressoService.getAnosIngresso().subscribe(
       (result) => {
         this.anosIngresso = result;
-        console.log(result);
       }
     );
 
     this.egressoService.getAnosConclusao().subscribe(
       (result) => {
         this.anosConclusao = result;
-        console.log(result);
       }
     );
   }
@@ -76,7 +69,7 @@ export class ConsultaFaixaSalarialComponent implements OnInit {
     // tslint:disable-next-line:max-line-length
     const anosC = this.consultaForm.get('tipoAno').value === '2' && this.consultaForm.get('anosConclusao').value ? this.consultaForm.get('anosConclusao').value : [];
     // tslint:disable-next-line:max-line-length
-    const setor = this.consultaForm.get('setor').value === '1' || this.consultaForm.get('setor').value === '2' ? parseInt(this.consultaForm.get('setor').value, 10) : null;
+    const setor = this.consultaForm.get('setorAtuacao').value === '1' || this.consultaForm.get('setorAtuacao').value === '2' ? parseInt(this.consultaForm.get('setorAtuacao').value, 10) : null;
 
     this.consultaFSService.consulta(anosI, anosC, setor)
       .finally(() => this.spinner.hide())
@@ -89,7 +82,14 @@ export class ConsultaFaixaSalarialComponent implements OnInit {
   }
 
   totalEgressos(arraycfs: ConsultaFaixaSalarial[]) {
-    return arraycfs && arraycfs.length > 0 ? arraycfs[0].totalEgressos : 0;
+
+    let total = 0;
+
+    if (arraycfs) {
+      total = arraycfs.map(item => item.totalEgressos)
+      .reduce((prev, value) => prev + value, 0);
+    }
+    return total;
   }
 
 }

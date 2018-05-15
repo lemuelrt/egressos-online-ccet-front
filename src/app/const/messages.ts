@@ -34,4 +34,6 @@ export const MESSAGES = {
   'M030': 'Extensão da descrição inválida. A descrição deve conter no mínimo 1 e no máximo 100 caracteres. ',
   'M031': 'Ano de conclusão da titulação deve ser superior ao ano de conclusão da graduação.',
   'M032': 'A quantidade de filhos não pode ser negativa. ',
+  'M033': 'Total de egressos da consulta*: ',
+  'M034': '*O total de egressos da consulta diz respeito àqueles que atendem os filtros informados e atualizaram os dados na plataforma. ',
 };
