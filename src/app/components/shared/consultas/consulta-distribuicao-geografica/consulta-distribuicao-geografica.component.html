@@ -14,7 +14,7 @@
           <div class="col-sm-10">
             <select class="form-control" formControlName="tipoAno">
               <option value="1">Ano de ingresso da graduação</option>
-              <option value="2">Ano de conclusão da graduação</option>
+              <option value="2">Ano de conclusão na graduação</option>
             </select>
           </div>
         </div>
@@ -56,9 +56,9 @@
     <hr />
 
     <div class="alert alert-default">
-      <div class="text-bold">Total de egressos selecionados*:   {{totalEgressos(consultasDistribuicaoGeografica)}}</div>
+      <div class="text-bold">{{txt_total_egressos}}:   {{totalEgressos(consultasDistribuicaoGeografica)}}</div>
       <p class="text-small">
-        * O total de egressos selecionados são aqueles que atendem aos filtros e que informaram seus endereços.
+        {{txt_total_egressos_info}}
       </p>
     </div>
 

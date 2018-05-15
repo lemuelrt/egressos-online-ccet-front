@@ -27,7 +27,7 @@
     "@ng-select/ng-select": "^1.*",
     "admin-lte": "^2.4.2",
     "ajv": "^6.2.1",
-    "angular-admin-lte": "^0.2.7",
+    "angular-admin-lte": "^1.0.1",
     "angular-custom-modal": "^1.1.0",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
