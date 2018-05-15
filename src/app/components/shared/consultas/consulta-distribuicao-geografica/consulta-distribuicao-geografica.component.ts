@@ -14,6 +14,11 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 })
 export class ConsultaDistribuicaoGeograficaComponent implements OnInit {
 
+  txt_total_egressos = 'Total de egressos da consulta*';
+  // tslint:disable-next-line:max-line-length
+  txt_total_egressos_info = '* O total de egressos da consulta diz respeito àqueles que atendem os filtros informados e atualizaram os dados na plataforma.';
+
+
   title = 'Consulta de distribuição geográfica';
   btndescricao = 'Consultar';
 

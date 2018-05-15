@@ -76,8 +76,6 @@ import { ConsultaFaixaSalarialService } from '../../services/consulta-faixa-sala
   exports: [
     DialogConfirmationComponent,
     ControlMessagesComponent,
-    LayoutHeaderComponent,
-    LayoutFooterComponent,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
@@ -88,6 +86,8 @@ import { ConsultaFaixaSalarialService } from '../../services/consulta-faixa-sala
     NgSelectModule,
     LayoutModule,
     BoxModule,
+    LayoutHeaderComponent,
+    LayoutFooterComponent,
     NgxMaskModule,
     NgxSpinnerModule,
     ConsultaDistribuicaoGeograficaComponent,
