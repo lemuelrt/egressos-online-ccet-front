@@ -10,10 +10,10 @@
 
         <!-- Campo Nome -->
         <div class="form-group">
-          <label for="tipoAno" class="col-sm-2 control-label">Tipo de ano *</label>
+          <label for="tipoAno" class="col-sm-2 control-label">Tipo de ano</label>
           <div class="col-sm-10">
             <select class="form-control" formControlName="tipoAno">
-              <option value="1">Ano de ingresso da graduação</option>
+              <option value="1">Ano de ingresso na graduação</option>
               <option value="2">Ano de conclusão da graduação</option>
             </select>
           </div>
@@ -41,11 +41,11 @@
         </div>
 
         <div class="form-group" [class.has-error]="consultaForm.controls.setorAtuacao.errors && (consultaForm.controls.setorAtuacao.touched)">
-          <label for="tipoAno" class="col-sm-2 control-label">Setor de atuação profissional</label>
+          <label for="tipoAno" class="col-sm-2 control-label">Setor de atuação</label>
           <div class="col-sm-10">
             <select class="form-control" formControlName="setorAtuacao">
               <option value=""></option>
-              <option value="1">Publico</option>
+              <option value="1">Público</option>
               <option value="2">Privado</option>
             </select>
             <app-control-messages [control]="consultaForm.controls.setorAtuacao"></app-control-messages>
@@ -68,9 +68,9 @@
     <hr />
 
     <div class="alert alert-default">
-      <div class="text-bold">Total de egressos selecionados*: {{totalEgressos(consultasAtuacaoProfissional)}}</div>
+      <div class="text-bold">Total de egressos da consulta*: {{totalEgressos(consultasAtuacaoProfissional)}}</div>
       <p class="text-small">
-        * O total de egressos selecionados são aqueles que atendem aos filtros e que informaram os dados pelos menos uma vez
+        * O total de egressos da consulta diz respeito àqueles que atendem os filtros informados e atualizaram os dados na plataforma.
       </p>
     </div>
 
@@ -79,10 +79,10 @@
         <thead>
           <tr>
             <th>Atuação profissional</th>
-            <th>Quantidade</th>
+            <th>Quantidade de egressos</th>
             <th>Média salarial</th>
-            <th>Menor salario</th>
-            <th>Maior salario</th>
+            <th>Menor salário</th>
+            <th>Maior salário</th>
           </tr>
         </thead>
         <tbody>
