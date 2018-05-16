@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { EgressoService } from '../../../../services/egresso.service';
 import { ConsultaFaixaSalarial } from '../../../../models/consulta-faixa-salarial.model';
+import { MESSAGES } from '../../../../const/messages';
 
 @Component({
   selector: 'app-consulta-faixa-salarial',
@@ -16,6 +17,9 @@ export class ConsultaFaixaSalarialComponent implements OnInit {
 
   title = 'Consulta de faixa salarial';
   btndescricao = 'Consultar';
+
+  msg33 = MESSAGES.M033;
+  msg34 = MESSAGES.M034;
 
   anosIngresso = [];
   anosConclusao = [];
