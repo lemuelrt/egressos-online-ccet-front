@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ConsultaAtuacaoProfissional } from '../../../../models/consulta-atuacao-profissional.model';
+import { MESSAGES } from '../../../../const/messages';
 
 @Component({
   selector: 'app-consulta-atuacao-profissional',
@@ -15,6 +16,10 @@ export class ConsultaAtuacaoProfissionalComponent implements OnInit {
 
   title = 'Consulta de atuação profissional';
   btndescricao = 'Consultar';
+
+  msg33 = MESSAGES.M033;
+  // tslint:disable-next-line:max-line-length
+  msg34 = MESSAGES.M034;
 
   anosIngresso = [];
 
