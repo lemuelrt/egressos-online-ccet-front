@@ -68,9 +68,9 @@
     <hr />
 
     <div class="alert alert-default">
-      <div class="text-bold">Total de egressos da consulta*: {{totalEgressos(consultasAtuacaoProfissional)}}</div>
+      <div class="text-bold">{{msg33}} {{totalEgressos(consultasAtuacaoProfissional)}}</div>
       <p class="text-small">
-        * O total de egressos da consulta diz respeito àqueles que atendem os filtros informados e atualizaram os dados na plataforma.
+        {{msg34}}
       </p>
     </div>
 
@@ -89,9 +89,9 @@
           <tr *ngFor="let cap of consultasAtuacaoProfissional">
             <td>{{cap.atuacaoprofissional}}</td>
             <td>{{cap.quantidade}}</td>
-            <td>{{cap.mediasalarial | number}}</td>
-            <td>{{cap.menorsalario | number}}</td>
-            <td>{{cap.maiorsalario | number}}</td>
+            <td>{{cap.mediasalarial | currency: 'BRL': true}}</td>
+            <td>{{cap.menorsalario | currency: 'BRL': true}}</td>
+            <td>{{cap.maiorsalario | currency: 'BRL': true}}</td>
           </tr>
         </tbody>
       </table>
