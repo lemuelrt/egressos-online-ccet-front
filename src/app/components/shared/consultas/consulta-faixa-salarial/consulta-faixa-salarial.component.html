@@ -83,7 +83,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let cfs of consultasFaixaSalarial">
-            <td>R$ {{cfs.faixaSalarialInicial}} à R$ {{cfs.faixaSalarialFinal}}</td>
+            <td> {{ cfs.faixaSalarialInicial | currency: 'BRL' : true }} a  {{cfs.faixaSalarialFinal | currency: 'BRL': true }}</td>
             <td>{{cfs.totalEgressos}}</td>
           </tr>
         </tbody>
