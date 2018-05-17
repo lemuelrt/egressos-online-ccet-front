@@ -18,8 +18,9 @@ export class ConsultaAtuacaoProfissionalComponent implements OnInit {
   btndescricao = 'Consultar';
 
   msg33 = MESSAGES.M033;
-  // tslint:disable-next-line:max-line-length
   msg34 = MESSAGES.M034;
+  msg35 = MESSAGES.M035;
+  msg36 = MESSAGES.M036;
 
   anosIngresso = [];
 
