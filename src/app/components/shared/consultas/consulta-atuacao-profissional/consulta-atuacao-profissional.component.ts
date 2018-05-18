@@ -20,7 +20,6 @@ export class ConsultaAtuacaoProfissionalComponent implements OnInit {
   msg33 = MESSAGES.M033;
   msg34 = MESSAGES.M034;
   msg35 = MESSAGES.M035;
-  msg36 = MESSAGES.M036;
 
   anosIngresso = [];
 
