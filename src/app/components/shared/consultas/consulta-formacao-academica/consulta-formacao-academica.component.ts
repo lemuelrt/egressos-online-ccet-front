@@ -85,11 +85,11 @@ export class ConsultaFormacaoAcademicaComponent implements OnInit {
 
   }
 
-  totalEgressos(arraycap: ConsultaFormacaoAcademica[]) {
+  totalEgressos(arraycfa: ConsultaFormacaoAcademica[]) {
 
     let total = 0;
-    if (arraycap) {
-      total = arraycap.map(item => item.quantidade)
+    if (arraycfa) {
+      total = arraycfa.map(item => item.quantidade)
         .reduce((prev, value) => prev + value, 0);
     }
 

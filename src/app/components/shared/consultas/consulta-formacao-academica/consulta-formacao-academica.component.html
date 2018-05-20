@@ -22,7 +22,7 @@
         <div class="form-group" *ngIf="consultaForm.controls.tipoAno.value == '1'" [class.has-error]="consultaForm.controls.anosIngresso.errors && (consultaForm.controls.anosIngresso.touched)">
           <label class="col-sm-2 control-label">Ano(s) de ingresso</label>
           <div class="col-sm-10">
-            <ng-select [items]="anosIngresso" [multiple]="true" [closeOnSelect]="false" placeholder="Selecione o(s) ano(s) de ingresso"
+            <ng-select [items]="anosIngresso" [multiple]="true" [closeOnSelect]="false" placeholder="Todos os anos de ingresso"
               formControlName="anosIngresso">
             </ng-select>
             <app-control-messages [control]="consultaForm.controls.anosIngresso"></app-control-messages>
@@ -32,7 +32,7 @@
         <div class="form-group" *ngIf="consultaForm.controls.tipoAno.value == '2'" [class.has-error]="consultaForm.controls.anosConclusao.errors && (consultaForm.controls.anosConclusao.touched)">
           <label class="col-sm-2 control-label">Ano(s) de conclusão</label>
           <div class="col-sm-10">
-            <ng-select [items]="anosConclusao" [multiple]="true" [closeOnSelect]="false" placeholder="Selecione o(s) ano(s) de conclusão"
+            <ng-select [items]="anosConclusao" [multiple]="true" [closeOnSelect]="false" placeholder="Todos os anos de conclusão"
               formControlName="anosConclusao">
             </ng-select>
             <app-control-messages [control]="consultaForm.controls.anosConclusao"></app-control-messages>
@@ -53,7 +53,7 @@
     <hr />
 
     <div class="alert alert-default">
-      <div class="text-bold">{{msg33}} {{totalEgressos(consultasAtuacaoProfissional)}}</div>
+      <div class="text-bold">{{msg33}} {{totalEgressos(consultasFormacaoAcademica)}}</div>
       <p class="text-small">
         {{msg34}}
       </p>
@@ -71,10 +71,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let cap of consultasFormacaoAcademica">
-            <td>{{cap.atuacaoprofissional}}</td>
-            <td>{{cap.quantidade}}</td>
-            <td>{{cap.mediasalarial |currency: 'BRL': true}}</td>
+          <tr *ngFor="let cfa of consultasFormacaoAcademica">
+            <td>{{cfa.titulacao}}</td>
+            <td>{{cfa.quantidade}}</td>
+            <td>{{cfa.tempomedio}}</td>
+            <td>{{cfa.menortempo}}</td>
+            <td>{{cfa.maiortempo}}</td>
           </tr>
         </tbody>
       </table>
