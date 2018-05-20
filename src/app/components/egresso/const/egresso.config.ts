@@ -7,6 +7,8 @@ import { EgressoAtualizarFormComponent } from './../egresso-atualizar-form/egres
 import { Routes } from '@angular/router';
 import { EgressoIndexComponent } from './../egresso-index/egresso-index.component';
 import { EgressoComponent } from './../egresso.component';
+// tslint:disable-next-line:max-line-length
+import { ConsultaFormacaoAcademicaComponent } from '../../shared/consultas/consulta-formacao-academica/consulta-formacao-academica.component';
 
 
 export const egresso_routes: Routes = [
@@ -16,7 +18,8 @@ export const egresso_routes: Routes = [
       { path: 'atualizar', component: EgressoAtualizarFormComponent },
       { path: 'consulta/distribuicao-geografica', component: ConsultaDistribuicaoGeograficaComponent },
       { path: 'consulta/faixa-salarial', component: ConsultaFaixaSalarialComponent},
-      { path: 'consulta/atuacao-profissional', component: ConsultaAtuacaoProfissionalComponent }
+      { path: 'consulta/atuacao-profissional', component: ConsultaAtuacaoProfissionalComponent },
+      { path: 'consulta/formacao-academica', component: ConsultaFormacaoAcademicaComponent }
     ]
   },
 ];

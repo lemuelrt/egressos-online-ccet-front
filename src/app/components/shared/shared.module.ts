@@ -58,7 +58,8 @@ import { ConsultaFaixaSalarialService } from '../../services/consulta-faixa-sala
     LayoutFooterComponent,
     ConsultaDistribuicaoGeograficaComponent,
     ConsultaFaixaSalarialComponent,
-    ConsultaAtuacaoProfissionalComponent
+    ConsultaAtuacaoProfissionalComponent,
+    ConsultaFormacaoAcademicaComponent
   ],
   providers: [
     ValidationService,
@@ -70,7 +71,8 @@ import { ConsultaFaixaSalarialService } from '../../services/consulta-faixa-sala
     TitulacaoService,
     ConsultaDistribuicaoGeograficaService,
     ConsultaFaixaSalarialService,
-    ConsultaAtuacaoProfissionalService
+    ConsultaAtuacaoProfissionalService,
+    ConsultaFormacaoAcademicaService
   ],
   entryComponents: [
     DialogConfirmationComponent,
@@ -94,7 +96,8 @@ import { ConsultaFaixaSalarialService } from '../../services/consulta-faixa-sala
     NgxSpinnerModule,
     ConsultaDistribuicaoGeograficaComponent,
     ConsultaFaixaSalarialComponent,
-    ConsultaAtuacaoProfissionalComponent
+    ConsultaAtuacaoProfissionalComponent,
+    ConsultaFormacaoAcademicaComponent
   ]
 })
 export class SharedModule { }
