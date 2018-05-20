@@ -12,7 +12,7 @@ import { CoordenadorService } from './../../services/coordenador.service';
 import { ToastrModule } from 'ngx-toastr';
 import { OfertaService } from './../../services/oferta.service';
 import { ValidationService } from './../../services/validation.service';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ControlMessagesComponent } from './control-messages/control-messages.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -68,7 +68,8 @@ import { ConsultaFaixaSalarialService } from '../../services/consulta-faixa-sala
     TitulacaoService,
     ConsultaDistribuicaoGeograficaService,
     ConsultaFaixaSalarialService,
-    ConsultaAtuacaoProfissionalService
+    ConsultaAtuacaoProfissionalService,
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
   ],
   entryComponents: [
     DialogConfirmationComponent,

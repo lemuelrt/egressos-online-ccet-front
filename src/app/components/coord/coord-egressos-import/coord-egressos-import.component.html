@@ -10,7 +10,7 @@
         <form [formGroup]="egressoImportGroup" novalidate>
           <mat-accordion>
             <div formArrayName="egressos">
-              <div *ngFor="let item of egressoImportGroup.controls.egressos.controls; let i = index">
+              <div *ngFor="let item of controls; let i = index">
                 <div [formGroupName]="i">
                   <mat-expansion-panel hideToggle="true"  >
                     <mat-expansion-panel-header >
