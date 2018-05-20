@@ -1,6 +1,8 @@
 import { ConsultaAtuacaoProfissionalService } from './../../services/consulta-atuacao-profissional.service';
 import { ConsultaAtuacaoProfissionalComponent } from './consultas/consulta-atuacao-profissional/consulta-atuacao-profissional.component';
 import { ConsultaDistribuicaoGeograficaService } from './../../services/consulta-distribuicao-geografica.service';
+import { ConsultaFormacaoAcademicaService } from './../../services/consulta-formacao-academica.service';
+import { ConsultaFormacaoAcademicaComponent } from './consultas/consulta-formacao-academica/consulta-formacao-academica.component';
 import { AtuacaoProfissionalService } from './../../services/atuacao-profissional.service';
 import { FaixaSalarialService } from './../../services/faixa-salarial.service';
 import { RedeSocialService } from './../../services/rede-social.service';
@@ -56,7 +58,8 @@ import { ConsultaFaixaSalarialService } from '../../services/consulta-faixa-sala
     LayoutFooterComponent,
     ConsultaDistribuicaoGeograficaComponent,
     ConsultaFaixaSalarialComponent,
-    ConsultaAtuacaoProfissionalComponent
+    ConsultaAtuacaoProfissionalComponent,
+    ConsultaFormacaoAcademicaComponent
   ],
   providers: [
     ValidationService,
@@ -69,7 +72,8 @@ import { ConsultaFaixaSalarialService } from '../../services/consulta-faixa-sala
     ConsultaDistribuicaoGeograficaService,
     ConsultaFaixaSalarialService,
     ConsultaAtuacaoProfissionalService,
-    { provide: LOCALE_ID, useValue: 'pt-BR' }
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    ConsultaFormacaoAcademicaService
   ],
   entryComponents: [
     DialogConfirmationComponent,
@@ -93,7 +97,8 @@ import { ConsultaFaixaSalarialService } from '../../services/consulta-faixa-sala
     NgxSpinnerModule,
     ConsultaDistribuicaoGeograficaComponent,
     ConsultaFaixaSalarialComponent,
-    ConsultaAtuacaoProfissionalComponent
+    ConsultaAtuacaoProfissionalComponent,
+    ConsultaFormacaoAcademicaComponent
   ]
 })
 export class SharedModule { }

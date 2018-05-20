@@ -1,20 +1,20 @@
 import { EgressoService } from './../../../../services/egresso.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ConsultaAtuacaoProfissionalService } from './../../../../services/consulta-atuacao-profissional.service';
+import { ConsultaFormacaoAcademicaService } from './../../../../services/consulta-formacao-academica.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { ConsultaAtuacaoProfissional } from '../../../../models/consulta-atuacao-profissional.model';
+import { ConsultaFormacaoAcademica } from '../../../../models/consulta-formacao-academica.model';
 import { MESSAGES } from '../../../../const/messages';
 
 @Component({
-  selector: 'app-consulta-atuacao-profissional',
-  templateUrl: './consulta-atuacao-profissional.component.html',
-  styleUrls: ['./consulta-atuacao-profissional.component.css']
+  selector: 'app-consulta-formacao-academica',
+  templateUrl: './consulta-formacao-academica.component.html',
+  styleUrls: ['./consulta-formacao-academica.component.css']
 })
-export class ConsultaAtuacaoProfissionalComponent implements OnInit {
+export class ConsultaFormacaoAcademicaComponent implements OnInit {
 
-  title = 'Consulta de atuação profissional';
+  title = 'Consulta de formação acadêmica';
   btndescricao = 'Consultar';
 
   msg33 = MESSAGES.M033;
@@ -27,12 +27,12 @@ export class ConsultaAtuacaoProfissionalComponent implements OnInit {
 
   consultaForm: FormGroup;
 
-  consultasAtuacaoProfissional: ConsultaAtuacaoProfissional[] = [];
+  consultasFormacaoAcademica: ConsultaFormacaoAcademica[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
-    private consultaAPService: ConsultaAtuacaoProfissionalService,
+    private consultaFAService: ConsultaFormacaoAcademicaService,
     private spinner: NgxSpinnerService,
     private egressoService: EgressoService
   ) { }
@@ -42,8 +42,7 @@ export class ConsultaAtuacaoProfissionalComponent implements OnInit {
     this.consultaForm = this.formBuilder.group({
       tipoAno: this.formBuilder.control('1', []),
       anosIngresso: this.formBuilder.control('', []),
-      anosConclusao: this.formBuilder.control('', []),
-      setorAtuacao: this.formBuilder.control('', [])
+      anosConclusao: this.formBuilder.control('', [])
     });
 
     this.consultaForm.get('tipoAno').valueChanges.subscribe(() => {
@@ -76,24 +75,21 @@ export class ConsultaAtuacaoProfissionalComponent implements OnInit {
     // tslint:disable-next-line:max-line-length
     const anosC = this.consultaForm.get('tipoAno').value === '2' && this.consultaForm.get('anosConclusao').value ? this.consultaForm.get('anosConclusao').value : [];
 
-    // tslint:disable-next-line:max-line-length
-    const setorAtuacao = this.consultaForm.get('setorAtuacao').value !== '' ? parseInt(this.consultaForm.get('setorAtuacao').value, 10) : null;
-
-    this.consultaAPService.consulta(anosI, anosC, setorAtuacao)
+    this.consultaFAService.consulta(anosI, anosC)
       .finally(() => this.spinner.hide())
       .subscribe(
         (result) => {
-          this.consultasAtuacaoProfissional = result;
+          this.consultasFormacaoAcademica = result;
         }
       );
 
   }
 
-  totalEgressos(arraycap: ConsultaAtuacaoProfissional[]) {
+  totalEgressos(arraycfa: ConsultaFormacaoAcademica[]) {
 
     let total = 0;
-    if (arraycap) {
-      total = arraycap.map(item => item.quantidade)
+    if (arraycfa) {
+      total = arraycfa.map(item => item.quantidade)
         .reduce((prev, value) => prev + value, 0);
     }
 
