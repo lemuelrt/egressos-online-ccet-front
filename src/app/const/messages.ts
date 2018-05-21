@@ -36,7 +36,6 @@ export const MESSAGES = {
   'M032': 'A quantidade de filhos não pode ser negativa. ',
   'M033': 'Total de egressos da consulta*: ',
   'M034': '*O total de egressos da consulta diz respeito àqueles que atendem os filtros informados e atualizaram os dados na plataforma. ',
-  'M035': 'Caso nenhum setor seja selecionado, a consulta irá considerar ambos - público e privado.',
   // tslint:disable-next-line:max-line-length
-  'M036': 'Como o egresso informa como salário um intervalo de faixa salarial, o cálculo da média considera o valor médio do intervalo selecionado.'
+  'M035': 'Como o egresso informa como salário um intervalo de faixa salarial, o cálculo da média considera o valor médio do intervalo selecionado.'
 };

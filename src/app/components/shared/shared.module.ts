@@ -1,6 +1,8 @@
 import { ConsultaAtuacaoProfissionalService } from './../../services/consulta-atuacao-profissional.service';
 import { ConsultaAtuacaoProfissionalComponent } from './consultas/consulta-atuacao-profissional/consulta-atuacao-profissional.component';
 import { ConsultaDistribuicaoGeograficaService } from './../../services/consulta-distribuicao-geografica.service';
+import { ConsultaFormacaoAcademicaService } from './../../services/consulta-formacao-academica.service';
+import { ConsultaFormacaoAcademicaComponent } from './consultas/consulta-formacao-academica/consulta-formacao-academica.component';
 import { AtuacaoProfissionalService } from './../../services/atuacao-profissional.service';
 import { FaixaSalarialService } from './../../services/faixa-salarial.service';
 import { RedeSocialService } from './../../services/rede-social.service';
@@ -12,7 +14,7 @@ import { CoordenadorService } from './../../services/coordenador.service';
 import { ToastrModule } from 'ngx-toastr';
 import { OfertaService } from './../../services/oferta.service';
 import { ValidationService } from './../../services/validation.service';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ControlMessagesComponent } from './control-messages/control-messages.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -56,7 +58,8 @@ import { ConsultaFaixaSalarialService } from '../../services/consulta-faixa-sala
     LayoutFooterComponent,
     ConsultaDistribuicaoGeograficaComponent,
     ConsultaFaixaSalarialComponent,
-    ConsultaAtuacaoProfissionalComponent
+    ConsultaAtuacaoProfissionalComponent,
+    ConsultaFormacaoAcademicaComponent
   ],
   providers: [
     ValidationService,
@@ -68,7 +71,9 @@ import { ConsultaFaixaSalarialService } from '../../services/consulta-faixa-sala
     TitulacaoService,
     ConsultaDistribuicaoGeograficaService,
     ConsultaFaixaSalarialService,
-    ConsultaAtuacaoProfissionalService
+    ConsultaAtuacaoProfissionalService,
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    ConsultaFormacaoAcademicaService
   ],
   entryComponents: [
     DialogConfirmationComponent,
@@ -92,7 +97,8 @@ import { ConsultaFaixaSalarialService } from '../../services/consulta-faixa-sala
     NgxSpinnerModule,
     ConsultaDistribuicaoGeograficaComponent,
     ConsultaFaixaSalarialComponent,
-    ConsultaAtuacaoProfissionalComponent
+    ConsultaAtuacaoProfissionalComponent,
+    ConsultaFormacaoAcademicaComponent
   ]
 })
 export class SharedModule { }
