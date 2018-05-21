@@ -33,6 +33,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { RouterModule } from '@angular/router';
 import { ConsultaFaixaSalarialComponent } from './consultas/consulta-faixa-salarial/consulta-faixa-salarial.component';
 import { ConsultaFaixaSalarialService } from '../../services/consulta-faixa-salarial.service';
+import { ConsultaEstatisticasDoSistemaService } from '../../services/consulta-estatisticas-do-sistema.service';
+// tslint:disable-next-line:max-line-length
+import { ConsultaEstatisticasDoSistemaComponent } from './consultas/consulta-estatisticas-do-sistema/consulta-estatisticas-do-sistema.component';
 
 @NgModule({
   imports: [
@@ -72,8 +75,9 @@ import { ConsultaFaixaSalarialService } from '../../services/consulta-faixa-sala
     ConsultaDistribuicaoGeograficaService,
     ConsultaFaixaSalarialService,
     ConsultaAtuacaoProfissionalService,
-    { provide: LOCALE_ID, useValue: 'pt-BR' },
-    ConsultaFormacaoAcademicaService
+    ConsultaFormacaoAcademicaService,
+    ConsultaEstatisticasDoSistemaService,
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
   ],
   entryComponents: [
     DialogConfirmationComponent,
@@ -98,7 +102,8 @@ import { ConsultaFaixaSalarialService } from '../../services/consulta-faixa-sala
     ConsultaDistribuicaoGeograficaComponent,
     ConsultaFaixaSalarialComponent,
     ConsultaAtuacaoProfissionalComponent,
-    ConsultaFormacaoAcademicaComponent
+    ConsultaFormacaoAcademicaComponent,
+    ConsultaEstatisticasDoSistemaComponent
   ]
 })
 export class SharedModule { }
