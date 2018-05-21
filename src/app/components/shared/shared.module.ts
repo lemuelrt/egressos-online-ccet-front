@@ -62,7 +62,8 @@ import { ConsultaEstatisticasDoSistemaComponent } from './consultas/consulta-est
     ConsultaDistribuicaoGeograficaComponent,
     ConsultaFaixaSalarialComponent,
     ConsultaAtuacaoProfissionalComponent,
-    ConsultaFormacaoAcademicaComponent
+    ConsultaFormacaoAcademicaComponent,
+    ConsultaEstatisticasDoSistemaComponent
   ],
   providers: [
     ValidationService,

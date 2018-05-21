@@ -9,6 +9,8 @@ import { EgressoIndexComponent } from './../egresso-index/egresso-index.componen
 import { EgressoComponent } from './../egresso.component';
 // tslint:disable-next-line:max-line-length
 import { ConsultaFormacaoAcademicaComponent } from '../../shared/consultas/consulta-formacao-academica/consulta-formacao-academica.component';
+// tslint:disable-next-line:max-line-length
+import { ConsultaEstatisticasDoSistemaComponent } from '../../shared/consultas/consulta-estatisticas-do-sistema/consulta-estatisticas-do-sistema.component';
 
 
 export const egresso_routes: Routes = [
@@ -19,7 +21,8 @@ export const egresso_routes: Routes = [
       { path: 'consulta/distribuicao-geografica', component: ConsultaDistribuicaoGeograficaComponent },
       { path: 'consulta/faixa-salarial', component: ConsultaFaixaSalarialComponent},
       { path: 'consulta/atuacao-profissional', component: ConsultaAtuacaoProfissionalComponent },
-      { path: 'consulta/formacao-academica', component: ConsultaFormacaoAcademicaComponent }
+      { path: 'consulta/formacao-academica', component: ConsultaFormacaoAcademicaComponent },
+      { path: 'consulta/estatisticas-do-sistema', component: ConsultaEstatisticasDoSistemaComponent }
     ]
   },
 ];

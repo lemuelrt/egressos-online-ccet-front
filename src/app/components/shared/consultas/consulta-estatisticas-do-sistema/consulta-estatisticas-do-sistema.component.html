@@ -1,3 +1,46 @@
-<p>
-  consulta-estatisticas-do-sistema works!
-</p>
+<mk-box header='' [isRemovable]='false' [isCollapsable]='false'>
+
+  <mk-box-header>{{title}}</mk-box-header>
+
+  <mk-box-content>
+
+    <div>
+
+
+    </div>
+    <hr />
+
+    <div class="alert alert-default">
+      <div class="text-small">
+        * Egressos representa a quantidade de egressos que concluiram o curso neste ano
+      </div>
+
+      <p class="text-small">
+        ** Atualizados representa quantos dos egressos acessaram o site e atualizaram seus dados
+      </p>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Ano de Conclusão</th>
+            <th>Egressos *</th>
+            <th>Atualizados **</th>
+            <th>Percentual</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr >
+            <td> </td>
+            <td> </td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+
+  </mk-box-content>
+
+
+</mk-box>
