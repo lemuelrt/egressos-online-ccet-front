@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ConsultaAtuacaoProfissional } from '../../../../models/consulta-atuacao-profissional.model';
 import { MESSAGES } from '../../../../const/messages';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 @Component({
   selector: 'app-consulta-atuacao-profissional',

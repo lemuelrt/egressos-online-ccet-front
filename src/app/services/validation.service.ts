@@ -22,7 +22,7 @@ export class ValidationService {
       'invalidTempoMinForm': MESSAGES['M024'],
       'invalidTelefone': 'Telefone inválido!',
       'invalidQtdFilhos': MESSAGES['M032'],
-      'anoConclusaoTitulacaoInvalido': MESSAGES['M031'],
+      'anoConclusaoTitulacaoInvalido': MESSAGES['M029'],
     };
 
     return config[validatorName];

@@ -3,6 +3,7 @@ import { AppErrorHandle } from './app-error-handle';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
+import { LOCALE_ID } from '@angular/core';
 
 import { AdminModule } from './components/admin/admin.module';
 import { CoordModule } from './components/coord/coord.module';
@@ -42,7 +43,7 @@ import { AgmCoreModule } from '@agm/core';
     AppRoutingModule,
   ],
   providers: [
-    { provide: ErrorHandler, useClass: AppErrorHandle },
+    { provide: ErrorHandler, useClass: AppErrorHandle},
   ],
   bootstrap: [AppComponent]
 })
