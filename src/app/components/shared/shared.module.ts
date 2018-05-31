@@ -14,7 +14,7 @@ import { CoordenadorService } from './../../services/coordenador.service';
 import { ToastrModule } from 'ngx-toastr';
 import { OfertaService } from './../../services/oferta.service';
 import { ValidationService } from './../../services/validation.service';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ControlMessagesComponent } from './control-messages/control-messages.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -33,6 +33,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { RouterModule } from '@angular/router';
 import { ConsultaFaixaSalarialComponent } from './consultas/consulta-faixa-salarial/consulta-faixa-salarial.component';
 import { ConsultaFaixaSalarialService } from '../../services/consulta-faixa-salarial.service';
+import { ConsultaEstatisticasDoSistemaService } from '../../services/consulta-estatisticas-do-sistema.service';
+// tslint:disable-next-line:max-line-length
+import { ConsultaEstatisticasDoSistemaComponent } from './consultas/consulta-estatisticas-do-sistema/consulta-estatisticas-do-sistema.component';
 
 @NgModule({
   imports: [
@@ -59,7 +62,8 @@ import { ConsultaFaixaSalarialService } from '../../services/consulta-faixa-sala
     ConsultaDistribuicaoGeograficaComponent,
     ConsultaFaixaSalarialComponent,
     ConsultaAtuacaoProfissionalComponent,
-    ConsultaFormacaoAcademicaComponent
+    ConsultaFormacaoAcademicaComponent,
+    ConsultaEstatisticasDoSistemaComponent
   ],
   providers: [
     ValidationService,
@@ -72,7 +76,9 @@ import { ConsultaFaixaSalarialService } from '../../services/consulta-faixa-sala
     ConsultaDistribuicaoGeograficaService,
     ConsultaFaixaSalarialService,
     ConsultaAtuacaoProfissionalService,
-    ConsultaFormacaoAcademicaService
+    ConsultaFormacaoAcademicaService,
+    ConsultaEstatisticasDoSistemaService,
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
   ],
   entryComponents: [
     DialogConfirmationComponent,
@@ -97,7 +103,8 @@ import { ConsultaFaixaSalarialService } from '../../services/consulta-faixa-sala
     ConsultaDistribuicaoGeograficaComponent,
     ConsultaFaixaSalarialComponent,
     ConsultaAtuacaoProfissionalComponent,
-    ConsultaFormacaoAcademicaComponent
+    ConsultaFormacaoAcademicaComponent,
+    ConsultaEstatisticasDoSistemaComponent
   ]
 })
 export class SharedModule { }
