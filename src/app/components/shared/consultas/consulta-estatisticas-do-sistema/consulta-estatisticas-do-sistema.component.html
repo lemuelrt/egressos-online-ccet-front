@@ -5,22 +5,23 @@
   <mk-box-content>
 
     <div class="alert alert-default">
-      <div class="text-small">
-        * Egressos representa a quantidade de egressos que concluiram o curso neste ano
-      </div>
-
       <p class="text-small">
+        * Egressos representa a quantidade de egressos que concluiram o curso neste ano
+      </p>
+
+      <p class="text-small ">
         ** Atualizados representa quantos dos egressos acessaram o site e atualizaram seus dados
       </p>
 
       <hr>
 
-        <div class="text-bold" >Total de Egressos : {{totalEgressos(consultasEstatisticasDoSistema) | number}} </div>
-        <div class="text-bold">Total de Egressos : {{totalEgressos(consultasEstatisticasDoSistema) | number}} %</div>
+      <div class="row">
+        <div class="col-sm-4 text-bold">Total de egressos: {{ totalEgressos(consultasEstatisticasDoSistema) }}</div>
+        <div class="col-sm-4 text-bold">Atualizados: {{ totalAtualizados(consultasEstatisticasDoSistema) }} </div>
+        <div class="col-sm-4 text-bold">% Atualizados/Egressos: {{ percentualAtualizados(consultasEstatisticasDoSistema) }} %</div>
+      </div>
 
-
-
-    </div>
+      </div>
 
     <div class="table-responsive">
       <table class="table table-bordered">
