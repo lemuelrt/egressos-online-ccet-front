@@ -35,10 +35,10 @@
         </thead>
         <tbody>
           <tr *ngFor="let ces of consultasEstatisticasDoSistema" >
-            <td>{{ces.anoConclusao}} </td>
-            <td>{{ces.qtdEgressos}} </td>
-            <td>{{ces.atualizados}} </td>
-            <td> </td>
+            <td>{{ ces.anoConclusao }} </td>
+            <td>{{ ces.qtdEgressos }} </td>
+            <td>{{ ces.atualizados }} </td>
+            <td>{{ percentualAtualizadosPorAno(ces) }} % </td>
           </tr>
         </tbody>
 

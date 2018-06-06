@@ -67,14 +67,9 @@ export class ConsultaEstatisticasDoSistemaComponent implements OnInit {
   }
 
   // retorna o percentual de atualizados por ano-linha
-  percentualAtualizadosPorAno(ces: ConsultaEstatisticasDoSistema[]) {
+  percentualAtualizadosPorAno(ces: ConsultaEstatisticasDoSistema) {
 
-    const totalEgressos = this.totalEgressos(ces);
-
-    const total = ces.map(item => item.qtdEgressos)
-      .reduce((prev, value) => prev + value, 0);
-
-    return totalEgressos / total * 100;
+    return ces.atualizados / ces.qtdEgressos * 100;
   }
 
 }
