@@ -15,30 +15,39 @@
 
       <hr>
 
-      <div class="row">
+      <div *ngIf="!(consultasEstatisticasDoSistema.length=='0')" class="row">
         <div class="col-sm-4 text-bold">Total de egressos: {{ totalEgressos(consultasEstatisticasDoSistema) }}</div>
         <div class="col-sm-4 text-bold">Atualizados: {{ totalAtualizados(consultasEstatisticasDoSistema) }} </div>
-        <div class="col-sm-4 text-bold">% Atualizados/Egressos: {{ percentualAtualizados(consultasEstatisticasDoSistema) }} %</div>
+        <div class="col-sm-4 text-bold">Percentual de egressos atualizados: {{ percentualAtualizados(consultasEstatisticasDoSistema) }} %</div>
       </div>
 
-      </div>
+    </div>
 
     <div class="table-responsive">
       <table class="table table-bordered">
         <thead>
-          <tr>
-            <th>Ano de Conclusão</th>
-            <th>Egressos *</th>
-            <th>Atualizados **</th>
-            <th>Percentual</th>
+          <tr >
+            <th class="text-center">Ano de Conclusão</th>
+            <th class="text-center">Egressos *</th>
+            <th class="text-center">Atualizados **</th>
+            <th class="text-center">Percentual</th>
           </tr>
         </thead>
+
+        <tbody *ngIf="consultasEstatisticasDoSistema.length == '0'">
+          <tr>
+            <td colspan="5" class="text-center">
+              Nenhum engresso encontrado
+            </td>
+          </tr>
+        </tbody>
+
         <tbody>
-          <tr *ngFor="let ces of consultasEstatisticasDoSistema" >
-            <td>{{ ces.anoConclusao }} </td>
-            <td>{{ ces.qtdEgressos }} </td>
-            <td>{{ ces.atualizados }} </td>
-            <td>{{ percentualAtualizadosPorAno(ces) }} % </td>
+          <tr *ngFor="let ces of consultasEstatisticasDoSistema">
+            <td class="text-center">{{ ces.anoConclusao }} </td>
+            <td class="text-center">{{ ces.qtdEgressos }} </td>
+            <td class="text-center">{{ ces.atualizados }} </td>
+            <td class="text-center">{{ percentualAtualizadosPorAno(ces) | number}} % </td>
           </tr>
         </tbody>
 

@@ -77,14 +77,14 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th>Faixa salarial</th>
-            <th>Quantidade de egressos</th>
+            <th class="text-center">Faixa salarial</th>
+            <th class="text-center">Quantidade de egressos</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let cfs of consultasFaixaSalarial">
-            <td> {{ cfs.faixaSalarialInicial | currency: 'BRL' : true }} a  {{cfs.faixaSalarialFinal | currency: 'BRL': true }}</td>
-            <td>{{cfs.totalEgressos}}</td>
+            <td class="text-center"> {{ cfs.faixaSalarialInicial | currency: 'BRL' : true }} a  {{cfs.faixaSalarialFinal | currency: 'BRL': true }}</td>
+            <td class="text-center">{{cfs.totalEgressos}}</td>
           </tr>
         </tbody>
 

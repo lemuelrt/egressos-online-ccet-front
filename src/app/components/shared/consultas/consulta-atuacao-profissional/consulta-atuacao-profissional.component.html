@@ -89,9 +89,9 @@
         </thead>
         <tbody>
           <tr *ngFor="let cap of consultasAtuacaoProfissional">
-            <td>{{cap.atuacaoprofissional}}</td>
-            <td>{{cap.quantidade}}</td>
-            <td>{{cap.mediasalarial |currency: 'BRL': true}}</td>
+            <td >{{cap.atuacaoprofissional}}</td>
+            <td class="text-center">{{cap.quantidade}}</td>
+            <td class="text-center">{{cap.mediasalarial |currency: 'BRL': true}}</td>
           </tr>
         </tbody>
       </table>

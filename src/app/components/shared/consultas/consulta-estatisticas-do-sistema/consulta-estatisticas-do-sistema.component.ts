@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConsultaEstatisticasDoSistema } from '../../../../models/consulta-estatisticas-do-sistema.model';
 import { ConsultaEstatisticasDoSistemaService } from '../../../../services/consulta-estatisticas-do-sistema.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-consulta-estatisticas-do-sistema',
@@ -14,17 +15,24 @@ export class ConsultaEstatisticasDoSistemaComponent implements OnInit {
 
   consultasEstatisticasDoSistema: ConsultaEstatisticasDoSistema[] = [];
 
+
   constructor(
-    private consultaESService: ConsultaEstatisticasDoSistemaService
+    private consultaESService: ConsultaEstatisticasDoSistemaService,
+    private spinner: NgxSpinnerService
   ) { }
+
 
   ngOnInit() {
     this.consultar();
   }
 
+
   consultar() {
 
+    this.spinner.show();
+
     this.consultaESService.consulta()
+      .finally(() => this.spinner.hide())
       .subscribe(
         (result) => {
           this.consultasEstatisticasDoSistema = result;
@@ -32,33 +40,39 @@ export class ConsultaEstatisticasDoSistemaComponent implements OnInit {
       );
   }
 
- // retorna o total de egressos por consulta
+
+  // retorna o total (quantidade) de egressos por consulta
+
   totalEgressos(ces: ConsultaEstatisticasDoSistema[]) {
 
     let total = 0;
 
     if (ces) {
       total = ces.map(item => item.qtdEgressos)
-      .reduce((prev, value) => prev + value, 0);
+        .reduce((prev, value) => prev + value, 0);
     }
     return total;
   }
 
+
   // retorna o total de egressos atualizados por consulta
+
   totalAtualizados(ces: ConsultaEstatisticasDoSistema[]) {
 
     let total = 0;
 
     if (ces) {
       total = ces.map(item => item.atualizados)
-      .reduce((prev, value) => prev + value, 0);
+        .reduce((prev, value) => prev + value, 0);
     }
     return total;
   }
 
+
   // retorna o percentual de atualizados por consulta
+
   percentualAtualizados(ces: ConsultaEstatisticasDoSistema[]) {
-     const totalEgressos = this.totalAtualizados(ces);
+    const totalEgressos = this.totalAtualizados(ces);
 
     const total = ces.map(item => item.qtdEgressos)
       .reduce((prev, value) => prev + value, 0);
@@ -66,7 +80,9 @@ export class ConsultaEstatisticasDoSistemaComponent implements OnInit {
     return totalEgressos / total * 100;
   }
 
+
   // retorna o percentual de atualizados por ano-linha
+
   percentualAtualizadosPorAno(ces: ConsultaEstatisticasDoSistema) {
 
     return ces.atualizados / ces.qtdEgressos * 100;
