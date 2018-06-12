@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConsultaEstatisticasDoSistema } from '../../../../models/consulta-estatisticas-do-sistema.model';
 import { ConsultaEstatisticasDoSistemaService } from '../../../../services/consulta-estatisticas-do-sistema.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { MESSAGES } from '../../../../const/messages';
 
 @Component({
   selector: 'app-consulta-estatisticas-do-sistema',
@@ -12,6 +13,10 @@ export class ConsultaEstatisticasDoSistemaComponent implements OnInit {
 
 
   title = 'Consulta de estatísticas do sistema';
+  msg036 = MESSAGES.M036;
+  msg037 = MESSAGES.M037;
+  msg038 = MESSAGES.M038;
+
 
   consultasEstatisticasDoSistema: ConsultaEstatisticasDoSistema[] = [];
 
@@ -31,7 +36,7 @@ export class ConsultaEstatisticasDoSistemaComponent implements OnInit {
 
     this.spinner.show();
 
-    this.consultaESService.consulta()
+    this.consultaESService.consultar()
       .finally(() => this.spinner.hide())
       .subscribe(
         (result) => {

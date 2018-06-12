@@ -5,9 +5,9 @@
   <mk-box-content>
 
     <div class="alert alert-default text-small">
-        *  Egressos representa a quantidade de egressos que concluiram o curso neste ano
+        {{msg036}}
         <br>
-        ** Atualizados representa quantos dos egressos acessaram o site e atualizaram seus dados
+        {{msg037}}
 
 
 
@@ -37,7 +37,7 @@
         <tbody *ngIf="consultasEstatisticasDoSistema.length == '0'">
           <tr>
             <td colspan="5" class="text-center">
-              Nenhum engresso encontrado
+              {{msg038}}
             </td>
           </tr>
         </tbody>
