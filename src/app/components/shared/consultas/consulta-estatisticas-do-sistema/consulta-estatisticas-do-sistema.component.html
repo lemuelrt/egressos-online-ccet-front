@@ -1,32 +1,18 @@
 <mk-box header='' [isRemovable]='false' [isCollapsable]='false'>
-
   <mk-box-header>{{title}}</mk-box-header>
-
-  <mk-box-content>
+   <mk-box-content>
 
     <div class="alert alert-default text-small">
-        {{msg036}}
-        <br>
-        {{msg037}}
-
-
-
-      <div *ngIf="!(consultasEstatisticasDoSistema.length=='0')" class="row">
-
-        <hr>
-
-        <div class="col-sm-4 text-bold">Total de egressos: {{ totalEgressos(consultasEstatisticasDoSistema) }}</div>
-        <div class="col-sm-4 text-bold">Atualizados: {{ totalAtualizados(consultasEstatisticasDoSistema) }} </div>
-        <div class="col-sm-4 text-bold">Percentual de egressos atualizados: {{ percentualAtualizados(consultasEstatisticasDoSistema) }} %</div>
-
-      </div>
-
+      {{msg036}}
+      <br>
+      {{msg037}}
     </div>
+
 
     <div class="table-responsive">
       <table class="table table-bordered">
         <thead>
-          <tr >
+          <tr>
             <th class="text-center">Ano de Conclusão</th>
             <th class="text-center">Egressos *</th>
             <th class="text-center">Atualizados **</th>
@@ -51,8 +37,16 @@
           </tr>
         </tbody>
 
+        <tbody *ngIf="!(consultasEstatisticasDoSistema.length=='0')">
+          <tr>
+              <td class="td-bold">Total do curso: </td>
+              <td class="td-bold">{{ totalEgressos(consultasEstatisticasDoSistema) }}</td>
+              <td class="td-bold">{{ totalAtualizados(consultasEstatisticasDoSistema) }}</td>
+              <td class="td-bold">{{ percentualAtualizados(consultasEstatisticasDoSistema) }} %</td>
+          </tr>
+        </tbody>
+
       </table>
     </div>
-
   </mk-box-content>
 </mk-box>
