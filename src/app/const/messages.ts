@@ -38,7 +38,7 @@ export const MESSAGES = {
   'M034': '*O total de egressos da consulta diz respeito àqueles que atendem os filtros informados e atualizaram os dados na plataforma. ',
   // tslint:disable-next-line:max-line-length
   'M035': 'Como o egresso informa como salário um intervalo de faixa salarial, o cálculo da média considera o valor médio do intervalo selecionado.',
-  'M036': '* Egressos representa a quantidade de egressos que concluiram o curso neste ano',
+  'M036': '* Egressos representa a quantidade de egressos que concluíram o curso neste ano',
   'M037': '** Atualizados representa quantos dos egressos acessaram o site e atualizaram seus dados',
-  'M038': 'Nenhum engresso encontrado'
+  'M038': 'Nenhum egresso encontrado'
 };

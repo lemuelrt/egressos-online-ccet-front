@@ -90,7 +90,7 @@ export class ConsultaEstatisticasDoSistemaComponent implements OnInit {
 
   percentualAtualizadosPorAno(ces: ConsultaEstatisticasDoSistema) {
 
-    return ces.atualizados / ces.qtdEgressos * 100;
+    return (ces.atualizados / ces.qtdEgressos * 100).toFixed(2);
   }
 
 }
