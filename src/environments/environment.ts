@@ -5,6 +5,7 @@
 
 export const environment = {
   production: false,
+  base_url_api: 'http://localhost:8080',
   url_api: 'http://localhost:8080/api',
   url_api_secure: 'http://localhost:8080/api'
 

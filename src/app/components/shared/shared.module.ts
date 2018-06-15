@@ -1,3 +1,5 @@
+import { StorageService } from './../../services/storage.service';
+import { AuthService } from './../../services/auth.service';
 import { ConsultaAtuacaoProfissionalService } from './../../services/consulta-atuacao-profissional.service';
 import { ConsultaAtuacaoProfissionalComponent } from './consultas/consulta-atuacao-profissional/consulta-atuacao-profissional.component';
 import { ConsultaDistribuicaoGeograficaService } from './../../services/consulta-distribuicao-geografica.service';
@@ -69,6 +71,8 @@ import { ConsultaFaixaSalarialService } from '../../services/consulta-faixa-sala
     FaixaSalarialService,
     AtuacaoProfissionalService,
     TitulacaoService,
+    AuthService,
+    StorageService,
     ConsultaDistribuicaoGeograficaService,
     ConsultaFaixaSalarialService,
     ConsultaAtuacaoProfissionalService,
