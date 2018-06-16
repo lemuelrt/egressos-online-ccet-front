@@ -66,20 +66,20 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th>Titulação</th>
-            <th>Quantidade de egressos</th>
-            <th>Tempo médio (anos)</th>
-            <th>Menor tempo (anos)</th>
-            <th>Maior tempo (anos)</th>
+            <th class="text-center">Titulação</th>
+            <th class="text-center">Quantidade de egressos</th>
+            <th class="text-center">Tempo médio (anos)</th>
+            <th class="text-center">Menor tempo (anos)</th>
+            <th class="text-center">Maior tempo (anos)</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let cfa of consultasFormacaoAcademica">
-            <td>{{cfa.titulacao}}</td>
-            <td>{{cfa.quantidade}}</td>
-            <td>{{cfa.tempomedio}}</td>
-            <td>{{cfa.menortempo}}</td>
-            <td>{{cfa.maiortempo}}</td>
+            <td class="text-center">{{cfa.titulacao}}</td>
+            <td class="text-center">{{cfa.quantidade}}</td>
+            <td class="text-center">{{cfa.tempomedio}}</td>
+            <td class="text-center">{{cfa.menortempo}}</td>
+            <td class="text-center">{{cfa.maiortempo}}</td>
           </tr>
         </tbody>
       </table>
