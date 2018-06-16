@@ -27,6 +27,8 @@ export const MESSAGES = {
   'M023': 'Não foi possível finalizar a operação! ',
 
   // validar no próximo dms
+  // coloquei aqui em cima pq é do caso de uso 09 - consulta formacao academica
+  'M040': 'Este espaço é destinado a fotografias de sua vida pessoal e profissional, assim como descrição do conteúdo/momento das fotos.',
   'M026': 'Dados pessoais atualizados com sucesso!',
   'M027': 'Extensão do link inválida. O link deve conter no mínimo 1 e no máximo 100 caracteres. ',
   'M028': 'Extensão da descrição inválida. A descrição deve conter no mínimo 1 e no máximo 200 caracteres.  ',
@@ -38,7 +40,9 @@ export const MESSAGES = {
   'M034': '*O total de egressos da consulta diz respeito àqueles que atendem os filtros informados e atualizaram os dados na plataforma. ',
   // tslint:disable-next-line:max-line-length
   'M035': 'Como o egresso informa como salário um intervalo de faixa salarial, o cálculo da média considera o valor médio do intervalo selecionado.',
-  'M036': '* Egressos representa a quantidade de egressos que concluíram o curso neste ano',
-  'M037': '** Atualizados representa quantos dos egressos acessaram o site e atualizaram seus dados',
-  'M038': 'Nenhum egresso encontrado'
+ // coloquei aqui em cima pq é do caso de uso 09 - consulta formacao academica
+  'M039': 'Os tempos médio, menor e maior referem-se ao intervalo de tempo entre a conclusão da graduação e a conclusão da titulação.',
+  'M036': '* Egressos representa a quantidade de egressos que concluíram o curso neste ano.',
+  'M037': '** Atualizados representa quantos dos egressos acessaram o site e atualizaram seus dados.',
+  'M038': 'Nenhum egresso encontrado.'
 };
