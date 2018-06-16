@@ -52,6 +52,8 @@ export class EgressoAtualizarFormComponent implements OnInit {
   title = 'ALTERAR MEUS DADOS';
   btndescricao = 'Atualizar';
 
+  msg40 = MESSAGES.M040;
+
   @ViewChild('fotoPerfil') fotoPerfil;
   urlFotoPerfil: string;
 
