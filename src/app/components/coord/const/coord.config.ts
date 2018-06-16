@@ -1,3 +1,4 @@
+import { CoordAuthComponent } from './../coord-auth/coord-auth.component';
 // tslint:disable-next-line:max-line-length
 import { ConsultaAtuacaoProfissionalComponent } from './../../shared/consultas/consulta-atuacao-profissional/consulta-atuacao-profissional.component';
 // tslint:disable-next-line:max-line-length
