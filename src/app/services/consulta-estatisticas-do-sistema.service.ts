@@ -9,7 +9,7 @@ export class ConsultaEstatisticasDoSistemaService {
 
   constructor(private http: HttpClient) { }
 
-  consulta(): Observable<ConsultaEstatisticasDoSistema[]> {
+  consultar(): Observable<ConsultaEstatisticasDoSistema[]> {
 
     return this.http.post<ConsultaEstatisticasDoSistema[]>(`${EOCCET_API}/consulta/estatistica-do-sistema`, {});
   }

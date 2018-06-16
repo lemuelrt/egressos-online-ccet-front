@@ -91,7 +91,7 @@ export class ConsultaDistribuicaoGeograficaComponent implements OnInit {
     const total = arraycdg.map(item => item.totalreside)
       .reduce((prev, value) => prev + value, 0);
 
-    return cdg.totalreside / total * 100;
+    return (cdg.totalreside / total * 100).toFixed(2);
   }
 
   percentualTrabalha(cdg: ConsultaDistribuicaoGeografica, arraycdg: ConsultaDistribuicaoGeografica[]) {
@@ -99,7 +99,7 @@ export class ConsultaDistribuicaoGeograficaComponent implements OnInit {
     const total = arraycdg.map(item => item.totaltrabalha)
       .reduce((prev, value) => prev + value, 0);
 
-    return cdg.totaltrabalha / total * 100;
+    return (cdg.totaltrabalha / total * 100).toFixed(2);
   }
 
   totalEgressos(arraycdg: ConsultaDistribuicaoGeografica[]) {
