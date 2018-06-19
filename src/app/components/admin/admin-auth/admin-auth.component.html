@@ -1,0 +1,63 @@
+<div class="login-page">
+  <div class="login-box">
+    <div class="card">
+      <div class="logo">
+
+          <img src="assets/apple-icon-60x60.png">
+
+
+          <img src="assets/ueg-icon.png">
+
+
+          <img src="assets/apple-icon-60x60.png">
+
+      </div>
+      <div class="body">
+        <form [formGroup]="loginForm" novalidate>
+          <div class="title-auth">Autenticação</div>
+
+
+          <div class="row">
+
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="username" class="control-label">CPF</label>
+
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    <i class="fa fa-user fa" aria-hidden="true"></i>
+                  </span>
+                  <input type="text" class="form-control" formControlName="cpf" placeholder="" />
+                </div>
+
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="password" class=" control-label">Senha</label>
+
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    <i class="fa fa-lock fa-lg" aria-hidden="true"></i>
+                  </span>
+                  <input type="password" class="form-control" formControlName="senha" placeholder="" />
+                </div>
+
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <!-- <button class="btn btn-block bg-indigo waves-effect" type="submit">SIGN IN</button> -->
+              <button mat-raised-button color="primary" class="pull-right" (click)="login()">ENTRAR</button>
+
+
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="footer">
+
+      </div>
+    </div>
+  </div>
+</div>
