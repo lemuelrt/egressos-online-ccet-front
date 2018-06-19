@@ -11,11 +11,13 @@ import { AdminIndexComponent } from './admin-index/admin-index.component';
 import { AdminCoordenadorFormComponent } from './admin-coordenador-form/admin-coordenador-form.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdminAuthModule } from './admin-auth/admin-auth.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(routes_admin),
+    AdminAuthModule,
     SharedModule
   ],
   declarations: [

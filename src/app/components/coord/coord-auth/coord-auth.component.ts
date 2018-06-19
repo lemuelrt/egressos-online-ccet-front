@@ -1,3 +1,4 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from './../../../services/auth.service';
@@ -21,7 +22,8 @@ export class CoordAuthComponent implements OnInit {
     private authService: AuthService,
     private toastr: ToastrService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private spinner: NgxSpinnerService,
   ) {
     if (this.authService.isLoggedIn(TipoUsuario.COORD)) {
       this.router.navigate(['/coord']);
@@ -42,10 +44,12 @@ export class CoordAuthComponent implements OnInit {
   login() {
 
     if (this.loginForm.valid) {
+      this.spinner.show();
       this.authService.authenticate(
         this.loginForm.get('cpf').value,
         this.loginForm.get('senha').value,
         TipoUsuario.COORD, null)
+        .finally(() => this.spinner.hide() )
         .subscribe(
           (response) => {
             this.authService.successfulLogin(response.headers.get('Authorization'));
