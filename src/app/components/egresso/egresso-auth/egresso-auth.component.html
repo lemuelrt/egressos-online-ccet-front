@@ -2,16 +2,21 @@
   <div class="login-box">
     <div class="card">
       <div class="logo">
+        <div class="col-xs-3">
+          <img src="assets/apple-icon-60x60.png">
+        </div>
+        <div class="col-xs-6">
+          <img src="assets/ueg-icon.png">
+        </div>
+        <div class="col-xs-3">
+          <img src="assets/img/logo-si.png">
+        </div>
 
-        <img src="assets/apple-icon-60x60.png">
 
 
-        <img src="assets/ueg-icon.png">
-
-
-        <img src="assets/apple-icon-60x60.png">
 
       </div>
+      <div class="clearfix"></div>
       <div class="body">
         <form [formGroup]="loginForm" novalidate>
           <div class="title-auth">Autenticação</div>
@@ -30,7 +35,7 @@
                   <span class="input-group-addon">
                     <i class="fa fa-user fa" aria-hidden="true"></i>
                   </span>
-                  <input type="text" class="form-control" formControlName="cpf" placeholder="CPF" />
+                  <input type="text" class="form-control" formControlName="cpf" placeholder="CPF" mask="000.000.000-00" />
                 </div>
 
               </div>
@@ -64,7 +69,7 @@
                   </span>
                   <select class="form-control" formControlName="oferta">
                     <option value="">Seu curso</option>
-                    <option value="{{oferta.ofertaId}}" *ngFor="let oferta of ofertas">{{oferta.ofertaCurso.cursoNome}} - {{oferta.ofertaCampus.campusNome}}</option>
+                    <option value="{{oferta.ofertaId}}" *ngFor="let oferta of ofertas">{{oferta.ofertaCurso.cursoNome | slice : 0 : 30}}<span *ngIf="oferta.ofertaCurso.cursoNome.length > 30">...</span></option>
                   </select>
                 </div>
               </div>
@@ -73,9 +78,9 @@
 
             <div class="col-sm-12">
               <!-- <button class="btn btn-block bg-indigo waves-effect" type="submit">SIGN IN</button> -->
-              <button mat-raised-button color="primary" class="pull-right" (click)="login()">ENTRAR</button>
+              <button mat-raised-button color="primary" class="btn-blue pull-right" (click)="login()">ENTRAR</button>
               &nbsp;
-              <button mat-button color="primary" class="pull-right" [routerLink]="['/coord/forgot']">Esqueceu a senha?</button>
+              <button mat-button color="primary" class=" pull-right" [routerLink]="['/forgot']">Esqueceu a senha?</button>
 
 
             </div>

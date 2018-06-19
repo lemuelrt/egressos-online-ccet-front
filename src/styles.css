@@ -72,3 +72,119 @@
   padding-top: 10px;
   font-size: 1em;
 }
+
+
+/*============= Login e forgot ============ */
+
+@media (max-width: 599px) {
+    .login-page{
+        padding: 0;
+    }
+    .login-page .login-box .card{
+
+        margin: 0 auto;
+    }
+
+    .login-page .login-box .card .footer{
+
+        margin-top: 30px;
+
+    }
+
+    .login-page .container-fluid{
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+
+}
+
+.login-page .body{
+    padding: 10px;
+}
+
+.login-page .footer{
+  text-align: center;
+  padding: 5px 10px;
+}
+.login-page .footer a{
+  font-weight: 600;
+  color: #3F51B5 !important;
+}
+
+.login-page .logo{
+
+}
+
+.login-page .login-box .logo img{
+    height: 60px;
+    margin: 0 auto;
+}
+
+
+.login-page .title-auth{
+    color: #226d99;
+    font-weight: 600;
+    text-align: center;
+
+    padding: 15px 0 20px !important;
+
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.login-page{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: transparent;
+    background-image: linear-gradient(to right bottom, #93a5cf, #94bcd6, #a7cfd9, #c4e0dd, #e4efe9);background-image: linear-gradient(to right, #cfd9df, #d4dde3, #d8e2e7, #dde6ec, #e2ebf0);
+    height: 100vh;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    display: table;
+}
+
+.login-page .login-box{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.login-box .card{
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 360px;
+    padding: 16px;
+    text-align: left;
+    background-color: #f7f7f7;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px 3px rgba(162, 158, 158, 0.63);
+    -moz-box-shadow: 0px 0px 10px 3px rgba(162, 158, 158, 0.63);
+    -webkit-box-shadow: 0px 0px 10px 3px rgba(162, 158, 158, 0.63);
+}
+
+
+
+.login-box::after{
+    content: " ";
+    display: table;
+    clear: both;
+}
+
+.login-page input, .login-page select{
+  border-radius: 0 !important;
+  border-color: #d2d6de !important;
+}
+
+.login-page .input-group-addon{
+  background-color: #3c8dbc;
+  color: #f0f0f0;
+}
+
+.login-page .btn-blue{
+  background-color: #367fa9 !important;
+}
+
+

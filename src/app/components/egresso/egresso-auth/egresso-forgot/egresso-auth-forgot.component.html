@@ -2,8 +2,17 @@
   <div class="login-box">
     <div class="card">
       <div class="logo">
-
+        <div class="col-xs-3">
+          <img src="assets/apple-icon-60x60.png">
+        </div>
+        <div class="col-xs-6">
+          <img src="assets/ueg-icon.png">
+        </div>
+        <div class="col-xs-3">
+          <img src="assets/img/logo-si.png">
+        </div>
       </div>
+      <div class="clearfix"></div>
       <div class="body">
         <form [formGroup]="forgotForm" novalidate>
           <div class="title-auth">Recuperação de conta</div>
@@ -13,13 +22,13 @@
 
             <div class="col-sm-12">
               <div class="form-group">
-                <label for="username" class="control-label">Email</label>
+
 
                 <div class="input-group">
                   <span class="input-group-addon">
                     <i class="fa fa-envelope-o fa" aria-hidden="true"></i>
                   </span>
-                  <input type="text" class="form-control" formControlName="email" placeholder="" />
+                  <input type="text" class="form-control" formControlName="email" placeholder="E-mail" />
                 </div>
 
               </div>
@@ -29,11 +38,11 @@
               <!-- <button class="btn btn-block bg-indigo waves-effect" type="submit">SIGN IN</button> -->
 
 
-              <button mat-icon-button color="primary" [routerLink]="['/coord/auth']">
+              <button mat-icon-button color="primary" [routerLink]="['/auth']">
                 <mat-icon>arrow_back</mat-icon>
               </button>
 
-              <button mat-raised-button color="primary" class="pull-right" (click)="forgot()">Enviar</button>
+              <button mat-raised-button color="primary" class="btn-blue pull-right" (click)="forgot()">Enviar</button>
             </div>
           </div>
         </form>

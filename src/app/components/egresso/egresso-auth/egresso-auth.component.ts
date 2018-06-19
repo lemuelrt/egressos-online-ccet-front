@@ -7,6 +7,7 @@ import { AuthService } from './../../../services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { OfertaService } from '../../../services/oferta.service';
+import { MESSAGES } from '../../../const/messages';
 
 @Component({
   selector: 'app-egresso-auth',
@@ -58,15 +59,17 @@ export class EgressoAuthComponent implements OnInit {
       this.authService.authenticate(
         this.loginForm.get('cpf').value,
         this.loginForm.get('senha').value,
-        TipoUsuario.EGRESSO, null)
+        TipoUsuario.EGRESSO,
+        this.loginForm.get('oferta').value)
         .finally(() => this.spinner.hide())
         .subscribe(
           (response) => {
+            this.toastr.success(MESSAGES['M036']);
             this.authService.successfulLogin(response.headers.get('Authorization'));
             this.router.navigate(['/egresso']);
           },
           (error) => {
-
+            this.toastr.error(MESSAGES['M037']);
           }
         );
     }
