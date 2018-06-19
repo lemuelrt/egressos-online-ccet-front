@@ -1,3 +1,4 @@
+import { AuthInterceptorProvider } from './../../interceptors/auth.interceptor';
 import { StorageService } from './../../services/storage.service';
 import { AuthService } from './../../services/auth.service';
 import { ConsultaAtuacaoProfissionalService } from './../../services/consulta-atuacao-profissional.service';
@@ -77,6 +78,7 @@ import { ConsultaFaixaSalarialService } from '../../services/consulta-faixa-sala
     ConsultaFaixaSalarialService,
     ConsultaAtuacaoProfissionalService,
     { provide: LOCALE_ID, useValue: 'pt-BR' },
+    AuthInterceptorProvider,
     ConsultaFormacaoAcademicaService
   ],
   entryComponents: [

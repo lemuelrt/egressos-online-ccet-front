@@ -1,8 +1,10 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from './../../../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { TipoUsuario } from '../../../../enums/tipo-usuario.enum';
 
 @Component({
   selector: 'app-coord-auth-forgot',
@@ -20,8 +22,13 @@ export class CoordAuthForgotComponent implements OnInit {
     private authService: AuthService,
     private toastr: ToastrService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) { }
+    private activatedRoute: ActivatedRoute,
+    private spinner: NgxSpinnerService,
+  ) {
+    if (this.authService.isLoggedIn(TipoUsuario.COORD)) {
+      this.router.navigate(['/coord']);
+    }
+  }
 
   ngOnInit() {
 
@@ -30,13 +37,21 @@ export class CoordAuthForgotComponent implements OnInit {
 
     });
 
-    this.navigateTo = this.activatedRoute.snapshot.params['to'];
   }
 
-  login() {
+  forgot() {
+
+
 
     if (this.forgotForm.valid) {
-
+      this.spinner.show();
+      this.authService.forgot(this.forgotForm.get('email').value, TipoUsuario.COORD)
+        .finally(() => this.spinner.hide())
+        .subscribe(
+          (response) => {
+            this.toastr.success('Foi enviado os dados de recuperação da conta para o e-mail.');
+          }
+        );
     }
 
   }

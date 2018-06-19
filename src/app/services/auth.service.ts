@@ -5,20 +5,46 @@ import { EOCCET_API, EOCCET_BASE_API } from './../app.api';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { StorageService } from './storage.service';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthService {
 
   constructor(private http: HttpClient, private storage: StorageService) { }
 
-  authenticateEgresso(usuario: string, senha: string, tipoUsuario: TipoUsuario, ofertaId: number) {
+  isLoggedIn(tipoUsuario?: TipoUsuario): boolean {
+
+    const localUser = this.storage.getLocalUser();
+
+    if (localUser && (tipoUsuario === undefined || tipoUsuario === localUser.usuario.tipoUsuario)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  getAuthenticated(): UsuarioDto {
+
+    const localUser = this.storage.getLocalUser();
+
+    if (localUser.usuario !== undefined) {
+      return localUser.usuario;
+    }
+    return undefined;
+  }
+
+  authenticate(usuario: string, senha: string, tipoUsuario: TipoUsuario, ofertaId: number) {
     return this.http.post(
       `${EOCCET_BASE_API}/login`,
-      { usename: usuario, password: senha, tipoUsuario: tipoUsuario, ofertaId: ofertaId },
+      { username: usuario, password: senha, tipoUsuario: tipoUsuario, ofertaId: ofertaId },
       {
         observe: 'response',
         responseType: 'text'
       });
+  }
+
+  forgot(email: string, tipoUsuario: TipoUsuario): Observable<any> {
+    return this.http.post<any>(`${EOCCET_API}/auth/forgot`, {email: email, tipoUsuario: tipoUsuario});
   }
 
   refreshToken() {
