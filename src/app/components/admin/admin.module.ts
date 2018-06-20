@@ -1,3 +1,4 @@
+import { AuthAdminGuard } from './../../guards/auth-admin.guard';
 import { routes_admin } from './const/admin.config';
 import { Routes, RouterModule } from '@angular/router';
 import { OfertaService } from './../../services/oferta.service';
@@ -27,7 +28,7 @@ import { AdminAuthModule } from './admin-auth/admin-auth.module';
     AdminCoordenadorFormComponent
   ],
   providers: [
-
+    AuthAdminGuard
   ]
 })
 export class AdminModule { }

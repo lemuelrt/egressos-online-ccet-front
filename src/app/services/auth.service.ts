@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { UsuarioDto } from './../models/usuario-dto.model';
 import { LocalUser } from './../models/local-user.model';
 import { TipoUsuario } from './../enums/tipo-usuario.enum';
@@ -6,17 +7,23 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { StorageService } from './storage.service';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/do';
 
 @Injectable()
 export class AuthService {
 
-  constructor(private http: HttpClient, private storage: StorageService) { }
+  constructor(
+    private http: HttpClient,
+    private storage: StorageService,
+    private router: Router
+  ) { }
 
   isLoggedIn(tipoUsuario?: TipoUsuario): boolean {
 
     const localUser = this.storage.getLocalUser();
 
-    if (localUser && (tipoUsuario === undefined || tipoUsuario === localUser.usuario.tipoUsuario)) {
+    if (localUser && localUser.usuario.tipoUsuario !== undefined &&
+      (tipoUsuario === undefined || tipoUsuario === localUser.usuario.tipoUsuario)) {
       return true;
     }
 
@@ -44,7 +51,7 @@ export class AuthService {
   }
 
   forgot(email: string, tipoUsuario: TipoUsuario): Observable<any> {
-    return this.http.post<any>(`${EOCCET_API}/auth/forgot`, {email: email, tipoUsuario: tipoUsuario});
+    return this.http.post<any>(`${EOCCET_API}/auth/forgot`, { email: email, tipoUsuario: tipoUsuario });
   }
 
   refreshToken() {
@@ -57,25 +64,54 @@ export class AuthService {
       });
   }
 
-  successfulLogin(authorizationValue: string) {
+  successfulLogin(authorizationValue: string, usuario: UsuarioDto) {
     const tok = authorizationValue.substring(7);
     const user: LocalUser = {
       token: tok,
-      usuario: undefined
+      usuario: usuario
     };
     this.storage.setLocalUser(user);
-    this.setUser();
+
+    this.redirectSuccessfulLogin(usuario.tipoUsuario);
   }
 
-  private setUser() {
-    this.http.get<UsuarioDto>(`${EOCCET_API}/auth/usuario`).subscribe(
-      (usuario => {
-        this.storage.setUserInLocalUser(usuario);
-      })
-    );
+  redirectSuccessfulLogin(tipoUsuario: TipoUsuario) {
+    switch (tipoUsuario) {
+      case TipoUsuario.ADMIN:
+        this.router.navigate(['/admin']);
+        break;
+      case TipoUsuario.COORD:
+        this.router.navigate(['/coord']);
+        break;
+      default:
+        this.router.navigate(['']);
+        break;
+    }
   }
 
-  logout() {
+  private setUser(): Observable<boolean> {
+    return this.http.get<any>(`${EOCCET_API}/auth/usuario`)
+      .do((data) => {
+        this.storage.setUserInLocalUser(data);
+      });
+  }
+
+  handleLogin(tipoUsuario: TipoUsuario) {
     this.storage.setLocalUser(null);
+    switch (tipoUsuario) {
+      case TipoUsuario.ADMIN:
+        this.router.navigate(['/admin/auth']);
+        break;
+      case TipoUsuario.COORD:
+        this.router.navigate(['/coord/auth']);
+        break;
+      default:
+        this.router.navigate(['/auth']);
+        break;
+    }
+  }
+
+  logout(tipoUsuario: TipoUsuario) {
+    this.handleLogin(tipoUsuario);
   }
 }

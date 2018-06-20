@@ -1,9 +1,10 @@
+import { MESSAGES } from './../../../const/messages';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { TipoUsuario } from './../../../enums/tipo-usuario.enum';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from './../../../services/auth.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 
@@ -41,6 +42,14 @@ export class AdminAuthComponent implements OnInit {
 
   }
 
+  hasError(name: string): boolean {
+    return this.loginForm.get(name).errors && this.loginForm.get(name).touched;
+  }
+
+  getControl(name: string): AbstractControl {
+    return this.loginForm.get(name);
+  }
+
   login() {
 
     if (this.loginForm.valid) {
@@ -52,11 +61,11 @@ export class AdminAuthComponent implements OnInit {
         .finally(() => this.spinner.hide())
         .subscribe(
           (response) => {
-            this.authService.successfulLogin(response.headers.get('Authorization'));
-            this.router.navigate(['/admin']);
+            this.toastr.success(MESSAGES['M036']);
+            this.authService.successfulLogin(response.headers.get('Authorization'), JSON.parse(response.body));
           },
           (error) => {
-
+            this.toastr.error(MESSAGES['M037']);
           }
         );
     }
