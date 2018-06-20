@@ -1,3 +1,4 @@
+import { AuthCoordGuard } from './../../guards/auth-coord.guard';
 import { CoordAuthModule } from './coord-auth/coord-auth.module';
 
 import { coord_routes } from './../coord/const/coord.config';
@@ -41,7 +42,8 @@ import { CoordAuthComponent } from './coord-auth/coord-auth.component';
   providers: [
     AtuacaoProfissionalService,
     EgressoService,
-    LeftPadPipe
+    LeftPadPipe,
+    AuthCoordGuard
   ],
   exports: [
     CoordAuthModule

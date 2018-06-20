@@ -1,3 +1,4 @@
+import { AuthCoordGuard } from './../../../guards/auth-coord.guard';
 import { CoordAuthComponent } from './../coord-auth/coord-auth.component';
 // tslint:disable-next-line:max-line-length
 import { ConsultaAtuacaoProfissionalComponent } from './../../shared/consultas/consulta-atuacao-profissional/consulta-atuacao-profissional.component';
@@ -6,7 +7,7 @@ import { ConsultaDistribuicaoGeograficaComponent } from './../../shared/consulta
 import { CoordAtuacaoProfissionalFormComponent } from './../coord-atuacao-profissional-form/coord-atuacao-profissional-form.component';
 import { CoordAtuacaoProfissionalIndexComponent } from './../coord-atuacao-profissional-index/coord-atuacao-profissional-index.component';
 // tslint:disable-next-line:max-line-length
-import { CoordAtuacoesProfissionaisImportComponent } from './../coord-atuacoes-profissionais-import/coord-atuacoes-profissionais-import.component';
+
 import { CoordEgressoFormComponent } from './../coord-egresso-form/coord-egresso-form.component';
 import { CoordEgressoIndexComponent } from './../coord-egresso-index/coord-egresso-index.component';
 import { CoordEgressosImportComponent } from './../coord-egressos-import/coord-egressos-import.component';
@@ -20,7 +21,12 @@ import { ConsultaFormacaoAcademicaComponent } from '../../shared/consultas/consu
 
 export const coord_routes: Routes = [
   {
-    path: 'coord', component: CoordComponent, /*data: {title: 'Home'},*/ children: [
+    path: 'coord',
+    component: CoordComponent, /*data: {title: 'Home'},*/
+    canLoad: [AuthCoordGuard],
+    canActivate: [AuthCoordGuard],
+    canActivateChild: [AuthCoordGuard],
+    children: [
       { path: '', component: CoordIndexComponent },
       { path: 'atuacoes-profissionais', component: CoordAtuacaoProfissionalIndexComponent/*, data: { title: 'Atuações profissionais' } */ },
       { path: 'atuacoes-profissionais-add', component: CoordAtuacaoProfissionalFormComponent },

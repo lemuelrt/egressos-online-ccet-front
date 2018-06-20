@@ -1,8 +1,9 @@
+import { MESSAGES } from './../../../../const/messages';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from './../../../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { TipoUsuario } from '../../../../enums/tipo-usuario.enum';
 
@@ -39,6 +40,14 @@ export class CoordAuthForgotComponent implements OnInit {
 
   }
 
+  hasError(name: string): boolean {
+    return this.forgotForm.get(name).errors && this.forgotForm.get(name).touched;
+  }
+
+  getControl(name: string): AbstractControl {
+    return this.forgotForm.get(name);
+  }
+
   forgot() {
 
 
@@ -49,7 +58,10 @@ export class CoordAuthForgotComponent implements OnInit {
         .finally(() => this.spinner.hide())
         .subscribe(
           (response) => {
-            this.toastr.success('Foi enviado os dados de recuperação da conta para o e-mail.');
+            this.toastr.success(MESSAGES['M038']);
+          },
+          (error) => {
+            this.toastr.error(MESSAGES['M0039']);
           }
         );
     }

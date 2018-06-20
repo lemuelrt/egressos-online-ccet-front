@@ -1,3 +1,4 @@
+import { TipoUsuario } from './../../enums/tipo-usuario.enum';
 import { UsuarioDto } from './../../models/usuario-dto.model';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -23,7 +24,6 @@ export class CoordComponent implements OnInit {
   }
 
   logout() {
-    this.auth.logout();
-    this.router.navigate(['/coord/auth']);
+    this.auth.logout(TipoUsuario.COORD);
   }
 }
