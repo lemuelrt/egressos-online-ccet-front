@@ -40,7 +40,8 @@ export const MESSAGES = {
   'M035': 'Como o egresso informa como salário um intervalo de faixa salarial, o cálculo da média considera o valor médio do intervalo selecionado.',
   'M036': 'Autenticação realizada com sucesso!',
   'M037': 'As credenciais informadas não são válidas!',
-  'M038': 'O e-mail informado não foi encontrado.',
-  'M039': 'Os dados de recuperação da conta foram enviados para o e-mail cadastrado.'
+  'M038': 'Os dados de recuperação da conta foram enviados para o e-mail cadastrado.',
+  'M039': 'O e-mail informado não foi encontrado.',
+
 
 };

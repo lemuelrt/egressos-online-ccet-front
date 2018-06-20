@@ -1,3 +1,4 @@
+import { AuthEgressoGuard } from './../../guards/auth-egresso.guard';
 import { EgressoAuthModule } from './egresso-auth/egresso-auth.module';
 import { EgressoIndexComponent } from './egresso-index/egresso-index.component';
 import { egresso_routes } from './const/egresso.config';
@@ -31,6 +32,9 @@ import { EgressoAuthComponent } from './egresso-auth/egresso-auth.component';
     PesquisarEnderecoComponent,
     CadastroRedeSocialComponent,
     CadastroTitulacaoComponent,
+  ],
+  providers: [
+    AuthEgressoGuard
   ]
 })
 export class EgressoModule { }

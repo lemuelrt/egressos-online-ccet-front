@@ -1,9 +1,10 @@
+import { MESSAGES } from './../../../../const/messages';
 import { TipoUsuario } from './../../../../enums/tipo-usuario.enum';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from './../../../../services/auth.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -39,6 +40,14 @@ export class EgressoAuthForgotComponent implements OnInit {
 
   }
 
+  hasError(name: string): boolean {
+    return this.forgotForm.get(name).errors && this.forgotForm.get(name).touched;
+  }
+
+  getControl(name: string): AbstractControl {
+    return this.forgotForm.get(name);
+  }
+
   forgot() {
 
     if (this.forgotForm.valid) {
@@ -47,7 +56,10 @@ export class EgressoAuthForgotComponent implements OnInit {
         .finally(() => this.spinner.hide())
         .subscribe(
           (response) => {
-            this.toastr.success('Foi enviado os dados de recuperação da conta para o e-mail.');
+            this.toastr.success(MESSAGES['M038']);
+          },
+          (error) => {
+            this.toastr.error(MESSAGES['M0039']);
           }
         );
     }

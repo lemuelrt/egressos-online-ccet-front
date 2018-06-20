@@ -175,12 +175,21 @@
 
 .login-page input, .login-page select{
   border-radius: 0 !important;
-  border-color: #d2d6de !important;
+  border-color: #d2d6de;
+}
+
+.login-page select{
+  padding: 6px !important;
+}
+
+.login-page .input-group{
+  width: 100%;
 }
 
 .login-page .input-group-addon{
   background-color: #3c8dbc;
   color: #f0f0f0;
+  width: 40px;
 }
 
 .login-page .btn-blue{

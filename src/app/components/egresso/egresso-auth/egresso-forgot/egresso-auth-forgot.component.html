@@ -21,7 +21,7 @@
           <div class="row">
 
             <div class="col-sm-12">
-              <div class="form-group">
+              <div class="form-group" [class.has-error]="hasError('email')">
 
 
                 <div class="input-group">
@@ -29,7 +29,9 @@
                     <i class="fa fa-envelope-o fa" aria-hidden="true"></i>
                   </span>
                   <input type="text" class="form-control" formControlName="email" placeholder="E-mail" />
+
                 </div>
+                <app-control-messages [control]="getControl('email')"></app-control-messages>
 
               </div>
             </div>
@@ -37,12 +39,11 @@
             <div class="col-sm-12 col-buttons">
               <!-- <button class="btn btn-block bg-indigo waves-effect" type="submit">SIGN IN</button> -->
 
+              <button mat-raised-button color="primary" class="btn-blue pull-right" (click)="forgot()">Enviar</button>
 
               <button mat-icon-button color="primary" [routerLink]="['/auth']">
                 <mat-icon>arrow_back</mat-icon>
               </button>
-
-              <button mat-raised-button color="primary" class="btn-blue pull-right" (click)="forgot()">Enviar</button>
             </div>
           </div>
         </form>

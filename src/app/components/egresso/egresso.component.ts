@@ -2,6 +2,7 @@ import { UsuarioDto } from './../../models/usuario-dto.model';
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { TipoUsuario } from '../../enums/tipo-usuario.enum';
 
 @Component({
   selector: 'app-egresso',
@@ -23,7 +24,6 @@ export class EgressoComponent implements OnInit {
   }
 
   logout() {
-    this.auth.logout();
-    this.router.navigate(['/auth']);
+    this.auth.logout(TipoUsuario.EGRESSO);
   }
 }

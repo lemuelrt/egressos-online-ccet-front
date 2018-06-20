@@ -4,7 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from './../../../services/auth.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { OfertaService } from '../../../services/oferta.service';
 import { MESSAGES } from '../../../const/messages';
@@ -32,7 +32,7 @@ export class EgressoAuthComponent implements OnInit {
     private spinner: NgxSpinnerService,
   ) {
     if (this.authService.isLoggedIn(TipoUsuario.EGRESSO)) {
-      this.router.navigate(['/coord']);
+      this.router.navigate(['egresso']);
     }
 
   }
@@ -52,6 +52,14 @@ export class EgressoAuthComponent implements OnInit {
     );
   }
 
+  hasError(name: string): boolean {
+    return this.loginForm.get(name).errors && this.loginForm.get(name).touched;
+  }
+
+  getControl(name: string): AbstractControl {
+    return this.loginForm.get(name);
+  }
+
   login() {
 
     if (this.loginForm.valid) {
@@ -65,8 +73,7 @@ export class EgressoAuthComponent implements OnInit {
         .subscribe(
           (response) => {
             this.toastr.success(MESSAGES['M036']);
-            this.authService.successfulLogin(response.headers.get('Authorization'));
-            this.router.navigate(['/egresso']);
+            this.authService.successfulLogin(response.headers.get('Authorization'), JSON.parse(response.body));
           },
           (error) => {
             this.toastr.error(MESSAGES['M037']);
