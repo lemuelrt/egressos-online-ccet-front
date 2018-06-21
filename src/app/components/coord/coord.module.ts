@@ -1,3 +1,6 @@
+import { AuthCoordGuard } from './../../guards/auth-coord.guard';
+import { CoordAuthModule } from './coord-auth/coord-auth.module';
+
 import { coord_routes } from './../coord/const/coord.config';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from './../shared/shared.module';
@@ -17,12 +20,14 @@ import { CoordEgressosImportComponent } from './coord-egressos-import/coord-egre
 import { AtuacaoProfissionalService } from '../../services/atuacao-profissional.service';
 import { EgressoService } from '../../services/egresso.service';
 import { LeftPadPipe } from 'ngx-pipes';
+import { CoordAuthComponent } from './coord-auth/coord-auth.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(coord_routes),
     SharedModule,
+    CoordAuthModule
   ],
   declarations: [
     CoordComponent,
@@ -37,7 +42,11 @@ import { LeftPadPipe } from 'ngx-pipes';
   providers: [
     AtuacaoProfissionalService,
     EgressoService,
-    LeftPadPipe
+    LeftPadPipe,
+    AuthCoordGuard
+  ],
+  exports: [
+    CoordAuthModule
   ]
 })
 export class CoordModule { }

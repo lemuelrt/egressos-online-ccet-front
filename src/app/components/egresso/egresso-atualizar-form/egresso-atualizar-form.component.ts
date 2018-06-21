@@ -1,3 +1,4 @@
+import { AuthService } from './../../../services/auth.service';
 import { EstadoCivil } from './../../../models/estado-civil.model';
 import { TipoFormacao } from './../../../models/tipo-formacao_.model';
 import { egresso_routes } from './../const/egresso.config';
@@ -82,6 +83,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
     private dialog: MatDialog,
     private faixasSalariaisService: FaixaSalarialService,
     private atuacoesProfissionaisSerivice: AtuacaoProfissionalService,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
@@ -92,7 +94,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
 
     this.initFormAtuacao();
 
-    this.egressoService.getByid(68).subscribe(
+    this.egressoService.meusDados().subscribe(
       (egresso) => {
         this.egresso = egresso;
         this.setValoresFormDP();
@@ -155,6 +157,8 @@ export class EgressoAtualizarFormComponent implements OnInit {
           (response) => {
             this.urlFotoPerfil = null;
             this.egresso = response;
+            // tslint:disable-next-line:max-line-length
+            this.authService.atualizarUserLogado(this.egresso.aluno.alunoNome, this.egresso.aluno.alunoEmail, this.egresso.aluno.alunoFotoPerfil);
             this.toastr.success(MESSAGES['M011']);
           }
 
@@ -243,6 +247,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
         .subscribe(
           (response) => {
             this.egresso = response;
+            this.authService.atualizarUserLogado(this.egresso.aluno.alunoNome, this.egresso.aluno.alunoEmail, this.egresso.aluno.alunoFotoPerfil);
             this.toastr.success(MESSAGES['M011']);
           }
 

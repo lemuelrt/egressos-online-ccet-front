@@ -1,0 +1,97 @@
+.mat-form-field-infix{
+  padding-bottom: 1.6em !important;
+}
+
+mat-icon{
+  font-size: 1.1em !important;
+  margin-right: 5px !important;
+}
+
+.footer{
+  text-align: center;
+  padding: 5px 10px;
+}
+.footer a{
+  font-weight: 600;
+  color: #3F51B5 !important;
+}
+
+.login-page .logo{
+    height: 100px;
+    background-size: 140px 70px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-bottom: 1px solid #f0f0f0;
+    background-color: #f7f7f7;
+}
+
+.login-page .login-box .logo{
+    margin-bottom: 0;
+}
+
+.login-page .login-box .msg{
+    color: #2e546d;
+    font-weight: 600;
+}
+
+.login-page{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: transparent;
+    height: 100vh;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    display: table;
+}
+
+.login-box{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.login-box .card{
+    display: inline-block;
+    min-width: 360px;
+    vertical-align: middle;
+    max-width: 360px;
+    padding: 0;
+    text-align: left;
+}
+
+
+
+.login-box::after{
+    content: " ";
+    display: table;
+    clear: both;
+}
+
+@media (max-width: 599px) {
+    .login-page{
+        padding: 0;
+    }
+    .login-page .login-box .card{
+        max-width: 100%;
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .login-page .login-box .card .footer{
+
+        margin-top: 30px;
+
+    }
+
+    .container-fluid{
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .card .body{
+      padding: 10px;
+    }
+}

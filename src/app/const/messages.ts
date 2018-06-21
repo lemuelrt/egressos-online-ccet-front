@@ -41,8 +41,14 @@ export const MESSAGES = {
   // tslint:disable-next-line:max-line-length
   'M035': 'Como o egresso informa como salário um intervalo de faixa salarial, o cálculo da média considera o valor médio do intervalo selecionado.',
  // coloquei aqui em cima pq é do caso de uso 09 - consulta formacao academica
-  'M039': 'Os tempos médio, menor e maior referem-se ao intervalo de tempo entre a conclusão da graduação e a conclusão da titulação.',
-  'M036': '* Egressos representa a quantidade de egressos que concluíram o curso neste ano.',
-  'M037': '** Atualizados representa quantos dos egressos acessaram o site e atualizaram seus dados.',
-  'M038': 'Nenhum egresso encontrado.'
+  'M041': 'Os tempos médio, menor e maior referem-se ao intervalo de tempo entre a conclusão da graduação e a conclusão da titulação.',
+  'M042': '* Egressos representa a quantidade de egressos que concluíram o curso neste ano.',
+  'M043': '** Atualizados representa quantos dos egressos acessaram o site e atualizaram seus dados.',
+  'M044': 'Nenhum egresso encontrado.',
+  'M036': 'Autenticação realizada com sucesso!',
+  'M037': 'As credenciais informadas não são válidas!',
+  'M038': 'Os dados de recuperação da conta foram enviados para o e-mail cadastrado.',
+  'M039': 'O e-mail informado não foi encontrado.',
+
+
 };

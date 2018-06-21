@@ -1,3 +1,4 @@
+import { AuthModule } from './components/auth/auth.module';
 import { EgressoModule } from './components/egresso/egresso.module';
 import { AppErrorHandle } from './app-error-handle';
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -30,7 +31,6 @@ import { AgmCoreModule } from '@agm/core';
   ],
   imports: [
     BrowserModule,
-
     AdminModule,
     CoordModule,
     SharedModule,

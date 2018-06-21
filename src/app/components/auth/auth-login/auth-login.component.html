@@ -1,0 +1,45 @@
+<div class="login-page">
+  <div class="login-box">
+    <div class="card">
+      <div class="logo">
+
+      </div>
+      <div class="body">
+        <form [formGroup]="loginForm" novalidate>
+          <div class="msg">LOGIN - Egressos Online CCET</div>
+          <div class="input-group">
+            <mat-form-field>
+              <mat-icon matPrefix>perm_identity</mat-icon>
+              <input matInput placeholder="Usuário" formControlName="user" [type]="'text'">
+            </mat-form-field>
+          </div>
+          <div class="input-group">
+            <mat-form-field>
+              <mat-icon matPrefix>lock</mat-icon>
+              <input matInput placeholder="Senha" formControlName="senha" [type]="senha_hide ? 'password' : 'text'">
+              <mat-icon matSuffix (click)="senha_hide = !senha_hide">{{senha_hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+            </mat-form-field>
+          </div>
+          <div class="row">
+
+            <div class="col-xs-8 p-t-5">
+              <!--
+              <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-indigo">
+              <label for="rememberme">Lembre-me</label>-->
+            </div>
+            <div class="col-xs-4">
+              <!-- <button class="btn btn-block bg-indigo waves-effect" type="submit">SIGN IN</button> -->
+              <button mat-raised-button color="primary" (click)="login()">ENTRAR</button>
+            </div>
+          </div>
+          <div class="row m-t-15 m-b--20">
+
+          </div>
+        </form>
+      </div>
+      <div class="footer">
+
+      </div>
+    </div>
+  </div>
+</div>
