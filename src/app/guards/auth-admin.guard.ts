@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { BaseGuard } from './base.guard';
 
 @Injectable()
-export class AuthAdminGuard extends BaseGuard{
+export class AuthAdminGuard extends BaseGuard {
 
   constructor(
     authService: AuthService

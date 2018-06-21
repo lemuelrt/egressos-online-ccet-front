@@ -96,6 +96,21 @@ export class AuthService {
       });
   }
 
+  handleNotPermission() {
+
+    switch (this.getAuthenticated().tipoUsuario) {
+      case TipoUsuario.ADMIN:
+        this.router.navigate(['/admin']);
+        break;
+      case TipoUsuario.COORD:
+        this.router.navigate(['/coord']);
+        break;
+      default:
+        this.router.navigate(['/egresso']);
+        break;
+    }
+  }
+
   handleLogin(tipoUsuario: TipoUsuario) {
     this.storage.setLocalUser(null);
     switch (tipoUsuario) {
@@ -114,4 +129,14 @@ export class AuthService {
   logout(tipoUsuario: TipoUsuario) {
     this.handleLogin(tipoUsuario);
   }
+
+  atualizarUserLogado(nome: string, email: string, fotoPerfil: string){
+    const usuario: UsuarioDto =this.getAuthenticated();
+    usuario.email = email;
+    usuario.nome = nome;
+    usuario.fotoPerfil = fotoPerfil;
+
+    this.storage.setUserInLocalUser(usuario);
+  }
+
 }

@@ -32,7 +32,11 @@ export abstract class BaseGuard implements CanLoad, CanActivate, CanActivateChil
   checkAuthentication(path: string) {
 
     if (this.checkLoggIn()) {
-      return this.checkPermission();
+      if (!this.checkPermission()) {
+        this.authService.handleNotPermission();
+      } else {
+        return true;
+      }
     } else {
       this.authService.handleLogin(this.tipoUsuario);
     }

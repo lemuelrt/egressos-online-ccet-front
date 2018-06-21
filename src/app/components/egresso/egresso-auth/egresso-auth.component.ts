@@ -18,7 +18,6 @@ export class EgressoAuthComponent implements OnInit {
 
   senha_hide = true;
   loginForm: FormGroup;
-  navigateTo: string;
 
   ofertas: Oferta[] = [];
 
@@ -28,7 +27,6 @@ export class EgressoAuthComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private ofertaService: OfertaService,
-    private activatedRoute: ActivatedRoute,
     private spinner: NgxSpinnerService,
   ) {
     if (this.authService.isLoggedIn(TipoUsuario.EGRESSO)) {

@@ -14,16 +14,13 @@ import { TipoUsuario } from '../../../../enums/tipo-usuario.enum';
 })
 export class CoordAuthForgotComponent implements OnInit {
 
-  senha_hide = true;
   forgotForm: FormGroup;
-  navigateTo: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private toastr: ToastrService,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
     private spinner: NgxSpinnerService,
   ) {
     if (this.authService.isLoggedIn(TipoUsuario.COORD)) {

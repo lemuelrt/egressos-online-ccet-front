@@ -42,6 +42,10 @@ export class EgressoService {
     return this.http.get<Egresso>(`${EOCCET_API}/egresso/${id}`);
   }
 
+  meusDados(): Observable<Egresso> {
+    return this.http.get<Egresso>(`${EOCCET_API}/egresso/meus-dados`);
+  }
+
   updateGaleria(form: FormData, id: number): Observable<Egresso> {
     return this.http.post<Egresso>(`${EOCCET_API}/egresso/atualizar-fotos-galeria/${id}`, form);
   }
