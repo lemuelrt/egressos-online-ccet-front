@@ -84,7 +84,7 @@ import { ConsultaEstatisticasDoSistemaComponent } from './consultas/consulta-est
     ConsultaFormacaoAcademicaService,
     ConsultaEstatisticasDoSistemaService,
    // { provide: LOCALE_ID, useValue: 'pt-BR' }
-    { provide: LOCALE_ID, useValue: 'pt-BR' },
+  // { provide: LOCALE_ID, useValue: 'pt-BR' },
     AuthInterceptorProvider,
     ConsultaFormacaoAcademicaService
   ],

@@ -50,7 +50,15 @@ export class AdminAuthComponent implements OnInit {
 
   login() {
 
-    if (this.loginForm.valid) {
+    if (this.loginForm.invalid) {
+      Object.keys(this.loginForm.controls).forEach(field => {
+        const control = this.loginForm.get(field);
+        control.markAsTouched({ onlySelf: true });
+      });
+
+      this.toastr.error(MESSAGES['M006']);
+
+    } else {
       this.spinner.show();
       this.authService.authenticate(
         this.loginForm.get('cpf').value,

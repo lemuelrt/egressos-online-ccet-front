@@ -48,7 +48,15 @@ export class EgressoAuthForgotComponent implements OnInit {
 
   forgot() {
 
-    if (this.forgotForm.valid) {
+    if (this.forgotForm.invalid) {
+      Object.keys(this.forgotForm.controls).forEach(field => {
+        const control = this.forgotForm.get(field);
+        control.markAsTouched({ onlySelf: true });
+      });
+
+      this.toastr.error(MESSAGES['M006']);
+
+    } else {
       this.spinner.show();
       this.authService.forgot(this.forgotForm.get('email').value, TipoUsuario.EGRESSO)
         .finally(() => this.spinner.hide())
