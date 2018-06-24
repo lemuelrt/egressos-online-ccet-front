@@ -129,7 +129,7 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
         control.markAsTouched({ onlySelf: true });
       });
 
-      this.toastr.error(MESSAGES['M008']);
+      this.toastr.error(MESSAGES['M006']);
     } else {
       this.spinner.show();
       const ofertaSeleciona: Oferta = this.ofertas.find((o) => o.ofertaId.toString() === this.adminForm.get('oferta').value);
@@ -151,7 +151,7 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
         .subscribe(
           (coordenadorResponse) => {
 
-            this.toastr.success(MESSAGES['M013']);
+            this.toastr.success(MESSAGES['M014']);
             this.router.navigate(['/admin/coordenadores']);
           }
         );
@@ -162,7 +162,7 @@ export class AdminCoordenadorFormComponent implements OnInit, AfterViewInit {
           .subscribe(
           (coordenadorResponse) => {
 
-            this.toastr.success(MESSAGES['M014']);
+            this.toastr.success(MESSAGES['M015']);
             this.router.navigate(['/admin/coordenadores']);
           }
         );

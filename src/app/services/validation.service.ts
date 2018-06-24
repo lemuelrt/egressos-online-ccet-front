@@ -9,20 +9,25 @@ export class ValidationService {
     // Para consultar as mensagens seguir o seguinte caminho : const/messages.ts
 
     const config = {
-      'required': MESSAGES['M006'],
-      'requiredSelected': MESSAGES['M007'],
-      'invalidEmailAddress': MESSAGES['M001'],
-      'invalidPassword': MESSAGES['M005'],
-      'invalidCPF': MESSAGES['M003'],
-      'senhasNaoConferem': MESSAGES['M009'],
-      'invalidNomeCompleto': MESSAGES['M002'],
-      'invalidSenha': MESSAGES['M005'],
+      'required': MESSAGES['M005'],
+      'requiredSelected': MESSAGES['M012'],
+      'invalidEmailAddress': MESSAGES['M007'],
+      'invalidPassword': MESSAGES['M011'],
+      'invalidCPF': MESSAGES['M009'],
+      'senhasNaoConferem': MESSAGES['M013'],
+      'invalidNomeCompleto': MESSAGES['M008'],
+      'invalidSenha': MESSAGES['M011'],
+
+      // Deve ser atualizado para numeração da mensagem abaixo
+      // Nome inválido. Este campo deve conter no mínimo 5 letras e no máximo 80. O nome deve conter no mínimo duas palavras.
       'invalidNomeSimples': MESSAGES['M017'],
-      'invalidAno': MESSAGES['M023'],
-      'invalidTempoMinForm': MESSAGES['M024'],
+
+
+      'invalidAno': MESSAGES['M022'],
+      'invalidTempoMinForm': MESSAGES['M023'],
       'invalidTelefone': 'Telefone inválido!',
-      'invalidQtdFilhos': MESSAGES['M032'],
-      'anoConclusaoTitulacaoInvalido': MESSAGES['M029'],
+      'invalidQtdFilhos': MESSAGES['M034'],
+      'anoConclusaoTitulacaoInvalido': MESSAGES['M033'],
     };
 
     return config[validatorName];
@@ -80,7 +85,7 @@ export class ValidationService {
     const regex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
 
 
-    if (value && (value.trim().length < 5 || value.trim().length > 80 ||  !regex.test(value))) {
+    if (value && (value.trim().length < 5 || value.trim().length > 80 || !regex.test(value))) {
       return { 'invalidNomeSimples': true };
     } else {
       return null;
@@ -100,9 +105,9 @@ export class ValidationService {
     // regex.test(value) verifica se o ano informado está no padrao [1 ou 2] +(3 num [0-9])
     // (value > anoAtual) verifica se o ano informado é superior ao ano atual
 
-      if (!regex.test(value) || (value > anoAtual)) {
-        return { 'invalidAno': true };
-      }
+    if (!regex.test(value) || (value > anoAtual)) {
+      return { 'invalidAno': true };
+    }
 
     return null;
 
@@ -124,8 +129,8 @@ export class ValidationService {
   }
 
 
-   // Validação de senha - aceita todos os tipos de caracteres,
-   // obrigatório ter no mínimo 8 e no máximo 20 caracteres
+  // Validação de senha - aceita todos os tipos de caracteres,
+  // obrigatório ter no mínimo 8 e no máximo 20 caracteres
 
   static senha(control) {
     // RFC 2822 compliant regex
@@ -152,7 +157,7 @@ export class ValidationService {
     const value: string = control.value;
 
     if (value !== '' && (value.length < 10)) {
-        return { 'invalidTelefone': true };
+      return { 'invalidTelefone': true };
     }
     return null;
 

@@ -53,7 +53,7 @@ export class CoordAtuacaoProfissionalIndexComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogConfirmationComponent, {
       width: 'auto',
       autoFocus: false,
-      data: { msg: MESSAGES['M015'] }
+      data: { msg: MESSAGES['M027'] }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -63,7 +63,7 @@ export class CoordAtuacaoProfissionalIndexComponent implements OnInit {
 
         this.atuacaoProfissionalService.update(id, atuacaoProfissional).subscribe(
           (respnse) => {
-            this.toastr.success(MESSAGES['M012']);
+            this.toastr.success(MESSAGES['M016']);
             this.atuacoesProfissionais = this.atuacoesProfissionais.filter((ap2) => ap2.atuacaoProfissionalId !== id);
           }
         );

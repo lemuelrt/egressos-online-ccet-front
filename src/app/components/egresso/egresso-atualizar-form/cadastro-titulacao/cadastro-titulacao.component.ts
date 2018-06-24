@@ -83,7 +83,7 @@ export class CadastroTitulacaoComponent implements OnInit {
         control.markAsTouched({ onlySelf: true });
       });
 
-      this.toastr.error(MESSAGES['M008']);
+      this.toastr.error(MESSAGES['M006']);
 
     } else {
 

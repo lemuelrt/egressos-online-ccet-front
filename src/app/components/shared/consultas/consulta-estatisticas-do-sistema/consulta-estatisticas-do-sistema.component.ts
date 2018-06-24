@@ -13,9 +13,9 @@ export class ConsultaEstatisticasDoSistemaComponent implements OnInit {
 
 
   title = 'Consulta de estatísticas do sistema';
-  msg036 = MESSAGES.M036;
-  msg037 = MESSAGES.M037;
-  msg038 = MESSAGES.M038;
+  msg039 = MESSAGES.M039;
+  msg040 = MESSAGES.M040;
+  msg041 = MESSAGES.M041;
 
 
   consultasEstatisticasDoSistema: ConsultaEstatisticasDoSistema[] = [];

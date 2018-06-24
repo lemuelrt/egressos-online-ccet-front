@@ -18,9 +18,9 @@ export class ConsultaAtuacaoProfissionalComponent implements OnInit {
   title = 'Consulta de atuação profissional';
   btndescricao = 'Consultar';
 
-  msg33 = MESSAGES.M033;
-  msg34 = MESSAGES.M034;
   msg35 = MESSAGES.M035;
+  msg36 = MESSAGES.M036;
+  msg37 = MESSAGES.M037;
 
   anosIngresso = [];
 

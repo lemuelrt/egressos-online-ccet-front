@@ -91,7 +91,7 @@ export class CoordEgressoFormComponent implements OnInit, AfterViewInit {
         control.markAsTouched({ onlySelf: true });
       });
 
-      this.toastr.error(MESSAGES['M008']);
+      this.toastr.error(MESSAGES['M006']);
 
     } else {
 
@@ -119,7 +119,7 @@ export class CoordEgressoFormComponent implements OnInit, AfterViewInit {
         .finally(() => this.spinner.hide())
         .subscribe(
           (egressoResponse) => {
-            this.toastr.success(MESSAGES['M022']);
+            this.toastr.success(MESSAGES['M014']);
             this.router.navigate(['/coord/egressos']);
           }
         );

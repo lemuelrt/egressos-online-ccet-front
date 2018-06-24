@@ -130,8 +130,8 @@ export class AuthService {
     this.handleLogin(tipoUsuario);
   }
 
-  atualizarUserLogado(nome: string, email: string, fotoPerfil: string){
-    const usuario: UsuarioDto =this.getAuthenticated();
+  atualizarUserLogado(nome: string, email: string, fotoPerfil: string) {
+    const usuario: UsuarioDto = this.getAuthenticated();
     usuario.email = email;
     usuario.nome = nome;
     usuario.fotoPerfil = fotoPerfil;

@@ -66,7 +66,7 @@ export class CoordEgressosImportComponent implements OnInit {
         control.markAsTouched({ onlySelf: false });
       });*/
 
-      this.toastr.error(MESSAGES['M008']);
+      this.toastr.error(MESSAGES['M006']);
 
     } else {
       const egressos: Egresso[] = [];
@@ -84,7 +84,7 @@ export class CoordEgressosImportComponent implements OnInit {
       this.egressoService.saveAll(egressos).subscribe(
         (egressosResponse) => {
           this.egressoService.setEgressosImportados([]);
-          this.toastr.success(MESSAGES['M022']);
+          this.toastr.success(MESSAGES['M021']);
           this.router.navigate(['/coord/egressos']);
         }
       );

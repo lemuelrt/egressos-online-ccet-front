@@ -18,8 +18,8 @@ export class ConsultaFaixaSalarialComponent implements OnInit {
   title = 'Consulta de faixa salarial';
   btndescricao = 'Consultar';
 
-  msg33 = MESSAGES.M033;
-  msg34 = MESSAGES.M034;
+  msg35 = MESSAGES.M035;
+  msg36 = MESSAGES.M036;
 
   anosIngresso = [];
   anosConclusao = [];

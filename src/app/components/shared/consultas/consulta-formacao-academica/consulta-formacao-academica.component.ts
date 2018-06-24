@@ -17,9 +17,9 @@ export class ConsultaFormacaoAcademicaComponent implements OnInit {
   title = 'Consulta de formação acadêmica';
   btndescricao = 'Consultar';
 
-  msg33 = MESSAGES.M033;
-  msg34 = MESSAGES.M034;
-  msg39 = MESSAGES.M039;
+  msg35 = MESSAGES.M035;
+  msg36 = MESSAGES.M036;
+  msg38 = MESSAGES.M038;
 
   anosIngresso = [];
 

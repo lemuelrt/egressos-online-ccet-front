@@ -59,7 +59,7 @@ export class AdminCoordenadoresComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogConfirmationComponent, {
       width: 'auto',
       autoFocus: false,
-      data: { msg: MESSAGES['M015'] }
+      data: { msg: MESSAGES['M017'] }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -70,7 +70,7 @@ export class AdminCoordenadoresComponent implements OnInit {
 
         this.coordenadorService.update(id, coordenador).subscribe(
           (response) => {
-            this.toastr.success(MESSAGES['M012']);
+            this.toastr.success(MESSAGES['M016']);
             this.coordenadores = this.coordenadores.filter((c2) => c2.coordenadorId !== id);
           }
         );

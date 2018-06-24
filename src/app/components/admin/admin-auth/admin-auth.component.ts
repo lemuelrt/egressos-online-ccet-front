@@ -59,11 +59,11 @@ export class AdminAuthComponent implements OnInit {
         .finally(() => this.spinner.hide())
         .subscribe(
           (response) => {
-            this.toastr.success(MESSAGES['M036']);
+            this.toastr.success(MESSAGES['M001']);
             this.authService.successfulLogin(response.headers.get('Authorization'), JSON.parse(response.body));
           },
           (error) => {
-            this.toastr.error(MESSAGES['M037']);
+            this.toastr.error(MESSAGES['M002']);
           }
         );
     }

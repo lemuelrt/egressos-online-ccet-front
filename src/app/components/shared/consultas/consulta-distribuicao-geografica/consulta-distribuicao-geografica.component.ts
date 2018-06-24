@@ -15,8 +15,8 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 })
 export class ConsultaDistribuicaoGeograficaComponent implements OnInit {
 
-  msg33 = MESSAGES.M033;
-  msg34 = MESSAGES.M034;
+  msg35 = MESSAGES.M035;
+  msg36 = MESSAGES.M036;
 
 
   title = 'Consulta de distribuição geográfica';

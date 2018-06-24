@@ -54,10 +54,10 @@ export class EgressoAuthForgotComponent implements OnInit {
         .finally(() => this.spinner.hide())
         .subscribe(
           (response) => {
-            this.toastr.success(MESSAGES['M038']);
+            this.toastr.success(MESSAGES['M003']);
           },
           (error) => {
-            this.toastr.error(MESSAGES['M0039']);
+            this.toastr.error(MESSAGES['M004']);
           }
         );
     }

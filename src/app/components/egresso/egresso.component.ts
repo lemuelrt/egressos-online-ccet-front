@@ -21,7 +21,7 @@ export class EgressoComponent implements OnInit {
   getNomeUsuario() {
     const usuarioDto: UsuarioDto = this.auth.getAuthenticated();
 
-    return (usuarioDto !== undefined) ? encodeURIComponent(usuarioDto.nome) : '';
+    return (usuarioDto !== undefined) ? usuarioDto.nome : '';
 
   }
 

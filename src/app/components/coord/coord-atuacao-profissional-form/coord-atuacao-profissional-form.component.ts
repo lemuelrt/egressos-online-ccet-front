@@ -71,7 +71,7 @@ export class CoordAtuacaoProfissionalFormComponent implements OnInit, AfterViewI
         control.markAsTouched({ onlySelf: true });
       });
 
-      this.toastr.error(MESSAGES['M008']);
+      this.toastr.error(MESSAGES['M006']);
     } else {
       this.spinner.show();
       const atuacaoProfissional: AtuacaoProfissional = {
@@ -86,7 +86,7 @@ export class CoordAtuacaoProfissionalFormComponent implements OnInit, AfterViewI
         .subscribe(
           (coordenadorResponse) => {
 
-            this.toastr.success(MESSAGES['M010']);
+            this.toastr.success(MESSAGES['M014']);
             this.router.navigate(['/coord/atuacoes-profissionais']);
           }
         );
@@ -97,7 +97,7 @@ export class CoordAtuacaoProfissionalFormComponent implements OnInit, AfterViewI
           .subscribe(
           (atuacaoProfissionalResponse) => {
 
-            this.toastr.success(MESSAGES['M011']);
+            this.toastr.success(MESSAGES['M015']);
             this.router.navigate(['/coord/atuacoes-profissionais']);
           }
         );
