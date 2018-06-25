@@ -116,13 +116,22 @@ export class CoordEgressosImportComponent implements OnInit {
   tempoMinCurso(anoIngresso: AbstractControl, anoConclusao: AbstractControl, touched = true) {
     anoConclusao.valueChanges.subscribe(
       (selectedValue) => {
+          this.validarAno(anoIngresso, anoConclusao, touched = true);
+    }
+  );
+  anoIngresso.valueChanges.subscribe(
+    (selectedValue) => {
+          this.validarAno(anoIngresso, anoConclusao, touched = true);
+    }
+  );
+  }
 
-        const tempMin = this.auth.getAuthenticated().tempoMinimoIntegralizacao;
-
-        const testar = (touched === false || (touched && anoConclusao.touched)) ? true : false;
+  private validarAno (anoIngresso: AbstractControl, anoConclusao: AbstractControl, touched = true) {
+    const tempMin = this.auth.getAuthenticated().tempoMinimoIntegralizacao;
+        // tslint:disable-next-line:radix
 
         // tslint:disable-next-line:radix
-        if (testar && (parseInt(anoConclusao.value) < (parseInt(anoIngresso.value) + (tempMin - 1)))) {
+        if ((parseInt(anoConclusao.value) < (parseInt(anoIngresso.value) + ( tempMin - 1)))) {
 
           if (anoConclusao.valid) {
             anoConclusao.setErrors({ 'invalidTempoMinForm': true });
@@ -134,10 +143,7 @@ export class CoordEgressosImportComponent implements OnInit {
             anoConclusao.setErrors(null);
           }
 
-
         }
-      }
-    );
   }
 
   getNameEgressoDoGroup(i) {
