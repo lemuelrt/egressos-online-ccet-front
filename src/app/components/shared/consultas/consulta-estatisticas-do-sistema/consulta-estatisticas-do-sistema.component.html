@@ -33,7 +33,7 @@
             <td class="text-center">{{ ces.anoConclusao }} </td>
             <td class="text-center">{{ ces.qtdEgressos }} </td>
             <td class="text-center">{{ ces.atualizados }} </td>
-            <td class="text-center">{{ percentualAtualizadosPorAno(ces) | number}} % </td>
+            <td class="text-center">{{ percentualAtualizadosPorAno(ces) | number: '1.0-2'}} % </td>
           </tr>
         </tbody>
 
@@ -42,7 +42,7 @@
               <td class="td-bold">Total do curso: </td>
               <td class="td-bold">{{ totalEgressos(consultasEstatisticasDoSistema) }}</td>
               <td class="td-bold">{{ totalAtualizados(consultasEstatisticasDoSistema) }}</td>
-              <td class="td-bold">{{ percentualAtualizados(consultasEstatisticasDoSistema) }} %</td>
+              <td class="td-bold">{{ percentualAtualizados(consultasEstatisticasDoSistema) | number: '1.0-2'}} %</td>
           </tr>
         </tbody>
 

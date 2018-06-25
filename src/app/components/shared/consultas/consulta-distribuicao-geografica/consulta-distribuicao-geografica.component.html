@@ -77,9 +77,9 @@
           <tr *ngFor="let cdg of consultasDistribuicaoGeografica">
             <td>{{cdg.cidade}}, {{cdg.estado}}, {{cdg.pais}}</td>
             <td class="text-center">{{cdg.totalreside}}</td>
-            <td class="text-center">{{percentualReside(cdg, consultasDistribuicaoGeografica) | number}}%</td>
+            <td class="text-center">{{percentualReside(cdg, consultasDistribuicaoGeografica) | number: '1.0-2'}}%</td>
             <td class="text-center">{{cdg.totaltrabalha}}</td>
-            <td class="text-center">{{percentualTrabalha(cdg, consultasDistribuicaoGeografica) | number}}%</td>
+            <td class="text-center">{{percentualTrabalha(cdg, consultasDistribuicaoGeografica) | number: '1.0-2'}}%</td>
           </tr>
         </tbody>
       </table>

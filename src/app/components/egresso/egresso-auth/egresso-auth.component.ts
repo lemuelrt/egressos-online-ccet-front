@@ -8,6 +8,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 import { Component, OnInit } from '@angular/core';
 import { OfertaService } from '../../../services/oferta.service';
 import { MESSAGES } from '../../../const/messages';
+import { ValidationService } from '../../../services/validation.service';
 
 @Component({
   selector: 'app-egresso-auth',
@@ -40,7 +41,7 @@ export class EgressoAuthComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       cpf: this.formBuilder.control('', [Validators.required]),
       senha: this.formBuilder.control('', [Validators.required]),
-      oferta: this.formBuilder.control('', [Validators.required])
+      oferta: this.formBuilder.control('', [ValidationService.selectedValidator])
     });
 
     this.ofertaService.getAll().subscribe(

@@ -77,7 +77,7 @@
           <tr *ngFor="let cfa of consultasFormacaoAcademica">
             <td class="text-center">{{cfa.titulacao}}</td>
             <td class="text-center">{{cfa.quantidade}}</td>
-            <td class="text-center">{{cfa.tempomedio}}</td>
+            <td class="text-center">{{cfa.tempomedio | number: '1.0-2'}}</td>
             <td class="text-center">{{cfa.menortempo}}</td>
             <td class="text-center">{{cfa.maiortempo}}</td>
           </tr>
