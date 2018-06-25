@@ -117,11 +117,8 @@ export class CoordEgressosImportComponent implements OnInit {
     anoConclusao.valueChanges.subscribe(
       (selectedValue) => {
 
-        /**
-         *  Após a implementação do caso de uso de realizar login o tempo minimo será dinâmico
-         *  conforme qual coordenador está realizando o cadastro
-         */
         const tempMin = this.auth.getAuthenticated().tempoMinimoIntegralizacao;
+
         const testar = (touched === false || (touched && anoConclusao.touched)) ? true : false;
 
         // tslint:disable-next-line:radix
