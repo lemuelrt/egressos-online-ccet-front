@@ -8,7 +8,7 @@
         <img src="{{getImgPerfil()}}" class="img-circle" alt="User Image">
       </div>
       <div class="pull-left info">
-        <p>{{getNomeUsuario()}}</p>
+        <p style="font-size: 12px">{{getNomeUsuario() | shorten : 22 : '...'}}</p>
         <a (click)="logout()" class="btn-logout">Sair</a>
       </div>
     </div>

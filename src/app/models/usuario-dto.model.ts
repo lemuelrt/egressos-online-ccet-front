@@ -8,4 +8,5 @@ export interface UsuarioDto {
   email?: string;
   ofertaId?: number;
   fotoPerfil?: string;
+  tempoMinimoIntegralizacao?: number;
 }
