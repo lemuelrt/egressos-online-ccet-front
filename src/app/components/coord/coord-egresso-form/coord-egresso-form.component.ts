@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CoordComponent } from './../coord.component';
 import { variable } from '@angular/compiler/src/output/output_ast';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-coord-egresso-form',
@@ -33,6 +34,7 @@ export class CoordEgressoFormComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private egressoService: EgressoService,
     private spinner: NgxSpinnerService,
+    private auth: AuthService
   ) { }
 
   ngOnInit() {
@@ -60,7 +62,8 @@ export class CoordEgressoFormComponent implements OnInit, AfterViewInit {
     anoConclusao.valueChanges.subscribe(
       (selectedValue) => {
 
-        const tempMin = 4;
+        const tempMin = this.auth.getAuthenticated().tempoMinimoIntegralizacao;
+
         const testar = (touched === false || (touched && anoConclusao.touched)) ? true : false;
 
         // tslint:disable-next-line:radix

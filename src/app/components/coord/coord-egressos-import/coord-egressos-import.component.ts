@@ -8,6 +8,7 @@ import { MESSAGES } from './../../../const/messages';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormArray } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../../services/auth.service';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class CoordEgressosImportComponent implements OnInit {
     private formBuilder: FormBuilder,
     private egressoService: EgressoService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private auth: AuthService
   ) { }
 
   egressosImportado: Egresso[];  // buscar na service de egresso o objeto retornado do arquivo csv
@@ -119,7 +121,7 @@ export class CoordEgressosImportComponent implements OnInit {
          *  Após a implementação do caso de uso de realizar login o tempo minimo será dinâmico
          *  conforme qual coordenador está realizando o cadastro
          */
-        const tempMin = 4;
+        const tempMin = this.auth.getAuthenticated().tempoMinimoIntegralizacao;
         const testar = (touched === false || (touched && anoConclusao.touched)) ? true : false;
 
         // tslint:disable-next-line:radix

@@ -35,8 +35,8 @@ export const MESSAGES = {
   'M032': 'Este espaço é destinado a fotografias de sua vida pessoal e profissional, assim como descrição do conteúdo/momento das fotos.',
   'M033': 'Ano de conclusão da titulação deve ser superior ao ano de conclusão da graduação.',
   'M034': 'A quantidade de filhos não pode ser negativa.',
-  'M035': 'Total de egressos da consulta*: NN (NN = total em número).',
-  'M036': '*O total de egressos da consulta diz respeito àqueles que atendem os filtros informados e atualizaram os dados na plataforma.',
+  'M035': 'Total de egressos da consulta* : ',
+  'M036': '* O total de egressos da consulta diz respeito àqueles que atendem os filtros informados e atualizaram os dados na plataforma.',
   // tslint:disable-next-line:max-line-length
   'M037': 'Como o egresso informa como salário um intervalo de faixa salarial, o cálculo da média considera o valor médio do intervalo selecionado.',
   'M038': 'Os tempos médio, menor e maior referem-se ao intervalo de tempo entre a conclusão da graduação e a conclusão da titulação.',
