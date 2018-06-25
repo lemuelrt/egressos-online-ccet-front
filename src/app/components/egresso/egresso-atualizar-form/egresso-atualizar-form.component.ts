@@ -53,7 +53,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
   title = 'ALTERAR MEUS DADOS';
   btndescricao = 'Atualizar';
 
-  msg40 = MESSAGES.M040;
+  msg32 = MESSAGES['M032'];
 
   @ViewChild('fotoPerfil') fotoPerfil;
   urlFotoPerfil: string;
@@ -159,12 +159,12 @@ export class EgressoAtualizarFormComponent implements OnInit {
             this.egresso = response;
             // tslint:disable-next-line:max-line-length
             this.authService.atualizarUserLogado(this.egresso.aluno.alunoNome, this.egresso.aluno.alunoEmail, this.egresso.aluno.alunoFotoPerfil);
-            this.toastr.success(MESSAGES['M011']);
+            this.toastr.success(MESSAGES['M015']);
           }
 
         );
     } else {
-      this.toastr.success(MESSAGES['M011']);
+      this.toastr.success(MESSAGES['M015']);
       this.spinner.hide();
     }
   }
@@ -238,7 +238,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
         control.markAsTouched({ onlySelf: true });
       });
 
-      this.toastr.error(MESSAGES['M008']);
+      this.toastr.error(MESSAGES['M006']);
     } else {
       this.spinner.show();
 
@@ -247,8 +247,9 @@ export class EgressoAtualizarFormComponent implements OnInit {
         .subscribe(
           (response) => {
             this.egresso = response;
+            // tslint:disable-next-line:max-line-length
             this.authService.atualizarUserLogado(this.egresso.aluno.alunoNome, this.egresso.aluno.alunoEmail, this.egresso.aluno.alunoFotoPerfil);
-            this.toastr.success(MESSAGES['M011']);
+            this.toastr.success(MESSAGES['M015']);
           }
 
         );
@@ -286,7 +287,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
 
       if (result && result.egresso !== undefined) {
-        this.toastr.success(MESSAGES['M010']);
+        this.toastr.success(MESSAGES['M014']);
         this.egresso = result.egresso;
       }
 
@@ -314,9 +315,9 @@ export class EgressoAtualizarFormComponent implements OnInit {
       if (result && result.egresso !== undefined) {
         this.egresso = result.egresso;
         if (tipoFormacao === undefined) {
-          this.toastr.success(MESSAGES['M010']);
+          this.toastr.success(MESSAGES['M014']);
         } else {
-          this.toastr.success(MESSAGES['M011']);
+          this.toastr.success(MESSAGES['M015']);
         }
 
       }
@@ -402,7 +403,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
       Object.keys(this.egressoFormGaleria.controls).forEach(field => {
         this.egressoFormGaleria.get(field).markAsTouched({ onlySelf: true });
       });
-      this.toastr.error(MESSAGES['M008']);
+      this.toastr.error(MESSAGES['M006']);
     } else {
       this.spinner.show();
 
@@ -438,7 +439,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
           (response) => {
             this.urlFotosGaleria = { 0: '', 1: '', 2: '' };
             this.egresso = response;
-            this.toastr.success(MESSAGES['M011']);
+            this.toastr.success(MESSAGES['M015']);
 
           }
 
@@ -525,7 +526,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
         control.markAsTouched({ onlySelf: true });
       });
 
-      this.toastr.error(MESSAGES['M008']);
+      this.toastr.error(MESSAGES['M006']);
     } else {
       this.spinner.show();
 
@@ -536,7 +537,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
           .subscribe(
             (response) => {
               this.egresso = response;
-              this.toastr.success(MESSAGES['M011']);
+              this.toastr.success(MESSAGES['M015']);
 
             }
 
@@ -547,7 +548,7 @@ export class EgressoAtualizarFormComponent implements OnInit {
           .subscribe(
             (response) => {
               this.egresso = response;
-              this.toastr.success(MESSAGES['M011']);
+              this.toastr.success(MESSAGES['M015']);
               this.setValoresFormAtuacao();
             }
 

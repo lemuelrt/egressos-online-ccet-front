@@ -20,7 +20,7 @@ export class ValidationService {
 
       // Deve ser atualizado para numeração da mensagem abaixo
       // Nome inválido. Este campo deve conter no mínimo 5 letras e no máximo 80. O nome deve conter no mínimo duas palavras.
-      'invalidNomeSimples': MESSAGES['M017'],
+      'invalidNomeSimples': MESSAGES['M025'],
 
 
       'invalidAno': MESSAGES['M022'],
